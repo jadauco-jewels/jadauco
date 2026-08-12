@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meenakiya — Cloisonné (V2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@200..800&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — enamel palette lifted from meenakari work
+   ============================================================ */
+:root{
+  --peacock:      #0B4F45;
+  --peacock-dk:   #06382F;
+  --peacock-lt:   #12695C;
+  --vermilion:    #C8402E;
+  --lapis:        #1E4B9E;
+  --enamel:       #F6F1E4;
+  --wire:         #D6A64A;
+  --wire-dk:      #A97C2C;
+  --ink:          #0A1F1B;
+
+  --f-display: "Anek Latin", system-ui, sans-serif;
+  --f-body:    "Tiro Devanagari Hindi", Georgia, serif;
+  --f-mark:    "Yatra One", system-ui, cursive;
+
+  --wire-w: 2px;
+  --wrap: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--peacock);color:var(--enamel);
+  font-family:var(--f-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+svg{display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--wire);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:22px}
+h1,h2,h3,.dspl{font-family:var(--f-display);font-weight:700;letter-spacing:-.028em;line-height:1.02;margin:0}
+.lbl{font-family:var(--f-display);font-weight:600;font-size:.76rem;letter-spacing:.24em;text-transform:uppercase}
+
+/* ============================================================ header */
+header{position:sticky;top:0;z-index:60;background:var(--peacock-dk);
+  border-bottom:var(--wire-w) solid var(--wire)}
+.bar{display:flex;align-items:center;gap:34px;height:74px}
+.mark{font-family:var(--f-mark);font-size:1.72rem;color:var(--wire);line-height:1;padding-top:6px}
+nav{margin-left:auto;display:flex;gap:26px;font-family:var(--f-display);font-weight:500;
+  font-size:.92rem;letter-spacing:.14em;text-transform:uppercase}
+nav a{padding-block:6px;border-bottom:2px solid transparent;transition:.25s}
+nav a:hover{border-color:var(--vermilion)}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:var(--vermilion);color:#fff;
+  padding:11px 20px;font-family:var(--f-display);font-weight:600;font-size:.86rem;
+  letter-spacing:.13em;text-transform:uppercase;transition:.25s}
+.wa-btn:hover{background:#E04E39}
+.burger{display:none;margin-left:auto;background:none;border:1px solid rgba(246,241,228,.4);
+  color:var(--enamel);padding:9px 12px;cursor:pointer}
+
+/* ============================================================
+   SIGNATURE — the cloisonné grid.
+   Cells sit on a gold "wire" field; the gap IS the wire.
+   ============================================================ */
+.cloison{display:grid;gap:var(--wire-w);background:var(--wire);
+  border:var(--wire-w) solid var(--wire)}
+.cell{background:var(--peacock);padding:34px;position:relative;overflow:hidden;display:flex;
+  flex-direction:column;justify-content:flex-end;min-height:0}
+.cell--enamel{background:var(--enamel);color:var(--ink)}
+.cell--red{background:var(--vermilion);color:#FFF3EE}
+.cell--blue{background:var(--lapis);color:#EAF0FF}
+.cell--gold{background:var(--wire);color:#3A2708}
+.cell--dark{background:var(--peacock-dk)}
+
+/* hero cloison */
+.hero{padding:0 0 0}
+.hero .cloison{grid-template-columns:1.35fr .8fr .85fr;grid-template-rows:auto 190px;
+  border-left:0;border-right:0}
+.hero .c-head{grid-column:1;grid-row:1 / span 2;padding:clamp(34px,4.4vw,64px);justify-content:center}
+.hero h1{font-size:clamp(2.7rem,5.4vw,4.6rem);color:var(--ink)}
+.hero h1 span{display:block;font-family:var(--f-body);font-style:italic;font-weight:400;
+  letter-spacing:-.01em;color:var(--vermilion);font-size:.62em;line-height:1.15;margin-top:.12em}
+.hero p{font-size:1.08rem;max-width:44ch;color:#3B4A46;margin:22px 0 0}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;font-family:var(--f-display);
+  font-weight:600;font-size:.9rem;letter-spacing:.13em;text-transform:uppercase;transition:.25s;border:2px solid}
+.btn--fill{background:var(--peacock);border-color:var(--peacock);color:var(--enamel)}
+.btn--fill:hover{background:var(--peacock-lt);border-color:var(--peacock-lt)}
+.btn--line{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:var(--enamel)}
+
+.c-piece{grid-column:2;grid-row:1;align-items:center;justify-content:center;padding:26px;min-height:270px}
+.c-piece svg{width:78%;max-width:230px;color:#FFE6DE}
+.c-piece .sku{position:absolute;left:16px;top:16px;font-family:var(--f-display);font-weight:600;
+  font-size:.74rem;letter-spacing:.2em}
+.c-quote{grid-column:3;grid-row:1;justify-content:center}
+.c-quote .big{font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.8rem);line-height:.92;color:var(--wire)}
+.c-quote p{margin:10px 0 0;font-size:.98rem;color:#CFE3DD}
+.c-strip{grid-column:2 / span 2;grid-row:2;flex-direction:row;align-items:center;gap:26px;padding:0 34px;
+  justify-content:space-between}
+.c-strip div{display:flex;flex-direction:column}
+.c-strip b{font-family:var(--f-display);font-weight:700;font-size:1.6rem;line-height:1}
+.c-strip small{font-family:var(--f-display);font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:.7rem;opacity:.75}
+
+/* ============================================================ enamel bar = category nav */
+section{padding-block:clamp(56px,6.6vw,92px)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:34px}
+.head h2{font-size:clamp(1.9rem,3.5vw,2.9rem)}
+.head .lbl{color:var(--wire);display:block;margin-bottom:12px}
+.head a{font-family:var(--f-display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.84rem;color:var(--wire);border-bottom:2px solid var(--wire);padding-bottom:3px}
+
+.enamels{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--wire-w);
+  background:var(--wire);border:var(--wire-w) solid var(--wire)}
+.enam{position:relative;aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:space-between;
+  padding:22px 18px;overflow:hidden;background:var(--enamel);color:var(--ink);transition:color .35s}
+.enam::before{content:"";position:absolute;inset:auto 0 0 0;height:0;background:var(--fill);transition:height .45s cubic-bezier(.3,.8,.3,1)}
+.enam:hover::before{height:100%}
+.enam:hover{color:#fff}
+.enam > *{position:relative}
+.enam svg{width:74%;margin:auto;color:currentColor;opacity:.85}
+.enam b{font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.enam small{display:block;font-family:var(--f-display);font-weight:500;font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.enam .n{font-family:var(--f-display);font-weight:600;font-size:.74rem;letter-spacing:.2em;opacity:.55}
+
+/* ============================================================ products */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--wire-w);
+  background:var(--wire);border:var(--wire-w) solid var(--wire)}
+.p{background:var(--enamel);color:var(--ink);display:flex;flex-direction:column}
+.p__img{aspect-ratio:1;position:relative;display:grid;place-items:center;background:var(--tint,#EFE8D6)}
+.p__img svg{width:66%;color:var(--pen,var(--peacock))}
+.p__sku{position:absolute;left:0;top:0;background:var(--ink);color:var(--enamel);padding:5px 12px;
+  font-family:var(--f-display);font-weight:600;font-size:.72rem;letter-spacing:.18em}
+.p__new{position:absolute;right:0;top:0;background:var(--vermilion);color:#fff;padding:5px 12px;
+  font-family:var(--f-display);font-weight:600;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.p__b{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1}
+.p h3{font-family:var(--f-body);font-weight:400;font-size:1.08rem;line-height:1.35;letter-spacing:0;margin-bottom:6px}
+.p .meta{font-family:var(--f-display);font-weight:500;font-size:.76rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#6C7B76}
+.p .pr{margin-top:auto;padding-top:16px;display:flex;align-items:baseline;gap:9px;font-family:var(--f-display)}
+.p .pr b{font-weight:700;font-size:1.32rem}
+.p .pr s{color:#8D9A95;font-weight:500}
+.p .pr .req{font-weight:600;font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:var(--peacock-lt)}
+.p .ask{margin-top:14px;text-align:center;padding:11px;background:var(--peacock);color:var(--enamel);
+  font-family:var(--f-display);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
+.p .ask:hover{background:var(--vermilion)}
+
+/* ============================================================ craft note */
+.craft{background:var(--enamel);color:var(--ink)}
+.craft .cloison{grid-template-columns:1fr 1fr;border:0}
+.craft .cell{background:var(--enamel);color:var(--ink);padding:clamp(34px,4.6vw,64px);justify-content:center}
+.craft .cell--red{background:var(--vermilion);color:#FFF3EE;align-items:center;justify-content:center}
+.craft .cell--red svg{width:60%;max-width:280px;color:#FFE2DA}
+.craft h2{font-size:clamp(1.9rem,3.4vw,2.8rem)}
+.craft p{max-width:48ch;color:#3B4A46}
+.craft dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin:28px 0 0;
+  border-top:2px solid rgba(10,31,27,.15);padding-top:20px}
+.craft dt{font-family:var(--f-display);font-weight:600;font-size:.76rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--wire-dk);padding-top:5px}
+.craft dd{margin:0}
+
+/* ============================================================ enquiry */
+.enq{background:var(--lapis);border-block:var(--wire-w) solid var(--wire)}
+.enq__in{display:flex;align-items:center;justify-content:space-between;gap:38px;flex-wrap:wrap;
+  padding-block:clamp(44px,5vw,72px)}
+.enq h2{font-size:clamp(1.8rem,3.2vw,2.6rem);max-width:20ch}
+.enq p{margin:12px 0 0;max-width:46ch;color:#D3DEF7}
+.enq .btn--fill{background:var(--enamel);border-color:var(--enamel);color:var(--ink)}
+.enq .btn--fill:hover{background:#fff;border-color:#fff}
+
+/* ============================================================ footer */
+footer{background:var(--peacock-dk);padding-block:54px 28px;font-size:.96rem}
+.fg{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:38px}
+footer h4{font-family:var(--f-display);font-weight:600;font-size:.76rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--wire);margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;color:#BFD6D0}
+footer a:hover{color:var(--wire)}
+.fb{margin-top:42px;padding-top:20px;border-top:1px solid rgba(214,166,74,.3);display:flex;
+  justify-content:space-between;gap:14px;flex-wrap:wrap;color:#8FADA6;font-size:.85rem}
+
+/* ============================================================ responsive */
+@media(max-width:1040px){
+  .hero .cloison{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+  .hero .c-head{grid-column:1 / -1;grid-row:1}
+  .c-piece{grid-column:1;grid-row:2}
+  .c-quote{grid-column:2;grid-row:2}
+  .c-strip{grid-column:1 / -1;grid-row:3;padding-block:24px;flex-wrap:wrap;gap:18px}
+  .enamels{grid-template-columns:repeat(3,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .craft .cloison{grid-template-columns:1fr}
+  .craft .cell--red{min-height:280px;order:-1}
+  nav{display:none}.burger{display:inline-block}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  body{font-size:16px}
+  .enamels{grid-template-columns:repeat(2,1fr)}
+  .c-piece,.c-quote{grid-column:1 / -1}
+  .c-quote{grid-row:3}.c-strip{grid-row:4}
+  .cell{padding:26px 22px}
+  .fg{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+ <symbol id="jw-jhumka" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <circle cx="100" cy="24" r="11"/><path d="M100 35v9"/><circle cx="100" cy="51" r="6.5"/>
+   <path d="M58 122c0-38 19-61 42-61s42 23 42 61Z"/><path d="M74 120c0-26 11-42 26-42s26 16 26 42"/>
+   <path d="M54 122h92"/><circle cx="100" cy="98" r="8"/>
+   <circle cx="62" cy="137" r="5.6"/><circle cx="75" cy="144" r="5.6"/><circle cx="88" cy="149" r="5.6"/>
+   <circle cx="100" cy="151" r="5.6"/><circle cx="112" cy="149" r="5.6"/><circle cx="125" cy="144" r="5.6"/>
+   <circle cx="138" cy="137" r="5.6"/></g>
+ </symbol>
+ <symbol id="jw-necklace" viewBox="0 0 240 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M26 22C26 128 214 128 214 22"/><path d="M48 24C48 110 192 110 192 24"/>
+   <circle cx="55" cy="84" r="5.5"/><circle cx="185" cy="84" r="5.5"/>
+   <circle cx="88" cy="101" r="5"/><circle cx="152" cy="101" r="5"/>
+   <circle cx="120" cy="104" r="15"/><circle cx="120" cy="104" r="6"/>
+   <path d="M120 119l-10 15 10 20 10-20z"/><path d="M96 96l-6 16M144 96l6 16"/></g>
+ </symbol>
+ <symbol id="jw-bangle" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <circle cx="100" cy="104" r="72"/><circle cx="100" cy="104" r="58"/>
+   <circle cx="100" cy="104" r="50" stroke-width="2" stroke-dasharray="2 10"/>
+   <circle cx="100" cy="32" r="12"/><path d="M100 20v24M88 32h24"/>
+   <circle cx="45" cy="140" r="4.5"/><circle cx="155" cy="140" r="4.5"/>
+   <circle cx="30" cy="86" r="4.5"/><circle cx="170" cy="86" r="4.5"/></g>
+ </symbol>
+ <symbol id="jw-tikka" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M100 10v56"/><circle cx="100" cy="18" r="4.5"/><circle cx="100" cy="34" r="4.5"/><circle cx="100" cy="50" r="4.5"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(45 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(90 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(135 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(180 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(225 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(270 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(315 100 102)"/>
+   <circle cx="100" cy="102" r="17"/><circle cx="100" cy="102" r="7"/>
+   <path d="M100 132v8"/><path d="M100 140l-9 14 9 20 9-20z"/></g>
+ </symbol>
+ <symbol id="jw-ring" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+   <circle cx="100" cy="128" r="52"/><circle cx="100" cy="128" r="43" stroke-width="2"/>
+   <path d="M68 62h64l-32 40z"/><path d="M68 62l32 12 32-12M100 74v28"/>
+   <path d="M78 100l-8 14M122 100l8 14"/></g>
+ </symbol>
+ <symbol id="jw-haar" viewBox="0 0 240 220">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M32 18C32 104 208 104 208 18"/><path d="M18 20C18 150 222 150 222 20"/>
+   <circle cx="120" cy="132" r="15"/><circle cx="120" cy="132" r="6"/>
+   <path d="M120 147l-10 15 10 20 10-20z"/>
+   <circle cx="74" cy="116" r="8"/><path d="M74 124v12"/><circle cx="74" cy="142" r="4"/>
+   <circle cx="166" cy="116" r="8"/><path d="M166 124v12"/><circle cx="166" cy="142" r="4"/>
+   <circle cx="42" cy="76" r="5"/><circle cx="198" cy="76" r="5"/><circle cx="120" cy="86" r="6"/></g>
+ </symbol>
+ <symbol id="jw-nath" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <circle cx="94" cy="100" r="60"/><circle cx="94" cy="100" r="51" stroke-width="2" stroke-dasharray="2 9"/>
+   <circle cx="94" cy="40" r="10"/><circle cx="60" cy="152" r="6"/><circle cx="94" cy="160" r="6"/><circle cx="128" cy="152" r="6"/>
+   <path d="M154 100h34"/><circle cx="192" cy="100" r="5"/></g>
+ </symbol>
+ <symbol id="jw-payal" viewBox="0 0 240 160">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <path d="M22 52c40 42 156 42 196 0"/><path d="M22 66c40 42 156 42 196 0"/>
+   <path d="M54 92v-7M88 104v-7M120 108v-7M152 104v-7M186 92v-7"/>
+   <circle cx="54" cy="99" r="6.5"/><circle cx="88" cy="111" r="6.5"/><circle cx="120" cy="115" r="6.5"/>
+   <circle cx="152" cy="111" r="6.5"/><circle cx="186" cy="99" r="6.5"/></g>
+ </symbol>
+ <symbol id="ic-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.9.5 3.68 1.4 5.22L2 22l5.06-1.56a9.8 9.8 0 0 0 4.98 1.36h.01c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.48 2 12.04 2m5.72 13.9c-.24.68-1.42 1.32-1.95 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.2-4.94-4.4-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.29.58-.36.78-.36l.56.01c.18 0 .42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.2-.15.32-.29.49l-.44.51c-.15.14-.3.3-.13.59.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.44.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.68-.17 1.35"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#">Meenakiya</a>
+    <nav>
+      <a href="#">Necklaces</a><a href="#">Earrings</a><a href="#">Bangles</a>
+      <a href="#">Bridal</a><a href="#">The craft</a>
+    </nav>
+    <a class="wa-btn" href="#"><svg width="15" height="15"><use href="#ic-wa"/></svg>Enquire</a>
+    <button class="burger" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="cloison">
+    <div class="cell cell--enamel c-head">
+      <p class="lbl" style="color:var(--wire-dk);margin:0 0 18px">Enamel · Kundan · Temple</p>
+      <h1>Colour set in gold wire.<span>The way meena has been done for four hundred years.</span></h1>
+      <p>Enamelled jhumkas, kundan chokers and temple pieces — the look of the heirloom, at a price you can wear to four weddings in one season.</p>
+      <div class="row">
+        <a class="btn btn--fill" href="#">Browse 214 designs</a>
+        <a class="btn btn--line" href="#"><svg width="16" height="16"><use href="#ic-wa"/></svg>Enquire on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="cell cell--red c-piece">
+      <span class="sku">SM-ER-042</span>
+      <svg viewBox="0 0 200 200" style="aspect-ratio:1"><use href="#jw-jhumka"/></svg>
+    </div>
+
+    <div class="cell c-quote">
+      <span class="big">₹399<br>onward</span>
+      <p>Everyday studs to full bridal sets. Nothing on this site needs a locker.</p>
+    </div>
+
+    <div class="cell cell--gold c-strip">
+      <div><b>214</b><small>designs live</small></div>
+      <div><b>8</b><small>categories</small></div>
+      <div><b>3–7 days</b><small>pan-India</small></div>
+      <div><b>COD</b><small>available</small></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">Six enamels</span><h2>Pick your colour, then your piece</h2></div>
+      <a href="#">All jewellery →</a>
+    </div>
+    <div class="enamels">
+      <a class="enam" href="#" style="--fill:var(--peacock)">
+        <span class="n">01</span><svg viewBox="0 0 240 200"><use href="#jw-necklace"/></svg>
+        <div><b>Necklaces</b><small>62 designs</small></div></a>
+      <a class="enam" href="#" style="--fill:var(--vermilion)">
+        <span class="n">02</span><svg viewBox="0 0 200 200"><use href="#jw-jhumka"/></svg>
+        <div><b>Earrings</b><small>78 designs</small></div></a>
+      <a class="enam" href="#" style="--fill:var(--lapis)">
+        <span class="n">03</span><svg viewBox="0 0 200 200"><use href="#jw-bangle"/></svg>
+        <div><b>Bangles</b><small>34 designs</small></div></a>
+      <a class="enam" href="#" style="--fill:var(--wire-dk)">
+        <span class="n">04</span><svg viewBox="0 0 200 200"><use href="#jw-tikka"/></svg>
+        <div><b>Maang tikka</b><small>19 designs</small></div></a>
+      <a class="enam" href="#" style="--fill:var(--peacock-lt)">
+        <span class="n">05</span><svg viewBox="0 0 200 200"><use href="#jw-nath"/></svg>
+        <div><b>Nath</b><small>11 designs</small></div></a>
+      <a class="enam" href="#" style="--fill:var(--ink)">
+        <span class="n">06</span><svg viewBox="0 0 240 160"><use href="#jw-payal"/></svg>
+        <div><b>Payal</b><small>14 designs</small></div></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="lbl">New this week</span><h2>Fresh off the enamel tray</h2></div>
+      <a href="#">See all →</a>
+    </div>
+    <div class="pgrid">
+      <article class="p" style="--tint:#EFE8D6;--pen:var(--peacock)">
+        <div class="p__img"><span class="p__sku">SM-NK-014</span><svg viewBox="0 0 240 200"><use href="#jw-necklace"/></svg></div>
+        <div class="p__b"><h3>Kundan Bridal Choker Set</h3>
+          <span class="meta">Kundan · Pearl · Gold finish</span>
+          <div class="pr"><b>₹2,499</b><s>₹3,999</s></div>
+          <a class="ask" href="#">Enquire · SM-NK-014</a></div>
+      </article>
+      <article class="p" style="--tint:#F3DED9;--pen:var(--vermilion)">
+        <div class="p__img"><span class="p__sku">SM-ER-042</span><span class="p__new">New</span><svg viewBox="0 0 200 200"><use href="#jw-jhumka"/></svg></div>
+        <div class="p__b"><h3>Meena Jhumka, Pearl Fringe</h3>
+          <span class="meta">Meenakari · Antique</span>
+          <div class="pr"><b>₹899</b><s>₹1,299</s></div>
+          <a class="ask" href="#">Enquire · SM-ER-042</a></div>
+      </article>
+      <article class="p" style="--tint:#DEE5F3;--pen:var(--lapis)">
+        <div class="p__img"><span class="p__sku">SM-TK-007</span><svg viewBox="0 0 200 200"><use href="#jw-tikka"/></svg></div>
+        <div class="p__b"><h3>Lapis Meena Maang Tikka</h3>
+          <span class="meta">Meenakari · Blue</span>
+          <div class="pr"><span class="req">Price on enquiry</span></div>
+          <a class="ask" href="#">Enquire · SM-TK-007</a></div>
+      </article>
+      <article class="p" style="--tint:#E7E1CC;--pen:var(--wire-dk)">
+        <div class="p__img"><span class="p__sku">SM-BG-021</span><svg viewBox="0 0 200 200"><use href="#jw-bangle"/></svg></div>
+        <div class="p__b"><h3>Antique Kada, Pair</h3>
+          <span class="meta">Brass · Antique finish</span>
+          <div class="pr"><b>₹1,150</b></div>
+          <a class="ask" href="#">Enquire · SM-BG-021</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="craft" style="padding:0">
+  <div class="cloison">
+    <div class="cell">
+      <span class="lbl" style="color:var(--wire-dk)">The craft</span>
+      <h2 style="margin-top:14px">Gold wire first.<br>Colour second.</h2>
+      <p style="margin-top:18px">In meenakari the goldsmith lays the wire, the enameller fills the wells, and the piece goes back into the kiln for every single colour. Our pieces are made the same way — on brass, with a sealed gold finish that doesn't go green in a Mumbai monsoon.</p>
+      <dl>
+        <dt>Base</dt><dd>Brass, nickel-free</dd>
+        <dt>Finish</dt><dd>Micron gold plating, lacquer sealed</dd>
+        <dt>Stones</dt><dd>Glass kundan, fresh-water pearl, CZ</dd>
+        <dt>Care</dt><dd>Last on, first off. Wipe dry, store in the pouch.</dd>
+      </dl>
+    </div>
+    <div class="cell cell--red">
+      <svg viewBox="0 0 240 220" style="width:60%;max-width:290px"><use href="#jw-haar"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="enq" style="padding:0">
+  <div class="wrap enq__in">
+    <div>
+      <span class="lbl" style="color:#B9C9EE">Styling help, free</span>
+      <h2 style="margin-top:12px">Send the outfit. We'll send four options.</h2>
+      <p>Tell us the occasion and a budget on WhatsApp. You'll get a shortlist with codes and prices the same day.</p>
+    </div>
+    <a class="btn btn--fill" href="#"><svg width="17" height="17"><use href="#ic-wa"/></svg>Message us</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="mark" href="#">Meenakiya</a>
+        <p style="color:#B4CDC7;max-width:34ch;margin-top:12px">Enamel and kundan imitation jewellery, made in Jaipur. Sold by code, over chat.</p>
+        <p class="lbl" style="color:var(--wire);margin-top:16px">+91 98XXX XXXXX</p>
+      </div>
+      <div><h4>Jewellery</h4><ul><li><a href="#">Necklaces</a></li><li><a href="#">Earrings</a></li>
+        <li><a href="#">Bangles</a></li><li><a href="#">Maang tikka</a></li><li><a href="#">Payal</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">The craft</a></li><li><a href="#">Care guide</a></li>
+        <li><a href="#">Shipping &amp; returns</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4>Order on WhatsApp</h4>
+        <p style="color:#B4CDC7;margin:0 0 14px">Mon–Sat, 10am–8pm IST.</p>
+        <a class="wa-btn" href="#"><svg width="15" height="15"><use href="#ic-wa"/></svg>Start a chat</a></div>
+    </div>
+    <div class="fb"><span>© 2026 Meenakiya</span><span>Direction V2 — “Cloisonné” · enamel colour-block</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

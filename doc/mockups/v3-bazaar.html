@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jhilmili — Chat Counter (V3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — festival palette: rani pink, marigold, mehendi, ink
+   ============================================================ */
+:root{
+  --rani:      #C2185B;
+  --rani-dk:   #8E0F41;
+  --rani-lt:   #FCE3EC;
+  --marigold:  #F5A100;
+  --marigold-lt:#FFF0D0;
+  --mehendi:   #2E7D5B;
+  --mehendi-lt:#DDF0E6;
+  --ink:       #2B1020;
+  --ink-soft:  #6B4A5C;
+  --paper:     #FFF8F1;
+  --white:     #FFFFFF;
+  --wa:        #25D366;
+
+  --f-display: "Baloo 2", system-ui, sans-serif;
+  --f-body:    "Mukta", system-ui, sans-serif;
+
+  --r-lg: 28px;
+  --r-md: 18px;
+  --r-pill: 999px;
+  --sh: 0 14px 34px -14px rgba(43,16,32,.28);
+  --wrap: 1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+svg{display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--rani);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.12;margin:0;letter-spacing:-.015em}
+
+/* ============================================================ announce */
+.announce{background:var(--marigold);color:#402A00;text-align:center;
+  font-family:var(--f-display);font-weight:600;font-size:.95rem;padding:9px 20px}
+.announce b{background:#402A00;color:var(--marigold);padding:1px 9px;border-radius:var(--r-pill);font-size:.85em}
+
+/* ============================================================ header */
+header{position:sticky;top:0;z-index:60;background:rgba(255,248,241,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid #F0DFD3}
+.bar{display:flex;align-items:center;gap:26px;height:76px}
+.logo{font-family:var(--f-display);font-weight:800;font-size:1.75rem;color:var(--rani);
+  display:inline-block;letter-spacing:-.02em;line-height:1}
+.logo em{font-style:normal;color:var(--marigold)}
+nav{margin-left:auto;display:flex;gap:6px;font-family:var(--f-display);font-weight:600;font-size:1rem}
+nav a{padding:8px 15px;border-radius:var(--r-pill);transition:.22s}
+nav a:hover{background:var(--rani-lt);color:var(--rani-dk)}
+.wabtn{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#04310F;
+  font-family:var(--f-display);font-weight:700;padding:11px 20px;border-radius:var(--r-pill);
+  box-shadow:0 6px 0 #12A54B;transition:.15s}
+.wabtn:hover{transform:translateY(2px);box-shadow:0 4px 0 #12A54B}
+.wabtn:active{transform:translateY(6px);box-shadow:0 0 0 #12A54B}
+.burger{display:none;margin-left:auto;background:var(--white);border:1px solid #EFDDD1;
+  border-radius:12px;padding:9px 12px;font-size:1.1rem;cursor:pointer}
+
+/* ============================================================ hero */
+.hero{padding-block:clamp(34px,4.6vw,66px)}
+.hero__grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--mehendi-lt);color:#175E3F;
+  font-family:var(--f-display);font-weight:600;font-size:.9rem;padding:6px 14px;border-radius:var(--r-pill)}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.2rem);margin:18px 0 0}
+.hero h1 mark{background:linear-gradient(transparent 62%, #FFD98A 62%);color:inherit;padding:0 2px}
+.hero p{font-size:1.12rem;color:var(--ink-soft);max-width:44ch;margin:16px 0 0}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-display);font-weight:700;
+  padding:14px 26px;border-radius:var(--r-pill);font-size:1rem;transition:.2s;border:2px solid transparent}
+.btn--rani{background:var(--rani);color:#fff;box-shadow:0 6px 0 var(--rani-dk)}
+.btn--rani:hover{transform:translateY(2px);box-shadow:0 4px 0 var(--rani-dk)}
+.btn--out{border-color:var(--ink);color:var(--ink)}
+.btn--out:hover{background:var(--ink);color:var(--paper)}
+.proof{display:flex;gap:18px;align-items:center;margin-top:26px;color:var(--ink-soft);font-size:.95rem}
+.stars{color:var(--marigold);font-size:1.05rem;letter-spacing:2px}
+
+/* ============================================================
+   SIGNATURE — the chat counter. The shop *is* a WhatsApp thread.
+   ============================================================ */
+.chat{background:#0E3B2E;border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh);position:relative;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:16px 16px}
+.chat__top{display:flex;align-items:center;gap:11px;padding:4px 6px 14px;color:#CFE9DC}
+.chat__av{width:38px;height:38px;border-radius:50%;background:var(--marigold);color:#402A00;
+  display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:1.05rem}
+.chat__top b{font-family:var(--f-display);font-weight:600;font-size:1.02rem;color:#fff;display:block;line-height:1.2}
+.chat__top small{font-size:.8rem;color:#8FC7AE}
+.msgs{display:flex;flex-direction:column;gap:9px}
+.msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:.97rem;line-height:1.45;
+  opacity:0;transform:translateY(10px);animation:pop .45s cubic-bezier(.2,.9,.3,1) forwards}
+.msg--out{align-self:flex-end;background:#D9FDD3;color:#0A2A18;border-bottom-right-radius:5px}
+.msg--in{align-self:flex-start;background:#fff;color:#20222B;border-bottom-left-radius:5px}
+.msg time{display:block;font-size:.7rem;opacity:.55;text-align:right;margin-top:2px}
+.msg .card{display:flex;gap:11px;align-items:center;margin:-2px 0 7px;padding:9px;background:#F2F4F5;border-radius:10px}
+.msg .card svg{width:46px;height:46px;color:var(--rani);flex:none}
+.msg .card b{font-family:var(--f-display);font-weight:600;font-size:.95rem;display:block;line-height:1.2}
+.msg .card small{color:#5C6B66;font-size:.8rem}
+.msg:nth-child(1){animation-delay:.25s}
+.msg:nth-child(2){animation-delay:1.05s}
+.msg:nth-child(3){animation-delay:1.85s}
+.msg:nth-child(4){animation-delay:2.55s}
+@keyframes pop{to{opacity:1;transform:none}}
+.typing{align-self:flex-start;background:#fff;border-radius:16px;border-bottom-left-radius:5px;
+  padding:13px 16px;display:flex;gap:5px;opacity:0;animation:pop .3s forwards 3.2s}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9AA6A2;display:block;animation:blink 1.3s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.chat__foot{margin-top:14px;background:#fff;border-radius:var(--r-pill);padding:11px 16px;display:flex;
+  align-items:center;gap:10px;color:#8A948F;font-size:.95rem}
+.chat__foot > span:first-child{flex:1}
+.chat__send{width:34px;height:34px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;flex:none}
+
+/* ============================================================ price shelves */
+.shelves{padding-block:clamp(30px,4vw,48px)}
+.shelf-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.shelf{border-radius:var(--r-md);padding:22px 20px;display:flex;flex-direction:column;gap:2px;
+  transition:.22s;border:2px solid transparent}
+.shelf:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.shelf b{font-family:var(--f-display);font-weight:700;font-size:1.5rem;line-height:1.1}
+.shelf small{font-size:.9rem;opacity:.75}
+.shelf span{font-family:var(--f-display);font-weight:600;font-size:.88rem;margin-top:10px}
+.s1{background:var(--mehendi-lt);color:#14503A}
+.s2{background:var(--marigold-lt);color:#5C3D00}
+.s3{background:var(--rani-lt);color:var(--rani-dk)}
+.s4{background:var(--ink);color:#FFE9F2}
+
+/* ============================================================ section */
+section{padding-block:clamp(38px,4.4vw,60px)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.head h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.head p{margin:4px 0 0;color:var(--ink-soft)}
+.head a{font-family:var(--f-display);font-weight:700;color:var(--rani);
+  border-bottom:2px solid var(--rani);padding-bottom:2px}
+
+/* categories as stickers */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cat{text-align:center}
+.cat .disc{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:var(--white);
+  border:2px solid #F1E0D5;transition:.25s;position:relative;overflow:hidden}
+.cat:hover .disc{border-color:var(--rani);transform:translateY(-5px) rotate(-3deg)}
+.cat .disc svg{width:60%;color:var(--rani)}
+.cat b{display:block;font-family:var(--f-display);font-weight:600;font-size:1.02rem;margin-top:11px}
+.cat small{color:var(--ink-soft);font-size:.85rem}
+.cat:nth-child(2n) .disc{background:var(--marigold-lt)}
+.cat:nth-child(3n) .disc{background:var(--mehendi-lt)}
+.cat:nth-child(3n) .disc svg{color:var(--mehendi)}
+
+/* products */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.p{background:var(--white);border-radius:var(--r-md);overflow:hidden;display:flex;flex-direction:column;
+  border:1px solid #F1E0D5;transition:.25s}
+.p:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:#EFC9D9}
+.p__img{aspect-ratio:1;background:var(--rani-lt);display:grid;place-items:center;position:relative}
+.p:nth-child(2) .p__img{background:var(--marigold-lt)}
+.p:nth-child(3) .p__img{background:var(--mehendi-lt)}
+.p:nth-child(4) .p__img{background:#EFE6F5}
+.p__img svg{width:66%;color:var(--rani)}
+.p:nth-child(3) .p__img svg{color:var(--mehendi)}
+.p__img .sku{position:absolute;left:12px;top:12px;background:rgba(43,16,32,.85);color:#fff;
+  font-family:var(--f-display);font-weight:600;font-size:.76rem;padding:3px 10px;border-radius:var(--r-pill)}
+.p__img .flag{position:absolute;right:12px;top:12px;background:var(--marigold);color:#402A00;
+  font-family:var(--f-display);font-weight:700;font-size:.78rem;padding:3px 11px;border-radius:var(--r-pill)}
+.p__b{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+.p h3{font-family:var(--f-body);font-weight:500;font-size:1.04rem;line-height:1.35}
+.p .tags{color:var(--ink-soft);font-size:.88rem;margin-top:2px}
+.p .pr{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:14px;font-family:var(--f-display)}
+.p .pr b{font-weight:700;font-size:1.45rem}
+.p .pr s{color:#A98FA0;font-weight:500;font-size:1rem}
+.p .pr em{font-style:normal;background:var(--mehendi-lt);color:#14503A;font-weight:700;
+  font-size:.82rem;padding:2px 9px;border-radius:var(--r-pill)}
+.p .pr .req{font-weight:600;font-size:1rem;color:var(--ink-soft)}
+.p .ask{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--wa);color:#04310F;font-family:var(--f-display);font-weight:700;font-size:.94rem;
+  padding:11px;border-radius:var(--r-pill);transition:.2s}
+.p .ask:hover{background:#1FBF5B}
+
+/* ============================================================ how it works */
+.how{background:var(--ink);color:#FFEAF3;border-radius:var(--r-lg);padding:clamp(30px,4vw,54px)}
+.how h2{color:#fff}
+.how__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px}
+.how__c{background:rgba(255,255,255,.07);border-radius:var(--r-md);padding:24px}
+.how__c b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:var(--marigold)}
+.how__c p{margin:7px 0 0;color:#E7CBDA;font-size:.98rem}
+.how .tmpl{margin-top:26px;background:#D9FDD3;color:#0A2A18;border-radius:16px;border-bottom-left-radius:5px;
+  padding:14px 18px;font-size:.98rem;max-width:640px}
+.how .tmpl b{font-family:var(--f-display)}
+
+/* reviews as chat */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rev{background:var(--white);border:1px solid #F1E0D5;border-radius:18px;border-top-left-radius:5px;padding:20px}
+.rev p{margin:0 0 14px}
+.rev .who{display:flex;align-items:center;gap:10px}
+.rev .av{width:34px;height:34px;border-radius:50%;background:var(--rani-lt);color:var(--rani-dk);
+  display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.rev b{font-family:var(--f-display);font-weight:600;display:block;line-height:1.2;font-size:.97rem}
+.rev small{color:var(--ink-soft);font-size:.85rem}
+
+/* ============================================================ footer */
+footer{background:var(--white);border-top:1px solid #F0DFD3;padding-block:48px 26px;margin-top:20px}
+.fg{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.2fr;gap:36px}
+footer h4{font-family:var(--f-display);font-weight:700;font-size:1rem;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;color:var(--ink-soft)}
+footer a:hover{color:var(--rani)}
+.fb{margin-top:38px;padding-top:18px;border-top:1px solid #F0DFD3;display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;color:var(--ink-soft);font-size:.86rem}
+
+/* floating whatsapp */
+.float{position:fixed;right:20px;bottom:20px;z-index:70;display:inline-flex;align-items:center;gap:9px;
+  background:var(--wa);color:#04310F;font-family:var(--f-display);font-weight:700;padding:14px 20px;
+  border-radius:var(--r-pill);box-shadow:0 12px 28px -8px rgba(0,0,0,.45)}
+
+/* ============================================================ responsive */
+@media(max-width:1000px){
+  .hero__grid{grid-template-columns:1fr;gap:36px}
+  .chat{max-width:480px;margin-inline:auto;width:100%}
+  .shelf-row{grid-template-columns:repeat(2,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .how__grid{grid-template-columns:1fr}
+  .revs{grid-template-columns:1fr}
+  nav{display:none}.burger{display:inline-block}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  .grid{grid-template-columns:1fr 1fr;gap:12px}
+  .p__b{padding:12px}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .fg{grid-template-columns:1fr}
+  .float span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .msg,.typing{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+ <symbol id="jw-jhumka" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <circle cx="100" cy="24" r="11"/><path d="M100 35v9"/><circle cx="100" cy="51" r="6.5"/>
+   <path d="M58 122c0-38 19-61 42-61s42 23 42 61Z"/><path d="M74 120c0-26 11-42 26-42s26 16 26 42"/>
+   <path d="M54 122h92"/><circle cx="100" cy="98" r="8"/>
+   <circle cx="62" cy="137" r="5.6"/><circle cx="75" cy="144" r="5.6"/><circle cx="88" cy="149" r="5.6"/>
+   <circle cx="100" cy="151" r="5.6"/><circle cx="112" cy="149" r="5.6"/><circle cx="125" cy="144" r="5.6"/>
+   <circle cx="138" cy="137" r="5.6"/></g>
+ </symbol>
+ <symbol id="jw-necklace" viewBox="0 0 240 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M26 22C26 128 214 128 214 22"/><path d="M48 24C48 110 192 110 192 24"/>
+   <circle cx="55" cy="84" r="5.5"/><circle cx="185" cy="84" r="5.5"/>
+   <circle cx="88" cy="101" r="5"/><circle cx="152" cy="101" r="5"/>
+   <circle cx="120" cy="104" r="15"/><circle cx="120" cy="104" r="6"/>
+   <path d="M120 119l-10 15 10 20 10-20z"/><path d="M96 96l-6 16M144 96l6 16"/></g>
+ </symbol>
+ <symbol id="jw-bangle" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <circle cx="100" cy="104" r="72"/><circle cx="100" cy="104" r="58"/>
+   <circle cx="100" cy="104" r="50" stroke-width="2" stroke-dasharray="2 10"/>
+   <circle cx="100" cy="32" r="12"/><path d="M100 20v24M88 32h24"/>
+   <circle cx="45" cy="140" r="4.5"/><circle cx="155" cy="140" r="4.5"/>
+   <circle cx="30" cy="86" r="4.5"/><circle cx="170" cy="86" r="4.5"/></g>
+ </symbol>
+ <symbol id="jw-tikka" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M100 10v56"/><circle cx="100" cy="18" r="4.5"/><circle cx="100" cy="34" r="4.5"/><circle cx="100" cy="50" r="4.5"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(45 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(90 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(135 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(180 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(225 100 102)"/>
+   <ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(270 100 102)"/><ellipse cx="100" cy="72" rx="7" ry="12" transform="rotate(315 100 102)"/>
+   <circle cx="100" cy="102" r="17"/><circle cx="100" cy="102" r="7"/>
+   <path d="M100 132v8"/><path d="M100 140l-9 14 9 20 9-20z"/></g>
+ </symbol>
+ <symbol id="jw-ring" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+   <circle cx="100" cy="128" r="52"/><circle cx="100" cy="128" r="43" stroke-width="2"/>
+   <path d="M68 62h64l-32 40z"/><path d="M68 62l32 12 32-12M100 74v28"/>
+   <path d="M78 100l-8 14M122 100l8 14"/></g>
+ </symbol>
+ <symbol id="jw-haar" viewBox="0 0 240 220">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M32 18C32 104 208 104 208 18"/><path d="M18 20C18 150 222 150 222 20"/>
+   <circle cx="120" cy="132" r="15"/><circle cx="120" cy="132" r="6"/>
+   <path d="M120 147l-10 15 10 20 10-20z"/>
+   <circle cx="74" cy="116" r="8"/><path d="M74 124v12"/><circle cx="74" cy="142" r="4"/>
+   <circle cx="166" cy="116" r="8"/><path d="M166 124v12"/><circle cx="166" cy="142" r="4"/>
+   <circle cx="42" cy="76" r="5"/><circle cx="198" cy="76" r="5"/><circle cx="120" cy="86" r="6"/></g>
+ </symbol>
+ <symbol id="jw-nath" viewBox="0 0 200 200">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <circle cx="94" cy="100" r="60"/><circle cx="94" cy="100" r="51" stroke-width="2" stroke-dasharray="2 9"/>
+   <circle cx="94" cy="40" r="10"/><circle cx="60" cy="152" r="6"/><circle cx="94" cy="160" r="6"/><circle cx="128" cy="152" r="6"/>
+   <path d="M154 100h34"/><circle cx="192" cy="100" r="5"/></g>
+ </symbol>
+ <symbol id="jw-payal" viewBox="0 0 240 160">
+  <g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+   <path d="M22 52c40 42 156 42 196 0"/><path d="M22 66c40 42 156 42 196 0"/>
+   <path d="M54 92v-7M88 104v-7M120 108v-7M152 104v-7M186 92v-7"/>
+   <circle cx="54" cy="99" r="6.5"/><circle cx="88" cy="111" r="6.5"/><circle cx="120" cy="115" r="6.5"/>
+   <circle cx="152" cy="111" r="6.5"/><circle cx="186" cy="99" r="6.5"/></g>
+ </symbol>
+ <symbol id="ic-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.9.5 3.68 1.4 5.22L2 22l5.06-1.56a9.8 9.8 0 0 0 4.98 1.36h.01c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.48 2 12.04 2m5.72 13.9c-.24.68-1.42 1.32-1.95 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.2-4.94-4.4-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.29.58-.36.78-.36l.56.01c.18 0 .42-.07.66.5.24.59.83 2.02.9 2.17.07.15.12.32.02.51-.1.2-.15.32-.29.49l-.44.51c-.15.14-.3.3-.13.59.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.44.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.68-.17 1.35"/></symbol>
+ <symbol id="ic-send" viewBox="0 0 24 24"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></symbol>
+</defs></svg>
+
+<div class="announce">Festive dispatch is running on time — <b>order by 5pm for same-day pickup</b></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">jhilmil<em>i</em></a>
+    <nav>
+      <a href="#">Necklaces</a><a href="#">Earrings</a><a href="#">Bangles</a>
+      <a href="#">Bridal</a><a href="#">Under ₹999</a>
+    </nav>
+    <a class="wabtn" href="#"><svg width="17" height="17"><use href="#ic-wa"/></svg>Chat to order</a>
+    <button class="burger" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="kicker">● 214 designs in stock today</span>
+      <h1>No cart, no checkout.<br>Just send us <mark>the code.</mark></h1>
+      <p>Imitation jewellery for weddings, festivals and Tuesdays. Pick a piece, tap the button,
+        and the whole message writes itself — code, name and photo included.</p>
+      <div class="cta">
+        <a class="btn btn--rani" href="#">Browse all jewellery</a>
+        <a class="btn btn--out" href="#">Under ₹999 →</a>
+      </div>
+      <div class="proof">
+        <span class="stars">★★★★★</span>
+        <span><b>4.8</b> from 1,240 orders shipped across India</span>
+      </div>
+    </div>
+
+    <!-- SIGNATURE: the chat counter -->
+    <div class="chat">
+      <div class="chat__top">
+        <span class="chat__av">J</span>
+        <div><b>Jhilmili</b><small>online · replies in ~10 min</small></div>
+      </div>
+      <div class="msgs">
+        <div class="msg msg--out">
+          <div class="card">
+            <svg viewBox="0 0 240 200"><use href="#jw-necklace"/></svg>
+            <div><b>Kundan Bridal Choker Set</b><small>SM-NK-014 · ₹2,499</small></div>
+          </div>
+          Hi Jhilmili, I'm interested in this one.<time>7:42 pm ✓✓</time>
+        </div>
+        <div class="msg msg--in">In stock! Comes with matching jhumkas. Shall I keep one aside?<time>7:44 pm</time></div>
+        <div class="msg msg--out">Yes please. Delivery to Pune?<time>7:45 pm ✓✓</time></div>
+        <div class="msg msg--in">₹2,499 all in, free shipping, reaches you Thursday. COD is fine.<time>7:45 pm</time></div>
+        <div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+      <div class="chat__foot">
+        <span>Type a message</span>
+        <span class="chat__send"><svg width="16" height="16"><use href="#ic-send"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shelves" style="padding-top:0">
+  <div class="wrap">
+    <div class="shelf-row">
+      <a class="shelf s1" href="#"><b>Under ₹499</b><small>Studs, rings, everyday chains</small><span>68 pieces →</span></a>
+      <a class="shelf s2" href="#"><b>₹500 – ₹999</b><small>Jhumkas, kadas, tikka</small><span>74 pieces →</span></a>
+      <a class="shelf s3" href="#"><b>₹1,000 – ₹1,999</b><small>Party-wear sets</small><span>49 pieces →</span></a>
+      <a class="shelf s4" href="#"><b>Bridal</b><small>Full sets, ₹2,000 up</small><span>23 pieces →</span></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:14px">
+  <div class="wrap">
+    <div class="head">
+      <div><h2>Shop by piece</h2><p>Every category, every price. Filters that actually match the stock.</p></div>
+      <a href="#">See all →</a>
+    </div>
+    <div class="cats">
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 240 200"><use href="#jw-necklace"/></svg></span><b>Necklaces</b><small>62 designs</small></a>
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 200 200"><use href="#jw-jhumka"/></svg></span><b>Earrings</b><small>78 designs</small></a>
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 200 200"><use href="#jw-bangle"/></svg></span><b>Bangles</b><small>34 designs</small></a>
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 200 200"><use href="#jw-tikka"/></svg></span><b>Maang tikka</b><small>19 designs</small></a>
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 200 200"><use href="#jw-ring"/></svg></span><b>Rings</b><small>27 designs</small></a>
+      <a class="cat" href="#"><span class="disc"><svg viewBox="0 0 240 160"><use href="#jw-payal"/></svg></span><b>Payal</b><small>14 designs</small></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:10px">
+  <div class="wrap">
+    <div class="head">
+      <div><h2>Moving fast this week</h2><p>Restocked Monday. Codes are live.</p></div>
+      <a href="#">All 214 →</a>
+    </div>
+    <div class="grid">
+      <article class="p">
+        <div class="p__img"><span class="sku">SM-NK-014</span><svg viewBox="0 0 240 200"><use href="#jw-necklace"/></svg></div>
+        <div class="p__b"><h3>Kundan Bridal Choker Set</h3><p class="tags">Kundan · Pearl · Gold finish</p>
+          <div class="pr"><b>₹2,499</b><s>₹3,999</s><em>37% off</em></div>
+          <a class="ask" href="#"><svg width="16" height="16"><use href="#ic-wa"/></svg>Ask for SM-NK-014</a></div>
+      </article>
+      <article class="p">
+        <div class="p__img"><span class="sku">SM-ER-042</span><span class="flag">Only 3 left</span><svg viewBox="0 0 200 200"><use href="#jw-jhumka"/></svg></div>
+        <div class="p__b"><h3>Temple Jhumka, Pearl Fringe</h3><p class="tags">Temple · Antique</p>
+          <div class="pr"><b>₹899</b><s>₹1,299</s><em>31% off</em></div>
+          <a class="ask" href="#"><svg width="16" height="16"><use href="#ic-wa"/></svg>Ask for SM-ER-042</a></div>
+      </article>
+      <article class="p">
+        <div class="p__img"><span class="sku">SM-TK-007</span><svg viewBox="0 0 200 200"><use href="#jw-tikka"/></svg></div>
+        <div class="p__b"><h3>Meenakari Maang Tikka</h3><p class="tags">Meenakari · Rose</p>
+          <div class="pr"><span class="req">Price on enquiry</span></div>
+          <a class="ask" href="#"><svg width="16" height="16"><use href="#ic-wa"/></svg>Ask for SM-TK-007</a></div>
+      </article>
+      <article class="p">
+        <div class="p__img"><span class="sku">SM-BG-021</span><svg viewBox="0 0 200 200"><use href="#jw-bangle"/></svg></div>
+        <div class="p__b"><h3>Antique Kada, Pair</h3><p class="tags">Brass · Antique finish</p>
+          <div class="pr"><b>₹1,150</b></div>
+          <a class="ask" href="#"><svg width="16" height="16"><use href="#ic-wa"/></svg>Ask for SM-BG-021</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="how">
+      <h2>Ordering takes about ninety seconds</h2>
+      <div class="how__grid">
+        <div class="how__c"><b>You tap the button</b><p>Every piece has its own code. Tapping “Ask for SM-NK-014” opens WhatsApp with the message already written.</p></div>
+        <div class="how__c"><b>We reply with a photo</b><p>Real photo of the actual piece in hand, plus availability and the final price including delivery.</p></div>
+        <div class="how__c"><b>Pay how you like</b><p>UPI, bank transfer, or cash on delivery for anything under ₹3,000. Dispatch the same or next day.</p></div>
+      </div>
+      <div class="tmpl">
+        <b>This is the message you'll send:</b><br>
+        Hi Jhilmili, I'm interested in Kundan Bridal Choker Set (SM-NK-014) — jhilmili.com/products/kundan-bridal-choker-set
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><div><h2>What people message back</h2></div></div>
+    <div class="revs">
+      <div class="rev"><p>“Wore the choker for my sister's sangeet and three people asked where it was from. Nobody guessed the price.”</p>
+        <div class="who"><span class="av">R</span><div><b>Ritika S.</b><small>Pune · SM-NK-014</small></div></div></div>
+      <div class="rev"><p>“Ordered at 11pm, got a reply by morning with a real photo. That's the bit I liked — I knew exactly what was coming.”</p>
+        <div class="who"><span class="av">A</span><div><b>Aditi M.</b><small>Indore · SM-ER-042</small></div></div></div>
+      <div class="rev"><p>“Third order this year. The gold finish on the kadas hasn't dulled even after Diwali cooking.”</p>
+        <div class="who"><span class="av">S</span><div><b>Sneha K.</b><small>Hyderabad · SM-BG-021</small></div></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="logo" href="#">jhilmil<em>i</em></a>
+        <p style="color:var(--ink-soft);max-width:34ch;margin-top:10px">Imitation jewellery you order by code, over chat. Shipped from Rajkot, Gujarat.</p>
+        <p style="font-family:var(--f-display);font-weight:700;margin-top:12px">+91 98XXX XXXXX</p>
+      </div>
+      <div><h4>Jewellery</h4><ul><li><a href="#">Necklaces</a></li><li><a href="#">Earrings</a></li>
+        <li><a href="#">Bangles</a></li><li><a href="#">Maang tikka</a></li><li><a href="#">Payal</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About us</a></li><li><a href="#">Care guide</a></li>
+        <li><a href="#">Shipping &amp; returns</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><h4>Chat to order</h4><p style="color:var(--ink-soft);margin:0 0 12px">Mon–Sat, 10am to 8pm.</p>
+        <a class="wabtn" href="#"><svg width="17" height="17"><use href="#ic-wa"/></svg>Open WhatsApp</a></div>
+    </div>
+    <div class="fb"><span>© 2026 Jhilmili</span><span>Direction V3 — “Chat counter” · festive, mobile-first</span></div>
+  </div>
+</footer>
+
+<a class="float" href="#"><svg width="20" height="20"><use href="#ic-wa"/></svg><span>Chat to order</span></a>
+
+</body>
+</html>
