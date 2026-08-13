@@ -417,7 +417,7 @@ nav:
   - { label: All Jewellery, href: /products }
   - { label: About, href: /about }
 social:
-  instagram: https://instagram.com/...
+  instagram: https://instagram.com/jadauco_jewels
   facebook: https://facebook.com/...
 seo:
   siteName: Jadauco

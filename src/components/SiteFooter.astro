@@ -68,7 +68,15 @@ const renderInline = (text: string) =>
 
     <div class="fbot">
       <span>© {year} {settings.brand.name} · All rights reserved</span>
-      {settings.social.instagram && <a href={settings.social.instagram}>Instagram</a>}
+      {
+        /* The handle, not the word "Instagram" — it is where jewellery buyers
+           already are (§10.5), so naming it is worth more than labelling it. */
+        settings.social.instagram && (
+          <a href={settings.social.instagram} rel="me">
+            @{settings.social.instagram.replace(/\/+$/, '').split('/').pop()}
+          </a>
+        )
+      }
     </div>
   </div>
 </footer>

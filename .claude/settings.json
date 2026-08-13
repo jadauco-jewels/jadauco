@@ -42,7 +42,12 @@
       "Bash(awk 'length > 5000 { print NR\": \"substr\\($0,1,180\\)\"...\" }' final-home.stripped.html)",
       "Bash(cp tools/post-maker/assets/fonts/*.woff2 public/fonts/)",
       "Bash(mkdir -p public/fonts public/brand src/styles src/lib src/components/jsonld src/layouts src/pages/products src/pages/collections && cp tools/post-maker/assets/fonts/*.woff2 public/fonts/ && cp brand-kit/logo/jadauco-primary-stacked.svg public/brand/ && cp brand-kit/logo/jadauco-favicon.svg public/favicon.svg && printf 'jadauco.com\\\\n' > public/CNAME && ls -la public/fonts/ && du -sh public/fonts/)",
-      "Bash([ -f \"$CHROME\" ])"
+      "Bash([ -f \"$CHROME\" ])",
+      "Bash(git add *)",
+      "Bash(git check-ignore *)",
+      "Bash(git -c pull.rebase=true pull --autostash origin main)",
+      "Bash(curl -s \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\")",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\")"
     ],
     "additionalDirectories": [
       "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts"

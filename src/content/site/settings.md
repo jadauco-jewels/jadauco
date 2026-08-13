@@ -67,7 +67,7 @@ legal:
   - "Sold as seen, with no guarantee or warranty of any kind beyond the 7-day replacement for damage in transit set out in [Shipping & returns](/shipping-returns/). Plated finishes wear with use; how long yours lasts depends on how it is worn and stored, so we make no promise about it. Colour and size vary a little between screens and between batches. Prices and availability change without notice, and nothing on this site is an offer to sell — an order exists only once we have confirmed it in writing over WhatsApp."
   - "Product names describe a style, not an origin or a maker. Full details in our [Terms & conditions](/terms/), [Disclaimer](/disclaimer/) and [Privacy policy](/privacy/)."
 social:
-  instagram: https://instagram.com/jadauco
+  instagram: https://instagram.com/jadauco_jewels
 seo:
   siteName: Jadauco
   defaultTitle: Jadauco — Imitation Jewellery Online
