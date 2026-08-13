@@ -1,0 +1,96 @@
+:root {
+  /* colour */
+  --jd-ink:   #211A12;
+  --jd-brass: #8A6A2C;
+  --jd-gold:  #C6A45C;
+  --jd-sand:  #F5F1E9;
+  --jd-cream: #FFFDF8;
+  --jd-bone:  #F0E6D2;
+  --jd-line:  #E4DCCB;
+  --jd-muted: #5A4E40;
+
+  /* type */
+  --jd-font-display: Alegreya, "EB Garamond", Georgia, serif;
+  --jd-font-body: Karla, system-ui, -apple-system, sans-serif;
+  --jd-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* wordmark tracking */
+  --jd-track-wordmark: 0.13em;
+  --jd-track-label: 0.30em;
+
+  /* spacing scale */
+  --jd-1: 4px;  --jd-2: 8px;  --jd-3: 12px; --jd-4: 16px;
+  --jd-5: 24px; --jd-6: 32px; --jd-7: 48px; --jd-8: 64px;
+}
+
+body {
+  margin: 0;
+  background: var(--jd-cream);
+  color: var(--jd-ink);
+  font-family: var(--jd-font-body);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--jd-font-display); font-weight: 400; letter-spacing: -0.01em; }
+h1 { font-size: 44px; line-height: 1.15; }
+h2 { font-size: 29px; }
+h3 { font-size: 21px; }
+
+a { color: var(--jd-brass); text-decoration: none; }
+a:hover { color: var(--jd-ink); }
+
+/* wordmark: always caps + tracked, with the tracking compensated on the left */
+.jd-wordmark {
+  font-family: var(--jd-font-display);
+  letter-spacing: var(--jd-track-wordmark);
+  padding-left: var(--jd-track-wordmark);
+  text-transform: uppercase;
+}
+
+/* small mono label, e.g. IMITATION JEWELLERY / FREE SHIPPING */
+.jd-label {
+  font-family: var(--jd-font-mono);
+  font-size: 10px;
+  letter-spacing: var(--jd-track-label);
+  padding-left: var(--jd-track-label);
+  text-transform: uppercase;
+  color: var(--jd-brass);
+}
+
+/* price */
+.jd-price { font-family: var(--jd-font-mono); color: var(--jd-brass); }
+
+/* buttons */
+.jd-btn {
+  display: inline-block;
+  background: var(--jd-ink);
+  color: var(--jd-bone);
+  font-family: var(--jd-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border: 0;
+  cursor: pointer;
+}
+.jd-btn:hover { background: #3A2E20; }
+
+.jd-btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--jd-ink);
+  border: 1px solid var(--jd-ink);
+  font-family: var(--jd-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 11px 21px;
+  cursor: pointer;
+}
+.jd-btn-outline:hover { background: var(--jd-ink); color: var(--jd-bone); }
+
+/* product photo placeholder — replace with real photography */
+.jd-photo-placeholder {
+  background: repeating-linear-gradient(45deg, #F2ECE0 0 8px, #EAE2D2 8px 16px);
+}

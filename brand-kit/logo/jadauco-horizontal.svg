@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200">
+  <rect width="760" height="200" fill="#FFFDF8"></rect>
+  <g transform="translate(40,28) scale(0.72)">
+  <g>
+    <circle cx="100" cy="104" r="72" fill="none" stroke="#211A12" stroke-width="18"></circle>
+    <rect x="72" y="4" width="56" height="56" rx="2" fill="#FFFDF8" transform="rotate(45 100 32)"></rect>
+    <rect x="79" y="11" width="42" height="42" rx="2" fill="#C6A45C" transform="rotate(45 100 32)"></rect>
+  </g></g>
+  <text x="212" y="104" font-family="Alegreya, &#39;EB Garamond&#39;, Georgia, serif" font-size="56" letter-spacing="7" fill="#211A12">JADAUCO</text>
+  <text x="214" y="136" font-family="&#39;IBM Plex Mono&#39;, monospace" font-size="12" letter-spacing="3.8" fill="#8A6A2C">IMITATION JEWELLERY</text>
+</svg>
