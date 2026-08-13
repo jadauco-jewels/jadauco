@@ -64,10 +64,13 @@ jobs:
           # domain, not placeholder copy that later gets deleted.
           printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
 
-          # CUSTOM DOMAIN — uncomment once the DNS records below have propagated.
+          # CUSTOM DOMAIN — uncomment ONE of these once DNS resolves.
           # For Actions-based Pages the CNAME must ship inside the artifact, or
           # the custom-domain setting gets cleared on the next deploy.
-          # echo 'preview.jadauco.com' > _site/CNAME
+          # Must match Settings > Pages > Custom domain exactly.
+          #
+          # echo 'jadauco.com'         > _site/CNAME   # apex — needs 4 A records
+          # echo 'preview.jadauco.com' > _site/CNAME   # subdomain — needs 1 CNAME record
 
           ls -la _site
 
