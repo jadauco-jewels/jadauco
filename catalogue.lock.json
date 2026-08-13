@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "products": {
+    "JD-ER-001": {
+      "slug": "temple-lakshmi-jhumkas",
+      "firstSyncedAt": "2026-08-13T16:26:46Z"
+    },
+    "JD-NK-001": {
+      "slug": "kundan-bridal-choker-set",
+      "firstSyncedAt": "2026-08-13T16:26:46Z"
+    }
+  },
+  "images": {
+    "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
+      "driveId": "1sgztt1wGf3KoiKAb_MJWV9k6vGHpJykd",
+      "driveName": "2408998F-0337-4523-91D1-7EFADB32215F.png",
+      "driveMd5": null,
+      "outputSha": "45a3a92194b726657592dfa76b9fa83de2924cd59ca8d388551d547e932a6a10",
+      "bytes": 124485,
+      "width": 1448,
+      "height": 1086
+    },
+    "kundan-bridal-choker-set/kundan-bridal-choker-set-2.jpg": {
+      "driveId": "15RfMhUV5elqVk0ySKjrDbDyYiXpo0GWE",
+      "driveName": "2410BCF3-5F4B-4CBB-99EF-933ABCEDA236.png",
+      "driveMd5": null,
+      "outputSha": "0b7322f4a46e128813583f1f4238fe7a33e39e3802b8b828702ffbfc66f74924",
+      "bytes": 88215,
+      "width": 1086,
+      "height": 1448
+    },
+    "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
+      "driveId": "1q0byIWKGSk109Ek1MOPm3qCWq8qBa6ZP",
+      "driveName": "IMG_5797.PNG",
+      "driveMd5": null,
+      "outputSha": "e777c4f18820440a02911356b36f048c0bbf0bea66545a728975610bf8a4ed09",
+      "bytes": 103057,
+      "width": 896,
+      "height": 1195
+    }
+  }
+}

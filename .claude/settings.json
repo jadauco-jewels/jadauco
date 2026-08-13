@@ -10,7 +10,29 @@
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=r2.png --window-size=1440,1200 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-home.html\")",
       "Bash(rm -f hover.js)",
       "Bash(/usr/bin/python3 -c ' *)",
-      "Bash(/usr/bin/python3 -)"
+      "Bash(/usr/bin/python3 -)",
+      "Bash(npm --version)",
+      "Bash(npm -v)",
+      "Bash(git config *)",
+      "Bash(npm install *)",
+      "Bash(npm ls *)",
+      "Bash(npm audit *)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(grep -n \"images. tab\\\\|both tabs\\\\|both sheet tabs\\\\|mrp\\\\|images\\\\` rows\\\\|one row per photo\\\\|colour\\\\|material\" doc/PLAN.md doc/STORIES.md doc/TASKS.md)",
+      "Bash(node -e ' *)",
+      "Bash(npx astro *)",
+      "Bash(command -v nvm)",
+      "Bash(command -v fnm)",
+      "Bash(command -v volta)",
+      "Bash(command -v brew)",
+      "Read(//Users/vikash/.nvm/versions/node/**)",
+      "Bash(brew list *)",
+      "Bash(curl -sL -w \"\\\\nHTTP:%{http_code} TYPE:%{content_type}\\\\n\" \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\" -o sheet.csv)",
+      "Read(//dev/**)",
+      "Bash(curl -s -w \"\\\\nHTTP:%{http_code}\\\\n\" \"https://www.googleapis.com/drive/v3/files?q=%2717N9zdIUcLsFTLhXOPIFNzi6L0ZVNpYiQ%27+in+parents&fields=files\\(id,name,md5Checksum,size\\)\")",
+      "Bash(curl -sL -w \"\\\\nHTTP:%{http_code}\\\\n\" \"https://drive.google.com/embeddedfolderview?id=17N9zdIUcLsFTLhXOPIFNzi6L0ZVNpYiQ#list\" -o folder.html)",
+      "Bash(grep -oE '\\(data-id|entry-id|/file/d/\\)[^\",<]{10,60}' folder.html)"
     ]
   }
 }

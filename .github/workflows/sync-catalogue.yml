@@ -1,0 +1,91 @@
+name: Sync catalogue
+
+# PLAN.md §12.2. Three ways in, in order of how they are actually used:
+#   repository_dispatch  the client's "Publish to website" button, inside the sheet itself
+#   workflow_dispatch    ours, and the dry-run path in S-9
+#   schedule             the safety net for anything the other two missed
+on:
+  repository_dispatch:
+    types: [sync-catalogue]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Validate and report, but write nothing
+        type: boolean
+        default: false
+  schedule:
+    - cron: '30 2 * * *' # 08:00 IST
+
+# T-22 — one sync at a time. Queued rather than cancelled: a half-finished run that got
+# cancelled mid-push is exactly the state the whole design is built to avoid, and a sync that
+# starts while a deploy is in flight should wait rather than race it.
+concurrency:
+  group: catalogue-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync the catalogue
+        id: sync
+        env:
+          # Absent is fine — the sync falls back to keyless public access and says so in the
+          # summary. See PLAN.md §12.4.1.
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: npm run sync --silent -- ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit and push
+        if: ${{ !inputs.dry_run && steps.sync.outputs.changed != '0' && steps.sync.outputs.pull_request != 'true' }}
+        env:
+          SKUS: ${{ steps.sync.outputs.skus }}
+        run: |
+          git config user.name  "jadauco-sync[bot]"
+          git config user.email "sync@jadauco.com"
+          git add -A src/content/products catalogue.lock.json
+
+          # Belt and braces: the sync already reported zero changes, but a run that reaches
+          # here with a clean tree must exit green rather than fail on an empty commit.
+          if git diff --cached --quiet; then
+            echo "Nothing staged — leaving the tree alone."
+            exit 0
+          fi
+
+          git commit -m "Sync catalogue: ${SKUS}" \
+                     -m "Generated from the Google Sheet by .github/workflows/sync-catalogue.yml"
+          # A concurrent commit on main is rare but not impossible; rebase rather than fail.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      # §12.3 — the alternative path, for when the client wants a second pair of eyes.
+      - name: Open a pull request instead
+        if: ${{ !inputs.dry_run && steps.sync.outputs.changed != '0' && steps.sync.outputs.pull_request == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SKUS: ${{ steps.sync.outputs.skus }}
+        run: |
+          BRANCH="catalogue-sync/$(date -u +%Y%m%d-%H%M%S)"
+          git config user.name  "jadauco-sync[bot]"
+          git config user.email "sync@jadauco.com"
+          git checkout -b "$BRANCH"
+          git add -A src/content/products catalogue.lock.json
+          git commit -m "Sync catalogue: ${SKUS}"
+          git push origin "$BRANCH"
+          gh pr create --title "Sync catalogue: ${SKUS}" \
+                       --body "Generated from the Google Sheet. See the run summary for the full report." \
+                       --base "${GITHUB_REF_NAME}"

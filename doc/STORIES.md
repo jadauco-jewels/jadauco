@@ -23,7 +23,7 @@ Sheet + Drive → git → live site. Companion to `PLAN.md` §5 and §12.
 **So that** the piece is on the website without me opening GitHub or writing markdown
 
 **Acceptance criteria**
-- Given a Drive folder containing `JD-NK-021-1.jpg` and `JD-NK-021-2.jpg`, and a `products` row with SKU `JD-NK-021` and `status: live`, and matching `images` rows
+- Given a Drive folder containing `JD-NK-021-1.jpg` and `JD-NK-021-2.jpg`, and one `products` row with `Product Code` `JD-NK-021`, `Status: live`, and both filenames in its `Images` column
 - When Meera presses **Run workflow**
 - Then within ~5 minutes `https://jadauco.com/products/<slug>/` returns 200, shows both photos, the title, the price and a working WhatsApp button
 - And the product appears in its category grid and in `sitemap.xml`
@@ -72,10 +72,10 @@ Sheet + Drive → git → live site. Companion to `PLAN.md` §5 and §12.
 - When the sync runs
 - Then the new image is downloaded, processed and committed, and `catalogue.lock.json` records the new checksum
 - And the product's other images are not re-downloaded
-- And the alt text from the `images` tab is preserved
+- And the image's alt text is unchanged — whether generated or overridden on the `images` tab
 
 **Note** — renaming a file in Drive is *not* the same as replacing it: the sync sees a deletion
-plus an addition, and the `images` tab must be updated to match.
+plus an addition, and the row's `Images` column must be updated to match.
 
 ---
 
@@ -124,10 +124,10 @@ plus an addition, and the `images` tab must be updated to match.
 - And GitHub emails Meera that the run failed
 - And the live site is completely unchanged
 
-**Errors that must be caught this way:** unknown category, duplicate SKU, duplicate slug, bad
-SKU format, bad date, price that is not a number, `mrp` ≤ `price`, description under the
-minimum word count, an `images` row pointing at a filename that is not in Drive, a Drive image
-that no row references.
+**Errors that must be caught this way:** unrecognised category code, duplicate product code,
+duplicate slug, bad product-code format, bad date, a price that is not a number, `List Price` ≤
+`Selling Price`, description under the minimum word count, an `Images` entry naming a file that
+is not in Drive, a Drive image that no row references, and a filename claimed by two products.
 
 ---
 

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<title>Jadauco Post Maker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="bar">
+  <span class="lockup">
+    <svg viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="104" r="72" fill="none" stroke="currentColor" stroke-width="18"/>
+      <rect x="72" y="4" width="56" height="56" rx="2" fill="var(--cream)" transform="rotate(45 100 32)"/>
+      <rect x="79" y="11" width="42" height="42" rx="2" fill="var(--gold)" transform="rotate(45 100 32)"/>
+    </svg>
+    <span class="word">Jadauco</span>
+  </span>
+  <span class="tag">Post maker</span>
+</header>
+
+<main>
+  <!-- ============ controls ============ -->
+  <section class="panel" aria-label="Settings">
+
+    <div class="drop" id="drop" tabindex="0" role="button"
+         aria-label="Add a photo. Drag one here or press Enter to browse.">
+      <strong>Drag a photo here</strong>
+      <span>or click to choose &middot; JPG or PNG</span>
+      <input type="file" id="file" accept="image/*" multiple hidden>
+    </div>
+
+    <div class="queue" id="queue" hidden>
+      <p class="label">Photos <span id="queueCount"></span></p>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <p class="label">Shape</p>
+    <div class="seg" id="format" role="group">
+      <button data-v="square"   class="on">Square<em>1080 &times; 1080</em></button>
+      <button data-v="portrait">Portrait<em>1080 &times; 1350</em></button>
+      <button data-v="story">Story<em>1080 &times; 1920</em></button>
+    </div>
+
+    <p class="label">Layout</p>
+    <div class="seg" id="layout" role="group">
+      <button data-v="ring" class="on">Ring<em>piece in the mark</em></button>
+      <button data-v="plate">Plate<em>piece fills the frame</em></button>
+    </div>
+
+    <p class="label">Background</p>
+    <div class="seg swatches" id="ground" role="group">
+      <button data-v="cream" class="on" style="--sw:#FFFDF8">Cream</button>
+      <button data-v="sand"  style="--sw:#F5F1E9">Sand</button>
+      <button data-v="ink"   style="--sw:#211A12">Ink</button>
+    </div>
+
+    <p class="label">Details</p>
+    <label class="field"><span>Piece name</span>
+      <input id="title" type="text" maxlength="70" placeholder="Temple Lakshmi Pendant Set"></label>
+
+    <div class="row">
+      <label class="field"><span>Code</span>
+        <input id="sku" type="text" maxlength="16" placeholder="JD-NK-022"></label>
+      <label class="field"><span>Price &#8377;</span>
+        <input id="price" type="text" inputmode="numeric" placeholder="2499"></label>
+      <label class="field"><span>Was &#8377;</span>
+        <input id="mrp" type="text" inputmode="numeric" placeholder="3999"></label>
+    </div>
+
+    <label class="field"><span>Materials line</span>
+      <input id="spec" type="text" maxlength="60" placeholder="Brass · Gold finish · Nickel-free posts"></label>
+
+    <details class="adv">
+      <summary>Background removal</summary>
+      <label class="slider"><span>Cut level <b id="cutOut">16</b></span>
+        <input id="cut" type="range" min="0" max="90" value="16"></label>
+      <label class="slider"><span>Softness <b id="featherOut">52</b></span>
+        <input id="feather" type="range" min="20" max="140" value="52"></label>
+      <label class="check"><input id="keyOn" type="checkbox" checked>
+        <span>Remove the dark background</span></label>
+      <p class="hint">Made for pieces shot on black. Turn it off for photos already
+        on a plain light background.</p>
+    </details>
+
+    <div class="actions">
+      <button id="save" class="btn">Save image</button>
+      <button id="saveAll" class="btn ghost" hidden>Save all</button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </section>
+
+  <!-- ============ preview ============ -->
+  <section class="stage" aria-label="Preview">
+    <canvas id="canvas" width="1080" height="1080"></canvas>
+    <p class="cap" id="cap">1080 &times; 1080</p>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

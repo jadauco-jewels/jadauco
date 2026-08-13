@@ -17,11 +17,11 @@ runner.
 
 | ID | Task | Size | Depends on | Serves |
 |---|---|---|---|---|
-| **T-01** | Create the Google Sheet on a **client-owned** account. Two tabs: `products`, `images`, with the columns in `PLAN.md` §5.1–5.2. | S | Open item 9 | S-1 |
-| **T-02** | Add in-sheet data validation: dropdown for `category` (fed from a hidden `lists` tab) and `status`, checkboxes for `inStock`/`featured`, date picker for `publishDate`, conditional formatting flagging blank required cells. | S | T-01 | S-7 |
+| **T-01** | Create the Google Sheet on a **client-owned** account by importing `doc/sheet/products-template.csv`. One tab, `products`, with the columns in `PLAN.md` §5.1. The `images` tab is optional and only needed once hand-written alt text is wanted. | S | Open item 9 | S-1 |
+| **T-02** | Add in-sheet data validation per `doc/sheet/SHEET-SETUP.md`: dropdown for `Status`, checkboxes for `In Stock` / `Featured` / `Earrings Included`, date picker for `Publish Date`, protected header row, conditional formatting flagging blank required cells. | S | T-01 | S-7 |
 | **T-03** | Create the Drive folder, share **Anyone with the link → Viewer**, confirm with the client that public readability is understood and acceptable. | S | Open item 11 | S-1 |
 | **T-04** | Google Cloud project → enable Drive API → create an API key → restrict it to the Drive API → store as the `GOOGLE_API_KEY` Actions secret. Document the rotation steps. | S | — | S-1 |
-| **T-05** | **Spike (timeboxed, 1 day).** From a throwaway GitHub Actions runner, prove: (a) both tabs fetch as CSV without auth, (b) the Drive folder lists via `files.list` with the API key returning `id, name, md5Checksum, modifiedTime`, (c) a binary downloads via `files/<id>?alt=media`, (d) behaviour past 100 files (pagination) and on a file with no `md5Checksum`. Write the findings into `PLAN.md` §12.4. | M | T-03, T-04 | all |
+| **T-05** | **Spike (timeboxed, 1 day).** From a throwaway GitHub Actions runner, prove: (a) the `products` tab fetches as CSV without auth, (b) the Drive folder lists via `files.list` with the API key returning `id, name, md5Checksum, modifiedTime`, (c) a binary downloads via `files/<id>?alt=media`, (d) behaviour past 100 files (pagination) and on a file with no `md5Checksum`. Write the findings into `PLAN.md` §12.4. | M | T-03, T-04 | all |
 
 > **If T-05 fails**, the fallback is a service account with the folder shared to its email —
 > more setup, no public exposure. Decide before writing any sync code.
@@ -45,8 +45,8 @@ Built as separate modules under `scripts/sync/` so each is unit-testable without
 
 | ID | Task | Size | Depends on | Serves |
 |---|---|---|---|---|
-| **T-10** | `sheet.mjs` — fetch both tabs as CSV, parse to rows, trim whitespace, coerce Sheets booleans (`TRUE`/`FALSE`), split comma lists. Handle a sheet that returns an HTML sign-in page instead of CSV (the classic "not shared publicly" failure) with a specific error. | M | T-05 | S-1, S-7 |
-| **T-11** | `schema.mjs` — Zod schema per tab plus cross-row checks: unique SKU, unique slug, category exists on disk, `mrp > price`, description word count, every `images.sku` resolves to a product row. Errors carry a 1-based sheet row number. | M | T-10, T-09 | S-7 |
+| **T-10** | `sheet.mjs` — fetch the `products` tab (and `images` if configured) as CSV, map client-facing headers to internal fields **by header text, never position**, trim whitespace, coerce Sheets booleans (`TRUE`/`FALSE`), split comma lists. Handle a sheet that returns an HTML sign-in page instead of CSV (the classic "not shared publicly" failure) with a specific error. | M | T-05 | S-1, S-7 |
+| **T-11** | `schema.mjs` — Zod schema per tab plus cross-row checks: unique product code, unique slug, category code recognised, `List Price > Selling Price`, description word count, every `Images` filename present in Drive and claimed by exactly one product. Errors carry a 1-based sheet row number. | M | T-10, T-09 | S-7 |
 | **T-12** | Error formatter — turns Zod issues into the sentences in S-7. This is a writing task as much as a coding one; each message names the row, the SKU, the offending value and the fix. | S | T-11 | S-7 |
 | **T-13** | `drive.mjs` — paginated `files.list`, filename → `{id, md5Checksum, size}` map, download with 3 retries and exponential backoff, read/write `catalogue.lock.json`. | M | T-05 | S-11 |
 | **T-14** | `images.mjs` — sharp: downscale to `maxEdge`, re-encode at `quality`, strip EXIF. Reject non-decodable files with a clear message naming the Drive filename. | S | T-13 | S-11 |
@@ -65,6 +65,9 @@ Built as separate modules under `scripts/sync/` so each is unit-testable without
 | **T-20** | `.github/workflows/sync-catalogue.yml` — `workflow_dispatch` with a `dry_run` input, daily cron at 02:30 UTC, Node setup, npm cache, run the sync, publish the summary. | S | T-18 | S-1, S-13 |
 | **T-21** | Commit and push step: skip cleanly when the tree is unchanged, write a message naming the SKUs, and support `pullRequest: true` as an alternative path. Confirm the push triggers `deploy.yml`. | S | T-20 | S-1, S-2 |
 | **T-22** | Concurrency guard so two runs (button + cron) cannot race, and a run started while a deploy is in flight queues rather than conflicts. | S | T-21 | S-13 |
+| **T-27** | Apps Script bound to the sheet: a **Jadauco → Publish to website** menu item that POSTs `repository_dispatch` to GitHub, a toast reporting success or failure, and a link to the run. This is what keeps the client out of GitHub entirely. | M | T-20 | S-1 |
+| **T-28** | Debounced auto-publish: `onEdit` sets a dirty flag in Script Properties; a ten-minute time-driven trigger fires one dispatch and clears it. Forty price edits must produce one build, not forty. | S | T-27 | S-2, S-13 |
+| **T-29** | Fine-grained PAT scoped to this repo with `actions: write` only, stored in Script Properties, with an expiry and documented rotation steps alongside the `GOOGLE_API_KEY` ones. | S | T-27 | S-1 |
 
 ---
 

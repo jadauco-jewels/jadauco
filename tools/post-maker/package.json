@@ -1,0 +1,21 @@
+{
+  "name": "jadauco-post-maker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Drop in a product photo, get back a branded Instagram image.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack:mac": "electron-builder --mac --dir",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0"
+  },
+  "build": {
+    "appId": "com.jadauco.postmaker",
+    "productName": "Jadauco Post Maker",
+    "files": ["main.js", "preload.js", "renderer/**", "assets/**"],
+    "mac": { "category": "public.app-category.graphics-design", "target": ["dmg"] }
+  }
+}
