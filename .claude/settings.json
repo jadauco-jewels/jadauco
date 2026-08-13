@@ -7,7 +7,10 @@
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=h4.png --window-size=1440,3400 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-home.html\")",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=p4.png --window-size=1440,1700 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-product.html\")",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=r1.png --window-size=1440,2400 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-home.html\")",
-      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=r2.png --window-size=1440,1200 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-home.html\")"
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --screenshot=r2.png --window-size=1440,1200 --virtual-time-budget=6000 \"file:///Users/vikash/Documents/jadauco/doc/mockups/final-home.html\")",
+      "Bash(rm -f hover.js)",
+      "Bash(/usr/bin/python3 -c ' *)",
+      "Bash(/usr/bin/python3 -)"
     ]
   }
 }
