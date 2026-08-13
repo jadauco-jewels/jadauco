@@ -64,13 +64,11 @@ jobs:
           # domain, not placeholder copy that later gets deleted.
           printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
 
-          # CUSTOM DOMAIN — uncomment ONE of these once DNS resolves.
-          # For Actions-based Pages the CNAME must ship inside the artifact, or
-          # the custom-domain setting gets cleared on the next deploy.
-          # Must match Settings > Pages > Custom domain exactly.
-          #
-          # echo 'jadauco.com'         > _site/CNAME   # apex — needs 4 A records
-          # echo 'preview.jadauco.com' > _site/CNAME   # subdomain — needs 1 CNAME record
+          # CUSTOM DOMAIN. Must match Settings > Pages > Custom domain exactly.
+          # For Actions-based Pages the CNAME has to ship inside the artifact —
+          # without it the custom-domain setting is cleared on the next deploy
+          # and the site silently falls back to cloudalgo.github.io.
+          echo 'jadauco.com' > _site/CNAME
 
           ls -la _site
 
