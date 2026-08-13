@@ -1,0 +1,26 @@
+---
+import type { Product } from '../../lib/products';
+
+/** §10.3 — carousel eligibility for a category page. */
+interface Props {
+  products: Product[];
+  name: string;
+}
+
+const { products, name } = Astro.props;
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name,
+  numberOfItems: products.length,
+  itemListElement: products.map((product, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/products/${product.id.replace(/\/index$/, '')}/`, Astro.site).href,
+    name: product.data.title,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

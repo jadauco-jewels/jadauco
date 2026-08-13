@@ -32,7 +32,20 @@
       "Read(//dev/**)",
       "Bash(curl -s -w \"\\\\nHTTP:%{http_code}\\\\n\" \"https://www.googleapis.com/drive/v3/files?q=%2717N9zdIUcLsFTLhXOPIFNzi6L0ZVNpYiQ%27+in+parents&fields=files\\(id,name,md5Checksum,size\\)\")",
       "Bash(curl -sL -w \"\\\\nHTTP:%{http_code}\\\\n\" \"https://drive.google.com/embeddedfolderview?id=17N9zdIUcLsFTLhXOPIFNzi6L0ZVNpYiQ#list\" -o folder.html)",
-      "Bash(grep -oE '\\(data-id|entry-id|/file/d/\\)[^\",<]{10,60}' folder.html)"
+      "Bash(grep -oE '\\(data-id|entry-id|/file/d/\\)[^\",<]{10,60}' folder.html)",
+      "Bash(git ls-tree *)",
+      "Bash(gh workflow *)",
+      "Bash(gh run *)",
+      "Bash(gh api *)",
+      "WebFetch(domain:docs.github.com)",
+      "Bash(awk '{ print length, NR }' final-home.stripped.html)",
+      "Bash(awk 'length > 5000 { print NR\": \"substr\\($0,1,180\\)\"...\" }' final-home.stripped.html)",
+      "Bash(cp tools/post-maker/assets/fonts/*.woff2 public/fonts/)",
+      "Bash(mkdir -p public/fonts public/brand src/styles src/lib src/components/jsonld src/layouts src/pages/products src/pages/collections && cp tools/post-maker/assets/fonts/*.woff2 public/fonts/ && cp brand-kit/logo/jadauco-primary-stacked.svg public/brand/ && cp brand-kit/logo/jadauco-favicon.svg public/favicon.svg && printf 'jadauco.com\\\\n' > public/CNAME && ls -la public/fonts/ && du -sh public/fonts/)",
+      "Bash([ -f \"$CHROME\" ])"
+    ],
+    "additionalDirectories": [
+      "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts"
     ]
   }
 }

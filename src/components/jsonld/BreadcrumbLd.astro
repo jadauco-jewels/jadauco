@@ -1,0 +1,29 @@
+---
+import type { Crumb } from '../Breadcrumbs.astro';
+
+/**
+ * Fed the same array as the visible trail, so the two are the same object seen
+ * twice. §10.3 — a breadcrumb trail in the search result instead of a raw URL.
+ */
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.label,
+    // The last crumb is the current page and carries no item, per Google's spec.
+    ...(crumb.href && i < crumbs.length - 1
+      ? { item: new URL(crumb.href, Astro.site).href }
+      : {}),
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

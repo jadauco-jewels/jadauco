@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import Icons from '../components/Icons.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SEO from '../components/SEO.astro';
+import OrganizationLd from '../components/jsonld/OrganizationLd.astro';
+import { getSettings } from '../lib/settings';
+import { enquiryLink } from '../lib/whatsapp';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+}
+
+const { title, description, image, imageAlt, type, noindex } = Astro.props;
+const settings = await getSettings();
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- The three faces are on the critical path for first paint, and they are
+         self-hosted, so preloading them costs one round trip and saves a flash
+         of fallback type. PLAN.md §7. -->
+    <link rel="preload" href="/fonts/karla.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/alegreya.woff2" as="font" type="font/woff2" crossorigin />
+
+    <SEO {title} {description} {image} {imageAlt} {type} {noindex} />
+    <OrganizationLd />
+
+    <!--
+      No analytics tag. PLAN.md open item 7 (none / Plausible / GA4) is still
+      open, and `settings.seo.analyticsId` is the slot it will fill. Whatever is
+      chosen should be self-hosted or carry an integrity hash: a third-party
+      script is both a supply-chain dependency and a real cost against the Core
+      Web Vitals targets in §10.6.
+    -->
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Icons />
+    <SiteHeader />
+
+    <slot name="breadcrumbs" />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <a class="wa-float" href={enquiryLink(settings)} aria-label={settings.labels.enquire}>
+      <svg aria-hidden="true"><use href="#i-wa" /></svg>
+    </a>
+  </body>
+</html>

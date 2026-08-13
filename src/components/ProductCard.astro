@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
+import type { Product } from '../lib/products';
+import { getSettings } from '../lib/settings';
+import { price as formatPrice, specLine } from '../lib/format';
+import { enquiryLink } from '../lib/whatsapp';
+
+interface Props {
+  product: Product;
+  /** The first row of a grid is above the fold and should not lazy-load. */
+  eager?: boolean;
+}
+
+const { product, eager = false } = Astro.props;
+const data = product.data;
+
+const settings = await getSettings();
+const category = await getEntry(data.category);
+const url = `/products/${product.id.replace(/\/index$/, '')}/`;
+
+const specs = specLine(data.specs);
+const cover = data.images[0];
+
+// A piece published in the last three weeks is new. Derived, so nobody has to
+// remember to untick a "new" checkbox two months later.
+const isNew =
+  Date.now() - data.publishDate.valueOf() < 21 * 24 * 60 * 60 * 1000 && data.inStock;
+---
+
+<article class="tile">
+  <a class={`tile__ph${data.inStock ? '' : ' tile__ph--muted'}`} href={url}>
+    {!data.inStock && <span class="flag flag--quiet">{settings.labels.soldOut}</span>}
+    {isNew && <span class="flag">{settings.labels.newFlag}</span>}
+    {
+      cover ? (
+        <Image
+          src={cover.src}
+          alt={cover.alt}
+          widths={[280, 420, 640]}
+          sizes="(max-width: 640px) 45vw, (max-width: 900px) 30vw, 340px"
+          loading={eager ? 'eager' : 'lazy'}
+          fetchpriority={eager ? 'high' : 'auto'}
+        />
+      ) : (
+        <svg class="art" viewBox="0 0 240 200" role="img" aria-label={data.title}>
+          <use href={`#a-${category?.data.art ?? 'necklace'}`} />
+        </svg>
+      )
+    }
+  </a>
+
+  <h3><a href={url}>{data.title}</a></h3>
+
+  <div class="tile__price">
+    {
+      data.price ? (
+        <>
+          <span class="jd-price">{formatPrice(data.price, settings)}</span>
+          {data.listPrice && <s>{formatPrice(data.listPrice, settings)}</s>}
+        </>
+      ) : (
+        <span class="onreq">{settings.labels.priceOnEnquiry}</span>
+      )
+    }
+  </div>
+
+  {
+    specs.length > 0 && (
+      <p class="spec">
+        {specs.map((item, i) => (
+          <>
+            {i > 0 && <i>·</i>}
+            {item}
+          </>
+        ))}
+      </p>
+    )
+  }
+
+  <div class="tile__foot">
+    <span class="sku">{data.sku}</span>
+    {
+      /* §8.5 — a sold-out piece keeps its page and its URL, and loses its CTA.
+         Offering to take an enquiry for something we cannot supply is how you
+         lose a customer twice. */
+      data.inStock ? (
+        <a
+          class="jd-btn-outline"
+          href={enquiryLink(settings, {
+            title: data.title,
+            sku: data.sku,
+            url: new URL(url, Astro.site).href,
+          })}
+        >
+          {settings.labels.enquireShort}
+        </a>
+      ) : (
+        <span class="soldout">{settings.labels.soldOut}</span>
+      )
+    }
+  </div>
+</article>

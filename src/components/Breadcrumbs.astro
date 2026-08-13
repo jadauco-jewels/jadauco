@@ -1,0 +1,30 @@
+---
+/**
+ * The visible trail. Its JSON-LD twin is built from the same array in
+ * BreadcrumbLd.astro, so the two can never disagree — PLAN.md §10.3.
+ */
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <ol>
+      {
+        crumbs.map((crumb, i) => (
+          <li aria-current={i === crumbs.length - 1 ? 'page' : undefined}>
+            {crumb.href && i < crumbs.length - 1 ? <a href={crumb.href}>{crumb.label}</a> : crumb.label}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>

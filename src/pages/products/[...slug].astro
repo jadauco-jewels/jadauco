@@ -1,0 +1,258 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import ProductLd from '../../components/jsonld/ProductLd.astro';
+import BreadcrumbLd from '../../components/jsonld/BreadcrumbLd.astro';
+import { getSettings } from '../../lib/settings';
+import { related } from '../../lib/products';
+import { price as formatPrice, saving, excerpt, fill } from '../../lib/format';
+import { enquiryLink, enquiryText, telLink, displayPhone } from '../../lib/whatsapp';
+
+export async function getStaticPaths() {
+  const { allProducts } = await import('../../lib/products');
+  const products = await allProducts();
+
+  // S-6 — every product gets a page, archived ones included. Archiving takes a
+  // piece out of the grids; it never takes the URL off the web.
+  return products.map((product) => ({
+    params: { slug: product.id.replace(/\/index$/, '') },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const data = product.data;
+const settings = await getSettings();
+
+const category = await getEntry(data.category);
+const { Content } = await render(product);
+const relatedProducts = await related(product, 3);
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const saved = saving(data.price, data.listPrice);
+
+// Absolute URLs for the JSON-LD image array, from the processed assets rather
+// than the source paths — so what Google fetches is what the page shows.
+const ldImages = await Promise.all(
+  data.images.map(async (image) => {
+    const processed = await getImage({ src: image.src, width: 1200 });
+    return new URL(processed.src, Astro.site).href;
+  }),
+);
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: settings.labels.allJewellery, href: '/products/' },
+  { label: category?.data.title ?? 'Jewellery', href: `/collections/${data.category.id}/` },
+  { label: data.title },
+];
+
+/** The spec table is the schema's own fields, rendered plainly. */
+const specRows = [
+  { label: 'Code', value: data.sku, mono: true },
+  { label: 'Base metal', value: data.specs.baseMetal },
+  { label: 'Finish', value: data.specs.finish },
+  { label: 'Stones', value: data.specs.stones.join(', ') },
+  { label: 'Set includes', value: data.specs.setIncludes },
+  { label: 'Earrings', value: data.specs.earringsIncluded ? 'Included' : undefined },
+  { label: 'Weight', value: data.specs.weight, mono: true },
+].filter((row) => row.value);
+
+const canEnquire = !data.archived && data.inStock;
+---
+
+<BaseLayout
+  title={data.seo?.title ?? data.title}
+  description={data.seo?.description ?? excerpt(product.body ?? '')}
+  image={ldImages[0]}
+  imageAlt={data.images[0]?.alt}
+  type="product"
+>
+  <Breadcrumbs slot="breadcrumbs" crumbs={crumbs} />
+
+  <article class="product">
+    <div class="wrap">
+      <!--
+        A gallery with no JavaScript: a radio per photo, labels as the thumbs,
+        and CSS showing whichever shot matches the checked input. It works with
+        scripting off, costs nothing to hydrate, and every image is in the HTML
+        for Google Images to find. Rules live in global.css, capped at
+        GALLERY_MAX photos.
+      -->
+      <div class="gallery">
+        {
+          data.images.map((_, i) => (
+            <input
+              class="gallery__pick"
+              type="radio"
+              name="gallery"
+              id={`g${i + 1}`}
+              checked={i === 0}
+            />
+          ))
+        }
+
+        <div class="shots">
+          {
+            data.images.map((image, i) => (
+              <figure class="shot">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  widths={[560, 840, 1200]}
+                  sizes="(max-width: 900px) 92vw, 600px"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={i === 0 ? 'high' : 'auto'}
+                />
+              </figure>
+            ))
+          }
+        </div>
+
+        {
+          data.images.length > 1 && (
+            <div class="thumbs">
+              {data.images.map((image, i) => (
+                <label class="thumb" for={`g${i + 1}`}>
+                  <Image src={image.src} alt={`Show photo ${i + 1}: ${image.alt}`} widths={[160, 240]} sizes="120px" loading="lazy" />
+                </label>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <div class="buy">
+        <div class="head">
+          <p class="jd-label">{category?.data.title}</p>
+          <h1>{data.title}</h1>
+
+          <div class="pricerow">
+            {
+              data.price ? (
+                <>
+                  <span class="jd-price">{formatPrice(data.price, settings)}</span>
+                  {data.listPrice && <s>{formatPrice(data.listPrice, settings)}</s>}
+                  {saved && (
+                    <span class="off">
+                      {fill(settings.labels.save, { amount: formatPrice(saved, settings) })}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <span class="onreq">{settings.labels.priceOnEnquiry}</span>
+              )
+            }
+          </div>
+
+          {
+            /* T-08 — three states, driven entirely by status and inStock. */
+            data.archived ? (
+              <p class="stock stock--off"><i aria-hidden="true" />{settings.labels.archived}</p>
+            ) : data.inStock ? (
+              <p class="stock"><i aria-hidden="true" />{settings.labels.inStock}</p>
+            ) : (
+              <p class="stock stock--off"><i aria-hidden="true" />{settings.labels.soldOut}</p>
+            )
+          }
+        </div>
+
+        {
+          specRows.length > 0 && (
+            <table class="specs">
+              <caption class="jd-label jd-label--quiet">{settings.labels.specifications}</caption>
+              <tbody>
+                {specRows.map((row) => (
+                  <tr>
+                    <th scope="row">{row.label}</th>
+                    <td class={row.mono ? 'mono' : undefined}>{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )
+        }
+
+        {
+          canEnquire ? (
+            <>
+              <div class="actions">
+                <a
+                  class="jd-btn jd-btn--block"
+                  href={enquiryLink(settings, { title: data.title, sku: data.sku, url })}
+                >
+                  <svg width="15" height="15" aria-hidden="true"><use href="#i-wa" /></svg>
+                  {settings.labels.enquire}
+                </a>
+                <a class="jd-btn-outline jd-btn--block" href={telLink(settings)}>
+                  {settings.labels.call} {displayPhone(settings)}
+                </a>
+              </div>
+
+              {/* The template from settings.md, rendered — so there is no surprise
+                  about what gets sent on their behalf. PLAN.md §8.2 */}
+              <div class="msg-preview">
+                <p class="jd-label jd-label--quiet">{settings.labels.messagePreview}</p>
+                <p>{enquiryText(settings, { title: data.title, sku: data.sku, url })}</p>
+              </div>
+            </>
+          ) : (
+            /* §8.5 / S-6 — the CTA is suppressed rather than left to take an
+               enquiry we cannot honour. The page and its URL stay exactly where
+               they were, which is the entire point of archiving. */
+            <div class="unavailable">
+              <p>{data.archived ? settings.labels.archivedBody : settings.labels.soldOutBody}</p>
+              {
+                data.archived ? (
+                  <a class="jd-btn-outline jd-btn--block" href={`/collections/${data.category.id}/`}>
+                    See {category?.data.title.toLowerCase()}
+                  </a>
+                ) : (
+                  <a class="jd-btn-outline jd-btn--block" href={enquiryLink(settings, { title: data.title, sku: data.sku, url })}>
+                    {settings.labels.askRestock}
+                  </a>
+                )
+              }
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <!-- The long description: the single most important SEO asset on the page,
+         and the reason the sync enforces a minimum word count. §10.4 -->
+    <div class="wrap">
+      <div class="copy">
+        <h2>About this piece</h2>
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  {
+    relatedProducts.length > 0 && (
+      <section class="band band--sand">
+        <div class="wrap">
+          <div class="band-head">
+            <div>
+              <p class="jd-label">{settings.labels.relatedTitle}</p>
+              <h2>More from {category?.data.title.toLowerCase()}</h2>
+            </div>
+            <a class="more" href={`/collections/${data.category.id}/`}>
+              All {category?.data.title.toLowerCase()} →
+            </a>
+          </div>
+          <div class="grid">
+            {relatedProducts.map((p) => <ProductCard product={p} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <ProductLd product={product} url={url} images={ldImages} />
+  <BreadcrumbLd crumbs={crumbs} />
+</BaseLayout>

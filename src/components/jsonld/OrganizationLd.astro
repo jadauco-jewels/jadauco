@@ -1,0 +1,32 @@
+---
+import { getSettings } from '../../lib/settings';
+
+const settings = await getSettings();
+
+const sameAs = [settings.social.instagram, settings.social.facebook].filter(Boolean);
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: settings.brand.name,
+  url: new URL('/', Astro.site).href,
+  logo: new URL('/brand/jadauco-primary-stacked.svg', Astro.site).href,
+  description: settings.seo.defaultDescription,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: settings.contact.city,
+    addressRegion: settings.contact.state,
+    addressCountry: settings.contact.country,
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: settings.contact.phone,
+    email: settings.contact.email,
+    availableLanguage: ['en', 'hi', 'gu'],
+  },
+  ...(sameAs.length ? { sameAs } : {}),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

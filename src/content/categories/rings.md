@@ -1,6 +1,8 @@
 ---
 title: Rings
 code: RG
+art: ring
+blurb: Adjustable shanks, so one size covers most hands. Cocktail and everyday.
 order: 4
 seo:
   title: Imitation Rings Online — Adjustable CZ, Kundan & Cocktail Rings

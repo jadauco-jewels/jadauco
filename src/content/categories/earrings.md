@@ -1,6 +1,8 @@
 ---
 title: Earrings
 code: ER
+art: jhumka
+blurb: Jhumkas, chandbalis and studs. Every post and hook is nickel-free.
 order: 2
 seo:
   title: Imitation Earrings Online — Jhumkas, Studs & Drops

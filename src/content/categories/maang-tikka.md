@@ -1,0 +1,21 @@
+---
+title: Maang tikka
+code: TK
+art: tikka
+blurb: Single and double-chain tikkas with a hair hook that holds without a pin.
+order: 5
+seo:
+  title: Maang Tikka Online — Kundan, Meenakari & Temple Designs
+  description: Imitation maang tikkas in gold and antique finishes — single chain, double chain and matha patti styles with a hair hook that holds without pins.
+---
+
+A maang tikka is the piece that finishes a bridal look, and the one most often bought last and
+in a hurry. Ours range from a single fine chain with a small pendant, worn with everyday
+festive wear, to a double-chain matha patti heavy enough to hold its own against a lehenga.
+
+The hook matters more than the design. Every tikka here uses a wide, flattened hair hook rather
+than the thin wire that comes on cheaper pieces — it sits into the parting and holds through an
+evening without a pin, and without pulling at the hair when it comes off.
+
+Chain lengths are adjustable at the hook end, so the pendant can be raised or dropped to sit
+where the parting actually falls. The measurement on each product page is the maximum length.

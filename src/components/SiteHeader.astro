@@ -1,0 +1,103 @@
+---
+import Wordmark from './Wordmark.astro';
+import { getSettings } from '../lib/settings';
+import { enquiryLink, telLink, displayPhone } from '../lib/whatsapp';
+
+const settings = await getSettings();
+const path = Astro.url.pathname;
+
+/** Mark the nav item whose section we are in, not only its exact URL. */
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-head">
+  <div class="wrap">
+    <Wordmark name={settings.brand.name} descriptor="Imitation jewellery" />
+
+    <nav class="site-nav" aria-label="Main">
+      {
+        settings.nav.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="head-actions">
+      <a class="tel" href={telLink(settings)}>{displayPhone(settings)}</a>
+      <a class="jd-btn" href={enquiryLink(settings)}>
+        <svg width="14" height="14" aria-hidden="true"><use href="#i-wa" /></svg>
+        {settings.labels.enquireShort}
+      </a>
+    </div>
+
+    <!--
+      The menu is a <details>, not a script: open/closed is state the browser
+      already owns, so it works before hydration and with JavaScript off. The
+      links are in the DOM either way, so the nav is always crawlable — which
+      matters, because these are the internal links §10.4 counts on.
+    -->
+    <details class="menu">
+      <summary aria-label="Menu"><span aria-hidden="true">☰</span></summary>
+      <nav class="menu__panel" aria-label="Main, mobile">
+        <ul>
+          {settings.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          <li><a href={enquiryLink(settings)}>{settings.labels.enquire}</a></li>
+          <li><a href={telLink(settings)}>{displayPhone(settings)}</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .menu { display: none; margin-left: auto; flex: none }
+
+  .menu > summary {
+    list-style: none;
+    border: 1px solid var(--jd-line);
+    color: var(--jd-ink);
+    padding: 10px 13px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .menu > summary::-webkit-details-marker { display: none }
+  .menu[open] > summary { background: var(--jd-ink); color: var(--jd-bone); border-color: var(--jd-ink) }
+
+  /* The panel hangs below the sticky header rather than pushing the page down,
+     so opening the menu never shifts what is under it. */
+  .menu__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--jd-cream);
+    border-bottom: 1px solid var(--jd-line);
+    box-shadow: 0 12px 24px rgba(33, 26, 18, 0.06);
+  }
+  .menu__panel ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--jd-4) max(var(--jd-4), (100vw - var(--wrap)) / 2);
+    display: grid;
+    gap: var(--jd-1);
+  }
+  .menu__panel a {
+    display: block;
+    padding: var(--jd-3) 0;
+    color: var(--jd-ink);
+    font-family: var(--jd-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--jd-line);
+  }
+  .menu__panel li:last-child a { border-bottom: 0 }
+  .menu__panel a:hover { color: var(--jd-brass) }
+
+  @media (max-width: 900px) {
+    .menu { display: block }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+/**
+ * The lockup: the mark, then the wordmark, with the descriptor beneath.
+ *
+ * The mark is drawn inline rather than loaded as a file so the notch behind the
+ * stone can inherit `--jd-notch` and take whatever ground it sits on — the one
+ * thing brand-kit/GUIDELINES.md is firm about. A white notch on a sand footer
+ * is the failure this prevents.
+ */
+interface Props {
+  name: string;
+  descriptor?: string;
+  size?: number;
+  href?: string;
+}
+
+const { name, descriptor, size = 36, href = '/' } = Astro.props;
+---
+
+<a class="lockup" href={href} aria-label={`${name} — home`}>
+  <svg viewBox="0 0 200 200" aria-hidden="true" style={`width:${size}px;height:${size}px`}>
+    <circle cx="100" cy="104" r="72" fill="none" stroke="currentColor" stroke-width="18" />
+    <rect x="72" y="4" width="56" height="56" rx="2" fill="var(--jd-notch)" transform="rotate(45 100 32)" />
+    <rect x="79" y="11" width="42" height="42" rx="2" fill="var(--jd-gold)" transform="rotate(45 100 32)" />
+  </svg>
+  <span>
+    <span class="word" style={size < 34 ? `font-size:${Math.round(size * 0.73)}px` : undefined}>{name}</span>
+    {descriptor && <span class="desc">{descriptor}</span>}
+  </span>
+</a>

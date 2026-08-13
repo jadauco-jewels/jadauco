@@ -1,0 +1,78 @@
+---
+import Wordmark from './Wordmark.astro';
+import { getSettings } from '../lib/settings';
+import { categories } from '../lib/products';
+import { enquiryLink, telLink, displayPhone } from '../lib/whatsapp';
+
+const settings = await getSettings();
+const cats = await categories();
+const year = new Date().getFullYear();
+
+/**
+ * The legal paragraphs carry links, so they are written as markdown in
+ * settings.md and rendered here. Kept to links and bold only — this is a
+ * footer, not a CMS.
+ */
+const renderInline = (text: string) =>
+  text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+---
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <Wordmark name={settings.brand.name} size={30} />
+        <address>
+          {settings.brand.tagline}<br />
+          {settings.contact.city}, {settings.contact.state}, India<br />
+          <a href={telLink(settings)}>{displayPhone(settings)}</a><br />
+          <a href={`mailto:${settings.contact.email}`}>{settings.contact.email}</a>
+        </address>
+      </div>
+
+      <div>
+        <h4>Jewellery</h4>
+        <ul>
+          {cats.map((c) => <li><a href={`/collections/${c.id}/`}>{c.data.title}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          {settings.footerLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Order on WhatsApp</h4>
+        <p class="hours">{settings.labels.hours}</p>
+        <a class="jd-btn" href={enquiryLink(settings)}>
+          <svg width="14" height="14" aria-hidden="true"><use href="#i-wa" /></svg>
+          Start a chat
+        </a>
+      </div>
+    </div>
+
+    {
+      settings.legal.length > 0 && (
+        <div class="legal">
+          {settings.legal.map((paragraph) => <p set:html={renderInline(paragraph)} />)}
+        </div>
+      )
+    }
+
+    <div class="fbot">
+      <span>© {year} {settings.brand.name} · All rights reserved</span>
+      {settings.social.instagram && <a href={settings.social.instagram}>Instagram</a>}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .hours { color: var(--jd-muted); font-size: 0.94rem; margin-bottom: var(--jd-4) }
+</style>

@@ -9,7 +9,7 @@
  * approve the permissions it asks for. See doc/sheet/SHEET-SETUP.md.
  */
 
-var REPO = 'vikashcloudalgo/jadauco'; // owner/repo — set this before first use
+var REPO = 'cloudalgo/jadauco'; // owner/repo
 var EVENT_TYPE = 'sync-catalogue'; // must match repository_dispatch types in the workflow
 var DEBOUNCE_MINUTES = 10;
 

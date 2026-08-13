@@ -67,7 +67,7 @@ Built as separate modules under `scripts/sync/` so each is unit-testable without
 | **T-22** | Concurrency guard so two runs (button + cron) cannot race, and a run started while a deploy is in flight queues rather than conflicts. | S | T-21 | S-13 |
 | **T-27** | Apps Script bound to the sheet: a **Jadauco → Publish to website** menu item that POSTs `repository_dispatch` to GitHub, a toast reporting success or failure, and a link to the run. This is what keeps the client out of GitHub entirely. | M | T-20 | S-1 |
 | **T-28** | Debounced auto-publish: `onEdit` sets a dirty flag in Script Properties; a ten-minute time-driven trigger fires one dispatch and clears it. Forty price edits must produce one build, not forty. | S | T-27 | S-2, S-13 |
-| **T-29** | Fine-grained PAT scoped to this repo with `actions: write` only, stored in Script Properties, with an expiry and documented rotation steps alongside the `GOOGLE_API_KEY` ones. | S | T-27 | S-1 |
+| **T-29** | Fine-grained PAT scoped to this repo with **Contents: read and write** only (the dispatch endpoint is filed under Contents, not Actions), stored in Script Properties, with an expiry and documented rotation steps alongside the `GOOGLE_API_KEY` ones. | S | T-27 | S-1 |
 
 ---
 

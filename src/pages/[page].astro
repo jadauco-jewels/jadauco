@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BreadcrumbLd from '../components/jsonld/BreadcrumbLd.astro';
+import { excerpt } from '../lib/format';
+
+/** About, Care Guide, Shipping, Terms, Privacy, Disclaimer — all git-owned. */
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({ params: { page: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: page.data.title }];
+---
+
+<BaseLayout
+  title={page.data.seo?.title ?? page.data.title}
+  description={page.data.seo?.description ?? excerpt(page.body ?? '')}
+  type="article"
+>
+  <Breadcrumbs slot="breadcrumbs" crumbs={crumbs} />
+
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="prose">
+        <h1>{page.data.title}</h1>
+        {
+          page.data.updated && (
+            <p class="jd-label jd-label--quiet" style="margin-top:var(--jd-4)">
+              Last updated {page.data.updated.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </p>
+          )
+        }
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <BreadcrumbLd crumbs={crumbs} />
+</BaseLayout>

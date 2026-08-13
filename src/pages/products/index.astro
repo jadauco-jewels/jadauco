@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import BreadcrumbLd from '../../components/jsonld/BreadcrumbLd.astro';
+import ItemListLd from '../../components/jsonld/ItemListLd.astro';
+import { getSettings } from '../../lib/settings';
+import { listed, categories, categoryCounts } from '../../lib/products';
+
+const settings = await getSettings();
+const [products, cats, counts] = await Promise.all([listed(), categories(), categoryCounts()]);
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: settings.labels.allJewellery }];
+
+const description =
+  `Every piece in the ${settings.brand.name} catalogue — ` +
+  `${cats.map((c) => c.data.title.toLowerCase()).join(', ')}. ` +
+  'Brass with a gold or oxidised finish, price on every piece, ordered by code on WhatsApp.';
+---
+
+<BaseLayout title={settings.labels.allJewellery} description={description}>
+  <Breadcrumbs slot="breadcrumbs" crumbs={crumbs} />
+
+  <section class="band band--tight">
+    <div class="wrap">
+      <div class="band-head">
+        <div>
+          <p class="jd-label">{products.length} {products.length === 1 ? 'design' : 'designs'}</p>
+          <h1>{settings.labels.allJewellery}</h1>
+        </div>
+      </div>
+
+      <!-- Real crawlable links, not a JS filter: §10.1 rules out anything a
+           crawler cannot follow, and these are also the internal links that
+           make the category pages reachable. -->
+      <nav class="chips" aria-label="Filter by category">
+        <a class="chip" href="/products/" aria-current="true">All</a>
+        {
+          cats.map((cat) => (
+            <a class="chip" href={`/collections/${cat.id}/`}>
+              {cat.data.title} ({counts.get(cat.id) ?? 0})
+            </a>
+          ))
+        }
+      </nav>
+
+      {
+        products.length > 0 ? (
+          <div class="grid">
+            {products.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
+          </div>
+        ) : (
+          <p class="empty">{settings.labels.emptyCategory}</p>
+        )
+      }
+    </div>
+  </section>
+
+  <BreadcrumbLd crumbs={crumbs} />
+  <ItemListLd products={products} name={settings.labels.allJewellery} />
+</BaseLayout>

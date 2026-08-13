@@ -1,0 +1,66 @@
+name: Deploy site
+
+# PLAN.md §11.1. This replaces preview.yml, which published only doc/mockups.
+#
+# Every push that touches the site builds and deploys — including the commits the
+# catalogue sync makes, which is the last link in the chain the client sees:
+# sheet → sync → commit → deploy → live.
+on:
+  push:
+    branches: [main]
+    # Only the directories that genuinely cannot affect the built site. Note
+    # what is NOT here: markdown. `src/content/**` is almost entirely .md, and
+    # those are the files the sync commits — ignoring them would break the
+    # sheet → sync → deploy chain at its last link. (`paths-ignore` has no
+    # negation, so this list has to be conservative rather than clever.)
+    paths-ignore:
+      - 'doc/**'
+      - 'brand-kit/**'
+      - 'tools/**'
+      - 'CONTRIBUTING-FOR-CLIENT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. Unlike the sync, a superseded deploy is worth
+# cancelling: the newer commit contains everything the older one did.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # astro check runs the content schemas — the §5.8 backstop that stops a
+      # broken sync from reaching the web even if it reached git.
+      - run: npx astro check
+
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

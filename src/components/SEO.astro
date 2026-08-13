@@ -1,0 +1,57 @@
+---
+import { getSettings } from '../lib/settings';
+
+/**
+ * PLAN.md §10.2 — every meta tag, in one place.
+ *
+ * Nothing here is optional decoration: the canonical is what stops trailing-slash
+ * duplicates, and the OG image is what decides whether a WhatsApp share of a
+ * product looks like a shop or like a bare link.
+ */
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute or root-relative; resolved against the site URL. */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article' | 'product';
+  noindex?: boolean;
+}
+
+const { title, description, image, imageAlt, type = 'website', noindex = false } = Astro.props;
+const settings = await getSettings();
+const seo = settings.seo;
+
+// The template is applied to page titles but never to the site's own default,
+// which would otherwise read "Jadauco — Imitation Jewellery Online | Jadauco".
+const pageTitle = title ? seo.titleTemplate.replace('%s', title) : seo.defaultTitle;
+const pageDescription = description ?? seo.defaultDescription;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = image ? new URL(image, Astro.site).href : undefined;
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={pageDescription} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:type" content={type === 'product' ? 'website' : type} />
+<meta property="og:site_name" content={seo.siteName} />
+<meta property="og:locale" content="en_IN" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDescription} />
+<meta property="og:url" content={canonical} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+{seo.twitterHandle && <meta name="twitter:site" content={seo.twitterHandle} />}
+
+{
+  /* Empty means "do not render the tag at all" — an empty verification meta is
+     worse than none, because Search Console reports it as a failed check. */
+  seo.googleSiteVerification && (
+    <meta name="google-site-verification" content={seo.googleSiteVerification} />
+  )
+}

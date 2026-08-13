@@ -1,0 +1,28 @@
+---
+import { getSettings } from '../lib/settings';
+import { enquiryLink } from '../lib/whatsapp';
+
+interface Props {
+  title?: string;
+  sku?: string;
+  url?: string;
+  block?: boolean;
+  outline?: boolean;
+  label?: string;
+}
+
+const { title, sku, url, block = false, outline = false, label } = Astro.props;
+const settings = await getSettings();
+
+const href =
+  title && sku ? enquiryLink(settings, { title, sku, url }) : enquiryLink(settings);
+
+const classes = [outline ? 'jd-btn-outline' : 'jd-btn', block ? 'jd-btn--block' : '']
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a class={classes} href={href}>
+  <svg width="15" height="15" aria-hidden="true"><use href="#i-wa" /></svg>
+  {label ?? settings.labels.enquire}
+</a>

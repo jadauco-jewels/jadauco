@@ -1,6 +1,8 @@
 ---
 title: Bangles
 code: BG
+art: bangle
+blurb: Kadas and bangle sets in 2.4 and 2.6 inch, gold finish or oxidised.
 order: 3
 seo:
   title: Imitation Bangles & Kadas Online — Stone, Meenakari & Plain Gold

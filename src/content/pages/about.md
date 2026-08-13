@@ -2,10 +2,10 @@
 title: About Jadauco
 order: 1
 seo:
-  description: Jadauco is a small imitation jewellery house in Jaipur, selling kundan, temple and everyday pieces direct to customers over WhatsApp.
+  description: Jadauco is a small imitation jewellery house in Gurgaon, selling kundan, temple and everyday pieces direct to customers over WhatsApp.
 ---
 
-Jadauco is a small imitation jewellery house working out of Jaipur. We sell direct — no
+Jadauco is a small imitation jewellery house working out of Gurgaon. We sell direct — no
 showroom markup, no middlemen, and no minimum order.
 
 Everything in the catalogue is chosen by hand. We buy in small runs from workshops we have

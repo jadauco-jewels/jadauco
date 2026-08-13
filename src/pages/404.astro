@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSettings } from '../lib/settings';
+import { categories } from '../lib/products';
+
+const settings = await getSettings();
+const cats = await categories();
+---
+
+<BaseLayout title="Page not found" noindex>
+  <section class="notfound">
+    <div class="wrap">
+      <p class="jd-label">404</p>
+      <h1>That page has moved, or never existed.</h1>
+      <p class="lead" style="margin-inline:auto">
+        Product pages here keep their addresses even when a piece is discontinued, so a broken
+        link is usually a typo rather than something we took down.
+      </p>
+
+      <!-- §10.1 — a 404 that links back into the catalogue keeps the visitor on
+           the site instead of sending them back to the search results. -->
+      <div class="cta">
+        <a class="jd-btn" href="/products/">{settings.labels.allJewellery}</a>
+        <a class="jd-btn-outline" href="/">Home</a>
+      </div>
+
+      <nav class="chips" style="justify-content:center;margin-top:var(--jd-8)" aria-label="Categories">
+        {cats.map((cat) => <a class="chip" href={`/collections/${cat.id}/`}>{cat.data.title}</a>)}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

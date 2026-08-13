@@ -39,7 +39,7 @@ const products = defineCollection({
           earringsIncluded: z.boolean().optional(),
           weight: z.string().optional(),
         })
-        .default({}),
+        .default({ stones: [] }),
 
       images: z
         .array(
@@ -81,6 +81,11 @@ const categories = defineCollection({
         .string()
         .regex(/^[A-Z]{2}$/, 'Category code must be exactly two capital letters, e.g. NK'),
       order: z.number().int().default(99),
+      // Which line-art stand-in represents this category, and stands in for any
+      // product still waiting on a photograph. Ids live in Icons.astro.
+      art: z.enum(['necklace', 'haar', 'jhumka', 'bangle', 'tikka', 'ring', 'payal']),
+      // One line under the category name on the homepage. Not the body copy.
+      blurb: z.string().min(20).max(140),
       banner: image().optional(),
       bannerAlt: z.string().min(10).optional(),
       seo,
@@ -111,7 +116,7 @@ const site = defineCollection({
         // E.164, because it is pasted straight into a wa.me link.
         whatsapp: z.string().regex(/^\+\d{8,15}$/),
         phone: z.string().regex(/^\+\d{8,15}$/),
-        email: z.string().email(),
+        email: z.email(),
         city: z.string(),
         state: z.string(),
         country: z.string().length(2),
@@ -127,22 +132,37 @@ const site = defineCollection({
       // Every visitor-facing string. PLAN.md §5.7: if it could ever change, it is data.
       labels: z.object({
         enquire: z.string(),
+        enquireShort: z.string(),
         call: z.string(),
         priceOnEnquiry: z.string(),
         soldOut: z.string(),
-        discount: z.string(),
+        soldOutBody: z.string(),
+        askRestock: z.string(),
+        inStock: z.string(),
+        save: z.string(),
         featured: z.string(),
+        newFlag: z.string(),
         relatedTitle: z.string(),
         emptyCategory: z.string(),
         archived: z.string(),
+        archivedBody: z.string(),
         specifications: z.string(),
         newArrivals: z.string(),
+        allJewellery: z.string(),
+        messagePreview: z.string(),
+        hours: z.string(),
       }),
       nav: z.array(z.object({ label: z.string(), href: z.string() })).min(1),
+      footerLinks: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
+      // The strip under the enquiry band — claims we are prepared to stand behind.
+      trust: z.array(z.object({ title: z.string(), detail: z.string() })).default([]),
+      // Rendered verbatim in the footer. Imitation jewellery sold without this is
+      // asking for a dispute, so it is content, not decoration.
+      legal: z.array(z.string()).default([]),
       social: z
         .object({
-          instagram: z.string().url().optional(),
-          facebook: z.string().url().optional(),
+          instagram: z.url().optional(),
+          facebook: z.url().optional(),
         })
         .default({}),
       seo: z.object({

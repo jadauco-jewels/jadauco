@@ -1,6 +1,8 @@
 ---
 title: Necklaces
 code: NK
+art: necklace
+blurb: Chokers, rani haars and everyday chains, on adjustable dori or a lobster clasp.
 order: 1
 seo:
   title: Imitation Necklaces Online — Kundan, Temple & Party Wear

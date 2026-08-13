@@ -1,0 +1,554 @@
+@import './tokens.css';
+
+/* ============================================================ base */
+*,
+*::before,
+*::after { box-sizing: border-box }
+
+html { -webkit-text-size-adjust: 100% }
+
+body {
+  margin: 0;
+  background: var(--jd-cream);
+  color: var(--jd-ink);
+  font-family: var(--jd-font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100% }
+a { color: var(--jd-brass); text-decoration: none }
+a:hover { color: var(--jd-ink) }
+:focus-visible { outline: 2px solid var(--jd-brass); outline-offset: 3px }
+
+h1, h2, h3 {
+  font-family: var(--jd-font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.2rem, 5.2vw, 3.25rem); line-height: 1.08 }
+h2 { font-size: clamp(1.6rem, 3.2vw, 1.95rem) }
+h3 { font-size: 1.3rem; line-height: 1.25 }
+p { margin: 0 }
+
+.wrap { width: min(var(--wrap), 100% - var(--jd-6)); margin-inline: auto }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--jd-ink); color: var(--jd-bone); padding: var(--jd-3) var(--jd-4);
+  font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.skip-link:focus { left: var(--jd-4); top: var(--jd-4); color: var(--jd-bone) }
+
+/* ============================================================ utility type */
+.jd-label {
+  font-family: var(--jd-font-mono); font-size: 11px; line-height: 1.4;
+  letter-spacing: var(--jd-track-label); padding-left: var(--jd-track-label);
+  text-transform: uppercase; color: var(--jd-brass); margin: 0;
+}
+.jd-label--quiet { color: var(--jd-muted) }
+.jd-price {
+  font-family: var(--jd-font-mono); color: var(--jd-brass);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================ buttons */
+.jd-btn, .jd-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--jd-2);
+  font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase; cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.jd-btn {
+  background: var(--jd-ink); color: var(--jd-bone);
+  border: 1px solid var(--jd-ink); padding: 12px 22px;
+}
+.jd-btn:hover { background: var(--jd-ink-lift); border-color: var(--jd-ink-lift); color: var(--jd-bone) }
+.jd-btn-outline {
+  background: transparent; color: var(--jd-ink);
+  border: 1px solid var(--jd-ink); padding: 12px 22px;
+}
+.jd-btn-outline:hover { background: var(--jd-ink); color: var(--jd-bone) }
+.jd-btn-outline--light { color: var(--jd-bone); border-color: rgba(240, 230, 210, 0.45) }
+.jd-btn-outline--light:hover { background: var(--jd-bone); color: var(--jd-ink); border-color: var(--jd-bone) }
+.jd-btn--block { width: 100%; padding-block: 14px }
+.jd-btn--disabled { opacity: 0.5; pointer-events: none }
+
+/* ============================================================ header */
+.site-head {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--jd-cream); border-bottom: 1px solid var(--jd-line);
+}
+.site-head .wrap { display: flex; align-items: center; gap: var(--jd-6); min-height: 76px }
+.lockup { display: flex; align-items: center; gap: 14px; color: var(--jd-ink); flex: none }
+.lockup:hover { color: var(--jd-ink) }
+.lockup svg { width: 36px; height: 36px }
+.lockup .word {
+  font-family: var(--jd-font-display); font-size: 26px; line-height: 1;
+  letter-spacing: var(--jd-track-wordmark); padding-left: var(--jd-track-wordmark);
+  text-transform: uppercase;
+}
+/* the descriptor is dropped below a 26px wordmark — GUIDELINES.md */
+.lockup .desc {
+  display: block; font-family: var(--jd-font-mono); font-size: 10px;
+  letter-spacing: 0.28em; padding-left: 0.28em; text-transform: uppercase;
+  color: var(--jd-brass); margin-top: 5px;
+}
+
+.site-nav { margin-left: auto; display: flex; gap: var(--jd-5); align-items: center }
+.site-nav a {
+  font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--jd-ink); padding-block: 6px;
+  border-bottom: 1px solid transparent;
+}
+.site-nav a:hover { border-bottom-color: var(--jd-brass); color: var(--jd-brass) }
+.site-nav a[aria-current] { border-bottom-color: var(--jd-brass); color: var(--jd-brass) }
+.head-actions { display: flex; align-items: center; gap: var(--jd-4); flex: none }
+.tel { font-family: var(--jd-font-mono); font-size: 13px; color: var(--jd-muted); white-space: nowrap }
+.tel:hover { color: var(--jd-ink) }
+
+
+/* ============================================================ section frame */
+.band { padding-block: clamp(var(--jd-8), 8vw, var(--jd-9)) }
+.band--sand { background: var(--jd-sand); --jd-notch: var(--jd-sand) }
+.band--ink { background: var(--jd-ink); color: var(--jd-bone); --jd-notch: var(--jd-ink) }
+.band--tight { padding-block: var(--jd-8) }
+.band--flush { padding-top: 0 }
+
+.band-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: var(--jd-5); flex-wrap: wrap; margin-bottom: var(--jd-7);
+}
+.band-head h2 { margin-top: var(--jd-2) }
+.band-head .more {
+  font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase; border-bottom: 1px solid var(--jd-line); padding-bottom: 4px;
+}
+.band-head .more:hover { border-bottom-color: var(--jd-brass) }
+
+/* ============================================================ hero */
+.hero .wrap {
+  display: grid; grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(var(--jd-7), 6vw, var(--jd-9)); align-items: center;
+  padding-block: clamp(var(--jd-8), 7vw, var(--jd-9));
+}
+.hero h1 { margin-top: var(--jd-4) }
+.hero .lead { max-width: 46ch; margin-top: var(--jd-5); color: var(--jd-muted); font-size: 1.05rem }
+.hero .cta { display: flex; gap: var(--jd-3); flex-wrap: wrap; margin-top: var(--jd-6) }
+.facts {
+  display: flex; gap: var(--jd-5) var(--jd-6); flex-wrap: wrap; margin-top: var(--jd-7);
+  padding-top: var(--jd-5); border-top: 1px solid var(--jd-line);
+}
+.facts b {
+  display: block; font-family: var(--jd-font-display); font-weight: 400;
+  font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.facts span {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: var(--jd-track-label);
+  padding-left: var(--jd-track-label); text-transform: uppercase; color: var(--jd-muted);
+  display: block; margin-top: var(--jd-2);
+}
+
+/* The mark, enlarged, with a real piece standing inside it. At rest the disc is
+   the page colour so only the ring reads; on hover it fills with ink and the
+   piece magnifies — a loupe over a display case. Pure CSS. */
+.vitrine { position: relative; aspect-ratio: 1; display: grid; place-items: center }
+.vitrine .ring { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none }
+.vitrine .disc {
+  position: relative; z-index: 1; width: 75.5%; aspect-ratio: 1; border-radius: 50%;
+  overflow: hidden; display: grid; place-items: center; background: var(--jd-cream);
+  cursor: zoom-in; transition: background 0.4s ease;
+}
+.vitrine .disc img { width: 84%; height: auto; transition: scale 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) }
+.vitrine:hover .disc, .vitrine:focus-within .disc { background: var(--jd-ink) }
+.vitrine:hover .disc img, .vitrine:focus-within .disc img { scale: 1.6 }
+.vitrine figcaption { position: absolute; left: 0; bottom: -6%; width: 100%; text-align: center }
+
+/* ============================================================ categories */
+.cats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--jd-line); border: 1px solid var(--jd-line);
+}
+.cat {
+  background: var(--jd-cream); padding: var(--jd-6) var(--jd-5) var(--jd-5);
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--jd-3);
+  color: var(--jd-ink); transition: background 0.2s;
+}
+.cat:hover { background: var(--jd-sand); color: var(--jd-ink) }
+.cat svg { width: 56px; height: 56px; color: var(--jd-brass) }
+.cat h3 { margin-top: var(--jd-2) }
+.cat p { color: var(--jd-muted); font-size: 0.9rem; max-width: 34ch }
+.cat .count {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: var(--jd-track-label);
+  padding-left: var(--jd-track-label); text-transform: uppercase; color: var(--jd-brass);
+  margin-top: auto; padding-top: var(--jd-4);
+}
+
+/* ============================================================ product grid */
+/* three across on desktop, two on mobile — GUIDELINES.md */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--jd-7) var(--jd-6) }
+.tile { display: flex; flex-direction: column }
+.tile__ph {
+  position: relative; aspect-ratio: 1; display: grid; place-items: center;
+  overflow: hidden; border: 1px solid var(--jd-line); background: var(--jd-cream);
+  transition: background 0.35s ease;
+}
+.tile__ph svg.art { width: 62%; color: var(--jd-ink); opacity: 0.42; transition: scale 0.4s ease }
+.tile:hover .tile__ph svg.art { scale: 1.03 }
+.tile__ph img {
+  width: 100%; height: 100%; object-fit: contain; display: block; padding: 9%;
+  transition: scale 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.tile:hover .tile__ph:has(img) { background: var(--jd-ink) }
+.tile:hover .tile__ph img { scale: 1.03 }
+.tile__ph--muted img, .tile__ph--muted svg.art { opacity: 0.36 }
+
+.flag {
+  position: absolute; left: 0; top: 0; z-index: 1;
+  background: var(--jd-ink); color: var(--jd-bone); font-family: var(--jd-font-mono);
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 10px;
+}
+.flag--quiet { background: var(--jd-bone); color: var(--jd-muted) }
+
+.tile h3 { margin-top: var(--jd-4) }
+.tile h3 a { color: inherit }
+.tile h3 a:hover { color: var(--jd-brass) }
+.tile__price { display: flex; align-items: baseline; gap: var(--jd-3); margin-top: var(--jd-2) }
+.tile__price .jd-price { font-size: 1rem }
+.tile__price s {
+  color: var(--jd-muted); font-family: var(--jd-font-mono); font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.tile__price .onreq {
+  font-family: var(--jd-font-mono); font-size: 0.85rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--jd-muted);
+}
+
+/* the signature line: metal · finish · fitting, straight from the schema */
+.spec {
+  display: flex; flex-wrap: wrap; gap: var(--jd-2); margin-top: var(--jd-3);
+  padding-top: var(--jd-3); border-top: 1px solid var(--jd-line);
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jd-muted);
+}
+.spec i { font-style: normal; color: var(--jd-line) }
+
+/* margin-top:auto bottom-aligns every footer across a row, so the Enquire
+   buttons line up even when spec lines wrap to different heights */
+.tile__foot {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--jd-3);
+  margin-top: auto; padding-top: var(--jd-4);
+}
+.sku { font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--jd-muted) }
+.soldout {
+  font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--jd-muted);
+}
+
+.empty {
+  border: 1px dashed var(--jd-line); padding: var(--jd-8); text-align: center;
+  color: var(--jd-muted);
+}
+
+/* ============================================================ prose columns */
+.cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--jd-7) }
+.col h3 { margin-bottom: var(--jd-3) }
+.col p { color: var(--jd-muted); max-width: 34ch }
+.col .after {
+  margin-top: var(--jd-4); display: inline-block; font-family: var(--jd-font-mono);
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+  border-bottom: 1px solid var(--jd-line); padding-bottom: 4px;
+}
+
+/* ============================================================ steps */
+.steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--jd-line); border: 1px solid var(--jd-line);
+}
+.step { background: var(--jd-cream); padding: var(--jd-6) var(--jd-5) }
+.step .n { font-family: var(--jd-font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--jd-brass) }
+.step h3 { margin: var(--jd-3) 0 var(--jd-2); font-size: 1.15rem }
+.step p { color: var(--jd-muted); font-size: 0.94rem }
+
+/* ============================================================ enquiry band */
+.enquiry .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--jd-7); flex-wrap: wrap;
+}
+.enquiry .wrap > div:first-child { flex: 1 1 34rem }
+.enquiry h2 { margin: var(--jd-3) 0; max-width: 16ch }
+.enquiry p { color: rgba(240, 230, 210, 0.72); max-width: 42ch }
+.enquiry .jd-label { color: var(--jd-gold) }
+.enquiry .cta { display: flex; gap: var(--jd-3); flex-wrap: wrap; flex: none }
+.enquiry .jd-btn { background: var(--jd-bone); color: var(--jd-ink); border-color: var(--jd-bone) }
+.enquiry .jd-btn:hover { background: var(--jd-gold); border-color: var(--jd-gold); color: var(--jd-ink) }
+
+/* ============================================================ trust strip */
+.trust { border-top: 1px solid var(--jd-line); border-bottom: 1px solid var(--jd-line) }
+.trust .wrap {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--jd-5);
+  padding-block: var(--jd-5);
+}
+.trust b {
+  display: block; font-family: var(--jd-font-mono); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400;
+}
+.trust small { color: var(--jd-muted); font-size: 0.86rem }
+
+/* ============================================================ breadcrumbs */
+.crumbs { border-bottom: 1px solid var(--jd-line) }
+.crumbs ol {
+  display: flex; flex-wrap: wrap; gap: var(--jd-2); list-style: none; margin: 0;
+  padding: 14px 0; font-family: var(--jd-font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--jd-muted);
+}
+.crumbs li::after { content: '/'; margin-left: var(--jd-2); color: var(--jd-line) }
+.crumbs li:last-child::after { content: '' }
+.crumbs a { color: var(--jd-muted) }
+.crumbs a:hover { color: var(--jd-ink) }
+
+/* ============================================================ product page */
+.product { padding-block: var(--jd-7) var(--jd-9) }
+.product .wrap {
+  display: grid; grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(var(--jd-7), 5vw, var(--jd-8)); align-items: start;
+}
+
+.gallery { display: grid; gap: var(--jd-3); position: sticky; top: 100px }
+
+/* The zero-JS gallery. The radios are visually hidden but stay focusable, so the
+   filmstrip is operable from the keyboard: tab to it, arrow between photos. */
+.gallery__pick {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.shots { display: grid }
+/* Every shot occupies the same cell, so switching cannot shift the page. */
+.shots > .shot { grid-area: 1 / 1; visibility: hidden }
+
+#g1:checked ~ .shots > .shot:nth-child(1),
+#g2:checked ~ .shots > .shot:nth-child(2),
+#g3:checked ~ .shots > .shot:nth-child(3),
+#g4:checked ~ .shots > .shot:nth-child(4),
+#g5:checked ~ .shots > .shot:nth-child(5),
+#g6:checked ~ .shots > .shot:nth-child(6),
+#g7:checked ~ .shots > .shot:nth-child(7),
+#g8:checked ~ .shots > .shot:nth-child(8) { visibility: visible }
+
+#g1:checked ~ .thumbs > .thumb:nth-child(1),
+#g2:checked ~ .thumbs > .thumb:nth-child(2),
+#g3:checked ~ .thumbs > .thumb:nth-child(3),
+#g4:checked ~ .thumbs > .thumb:nth-child(4),
+#g5:checked ~ .thumbs > .thumb:nth-child(5),
+#g6:checked ~ .thumbs > .thumb:nth-child(6),
+#g7:checked ~ .thumbs > .thumb:nth-child(7),
+#g8:checked ~ .thumbs > .thumb:nth-child(8) { border-color: var(--jd-ink) }
+
+#g1:focus-visible ~ .thumbs > .thumb:nth-child(1),
+#g2:focus-visible ~ .thumbs > .thumb:nth-child(2),
+#g3:focus-visible ~ .thumbs > .thumb:nth-child(3),
+#g4:focus-visible ~ .thumbs > .thumb:nth-child(4),
+#g5:focus-visible ~ .thumbs > .thumb:nth-child(5),
+#g6:focus-visible ~ .thumbs > .thumb:nth-child(6),
+#g7:focus-visible ~ .thumbs > .thumb:nth-child(7),
+#g8:focus-visible ~ .thumbs > .thumb:nth-child(8) { outline: 2px solid var(--jd-brass); outline-offset: 3px }
+
+.shot {
+  position: relative; aspect-ratio: 1; display: grid; place-items: center;
+  overflow: hidden; border: 1px solid var(--jd-line); background: var(--jd-cream);
+  margin: 0; transition: background 0.4s ease;
+}
+.shot svg.art { width: 64%; color: var(--jd-ink); opacity: 0.45 }
+.shot img {
+  width: 100%; height: 100%; object-fit: contain; display: block; padding: 7%;
+  transition: scale 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.shot:has(img) { cursor: zoom-in }
+.shot:has(img):hover, .shot:has(img):focus-within { background: var(--jd-ink) }
+.shot:hover img, .shot:focus-within img { scale: 1.45 }
+
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--jd-3) }
+.thumb {
+  aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--jd-line);
+  overflow: hidden; padding: 0; cursor: pointer; background: var(--jd-cream);
+}
+.thumb img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 10% }
+
+.buy { display: flex; flex-direction: column; gap: var(--jd-5) }
+.buy .head { display: flex; flex-direction: column; gap: var(--jd-3) }
+.pricerow { display: flex; align-items: baseline; gap: var(--jd-4); flex-wrap: wrap }
+.pricerow .jd-price { font-size: 1.75rem }
+.pricerow s {
+  font-family: var(--jd-font-mono); color: var(--jd-muted); font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+.pricerow .off {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--jd-ink); background: var(--jd-bone); padding: 4px 9px;
+}
+.pricerow .onreq {
+  font-family: var(--jd-font-mono); font-size: 1.1rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--jd-muted);
+}
+
+.stock {
+  display: flex; align-items: center; gap: var(--jd-2); font-family: var(--jd-font-mono);
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jd-muted);
+}
+.stock i { width: 6px; height: 6px; background: var(--jd-brass); display: block; rotate: 45deg }
+.stock--off i { background: var(--jd-line) }
+
+.unavailable {
+  border: 1px solid var(--jd-line); background: var(--jd-sand); --jd-notch: var(--jd-sand);
+  padding: var(--jd-4); display: flex; flex-direction: column; gap: var(--jd-3);
+}
+.unavailable p { font-size: 0.94rem; color: var(--jd-muted) }
+
+/* the spec table is the product's schema fields, rendered plainly */
+.specs { border-top: 1px solid var(--jd-line); width: 100%; border-collapse: collapse; font-size: 0.94rem }
+.specs th, .specs td {
+  text-align: left; padding: 11px 0; border-bottom: 1px solid var(--jd-line); vertical-align: top;
+}
+.specs th {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: var(--jd-track-label);
+  text-transform: uppercase; color: var(--jd-muted); font-weight: 400; width: 38%;
+}
+.specs td { color: var(--jd-ink) }
+.specs .mono { font-family: var(--jd-font-mono); font-size: 0.86rem; font-variant-numeric: tabular-nums }
+.specs caption { text-align: left; padding-bottom: var(--jd-3) }
+
+.actions { display: grid; gap: var(--jd-3) }
+.msg-preview {
+  border: 1px solid var(--jd-line); background: var(--jd-sand); --jd-notch: var(--jd-sand);
+  padding: var(--jd-4);
+}
+.msg-preview p {
+  font-family: var(--jd-font-mono); font-size: 13px; line-height: 1.75;
+  color: var(--jd-ink); margin-top: var(--jd-2); overflow-wrap: anywhere;
+}
+
+.copy {
+  margin-top: var(--jd-8); padding-top: var(--jd-7);
+  border-top: 1px solid var(--jd-line); max-width: 65ch;
+}
+.copy h2 { margin-bottom: var(--jd-4) }
+.copy p { color: var(--jd-muted) }
+.copy p + p { margin-top: var(--jd-4) }
+.copy code {
+  font-family: var(--jd-font-mono); font-size: 0.85em; background: var(--jd-sand); padding: 2px 5px;
+}
+
+/* ============================================================ prose pages */
+.prose { max-width: 68ch; margin-inline: auto }
+.prose h2 { margin: var(--jd-7) 0 var(--jd-4) }
+.prose h3 { margin: var(--jd-6) 0 var(--jd-3) }
+.prose p, .prose li { color: var(--jd-muted) }
+.prose p + p { margin-top: var(--jd-4) }
+.prose ul, .prose ol { padding-left: var(--jd-5); display: grid; gap: var(--jd-2); margin: var(--jd-4) 0 }
+.prose table { width: 100%; border-collapse: collapse; margin: var(--jd-5) 0; font-size: 0.94rem }
+.prose th, .prose td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--jd-line) }
+.prose th {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jd-muted); font-weight: 400;
+}
+.prose strong { color: var(--jd-ink); font-weight: 500 }
+.prose hr { border: 0; border-top: 1px solid var(--jd-line); margin: var(--jd-7) 0 }
+.prose blockquote {
+  margin: var(--jd-5) 0; padding-left: var(--jd-5);
+  border-left: 2px solid var(--jd-line); color: var(--jd-muted);
+}
+
+/* Category body copy sits above the grid and is what makes the page rank
+   rather than being a thin, content-less grid. PLAN.md §5.6 */
+.cat-intro { max-width: 62ch; margin-top: var(--jd-5); color: var(--jd-muted) }
+.cat-intro p + p { margin-top: var(--jd-4) }
+
+/* ============================================================ filters */
+.chips { display: flex; flex-wrap: wrap; gap: var(--jd-2); margin-bottom: var(--jd-6) }
+.chip {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jd-muted); border: 1px solid var(--jd-line);
+  padding: 7px 13px;
+}
+.chip:hover { border-color: var(--jd-ink); color: var(--jd-ink) }
+.chip[aria-current='true'] { background: var(--jd-ink); color: var(--jd-bone); border-color: var(--jd-ink) }
+
+/* ============================================================ footer */
+.site-foot {
+  background: var(--jd-sand); --jd-notch: var(--jd-sand);
+  padding-block: var(--jd-8) var(--jd-6); border-top: 1px solid var(--jd-line);
+}
+.fgrid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: var(--jd-7) }
+.site-foot h4 {
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: var(--jd-track-label);
+  padding-left: var(--jd-track-label); text-transform: uppercase; color: var(--jd-brass);
+  margin: 0 0 var(--jd-4); font-weight: 400;
+}
+.site-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--jd-2) }
+.site-foot ul a { color: var(--jd-ink); font-size: 0.94rem }
+.site-foot ul a:hover { color: var(--jd-brass) }
+.site-foot address {
+  font-style: normal; color: var(--jd-muted); font-size: 0.94rem;
+  max-width: 30ch; margin-top: var(--jd-4);
+}
+.legal {
+  margin-top: var(--jd-8); padding-top: var(--jd-5); border-top: 1px solid var(--jd-line);
+  color: var(--jd-muted); font-size: 0.88rem; max-width: 80ch;
+}
+.legal p + p { margin-top: var(--jd-3) }
+.fbot {
+  margin-top: var(--jd-5); padding-top: var(--jd-4); border-top: 1px solid var(--jd-line);
+  display: flex; justify-content: space-between; gap: var(--jd-4); flex-wrap: wrap;
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jd-muted);
+}
+
+/* ============================================================ floating WA */
+.wa-float {
+  position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 52px; height: 52px;
+  border-radius: 50%; background: var(--jd-ink); color: var(--jd-bone);
+  display: grid; place-items: center; box-shadow: 0 6px 20px rgba(33, 26, 18, 0.28);
+}
+.wa-float:hover { background: var(--jd-brass); color: var(--jd-bone) }
+.wa-float svg { width: 26px; height: 26px }
+
+/* ============================================================ 404 */
+.notfound { padding-block: var(--jd-9); text-align: center }
+.notfound .cta { display: flex; gap: var(--jd-3); justify-content: center; flex-wrap: wrap; margin-top: var(--jd-6) }
+
+/* ============================================================ responsive */
+@media (max-width: 900px) {
+  /* below the nav breakpoint the header is lockup + burger only. The floating
+     WhatsApp button becomes the enquiry CTA. */
+  .site-nav, .head-actions { display: none }
+  .hero .wrap { grid-template-columns: 1fr; gap: var(--jd-8) }
+  .vitrine { max-width: 460px; margin-inline: auto; width: 100% }
+  .cats { grid-template-columns: repeat(2, 1fr) }
+  .cols3, .steps { grid-template-columns: 1fr }
+  .fgrid { grid-template-columns: 1fr 1fr }
+  .product .wrap { grid-template-columns: 1fr }
+  .gallery { position: static }
+}
+
+@media (max-width: 640px) {
+  /* GUIDELINES.md: drop the descriptor below a 26px wordmark */
+  .lockup svg { width: 30px; height: 30px }
+  .lockup .word { font-size: 20px }
+  .lockup .desc { display: none }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: var(--jd-6) var(--jd-4) }
+  .tile h3 { font-size: 1.05rem }
+  .tile__foot { flex-direction: column; align-items: flex-start; gap: var(--jd-2) }
+  .cats { grid-template-columns: 1fr }
+  .trust .wrap { grid-template-columns: 1fr 1fr }
+  .fgrid { grid-template-columns: 1fr }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important }
+}

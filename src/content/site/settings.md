@@ -11,9 +11,9 @@ contact:
   # PLACEHOLDERS — PLAN.md open item 2. Swap before go-live.
   whatsapp: "+919000000000"
   phone: "+919000000000"
-  email: hello@jadauco.com
-  city: Jaipur
-  state: Rajasthan
+  email: jadauco.jewels@gmail.com
+  city: Gurgaon
+  state: Haryana
   country: IN
 currency:
   code: INR
@@ -23,27 +23,56 @@ enquiry:
   template: "Hi Jadauco, I'm interested in {title} ({sku}) — {url}"
 labels:
   enquire: Enquire on WhatsApp
+  enquireShort: Enquire
   call: Call us
   priceOnEnquiry: Price on enquiry
   soldOut: Sold out
-  discount: "{percent}% off"
+  soldOutBody: This one has gone. Message us and we'll tell you if it's coming back.
+  askRestock: Ask about restock
+  inStock: In stock · dispatched in 2–5 days
+  save: "Save {amount}"
   featured: Featured
+  newFlag: New
   relatedTitle: You may also like
   emptyCategory: New pieces coming soon.
-  archived: This piece is no longer available
-  specifications: Specifications
+  archived: No longer available
+  archivedBody: We've stopped making this design, but the page stays up so old links still work.
+  specifications: Specification
   newArrivals: New arrivals
+  allJewellery: All jewellery
+  messagePreview: The message that opens
+  hours: Monday to Saturday, 10am to 8pm IST.
 nav:
-  - { label: Home, href: / }
-  - { label: All Jewellery, href: /products/ }
+  - { label: Necklaces, href: /collections/necklaces/ }
+  - { label: Earrings, href: /collections/earrings/ }
+  - { label: Bangles, href: /collections/bangles/ }
+  - { label: All jewellery, href: /products/ }
   - { label: About, href: /about/ }
+footerLinks:
+  - { label: About us, href: /about/ }
+  - { label: Care guide, href: /care-guide/ }
+  - { label: Shipping & returns, href: /shipping-returns/ }
+  - { label: Terms & conditions, href: /terms/ }
+  - { label: Privacy policy, href: /privacy/ }
+  - { label: Disclaimer, href: /disclaimer/ }
+trust:
+  - { title: Nickel-free, detail: Posts and hooks }
+  - { title: 7-day replacement, detail: If it arrives damaged }
+  - { title: Ships across India, detail: 3–7 days }
+  # Quoted: inside a YAML flow mapping an unquoted comma ends the value, so this
+  # silently became "Under ₹3" until it was quoted.
+  - { title: Cash on delivery, detail: "Under ₹3,000" }
+legal:
+  - "**Everything here is imitation jewellery.** Pieces are brass with a plated gold or oxidised finish — not solid gold, not silver, and not set with precious or semi-precious stones. Stones are glass, resin or imitation kundan."
+  - "Sold as seen, with no guarantee or warranty of any kind beyond the 7-day replacement for damage in transit set out in [Shipping & returns](/shipping-returns/). Plated finishes wear with use; how long yours lasts depends on how it is worn and stored, so we make no promise about it. Colour and size vary a little between screens and between batches. Prices and availability change without notice, and nothing on this site is an offer to sell — an order exists only once we have confirmed it in writing over WhatsApp."
+  - "Product names describe a style, not an origin or a maker. Full details in our [Terms & conditions](/terms/), [Disclaimer](/disclaimer/) and [Privacy policy](/privacy/)."
 social:
   instagram: https://instagram.com/jadauco
 seo:
   siteName: Jadauco
   defaultTitle: Jadauco — Imitation Jewellery Online
   titleTemplate: "%s | Jadauco"
-  defaultDescription: Handpicked imitation jewellery — kundan bridal sets, temple jhumkas and everyday pieces, shipped across India.
+  defaultDescription: Brass jewellery in a gold or oxidised finish. Nickel-free posts, the price under every piece, and ordering by code on WhatsApp. Ships across India.
   twitterHandle: ""
   googleSiteVerification: ""
   analyticsId: ""

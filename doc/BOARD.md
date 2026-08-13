@@ -20,7 +20,7 @@ this file says *where it actually is right now*.
 | # | Task | Why it is yours | Story |
 |---|---|---|---|
 | 1 | Set `REPO` in `tools/apps-script/Code.gs` to the real `owner/repo` | Only you know the final repo name | S-1 |
-| 2 | **T-29** — create the fine-grained PAT (`actions: write`, this repo only), paste it into the sheet via *Jadauco → Set the GitHub token…* | Needs your GitHub account | S-1 |
+| 2 | **T-29** — create the fine-grained PAT (**Contents: read and write**, this repo only), paste it into the sheet via *Jadauco → Set the GitHub token…* | Needs your GitHub account | S-1 |
 | 3 | Paste `tools/apps-script/Code.gs` into the sheet's Apps Script, run `setUp` once, approve the scopes | Needs sheet ownership | S-1 |
 | 4 | **T-02** — sheet data validation, per `doc/sheet/SHEET-SETUP.md` §3 | Ten minutes in Sheets | S-7 |
 | 5 | **T-04** — Drive API key → `GOOGLE_API_KEY` secret | Turns the sync incremental; see below | S-11 |
@@ -36,9 +36,8 @@ this file says *where it actually is right now*.
 |---|---|---|---|
 | T-02 | In-sheet data validation (dropdown, checkboxes, date picker, protected header) | Nothing — `doc/sheet/SHEET-SETUP.md` §3 has the steps | Client |
 | T-04 | Google Cloud project → Drive API key → Actions secret | Open item 10. **No longer blocks the build** — it upgrades change detection from "download everything" to exact (§12.4.1) | Vikash |
-| T-07 | `products.ts` query helpers exclude `archived` | Needs the Phase 2 UI to exist | Deferred |
-| T-08 | Product page "no longer available" state | T-07 | Deferred |
-| T-30 | `tokens.css` from `brand-kit/brand.css` | Deferred with the rest of the UI pass | Deferred |
+| T-32 | Real photography to replace the line-art stand-ins | Client shoot | Client |
+| T-33 | Lighthouse pass + a11y audit (Phase 4) | Wants a deployed URL to measure | — |
 | T-23 | Load the real catalogue | T-21 | Client |
 | T-24 | Full-catalogue verification, Lighthouse, repo size | T-23 | — |
 | T-26 | Live walkthrough with Meera | T-25 | Client |
@@ -67,6 +66,11 @@ this file says *where it actually is right now*.
 | T-20/21/22 | `sync-catalogue.yml` — three triggers, queued concurrency, SKU-named commit that skips a clean tree, PR mode | Reviewed; unrun until first push |
 | T-27/28 | `tools/apps-script/Code.gs` — publish menu, debounced auto-publish, token prompt | Reviewed; unrun until installed |
 | T-25 | `CONTRIBUTING-FOR-CLIENT.md` | Written; screenshots pending T-26 |
+| **UI pass** | **Phase 2–4 built from the mockups** — tokens, layout, homepage, grid, category, product detail, static pages, 404 | `astro check` 0 errors, 17 pages, screenshots on desktop and mobile |
+| T-07 | `products.ts` — `listed()` excludes archived, and every grid, filter, related strip and count goes through it | Detail route deliberately bypasses it, so S-6 holds |
+| T-08 | Product page's three states: in stock, sold out, archived — CTA suppressed, JSON-LD `availability` switched | Rendered and verified |
+| T-30 | `tokens.css` from `brand-kit/brand.css`, three woff2 faces self-hosted | No literal hex outside tokens.css |
+| T-31 | `deploy.yml` replaces `preview.yml` — builds, runs `astro check`, deploys to Pages | Reviewed; unrun until first push |
 
 ---
 
@@ -80,4 +84,5 @@ this file says *where it actually is right now*.
 | 2026-08-13 | **T-05 spike passed with no credentials.** `files.list` 403s unauthenticated, but `embeddedfolderview` lists a link-shared folder and `drive.usercontent.google.com` downloads from it. No checksum in that path, so `drive.mjs` carries two providers. The service-account fallback in `TASKS.md` is dead. |
 | 2026-08-13 | Auto-publish designed: Apps Script menu item + debounced `onEdit` → `repository_dispatch`, so the client never opens GitHub. Added as T-27…T-29. |
 | 2026-08-13 | **Sync epic code-complete.** Ran end to end against the live sheet and folder: 2 products written, 3 photos downloaded and processed, second run wrote nothing. 44 tests pass. What is left is account work, listed under *Ready* — no code blocks it. |
+| 2026-08-13 | **UI pass built from `doc/mockups`.** Six categories (maang-tikka and payal were in the mockup but not on disk), zero-JS header menu and product gallery, full JSON-LD, generated `robots.txt`, and the terms/privacy/disclaimer pages the footer had been linking into nothing. `deploy.yml` replaces `preview.yml`, so jadauco.com will serve the real site rather than the mockups on the next push. |
 | 2026-08-13 | **Deviation from S-7, recorded deliberately.** "A Drive image that no row references" is a **warning**, not an error. The real folder has 11 such files against 4 in use — as an error it would block every publish over photos uploaded ahead of their rows. It is still reported every run. Say the word and it becomes fatal, or config-driven. |

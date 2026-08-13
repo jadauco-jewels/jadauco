@@ -1,0 +1,248 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import EnquiryButton from '../components/EnquiryButton.astro';
+import { getSettings } from '../lib/settings';
+import { categories, categoryCounts, featured, catalogueFacts } from '../lib/products';
+import { price as formatPrice } from '../lib/format';
+import { telLink, displayPhone } from '../lib/whatsapp';
+
+const settings = await getSettings();
+const [cats, counts, tiles, facts] = await Promise.all([
+  categories(),
+  categoryCounts(),
+  featured(6),
+  catalogueFacts(),
+]);
+
+// The hero piece is whatever is featured and photographed — no separate switch
+// to forget to flip. §5.9: derived, never hand-linked.
+const hero = tiles.find((p) => p.data.images.length > 0) ?? tiles[0];
+const heroImage = hero?.data.images[0];
+const heroUrl = hero ? `/products/${hero.id.replace(/\/index$/, '')}/` : '/products/';
+---
+
+<BaseLayout>
+  <!-- ===== hero ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="jd-label">Imitation jewellery · {settings.contact.city}</p>
+        <h1>Jewellery you can actually wear out.</h1>
+        <p class="lead">
+          Brass, finished in gold or oxidised silver. Nickel-free posts, sealed against tarnish,
+          and the price printed under every piece. Find one you like and send us its code.
+        </p>
+        <div class="cta">
+          <a class="jd-btn" href="/products/">
+            See all {facts.designs} {facts.designs === 1 ? 'design' : 'designs'}
+          </a>
+          <EnquiryButton outline />
+        </div>
+
+        <div class="facts">
+          <div><b>{facts.designs}</b><span>{facts.designs === 1 ? 'design' : 'designs'}</span></div>
+          <div><b>{facts.categories}</b><span>categories</span></div>
+          {
+            facts.from !== null && (
+              <div>
+                <b>{formatPrice(facts.from, settings)}</b>
+                <span>starting at</span>
+              </div>
+            )
+          }
+          <div><b>2–5</b><span>day dispatch</span></div>
+        </div>
+      </div>
+
+      {
+        hero && heroImage && (
+          <figure class="vitrine">
+            {/* The mark's own geometry, enlarged: a ring with the stone at twelve
+                o'clock, and a real piece standing inside it. */}
+            <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="var(--jd-line)" stroke-width="9" />
+              <rect x="86" y="6" width="28" height="28" rx="1" fill="var(--jd-notch)" transform="rotate(45 100 20)" />
+              <rect x="89.5" y="9.5" width="21" height="21" rx="1" fill="var(--jd-gold)" transform="rotate(45 100 20)" />
+            </svg>
+            <a class="disc" href={heroUrl} aria-label={hero.data.title}>
+              <Image
+                src={heroImage.src}
+                alt={heroImage.alt}
+                widths={[420, 640, 900]}
+                sizes="(max-width: 900px) 80vw, 460px"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </a>
+            <figcaption class="jd-label jd-label--quiet">
+              Piece of the week · {hero.data.sku}
+            </figcaption>
+          </figure>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- ===== categories ===== -->
+  <section class="band band--tight band--flush">
+    <div class="wrap">
+      <div class="band-head">
+        <div>
+          <p class="jd-label">Browse</p>
+          <h2>{cats.length === 1 ? 'What we make' : `${cats.length} things we make`}</h2>
+        </div>
+        <a class="more" href="/products/">{settings.labels.allJewellery} →</a>
+      </div>
+
+      <div class="cats">
+        {
+          cats.map((cat) => {
+            const count = counts.get(cat.id) ?? 0;
+            return (
+              <a class="cat" href={`/collections/${cat.id}/`}>
+                <svg viewBox="0 0 240 200" aria-hidden="true"><use href={`#a-${cat.data.art}`} /></svg>
+                <h3>{cat.data.title}</h3>
+                <p>{cat.data.blurb}</p>
+                <span class="count">
+                  {count === 0 ? 'Coming soon' : `${count} ${count === 1 ? 'design' : 'designs'}`}
+                </span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== featured ===== -->
+  {
+    tiles.length > 0 && (
+      <section class="band band--sand">
+        <div class="wrap">
+          <div class="band-head">
+            <div>
+              <p class="jd-label">{settings.labels.featured}</p>
+              <h2>On the tray this week</h2>
+            </div>
+            <a class="more" href="/products/">See all {facts.designs} →</a>
+          </div>
+          <div class="grid">
+            {tiles.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ===== what you're buying — the trust content the SEO plan asks for ===== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="band-head">
+        <div>
+          <p class="jd-label">Plainly</p>
+          <h2>What you're actually buying</h2>
+        </div>
+      </div>
+      <div class="cols3">
+        <div class="col">
+          <h3>The metal</h3>
+          <p>
+            A brass base, plated in a gold or oxidised silver finish. No solid gold, no precious
+            stones — that is the point. It looks like the set you'd be nervous to travel with,
+            and costs what it costs.
+          </p>
+        </div>
+        <div class="col">
+          <h3>The fit</h3>
+          <p>
+            Nickel-free posts and hooks throughout. Chokers on adjustable dori, kadas in 2.4 and
+            2.6 inch, haars with a three-inch extender. Every measurement is on the product page.
+          </p>
+        </div>
+        <div class="col">
+          <h3>The upkeep</h3>
+          <p>
+            Keep it dry, keep it in its pouch, put it on after the perfume. Plating is a coating,
+            so regular wear shows in time — cared for, it takes a good deal longer.
+          </p>
+          <a class="after" href="/care-guide/">Read the care guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ordering ===== -->
+  <section class="band band--tight band--flush">
+    <div class="wrap">
+      <div class="band-head">
+        <div>
+          <p class="jd-label">How ordering works</p>
+          <h2>There is no cart. You send a code.</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="n">01</span>
+          <h3>Find the code</h3>
+          <p>
+            Every piece carries a code beside its price, like JD-NK-014. That code is how we know
+            exactly which one you mean.
+          </p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <h3>Send it to us</h3>
+          <p>
+            Tap enquire. WhatsApp opens with the code, the name and the link to the piece already
+            written out.
+          </p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <h3>We confirm and ship</h3>
+          <p>
+            Availability, the final price and delivery, all settled in the chat. Pay online or on
+            delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== enquiry band ===== -->
+  <section class="band band--ink enquiry">
+    <div class="wrap">
+      <div>
+        <p class="jd-label">Not sure what suits the outfit?</p>
+        <h2>Send us a photo of the saree.</h2>
+        <p>
+          Tell us the occasion and roughly what you want to spend. We'll shortlist four pieces and
+          send them back the same day.
+        </p>
+      </div>
+      <div class="cta">
+        <EnquiryButton label="Message us" />
+        <a class="jd-btn-outline jd-btn-outline--light" href={telLink(settings)}>
+          {settings.labels.call} {displayPhone(settings)}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {
+    settings.trust.length > 0 && (
+      <div class="trust">
+        <div class="wrap">
+          {settings.trust.map((item) => (
+            <div>
+              <b>{item.title}</b>
+              <small>{item.detail}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</BaseLayout>

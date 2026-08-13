@@ -1,0 +1,60 @@
+---
+import { getSettings } from '../../lib/settings';
+import type { Product } from '../../lib/products';
+
+/**
+ * PLAN.md §10.3 — the markup that wins rich results.
+ *
+ * Every field here comes from the same frontmatter the page renders, so the
+ * structured data and the visible content cannot drift apart. Drift is a common
+ * cause of a manual action, and it is entirely self-inflicted.
+ */
+interface Props {
+  product: Product;
+  url: string;
+  images: string[];
+}
+
+const { product, url, images } = Astro.props;
+const data = product.data;
+const settings = await getSettings();
+
+const availability = data.archived
+  ? 'https://schema.org/Discontinued'
+  : data.inStock
+    ? 'https://schema.org/InStock'
+    : 'https://schema.org/OutOfStock';
+
+const material = [data.specs.baseMetal, ...data.specs.stones].filter(Boolean).join(', ');
+
+const weightValue = data.specs.weight?.match(/^([\d.]+)\s*g/i)?.[1];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: data.title,
+  sku: data.sku,
+  description: data.seo?.description ?? `${data.title} — ${settings.brand.name}`,
+  image: images,
+  brand: { '@type': 'Brand', name: settings.brand.name },
+  ...(material ? { material } : {}),
+  ...(data.specs.finish ? { color: data.specs.finish } : {}),
+  ...(weightValue
+    ? { weight: { '@type': 'QuantitativeValue', value: Number(weightValue), unitCode: 'GRM' } }
+    : {}),
+  offers: {
+    '@type': 'Offer',
+    url,
+    // §10.3 — when the price is not published, the offer ships without one
+    // rather than inventing a number Google would later find contradicted.
+    ...(data.price
+      ? { price: String(data.price), priceCurrency: settings.currency.code }
+      : {}),
+    availability,
+    itemCondition: 'https://schema.org/NewCondition',
+    seller: { '@type': 'Organization', name: settings.brand.name },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

@@ -394,7 +394,7 @@ brand:
 contact:
   whatsapp: "+919XXXXXXXXX"
   phone: "+919XXXXXXXXX"
-  email: hello@jadauco.com
+  email: jadauco.jewels@gmail.com
   city: <city>
   state: <state>
   country: IN
@@ -730,7 +730,9 @@ festival price revision across 40 rows (S-2) would queue 40 builds. Instead `onE
 one dispatch, and clears it. Forty edits become one build.
 
 **The token.** `repository_dispatch` needs a fine-grained PAT scoped to this repository alone,
-with a single permission — `actions: write` — stored in the Apps Script's Script Properties.
+with a single permission — **Contents: read and write** (this endpoint is filed under Contents,
+not Actions, which is a reliable way to waste an afternoon) — stored in the Apps Script's
+Script Properties.
 Script Properties are not visible to someone holding the sheet's view-only link; only editors
 can open the bound script. The token is still the one genuine secret in this design, so it gets
 an expiry and a documented rotation, exactly as `GOOGLE_API_KEY` does in §12.4.
