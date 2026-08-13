@@ -1,20 +1,21 @@
-# suchimukhi.com — Build Plan
+# jadauco.com — Build Plan
 
 Static imitation-jewellery catalogue website.
-Markdown is the only database. Nothing hardcoded. Built for search visibility.
+Product data lives in a Google Sheet, product photos in a Google Drive folder, everything
+else in markdown. Nothing hardcoded. Built for search visibility.
 
 - **Status:** Plan agreed, implementation not started
-- **Last updated:** 2026-08-12
+- **Last updated:** 2026-08-13
 
 ---
 
 ## 1. Goals
 
 1. A fast, beautiful online catalogue of imitation jewellery.
-2. The client (non-technical) adds products by dropping photos and editing a small markdown file — nothing else.
+2. The client (non-technical) adds products by dropping photos into a **Google Drive folder** and filling a row in a **Google Sheet**, then pressing one button — nothing else.
 3. Buyers enquire via **WhatsApp / phone**. No cart, no payments, no backend.
 4. The site **ranks on Google** for imitation jewellery searches and shows rich product results.
-5. Hosted free on **GitHub Pages** at the custom domain `suchimukhi.com`.
+5. Hosted free on **GitHub Pages** at the custom domain `jadauco.com`.
 
 ### Non-goals (explicitly out of scope for v1)
 - Online payments / checkout
@@ -29,14 +30,17 @@ Markdown is the only database. Nothing hardcoded. Built for search visibility.
 | Decision | Choice | Rationale |
 |---|---|---|
 | Framework | **Astro** (static output) | Zero JS by default, markdown-native content collections, built-in image optimisation, fully customisable |
-| Content store | **Markdown files only** | No DB, no CMS, no JSON. Git is the audit log and undo button |
+| Product data | **Public Google Sheet** | The client already lives in spreadsheets. Bulk edits, sorting and price changes are trivial there and painful in markdown |
+| Product photos | **Public Google Drive folder** | Drag-and-drop from a phone, no git, no GitHub UI |
+| Site copy | **Markdown files in git** | Category copy, About, Care Guide, settings and labels are written once and version-controlled |
+| Sync | **GitHub Action** — manual "Run workflow" button + daily schedule | Client presses one button; no webhooks, no server, no polling infrastructure |
+| Generated files | **Committed to git** | Sheet and Drive are the input; git stays the audit log, the undo button, and the thing that builds |
 | Hardcoding | **None** | Every visitor-facing string, number, colour and link is data |
 | Buyer action | **Enquiry only** — WhatsApp deep link + click-to-call | Standard for imitation jewellery resellers |
-| SKU | In frontmatter, shown on page, injected into WhatsApp message | Client takes orders over chat by code |
+| SKU | Sheet column, shown on page, injected into WhatsApp message | Client takes orders over chat by code |
 | Price | **Optional** per product; falls back to "Price on enquiry" label | Client decides per item, no code change |
 | Hosting | GitHub Pages + GitHub Actions | Free, zero ops, custom domain, auto HTTPS |
 | Brand assets | Placeholder tokens until logo/hex codes are supplied | Swappable in one file |
-| Photo → markdown automation | **Deferred**, contract designed now (§12) | Discussed later, drop-in when ready |
 
 ### Frameworks considered and rejected
 
@@ -47,6 +51,15 @@ Markdown is the only database. Nothing hardcoded. Built for search visibility.
 | **Next.js** (static export) | Ships a React runtime to every visitor for a site with almost no interactivity. Wrong tool, worse Core Web Vitals. |
 | **Jekyll** | GitHub-native but Ruby toolchain, no image optimisation, dated DX. |
 | **Plain HTML** | No markdown database, no image pipeline, every new product is manual HTML editing. Fails goal 2. |
+
+### Content sources considered and rejected
+
+| Source | Why not |
+|---|---|
+| **Markdown only** (the original plan) | Editing YAML frontmatter in the GitHub web UI is genuinely hard for a non-technical person — indentation errors, no undo, no bulk price change. Kept for site copy, dropped for product rows. |
+| **Decap / Tina / Sveltia CMS** | A real admin UI, but needs OAuth, a backend proxy or a paid tier, and is one more thing to maintain and explain. Overkill for one editor. |
+| **Airtable / Notion** | Better data model than Sheets, but the free tiers throttle API access and the client would have to learn a new tool. |
+| **Hotlinking Drive images at runtime** | Drive is slow, uncacheable, rate-limited and can break links without warning. It also bypasses `astro:assets`, so no AVIF/WebP, no `srcset` — a direct hit to Core Web Vitals and goal 4. Images are downloaded and committed instead. |
 
 ---
 
@@ -70,18 +83,27 @@ Markdown is the only database. Nothing hardcoded. Built for search visibility.
 ## 4. Repository structure
 
 ```
-suchimukhi.com/
+jadauco.com/
 ├─ doc/
-│  └─ PLAN.md                        # this file
-├─ photos/                           # raw client uploads (staging area for the future Action)
-│  └─ README.md                      # naming rules for the client
+│  ├─ PLAN.md                        # this file
+│  ├─ STORIES.md                     # catalogue sync — user stories
+│  └─ TASKS.md                       # catalogue sync — implementation tasks
+├─ catalogue.config.json             # sheet ID, Drive folder ID, sync rules — NOT secret
+├─ catalogue.lock.json               # generated: Drive fileId + checksum per synced image
 ├─ public/
-│  ├─ CNAME                          # suchimukhi.com
+│  ├─ CNAME                          # jadauco.com
 │  ├─ robots.txt                     # generated at build, see §10
 │  ├─ favicon.svg
 │  └─ brand/                         # logo files, once supplied
 ├─ scripts/
-│  └─ new-product.mjs                # local CLI: scaffold a product .md from photos
+│  └─ sync/
+│     ├─ index.mjs                   # entry point: fetch → validate → write → report
+│     ├─ sheet.mjs                   # CSV fetch + parse for both tabs
+│     ├─ drive.mjs                   # folder listing, download, checksum cache
+│     ├─ schema.mjs                  # Zod schema for the SHEET rows (distinct from content schema)
+│     ├─ images.mjs                  # downscale, re-encode, strip EXIF
+│     ├─ write.mjs                   # emit index.md, honour copy.md overrides
+│     └─ report.mjs                  # human-readable summary → GITHUB_STEP_SUMMARY
 ├─ src/
 │  ├─ content.config.ts              # collections + Zod schemas — the "database schema"
 │  ├─ content/
@@ -91,11 +113,12 @@ suchimukhi.com/
 │  │  │  ├─ necklaces.md
 │  │  │  ├─ earrings.md
 │  │  │  └─ ...
-│  │  ├─ products/
-│  │  │  ├─ SM-NK-014-kundan-bridal-choker/
-│  │  │  │  ├─ index.md
-│  │  │  │  ├─ SM-NK-014-1.jpg
-│  │  │  │  └─ SM-NK-014-2.jpg
+│  │  ├─ products/                   # ENTIRELY GENERATED by the sync — do not hand-edit
+│  │  │  ├─ kundan-bridal-choker-set/
+│  │  │  │  ├─ index.md              # generated from the sheet row
+│  │  │  │  ├─ copy.md               # OPTIONAL, hand-written, git-owned: overrides the body
+│  │  │  │  ├─ JD-NK-014-1.jpg       # downloaded from Drive, downscaled, committed
+│  │  │  │  └─ JD-NK-014-2.jpg
 │  │  │  └─ ...
 │  │  └─ pages/
 │  │     ├─ about.md
@@ -131,52 +154,147 @@ suchimukhi.com/
 │     └─ global.css
 ├─ .github/workflows/
 │  ├─ deploy.yml                     # build + deploy to Pages
-│  └─ photos-to-markdown.yml         # deferred, see §12
+│  └─ sync-catalogue.yml             # the button the client presses, see §12
 ├─ astro.config.mjs
 └─ package.json
 ```
 
-**Decision — product folders, not flat files.** Each product is a folder containing `index.md` plus its own photos. This keeps a product and its images together (delete the folder = product fully gone), lets image paths stay relative (`./SM-NK-014-1.jpg`), and makes the future upload automation trivial.
+**Decision — product folders, not flat files.** Each product is a folder containing `index.md` plus its own photos. This keeps a product and its images together (delete the folder = product fully gone), lets image paths stay relative (`./JD-NK-014-1.jpg`), and gives the sync a single unit to create, update or leave alone.
+
+**Decision — `photos/` is gone.** Drive replaces it. There is no staging directory in the repo any more.
 
 ---
 
-## 5. Markdown as the database
+## 5. The data model
 
-### 5.1 Product record — `src/content/products/<slug>/index.md`
+### 5.0 Who owns what
+
+The single most important rule in this build. Every field has exactly one owner, and the
+other side never writes to it.
+
+| Data | Owner | Edited in | Notes |
+|---|---|---|---|
+| Product rows (SKU, title, price, stock, tags…) | **Google Sheet**, tab `products` | Sheets | One row per product |
+| Image filenames and alt text | **Google Sheet**, tab `images` | Sheets | One row per image |
+| Product photos | **Google Drive folder** | Drive | Flat folder, unique filenames |
+| Product long description | **Sheet** `description` column | Sheets | Overridden by `copy.md` when that file exists |
+| Hand-written product copy (optional) | **git** — `products/<slug>/copy.md` | Editor / GitHub | Escape hatch for hero products that deserve real SEO copy |
+| Category names, order and copy | **git** — `categories/*.md` | Editor / GitHub | Written once, rarely changes |
+| About / Care Guide / Shipping | **git** — `pages/*.md` | Editor / GitHub | |
+| Brand, contact, labels, nav, SEO defaults | **git** — `site/settings.md` | Editor / GitHub | |
+| Sheet ID, Drive folder ID, sync rules | **git** — `catalogue.config.json` | Editor | Not secret; the sheet is public anyway |
+
+> **Rule: `src/content/products/` is generated output.** Anything hand-typed into an
+> `index.md` there is destroyed on the next sync. The one exception is `copy.md`, which the
+> sync reads and never writes. Every generated file carries a header comment saying so.
+
+### 5.1 The `products` sheet tab
+
+| Column | Required | Example | Rule |
+|---|---|---|---|
+| `sku` | yes | `JD-NK-014` | Primary key. Matches `^JD-[A-Z]{2}-\d{3,}$`. Must be unique |
+| `slug` | yes | `kundan-bridal-choker-set` | Becomes the URL. Lowercase, hyphenated. **Never change once live** |
+| `title` | yes | `Kundan Bridal Choker Set` | 3–70 characters |
+| `category` | yes | `necklaces` | Must match a file in `src/content/categories/` |
+| `status` | yes | `live` | `live` \| `draft` \| `archived` — see §5.5 |
+| `price` | no | `2499` | Blank → "Price on enquiry" |
+| `mrp` | no | `3999` | Blank → no strike-through. Must exceed `price` when both are set |
+| `weight` | no | `120g` | Free text |
+| `material` | no | `kundan, pearl` | Comma separated |
+| `colour` | no | `gold` | |
+| `tags` | no | `bridal, choker` | Comma separated |
+| `inStock` | yes | `TRUE` | Sheets checkbox |
+| `featured` | no | `FALSE` | Sheets checkbox |
+| `publishDate` | yes | `2026-08-12` | `YYYY-MM-DD` |
+| `description` | yes | free text | Becomes the markdown body. Minimum 40 words — see §10.4 |
+| `seoTitle` | no | | Overrides the generated `<title>` |
+| `seoDescription` | no | | ≤160 characters |
+
+Data validation is configured **in the sheet itself** (dropdowns for `category` and `status`,
+checkboxes for the booleans, a date picker for `publishDate`) so the client is steered away
+from typos before the sync ever runs.
+
+### 5.2 The `images` sheet tab
+
+| Column | Required | Example |
+|---|---|---|
+| `sku` | yes | `JD-NK-014` |
+| `filename` | yes | `JD-NK-014-1.jpg` |
+| `alt` | yes | `Gold kundan bridal choker with pearl drops on a maroon background` |
+| `order` | yes | `1` |
+
+`filename` must match a file in the Drive folder exactly, including extension and case.
+
+**Fallback for speed.** If a SKU has no rows on this tab, the sync matches Drive files by the
+`<SKU>-*` prefix, orders them by filename, and generates alt text from the title and category.
+Auto-generated alt text is weak for SEO, so every instance is listed in the sync report for the
+client to fix later. Set `requireAltText: true` in `catalogue.config.json` to turn the fallback
+into a hard error instead.
+
+### 5.3 The Drive folder
+
+A single flat folder, shared **Anyone with the link → Viewer**.
+
+- Filenames must be unique across the whole folder and stable — renaming a file in Drive
+  makes the sync see it as a deletion plus an addition.
+- Recommended upload: min 1200×1200px, square, plain background, JPG. The sync downscales
+  and re-encodes anyway, so oversized phone photos are fine.
+- Nothing private goes in this folder. It is world-readable by design.
+
+### 5.4 Generated product record — `src/content/products/<slug>/index.md`
 
 ```markdown
 ---
-sku: SM-NK-014
+# GENERATED FROM THE GOOGLE SHEET — DO NOT EDIT.
+# Any change here is overwritten by the next catalogue sync.
+# To change this product, edit its row in the sheet.
+sku: JD-NK-014
 title: Kundan Bridal Choker Set
 category: necklaces
-price: 2499                     # optional — omit for "Price on enquiry"
-mrp: 3999                       # optional — enables strike-through + discount badge
+price: 2499
+mrp: 3999
 material: [kundan, pearl]
 colour: gold
-weight: 120g                    # optional
+weight: 120g
 images:
-  - src: ./SM-NK-014-1.jpg
+  - src: ./JD-NK-014-1.jpg
     alt: Gold kundan bridal choker with pearl drops on a maroon background
-  - src: ./SM-NK-014-2.jpg
+  - src: ./JD-NK-014-2.jpg
     alt: Close-up of the kundan stone work on the choker centrepiece
 inStock: true
 featured: true
+archived: false
 tags: [bridal, party-wear, choker]
 publishDate: 2026-08-12
-seo:                            # optional per-product overrides
-  title: Kundan Bridal Choker Set — Suchi Mukhi
+seo:
+  title: Kundan Bridal Choker Set — Jadauco
   description: Handcrafted kundan bridal choker with matching jhumkas...
+syncedAt: 2026-08-13T09:14:22Z
 ---
 
 Handcrafted kundan choker with matching jhumkas. Anti-tarnish gold polish,
 adjustable dori, free size. Perfect for weddings and receptions.
-
-Comes in a protective pouch.
 ```
 
-The markdown **body** is the long description — rendered as rich HTML, and the single most important SEO asset per product (see §10.4).
+The markdown **body** is the long description — rendered as rich HTML, and the single most
+important SEO asset per product (see §10.4). It comes from the sheet's `description` column,
+unless `copy.md` sits beside `index.md`, in which case that file wins and the sheet column is
+ignored for this product.
 
-### 5.2 Category record — `src/content/categories/necklaces.md`
+### 5.5 Status, and why nothing is ever deleted
+
+| `status` | Page generated? | In grids / sitemap? | Use |
+|---|---|---|---|
+| `live` | yes | yes | Normal |
+| `draft` | **no** | no | Being photographed, priced, or written |
+| `archived` | yes, at its original URL | no grids, stays in sitemap | Discontinued but the URL has SEO value |
+
+A SKU that simply **disappears** from the sheet is treated as an accident: the sync fails with
+`JD-NK-014 exists in the repo but not in the sheet`. Delisting is a deliberate act — set
+`status` to `archived`. This prevents one mis-sorted or accidentally deleted spreadsheet row
+from silently 404-ing a page that Google has already indexed.
+
+### 5.6 Category record — `src/content/categories/necklaces.md` (git-owned)
 
 ```markdown
 ---
@@ -195,21 +313,21 @@ haars and everyday party-wear chains.
 
 This body copy renders above/below the product grid — it is what makes a category page rank rather than being a thin, content-less grid.
 
-### 5.3 Global settings — `src/content/site/settings.md`
+### 5.7 Global settings — `src/content/site/settings.md` (git-owned)
 
 The single source of truth for everything that would otherwise be hardcoded.
 
 ```markdown
 ---
 brand:
-  name: Suchi Mukhi
+  name: Jadauco
   tagline: Imitation jewellery for every occasion
   logo: ./logo.svg
-  logoAlt: Suchi Mukhi
+  logoAlt: Jadauco
 contact:
   whatsapp: "+919XXXXXXXXX"
   phone: "+919XXXXXXXXX"
-  email: hello@suchimukhi.com
+  email: hello@jadauco.com
   city: <city>
   state: <state>
   country: IN
@@ -218,7 +336,7 @@ currency:
   symbol: "₹"
   locale: en-IN
 enquiry:
-  template: "Hi Suchi Mukhi, I'm interested in {title} ({sku}) — {url}"
+  template: "Hi Jadauco, I'm interested in {title} ({sku}) — {url}"
 labels:
   enquire: Enquire on WhatsApp
   call: Call us
@@ -235,9 +353,9 @@ social:
   instagram: https://instagram.com/...
   facebook: https://facebook.com/...
 seo:
-  siteName: Suchi Mukhi
-  defaultTitle: Suchi Mukhi — Imitation Jewellery Online
-  titleTemplate: "%s | Suchi Mukhi"
+  siteName: Jadauco
+  defaultTitle: Jadauco — Imitation Jewellery Online
+  titleTemplate: "%s | Jadauco"
   defaultDescription: Handpicked imitation jewellery...
   defaultOgImage: ./og-default.jpg
   twitterHandle: "@..."
@@ -248,9 +366,20 @@ seo:
 
 > **Rule: no `.astro` file may contain the brand name, a phone number, `₹`, a hex colour, or a menu label.** If a value could ever change, it is data.
 
-### 5.4 Schema definition — `src/content.config.ts`
+### 5.8 Schema definition — `src/content.config.ts`
 
-Sketch of the contract that makes markdown safe as a database:
+There are now **two** schemas, and they do different jobs:
+
+1. **`scripts/sync/schema.mjs`** validates the *sheet rows* — before anything is written.
+   Its errors are aimed at the client: `Row 14: category "neclaces" is not one of
+   necklaces, earrings, bangles`.
+2. **`src/content.config.ts`** validates the *generated markdown* — at build time. Its errors
+   are aimed at us, and catch bugs in the sync itself.
+
+Both must pass. The sheet schema is the gate that keeps a bad spreadsheet edit from ever
+reaching git; the content schema is the backstop that keeps a broken sync from reaching the web.
+
+Sketch of the content-collection contract:
 
 ```ts
 import { defineCollection, reference } from 'astro:content';
@@ -260,7 +389,7 @@ import { z } from 'astro/zod';
 const products = defineCollection({
   loader: glob({ pattern: '**/index.md', base: './src/content/products' }),
   schema: ({ image }) => z.object({
-    sku: z.string().regex(/^SM-[A-Z]{2}-\d{3,}$/),
+    sku: z.string().regex(/^JD-[A-Z]{2}-\d{3,}$/),
     title: z.string().min(3).max(70),
     category: reference('categories'),          // must exist, else build fails
     price: z.number().positive().optional(),
@@ -286,9 +415,9 @@ const products = defineCollection({
 
 Similar schemas for `categories`, `pages`, `site`.
 
-**What this buys us:** a missing SKU, a category that doesn't exist, a price typed as text, a broken image path, or a missing alt text **fails the build with a clear error**. The live site is never updated with broken data. This is the safety net that makes markdown-as-database safe for a non-technical client.
+**What this buys us:** a missing SKU, a category that doesn't exist, a price typed as text, a broken image path, or a missing alt text **fails the build with a clear error**. The live site is never updated with broken data. This is the safety net that makes a client-editable spreadsheet safe as a database.
 
-### 5.5 Derived, never hand-written
+### 5.9 Derived, never hand-written
 
 Everything below is a query over the collections — no manual linking, ever:
 
@@ -357,8 +486,19 @@ Clean, keyword-bearing, permanent URLs. Slugs are derived from the folder name, 
 
 ## 9. Image pipeline
 
-The single biggest performance factor for a jewellery catalogue.
+The single biggest performance factor for a jewellery catalogue. It now has two stages:
+**sync-time** (Drive → repo, once per image) and **build-time** (repo → browser, every build).
 
+**Sync-time, in `scripts/sync/images.mjs`:**
+- Downscale to max 1600px on the long edge, re-encode JPEG at quality 82, strip EXIF.
+  A 4 MB phone photo becomes roughly 150–250 KB before it is ever committed.
+- This matters for repo size: 200 products × 3 photos at 4 MB each would be ~2.4 GB of git
+  history. At 200 KB it is ~120 MB, which GitHub handles comfortably. If the catalogue ever
+  grows past ~1000 products, revisit with Git LFS.
+- Skip anything whose Drive `md5Checksum` matches `catalogue.lock.json` — unchanged photos
+  are never re-downloaded or re-committed.
+
+**Build-time, unchanged:**
 - Client uploads a 4 MB phone photo → build ships a ~40 KB AVIF/WebP.
 - `astro:assets` generates AVIF + WebP + fallback, with a full `srcset` for mobile/tablet/desktop.
 - Explicit `width`/`height` on every image → **zero layout shift (CLS 0)**.
@@ -366,7 +506,7 @@ The single biggest performance factor for a jewellery catalogue.
 - Grid thumbnails are square-cropped to a fixed aspect ratio for a tidy catalogue look.
 - Alt text is **required by the schema** — no product can ship without it. Feeds Google Images, which is a major traffic source for jewellery.
 - Product gallery: lightbox is a tiny vanilla-JS island, loaded only on product pages.
-- Recommended client upload guidance (documented in `photos/README.md`): min 1200×1200px, square, plain/neutral background, good light, JPG.
+- Recommended client upload guidance (documented in `CONTRIBUTING-FOR-CLIENT.md`): min 1200×1200px, square, plain/neutral background, good light, JPG.
 
 ---
 
@@ -376,7 +516,7 @@ This site should be **findable**. SEO is not a bolt-on; it is designed into the 
 
 ### 10.1 Technical foundation
 - **Static HTML, server-rendered at build.** Every word is in the HTML source — no JS required to see content. This is the strongest possible technical SEO position.
-- **`site: 'https://suchimukhi.com'`** in `astro.config.mjs` so every generated URL is absolute and canonical.
+- **`site: 'https://jadauco.com'`** in `astro.config.mjs` so every generated URL is absolute and canonical.
 - **`@astrojs/sitemap`** → `/sitemap-index.xml`, auto-updated on every build, includes every product, category and page.
 - **`robots.txt`** allowing all crawlers, referencing the sitemap.
 - **Canonical tag** on every page, self-referencing; paginated pages canonical to themselves (not to page 1).
@@ -450,7 +590,7 @@ Achieved by: zero-JS-by-default, self-hosted fonts, AVIF/WebP with explicit dime
 - Every push to `main` = build + deploy, typically under 2 minutes.
 
 ### 11.2 Custom domain
-- `public/CNAME` containing `suchimukhi.com`.
+- `public/CNAME` containing `jadauco.com`.
 - DNS at the registrar: four `A` records to GitHub Pages IPs for the apex, plus a `CNAME` for `www` → `<user>.github.io`.
 - Enable **Enforce HTTPS** in repo settings once the certificate provisions.
 
@@ -463,46 +603,138 @@ GitHub Pages has no server-side redirects. If a product slug must ever change, u
 
 ---
 
-## 12. Photo → markdown automation (deferred, contract defined now)
+## 12. Catalogue sync — Sheet + Drive → git
 
-To be discussed and built later; the folder contract below is designed now so it drops in without rework.
+### 12.1 The pipeline
 
-**Intended flow:**
-1. Client uploads photos to `photos/` via the GitHub web UI (drag and drop, works from a phone browser).
-2. Filename convention carries the minimum data, e.g. `NK-kundan-bridal-choker-1.jpg` (`NK` = category code, trailing `-1`/`-2` = image order).
-3. A GitHub Action on push to `photos/`:
-   - groups files by product,
-   - allocates the next SKU for that category code,
-   - creates `src/content/products/<slug>/`, moves the images in,
-   - writes an `index.md` stub with `sku`, `title` (title-cased from filename), `category`, `images[]` and placeholder alt text,
-   - opens a **pull request** rather than committing to `main`.
-4. Client (or you) fills in price and description by editing the markdown in the PR, then merges. Site is live minutes later.
+`.github/workflows/sync-catalogue.yml` runs `node scripts/sync` in seven stages. Any stage
+failing aborts the whole run **before a single file is written** — the repo is never left
+half-synced.
 
-**Why a PR, not a direct commit:** the stub has placeholder alt text and no description; merging it straight to `main` would publish weak-SEO pages. The PR is the review gate.
+| # | Stage | What it does | Fails when |
+|---|---|---|---|
+| 1 | **Fetch** | Pull both sheet tabs as CSV; list the Drive folder via the Drive API | Sheet or folder is not publicly shared; API key invalid |
+| 2 | **Validate** | Zod-check every row; check SKU uniqueness, slug uniqueness, category existence, `mrp > price`, image references resolving to real Drive files | Any row is invalid — reported by row number |
+| 3 | **Reconcile** | Diff the sheet against the repo and `catalogue.lock.json`: new / changed / unchanged / missing-from-sheet | A repo product has no sheet row (see §5.5) |
+| 4 | **Download** | Fetch only images whose Drive `md5Checksum` differs from the lock file | Download fails after 3 retries |
+| 5 | **Process** | Downscale, re-encode, strip EXIF (§9) | Source file is not a decodable image |
+| 6 | **Write** | Emit `index.md` per product; honour `copy.md`; prune images no longer referenced; update `catalogue.lock.json` | — |
+| 7 | **Report** | Write a readable summary to the Actions job summary | — |
 
-**Interim (before the Action exists):** `scripts/new-product.mjs` does the same job locally via `npm run new-product`.
+Then: `git commit` + `push` to `main` → the existing `deploy.yml` picks it up → live in ~2 min.
+
+### 12.2 Triggers
+
+```yaml
+on:
+  workflow_dispatch:          # the button the client presses
+    inputs:
+      dry_run:                # validate and report, write nothing
+        type: boolean
+        default: false
+  schedule:
+    - cron: '30 2 * * *'      # 08:00 IST daily, catches edits made without pressing the button
+```
+
+`workflow_dispatch` is the primary path — the client edits the sheet, presses **Run workflow**,
+and watches it go green. The daily schedule is a safety net, not the main mechanism.
+
+### 12.3 Why commit straight to `main`, not a PR
+
+The original plan opened a PR because the generated stub had placeholder alt text and no
+description — it needed a human to finish it. That is no longer true: the sheet carries real
+prices, real descriptions and real alt text, and stage 2 rejects the row if it does not. The
+review gate moved from "a human reads the diff" to "the validator proves the data is complete",
+which is faster and more reliable for the failure modes that actually occur.
+
+Set `"pullRequest": true` in `catalogue.config.json` to switch back to PR mode if the client
+ever wants a second pair of eyes.
+
+### 12.4 Access and secrets
+
+| Item | Where | Notes |
+|---|---|---|
+| `GOOGLE_API_KEY` | GitHub Actions secret | Restrict to the Drive API only, in the Google Cloud console |
+| Sheet ID, `gid`s, Drive folder ID | `catalogue.config.json`, in git | Not secret — both resources are public by design |
+
+Sheet CSV is read from the public export endpoint (no API key needed). Drive **listing**
+needs the API key, because there is no public way to enumerate a folder's contents.
+
+**The security trade-off, stated plainly:** the sheet and the Drive folder are readable by
+anyone who has or guesses the URL. For a product catalogue that is about to be published
+anyway, that is acceptable. It means: no cost prices, no supplier names, no customer data, no
+personal photos in either resource. Ever.
+
+### 12.5 `catalogue.config.json`
+
+```jsonc
+{
+  "sheetId": "1AbC...",
+  "tabs": { "products": "0", "images": "1587..." },   // gid per tab
+  "driveFolderId": "1XyZ...",
+  "image": { "maxEdge": 1600, "quality": 82, "format": "jpeg" },
+  "requireAltText": false,     // true = missing alt is an error, not a fallback
+  "minDescriptionWords": 40,
+  "pullRequest": false,        // true = open a PR instead of pushing to main
+  "skuPattern": "^JD-[A-Z]{2}-\\d{3,}$"
+}
+```
+
+### 12.6 The sync report
+
+Written to `$GITHUB_STEP_SUMMARY`, so the client sees it in the Actions run without reading
+logs. GitHub emails them automatically when a run fails.
+
+```
+Catalogue sync — 13 Aug 2026, 08:00 IST
+
+  4 products added        JD-NK-021, JD-ER-009, JD-ER-010, JD-BG-004
+  2 products updated      JD-NK-014 (price 2499 → 2199), JD-RG-002 (sold out)
+  1 product archived      JD-NK-003
+ 11 images downloaded     3.1 MB after processing
+198 products unchanged
+
+Warnings
+  · JD-ER-009 — alt text auto-generated for 2 images. Add rows to the "images"
+    tab to write your own; auto text ranks worse in Google Images.
+  · JD-BG-004 — description is 22 words. Aim for 40+ so this page can rank.
+```
+
+### 12.7 Local development
+
+`npm run sync` runs the same script against the same sheet with `GOOGLE_API_KEY` from a local
+`.env`. `npm run sync -- --dry-run` validates and reports without writing. This is how the
+sync is developed and debugged; the Action is a thin wrapper around it.
 
 ---
 
 ## 13. Client workflow (the daily reality)
 
-**Adding a product** — 3 steps, no code:
-1. Create a folder under `src/content/products/` named as the desired URL slug.
-2. Upload the photos into it via the GitHub web UI.
-3. Create `index.md`, copy the template from an existing product, fill in the fields. Commit.
+**Adding a product** — 3 steps, no code, no git:
+1. Drag the photos into the Drive folder, named `<SKU>-1.jpg`, `<SKU>-2.jpg`.
+2. Add a row to the `products` tab of the sheet, and one row per photo on the `images` tab.
+3. Open the repo's **Actions → Sync catalogue → Run workflow**, and press the button.
 
-Site rebuilds and deploys automatically. If a required field is wrong, the Action fails and emails them — **the live site stays untouched**.
+Roughly four minutes later the product is live. If a field is wrong, the sync stops, nothing is
+written, GitHub emails them, and the run summary says which row and what to fix —
+**the live site stays untouched**.
 
-**Other everyday edits** (all single-line frontmatter changes): mark sold out, change price, feature on homepage, retag, reorder photos.
+**Other everyday edits** — change a price, mark sold out, feature on the homepage, retag,
+reorder photos, discontinue an item: edit the cell, press the button. Bulk price changes are
+now a spreadsheet fill-down instead of 40 file edits.
 
-A one-page `CONTRIBUTING-FOR-CLIENT.md` in plain language (with screenshots of the GitHub web UI) will be written alongside the build.
+**What still needs git** (rare, and usually us rather than the client): category copy, About /
+Care Guide / Shipping pages, brand settings, labels, nav.
+
+A one-page `CONTRIBUTING-FOR-CLIENT.md` in plain language — with screenshots of the sheet, the
+Drive folder and the Run workflow button — will be written alongside the build.
 
 ---
 
 ## 14. Implementation phases
 
 **Phase 1 — Foundation**
-Astro project init, `content.config.ts` with all four collections and full Zod schemas, `settings.md`, `tokens.css` with placeholder brand, BaseLayout, 3–5 sample products for development.
+Astro project init, `content.config.ts` with all four collections and full Zod schemas, `settings.md`, `tokens.css` with placeholder brand, BaseLayout, 3–5 hand-written sample products for development (later replaced by synced ones).
 
 **Phase 2 — Core pages**
 Homepage, all-products grid with pagination, category pages, product detail with gallery + enquiry, static pages, 404.
@@ -513,11 +745,16 @@ Homepage, all-products grid with pagination, category pages, product detail with
 **Phase 4 — Polish & performance**
 Lightbox, filters, mobile nav, self-hosted fonts, Lighthouse pass to 95+, accessibility audit.
 
-**Phase 5 — Go live**
-GitHub Pages + DNS for `suchimukhi.com`, HTTPS, real logo and brand colours swapped into `tokens.css`, real WhatsApp number, real product catalogue loaded.
+**Phase 4.5 — Catalogue sync** *(new; see `STORIES.md` and `TASKS.md`)*
+Sheet and Drive set up, `scripts/sync` built and tested locally, `sync-catalogue.yml` wired up,
+real catalogue loaded from the sheet. Runs in parallel with Phase 4 — it depends only on the
+Phase 1 schema, not on the finished UI.
 
-**Phase 6 — Automation & growth**
-Photo→markdown Action, client documentation, optional blog collection, RSS, analytics.
+**Phase 5 — Go live**
+GitHub Pages + DNS for `jadauco.com`, HTTPS, real logo and brand colours swapped into `tokens.css`, real WhatsApp number, catalogue synced from the sheet.
+
+**Phase 6 — Handover & growth**
+Client documentation and a live walkthrough, optional blog collection, RSS, analytics.
 
 ---
 
@@ -530,7 +767,10 @@ Photo→markdown Action, client documentation, optional blog collection, RSS, an
 | 3 | Final category list and their display order | Client | Phase 1 |
 | 4 | SKU category codes (NK, ER, BG, RG, …) | Client | Phase 1 |
 | 5 | `www` vs apex as the canonical domain | Vikash | Phase 5 |
-| 6 | Registrar / DNS access for `suchimukhi.com` | Vikash | Phase 5 |
-| 7 | Photo filename convention sign-off | Both | Phase 6 |
-| 8 | Analytics: none / Plausible / GA4 | Vikash | Phase 6 |
-| 9 | Dark mode: yes or no | Vikash | Phase 4 |
+| 6 | Registrar / DNS access for `jadauco.com` | Vikash | Phase 5 |
+| 7 | Analytics: none / Plausible / GA4 | Vikash | Phase 6 |
+| 8 | Dark mode: yes or no | Vikash | Phase 4 |
+| 9 | Google account that owns the sheet and Drive folder — must be one the client controls long-term, not a personal account that could be lost | Client | Phase 4.5 |
+| 10 | Google Cloud project + Drive API key | Vikash | Phase 4.5 |
+| 11 | Confirm the client is comfortable with the sheet and folder being publicly readable (§12.4) | Both | Phase 4.5 |
+| 12 | Who presses the sync button, and how often | Client | Phase 6 |
