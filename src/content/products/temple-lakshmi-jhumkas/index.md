@@ -5,8 +5,8 @@
 sku: JD-ER-001
 title: Temple Lakshmi Jhumkas
 category: earrings
-price: 899
-listPrice: 1299
+price: 4000
+listPrice: 6000
 specs:
   baseMetal: Brass
   finish: Antique gold with oxidised detail
@@ -22,7 +22,7 @@ featured: true
 archived: false
 tags: [temple, jhumka, festive]
 publishDate: 2026-08-13
-syncedAt: 2026-08-13T16:26:46Z
+syncedAt: 2026-08-13T18:20:44Z
 ---
 
 Temple style gold plated jhumkas with a Lakshmi motif and small pearl drops along the rim. Light enough to wear through a full day of festivities, with secure push-back fittings. The oxidised detailing sits beautifully against silk sarees and traditional cotton weaves alike, making these an easy everyday festival piece.
