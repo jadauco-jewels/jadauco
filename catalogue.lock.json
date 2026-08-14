@@ -1,6 +1,10 @@
 {
   "version": 1,
   "products": {
+    "JD-BG-001": {
+      "slug": "cz-stone-bangle-set-of-four",
+      "firstSyncedAt": "2026-08-14T12:32:28Z"
+    },
     "JD-ER-001": {
       "slug": "temple-lakshmi-jhumkas",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -11,6 +15,15 @@
     }
   },
   "images": {
+    "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
+      "driveId": "1Tjk4akYYrfDjm_JfXWfQ4mp9BXT_83D3",
+      "driveName": "5CEC5331-B97E-494C-87DF-5B5AEDC3AF6F Copy(2).JPG",
+      "driveMd5": null,
+      "outputSha": "ef2818ac9106ca5232cced7e3b81207c884912621cc44adf8248d7b9f50030f5",
+      "bytes": 25079,
+      "width": 543,
+      "height": 438
+    },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
       "driveId": "1sfW3cuD735Ve4vAM1TizThX7RnAwOOrv",
       "driveName": "DD5AE623-EDBC-4032-9B60-ED4E34799653.png",
