@@ -162,11 +162,18 @@ p { margin: 0 }
 .vitrine .ring { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none }
 .vitrine .disc {
   position: relative; z-index: 1; width: 75.5%; aspect-ratio: 1; border-radius: 50%;
-  overflow: hidden; display: grid; place-items: center; background: var(--jd-cream);
+  overflow: hidden; display: grid; place-items: center; background: var(--mat, var(--jd-cream));
   cursor: zoom-in; transition: background 0.4s ease;
 }
 .vitrine .disc img { width: 84%; height: auto; transition: scale 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) }
-.vitrine:hover .disc, .vitrine:focus-within .disc { background: var(--jd-ink) }
+/* The disc is round and the photo is not, so a mat that disagrees with the photo shows as
+   four bright corners inside the ring. Matching it is what keeps the mark legible. */
+.vitrine[data-mat='light']:hover .disc,
+.vitrine[data-mat='light']:focus-within .disc { background: var(--jd-ink) }
+.vitrine[data-mat='dark']:hover .disc,
+.vitrine[data-mat='dark']:focus-within .disc {
+  background: color-mix(in srgb, var(--mat) 88%, #fff);
+}
 .vitrine:hover .disc img, .vitrine:focus-within .disc img { scale: 1.6 }
 .vitrine figcaption { position: absolute; left: 0; bottom: -6%; width: 100%; text-align: center }
 
@@ -194,10 +201,15 @@ p { margin: 0 }
 /* three across on desktop, two on mobile — GUIDELINES.md */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--jd-7) var(--jd-6) }
 .tile { display: flex; flex-direction: column }
+/* Every photo frame is painted `--mat` — the colour sampled from that photo's own
+   background (src/lib/mat.ts) — so the letterboxing `contain` leaves around a portrait
+   or landscape shot falls on the photo's own colour and cannot be seen. The tile stays
+   a square, nothing is cropped, and a catalogue of mixed photography still reads as one
+   grid. Photos shot to GUIDELINES.md come back as cream and nothing below applies. */
 .tile__ph {
   position: relative; aspect-ratio: 1; display: grid; place-items: center;
-  overflow: hidden; border: 1px solid var(--jd-line); background: var(--jd-cream);
-  transition: background 0.35s ease;
+  overflow: hidden; border: 1px solid var(--jd-line); background: var(--mat, var(--jd-cream));
+  transition: background 0.35s ease, border-color 0.35s ease;
 }
 .tile__ph svg.art { width: 62%; color: var(--jd-ink); opacity: 0.42; transition: scale 0.4s ease }
 .tile:hover .tile__ph svg.art { scale: 1.03 }
@@ -205,7 +217,15 @@ p { margin: 0 }
   width: 100%; height: 100%; object-fit: contain; display: block; padding: 9%;
   transition: scale 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-.tile:hover .tile__ph:has(img) { background: var(--jd-ink) }
+/* A cream hairline drawn around a black mat reads as a box someone forgot to fill, so a
+   dark frame edges itself in its own colour lifted a little instead. */
+[data-mat='dark'] { border-color: color-mix(in srgb, var(--mat) 82%, #fff) }
+/* The frame filling with ink is the house hover, and it only means anything when the
+   frame was light to begin with. A dark mat lifts instead — same gesture, no flash. */
+.tile:hover .tile__ph[data-mat='light']:has(img) { background: var(--jd-ink) }
+.tile:hover .tile__ph[data-mat='dark']:has(img) {
+  background: color-mix(in srgb, var(--mat) 88%, #fff);
+}
 .tile:hover .tile__ph img { scale: 1.03 }
 .tile__ph--muted img, .tile__ph--muted svg.art { opacity: 0.36 }
 
@@ -215,6 +235,8 @@ p { margin: 0 }
   font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 10px;
 }
 .flag--quiet { background: var(--jd-bone); color: var(--jd-muted) }
+/* An ink badge on a black mat is text with no label behind it. Invert it. */
+[data-mat='dark'] .flag { background: var(--jd-bone); color: var(--jd-ink) }
 
 .tile h3 { margin-top: var(--jd-4) }
 .tile h3 a { color: inherit }
@@ -361,8 +383,8 @@ p { margin: 0 }
 
 .shot {
   position: relative; aspect-ratio: 1; display: grid; place-items: center;
-  overflow: hidden; border: 1px solid var(--jd-line); background: var(--jd-cream);
-  margin: 0; transition: background 0.4s ease;
+  overflow: hidden; border: 1px solid var(--jd-line); background: var(--mat, var(--jd-cream));
+  margin: 0; transition: background 0.4s ease, border-color 0.4s ease;
 }
 .shot svg.art { width: 64%; color: var(--jd-ink); opacity: 0.45 }
 .shot img {
@@ -370,13 +392,18 @@ p { margin: 0 }
   transition: scale 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 .shot:has(img) { cursor: zoom-in }
-.shot:has(img):hover, .shot:has(img):focus-within { background: var(--jd-ink) }
+.shot[data-mat='light']:has(img):hover,
+.shot[data-mat='light']:has(img):focus-within { background: var(--jd-ink) }
+.shot[data-mat='dark']:has(img):hover,
+.shot[data-mat='dark']:has(img):focus-within {
+  background: color-mix(in srgb, var(--mat) 88%, #fff);
+}
 .shot:hover img, .shot:focus-within img { scale: 1.45 }
 
 .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--jd-3) }
 .thumb {
   aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--jd-line);
-  overflow: hidden; padding: 0; cursor: pointer; background: var(--jd-cream);
+  overflow: hidden; padding: 0; cursor: pointer; background: var(--mat, var(--jd-cream));
 }
 .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; padding: 10% }
 

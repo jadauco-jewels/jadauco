@@ -5,6 +5,7 @@ import type { Product } from '../lib/products';
 import { getSettings } from '../lib/settings';
 import { price as formatPrice, specLine } from '../lib/format';
 import { enquiryLink } from '../lib/whatsapp';
+import { matFor, matStyle } from '../lib/mat';
 
 interface Props {
   product: Product;
@@ -21,6 +22,9 @@ const url = `/products/${product.id.replace(/\/index$/, '')}/`;
 
 const specs = specLine(data.specs);
 const cover = data.images[0];
+// The frame takes the photo's own background colour, so the letterboxing around a
+// portrait or landscape shot is invisible and every tile is a clean square. See lib/mat.
+const mat = await matFor(cover?.src);
 
 // A piece published in the last three weeks is new. Derived, so nobody has to
 // remember to untick a "new" checkbox two months later.
@@ -29,7 +33,12 @@ const isNew =
 ---
 
 <article class="tile">
-  <a class={`tile__ph${data.inStock ? '' : ' tile__ph--muted'}`} href={url}>
+  <a
+    class={`tile__ph${data.inStock ? '' : ' tile__ph--muted'}`}
+    href={url}
+    style={matStyle(mat)}
+    data-mat={mat.dark ? 'dark' : 'light'}
+  >
     {!data.inStock && <span class="flag flag--quiet">{settings.labels.soldOut}</span>}
     {isNew && <span class="flag">{settings.labels.newFlag}</span>}
     {

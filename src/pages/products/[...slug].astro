@@ -10,6 +10,7 @@ import { getSettings } from '../../lib/settings';
 import { related } from '../../lib/products';
 import { price as formatPrice, saving, excerpt, fill } from '../../lib/format';
 import { enquiryLink, enquiryText, telLink, displayPhone } from '../../lib/whatsapp';
+import { matFor, matStyle } from '../../lib/mat';
 
 export async function getStaticPaths() {
   const { allProducts } = await import('../../lib/products');
@@ -42,6 +43,10 @@ const ldImages = await Promise.all(
     return new URL(processed.src, Astro.site).href;
   }),
 );
+
+// One mat per photo, not one per product: a piece shot on velvet and its on-body shot
+// shot in daylight sit in the same gallery and each gets its own frame colour.
+const mats = await Promise.all(data.images.map((image) => matFor(image.src)));
 
 const crumbs = [
   { label: 'Home', href: '/' },
@@ -98,7 +103,7 @@ const canEnquire = !data.archived && data.inStock;
         <div class="shots">
           {
             data.images.map((image, i) => (
-              <figure class="shot">
+              <figure class="shot" style={matStyle(mats[i])} data-mat={mats[i].dark ? 'dark' : 'light'}>
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -116,7 +121,7 @@ const canEnquire = !data.archived && data.inStock;
           data.images.length > 1 && (
             <div class="thumbs">
               {data.images.map((image, i) => (
-                <label class="thumb" for={`g${i + 1}`}>
+                <label class="thumb" for={`g${i + 1}`} style={matStyle(mats[i])}>
                   <Image src={image.src} alt={`Show photo ${i + 1}: ${image.alt}`} widths={[160, 240]} sizes="120px" loading="lazy" />
                 </label>
               ))}

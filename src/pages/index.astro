@@ -7,6 +7,7 @@ import { getSettings } from '../lib/settings';
 import { categories, categoryCounts, featured, catalogueFacts } from '../lib/products';
 import { price as formatPrice } from '../lib/format';
 import { telLink, displayPhone } from '../lib/whatsapp';
+import { matFor, matStyle } from '../lib/mat';
 
 const settings = await getSettings();
 const [cats, counts, tiles, facts] = await Promise.all([
@@ -21,6 +22,10 @@ const [cats, counts, tiles, facts] = await Promise.all([
 const hero = tiles.find((p) => p.data.images.length > 0) ?? tiles[0];
 const heroImage = hero?.data.images[0];
 const heroUrl = hero ? `/products/${hero.id.replace(/\/index$/, '')}/` : '/products/';
+// The disc is a circle, so a photo on a background the disc is not shows as a rectangle
+// with the disc colour in its corners. Painting the disc the photo's own colour is what
+// keeps the mark reading as a ring with a piece inside it.
+const heroMat = await matFor(heroImage?.src);
 ---
 
 <BaseLayout>
@@ -58,7 +63,7 @@ const heroUrl = hero ? `/products/${hero.id.replace(/\/index$/, '')}/` : '/produ
 
       {
         hero && heroImage && (
-          <figure class="vitrine">
+          <figure class="vitrine" style={matStyle(heroMat)} data-mat={heroMat.dark ? 'dark' : 'light'}>
             {/* The mark's own geometry, enlarged: a ring with the stone at twelve
                 o'clock, and a real piece standing inside it. */}
             <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">

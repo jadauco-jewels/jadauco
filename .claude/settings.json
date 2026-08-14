@@ -47,7 +47,19 @@
       "Bash(git check-ignore *)",
       "Bash(git -c pull.rebase=true pull --autostash origin main)",
       "Bash(curl -s \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\")",
-      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\")"
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/1WaZsXE8o3LACqeDGo4fU0g_Bs3ba_pHBTsD2v2ata1k/export?format=csv&gid=0\")",
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/)",
+      "Bash(node -e \"const m=require\\('./node_modules/astro/package.json'\\);console.log\\('astro',m.version\\)\")",
+      "Bash(node -e \"console.log\\('sharp',require\\('./node_modules/sharp/package.json'\\).version\\)\")",
+      "Bash(grep -o '--mat:[^\";]*' dist/products/kundan-bridal-choker-set/index.html)",
+      "Bash(grep -oe '--mat:[^\";]*' dist/products/kundan-bridal-choker-set/index.html)",
+      "Bash(grep -oe 'class=\"vitrine\"[^>]*' dist/index.html)",
+      "Bash(curl -s -o /dev/null -w \"server:%{http_code}\\\\n\" http://127.0.0.1:4399/)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,3000 --screenshot=home.png --virtual-time-budget=6000 http://127.0.0.1:4399/)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,1400 --screenshot=pdp.png --virtual-time-budget=6000 http://127.0.0.1:4399/products/temple-lakshmi-jhumkas/)",
+      "Bash(pkill -f \"http-server dist\")",
+      "Bash(rm -f /tmp/matcheck.mjs /tmp/mat-fixtures-*.jpg)"
     ],
     "additionalDirectories": [
       "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts"

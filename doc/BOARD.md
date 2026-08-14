@@ -5,7 +5,7 @@ this file says *where it actually is right now*.
 
 - **Sprint scope:** sync epic + the minimum site foundation it needs. UI (Phase 2–4) deferred.
 - **Building against:** local fixtures. No Google Sheet, Drive folder or API key exists yet.
-- **Last updated:** 2026-08-13
+- **Last updated:** 2026-08-14
 
 **Status legend** — `todo` · `doing` · `blocked` · `review` · `done`
 
@@ -71,6 +71,7 @@ this file says *where it actually is right now*.
 | T-08 | Product page's three states: in stock, sold out, archived — CTA suppressed, JSON-LD `availability` switched | Rendered and verified |
 | T-30 | `tokens.css` from `brand-kit/brand.css`, three woff2 faces self-hosted | No literal hex outside tokens.css |
 | T-31 | `deploy.yml` replaces `preview.yml` — builds, runs `astro check`, deploys to Pages | Reviewed; unrun until first push |
+| T-34 | **Adaptive photo mat** — `src/lib/mat.ts` samples each photo's border colour at build time and paints its frame that colour, so mixed-shape and dark-background photography sits in the grid without a seam | Built and screenshotted; `astro check` 0 errors, 44 tests pass |
 
 ---
 
@@ -86,3 +87,4 @@ this file says *where it actually is right now*.
 | 2026-08-13 | **Sync epic code-complete.** Ran end to end against the live sheet and folder: 2 products written, 3 photos downloaded and processed, second run wrote nothing. 44 tests pass. What is left is account work, listed under *Ready* — no code blocks it. |
 | 2026-08-13 | **UI pass built from `doc/mockups`.** Six categories (maang-tikka and payal were in the mockup but not on disk), zero-JS header menu and product gallery, full JSON-LD, generated `robots.txt`, and the terms/privacy/disclaimer pages the footer had been linking into nothing. `deploy.yml` replaces `preview.yml`, so jadauco.com will serve the real site rather than the mockups on the next push. |
 | 2026-08-13 | **Deviation from S-7, recorded deliberately.** "A Drive image that no row references" is a **warning**, not an error. The real folder has 11 such files against 4 in use — as an error it would block every publish over photos uploaded ahead of their rows. It is still reported every run. Say the word and it becomes fatal, or config-driven. |
+| 2026-08-14 | **The supplier photos contradict `brand-kit/GUIDELINES.md`.** The guidelines ask for cream or sand grounds and say to avoid black velvet; every photo the client has supplied is shot on black velvet, in mixed portrait and landscape. In a cream tile that read as a hole punched in the page, a different shape in every tile. Fixed in code by T-34 rather than by argument: each frame is painted the photo's own background colour, so the letterboxing is invisible and the grid is square again. A photo shot the way the guidelines ask for snaps back to cream and none of it applies. **Open question for the client:** amend the photography guideline to bless velvet, or keep it and reshoot as T-32? The site now looks right either way, so this is a brand call, not a blocker. |
