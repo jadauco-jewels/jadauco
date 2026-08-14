@@ -54,6 +54,12 @@ const products = defineCollection({
 
       inStock: z.boolean().default(true),
       featured: z.boolean().default(false),
+      // The one piece that stands in the ring at the top of the homepage. Distinct from
+      // `featured`, which fills the strip further down — see products.ts `heroProduct`.
+      hero: z.boolean().default(false),
+      // Hand-set running order, lowest first. Absent means "no opinion", which sorts after
+      // every numbered piece rather than before it — see products.ts `byPriority`.
+      sequence: z.number().int().positive().optional(),
       // S-6 — archived products keep their URL and their page, and leave every grid.
       archived: z.boolean().default(false),
       tags: z.array(z.string()).default([]),

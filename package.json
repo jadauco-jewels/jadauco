@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "sync": "node scripts/sync/index.mjs",
-    "test": "node --test scripts/sync/*.test.mjs"
+    "validate": "node scripts/sync/validate.mjs",
+    "test": "node --test scripts/sync/*.test.mjs scripts/sheet/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

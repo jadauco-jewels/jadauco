@@ -26,9 +26,14 @@ export const PRODUCT_COLUMNS = {
   'Earrings Included': 'earringsIncluded',
   Weight: 'weight',
   Featured: 'featured',
+  Hero: 'hero',
+  Sequence: 'sequence',
   Tags: 'tags',
-  Category: 'category',
-  Slug: 'slug',
+  // Named "override" in the sheet because a `Category (auto)` helper column sits beside the
+  // product code showing what the code already decided. Two columns headed Category, one of
+  // them a formula, is how a client ends up typing into the wrong one.
+  'Category override': 'category',
+  'Slug override': 'slug',
   'SEO Title': 'seoTitle',
   'SEO Description': 'seoDescription',
 };
@@ -54,7 +59,7 @@ const REQUIRED_PRODUCT_HEADERS = [
 const LIST_FIELDS = new Set(['images', 'stones', 'tags']);
 
 /** Fields read as Sheets checkboxes. */
-const BOOLEAN_FIELDS = new Set(['inStock', 'featured', 'earringsIncluded']);
+const BOOLEAN_FIELDS = new Set(['inStock', 'featured', 'hero', 'earringsIncluded']);
 
 export const csvUrl = (sheetId, gid) =>
   `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;

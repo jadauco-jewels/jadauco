@@ -20,12 +20,36 @@ export async function allProducts(): Promise<Product[]> {
   return getCollection('products');
 }
 
-/** Everything that may appear in a grid: not archived. Newest first. */
+/** Newest first. The order every grid used before `Sequence` existed, and the tie-breaker now. */
+const newestFirst = (a: Product, b: Product) =>
+  b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+
+/**
+ * The running order: `Sequence` first, then newest.
+ *
+ * A blank Sequence sorts as Infinity, so numbering three pieces 1–3 puts exactly those three at
+ * the front and leaves everything else in the order it already had. That is the property worth
+ * protecting — the client can pin the top of a category without having to number the whole
+ * catalogue to keep the rest sane.
+ *
+ * The number is global rather than per-category, and that is deliberate: a category page only
+ * contains one category, so numbering earrings 1–10 orders the earrings page exactly as written,
+ * while on the all-jewellery page the same numbers interleave and float each category's best
+ * piece towards the top. One column, and it reads correctly in both places.
+ */
+function byPriority(a: Product, b: Product): number {
+  const sa = a.data.sequence ?? Infinity;
+  const sb = b.data.sequence ?? Infinity;
+  // Infinity === Infinity, so two unnumbered pieces fall through to the date rather than
+  // producing Infinity - Infinity, which is NaN and would leave the sort order undefined.
+  if (sa !== sb) return sa - sb;
+  return newestFirst(a, b);
+}
+
+/** Everything that may appear in a grid: not archived. Sequence first, then newest. */
 export async function listed(): Promise<Product[]> {
   const products = await getCollection('products', ({ data }) => !data.archived);
-  return products.sort(
-    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-  );
+  return products.sort(byPriority);
 }
 
 export async function byCategory(categoryId: string): Promise<Product[]> {
@@ -42,8 +66,34 @@ export async function featured(limit = 6): Promise<Product[]> {
   return [...picked, ...filler].slice(0, limit);
 }
 
+/**
+ * Deliberately not `listed()`, which now honours Sequence. "New arrivals" is a claim about
+ * dates, and a hand-set running order must not be able to put a six-month-old piece at the
+ * top of it.
+ */
 export async function newArrivals(limit = 6): Promise<Product[]> {
-  return (await listed()).slice(0, limit);
+  return [...(await listed())].sort(newestFirst).slice(0, limit);
+}
+
+/**
+ * The piece that stands in the ring at the top of the homepage.
+ *
+ * `Hero` in the sheet is a separate tick from `Featured`, because "on the homepage" and "the
+ * homepage" are different decisions. Ticking two is a sync warning, not an error, so this has
+ * to resolve it rather than trust it: the first ticked piece that is actually photographed
+ * wins, and if nobody has ticked one — or the ticked one has no photo yet — the newest
+ * featured piece stands in. The homepage is never left without a hero because of a checkbox.
+ */
+export async function heroProduct(pool?: Product[]): Promise<Product | undefined> {
+  const candidates = pool ?? (await featured(6));
+  const photographed = (p: Product) => p.data.images.length > 0;
+
+  return (
+    candidates.find((p) => p.data.hero && photographed(p)) ??
+    (await listed()).find((p) => p.data.hero && photographed(p)) ??
+    candidates.find(photographed) ??
+    candidates[0]
+  );
 }
 
 /**

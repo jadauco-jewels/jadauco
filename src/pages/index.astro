@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import EnquiryButton from '../components/EnquiryButton.astro';
 import { getSettings } from '../lib/settings';
-import { categories, categoryCounts, featured, catalogueFacts } from '../lib/products';
+import { categories, categoryCounts, featured, catalogueFacts, heroProduct } from '../lib/products';
 import { price as formatPrice } from '../lib/format';
 import { telLink, displayPhone } from '../lib/whatsapp';
 import { matFor, matStyle } from '../lib/mat';
@@ -17,9 +17,9 @@ const [cats, counts, tiles, facts] = await Promise.all([
   catalogueFacts(),
 ]);
 
-// The hero piece is whatever is featured and photographed — no separate switch
-// to forget to flip. §5.9: derived, never hand-linked.
-const hero = tiles.find((p) => p.data.images.length > 0) ?? tiles[0];
+// Chosen by the Hero tick in the sheet, with a photographed fallback so the top of the
+// homepage is never empty. §5.9 — still never hand-linked to a slug.
+const hero = await heroProduct(tiles);
 const heroImage = hero?.data.images[0];
 const heroUrl = hero ? `/products/${hero.id.replace(/\/index$/, '')}/` : '/products/';
 // The disc is a circle, so a photo on a background the disc is not shows as a rectangle

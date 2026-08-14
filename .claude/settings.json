@@ -59,10 +59,29 @@
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,3000 --screenshot=home.png --virtual-time-budget=6000 http://127.0.0.1:4399/)",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,1400 --screenshot=pdp.png --virtual-time-budget=6000 http://127.0.0.1:4399/products/temple-lakshmi-jhumkas/)",
       "Bash(pkill -f \"http-server dist\")",
-      "Bash(rm -f /tmp/matcheck.mjs /tmp/mat-fixtures-*.jpg)"
+      "Bash(rm -f /tmp/matcheck.mjs /tmp/mat-fixtures-*.jpg)",
+      "Bash(git stash *)",
+      "Bash(git pull *)",
+      "Bash(python3 -c \"import json;json.load\\(open\\('.claude/settings.json'\\)\\);print\\('valid'\\)\")",
+      "Bash(python3 -c \"import json;json.load\\(open\\('.claude/settings.json'\\)\\);print\\('valid json'\\)\")",
+      "Bash(grep -oe 'PIECE OF THE WEEK[^<]*\\\\|Piece of the week[^<]*' dist/index.html)",
+      "Bash(grep -oe 'href=\"/products/[a-z-]*/\"' dist/index.html)",
+      "Bash(perl -pi -e \"s/\\\\.\\\\.\\\\.at\\\\\\('Category'\\\\\\)/...at\\('Category override'\\)/; s/fill the Slug column by hand/fill the Slug override column by hand/; s/set a different value in the Slug column/set a different value in the Slug override column/\" scripts/sync/schema.mjs)",
+      "Bash(perl -pi -e \"s/'Category,Slug,SEO Title,SEO Description'/'Category override,Slug override,SEO Title,SEO Description'/; s/^\\(\\\\s+\\)Category: '',\\\\$/\\\\$1'Category override': '',/; s/^\\(\\\\s+\\)Slug: '',\\\\$/\\\\$1'Slug override': '',/\" scripts/sync/sync.test.mjs)",
+      "Bash(perl -pi -e 's/,Category,Slug,SEO Title,SEO Description,/,Category override,Slug override,SEO Title,SEO Description,/' doc/sheet/products-template.csv)",
+      "Bash(cd \"/private/tmp/claude-501/-Users-vikash-Documents-jadauco/37896425-e63c-4f00-b2e0-82e3cc70f554/scratchpad\" && cp jadauco-products-new-layout.csv ~/Downloads/ && echo \"copied to ~/Downloads/jadauco-products-new-layout.csv\" && wc -l jadauco-products-new-layout.csv && cat jadauco-products-new-layout.csv)",
+      "Bash(perl -pi -e \"s/Weight,Featured,Hero,/Weight,Featured,Hero,Sequence,/; s/^\\(\\\\s+\\)Hero: '',\\\\$/\\\\$1Hero: '',\\\\n\\\\$1Sequence: '',/\" scripts/sync/sync.test.mjs)",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/12jVsctHk4A9O_Hsf8aZxS_wvrAkQGTKuA4anoth9jzg/export?format=csv&gid=0\" -o /tmp/newsheet.csv -w \"http:%{http_code} type:%{content_type}\\\\n\")",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/12jVsctHk4A9O_Hsf8aZxS_wvrAkQGTKuA4anoth9jzg/export?format=csv\" -o /tmp/first.csv -w \"http:%{http_code} type:%{content_type}\\\\n\")",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/12jVsctHk4A9O_Hsf8aZxS_wvrAkQGTKuA4anoth9jzg/htmlview\" -o /tmp/view.html -w \"http:%{http_code}\\\\n\")",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/12jVsctHk4A9O_Hsf8aZxS_wvrAkQGTKuA4anoth9jzg/htmlview\" -o /tmp/v.html)",
+      "Bash(curl -s https://api.github.com/users/cloudalgo)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('account type :', d.get\\('type'\\)\\); print\\('name :', d.get\\('name'\\)\\); print\\('login :', d.get\\('login'\\)\\)\")",
+      "Bash(git commit *)"
     ],
     "additionalDirectories": [
-      "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts"
+      "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts",
+      "/Users/vikash/Downloads/"
     ]
   }
 }

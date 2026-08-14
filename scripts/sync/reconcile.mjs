@@ -115,6 +115,18 @@ export function reconcile({ products, repoProducts, driveFiles, lock, config, pr
       plan.slugFrozen.push({ sku: product.sku, slug: locked.slug, derived });
     }
 
+    // Typing into Slug override after a product has published does nothing — the lock wins on
+    // the line above, and that is correct: the freeze is what stops a rename quietly throwing
+    // away a page's Google ranking. What was wrong was doing it in silence. Say no out loud.
+    if (product.slugOverride && locked?.slug && locked.slug !== product.slugOverride) {
+      plan.warnings.push(
+        `${product.sku} has "Slug override" set to "${product.slugOverride}", but its address ` +
+          `was frozen as "${locked.slug}" when it was first published, so the override is ` +
+          'being ignored. Changing a published address loses its Google ranking — if you ' +
+          'genuinely need to move this page, it has to be done deliberately, with a redirect.',
+      );
+    }
+
     product.slug = slug;
     product.archived = product.status === 'archived';
     if (product.archived) plan.archived.push(product);

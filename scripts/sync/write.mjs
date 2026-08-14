@@ -67,6 +67,10 @@ export function renderProduct(product, { body, syncedAt }) {
 
   lines.push(`inStock: ${product.inStock}`);
   lines.push(`featured: ${product.featured}`);
+  // Only written when true. `hero` arrived after the first catalogues were synced, and always
+  // emitting it would rewrite every product file on the next run for a line that says false.
+  if (product.hero) lines.push('hero: true');
+  if (product.sequence !== undefined) lines.push(`sequence: ${product.sequence}`);
   lines.push(`archived: ${product.archived}`);
   if (product.tags.length) lines.push(`tags: ${yamlList(product.tags)}`);
   lines.push(`publishDate: ${isoDate(product.publishDate)}`);

@@ -1,0 +1,82 @@
+JADAUCO CATALOGUE — WHAT EVERY COLUMN MEANS,,,
+,,,
+THE TWO TABS,,,
+catalogue,,"Every product, one per row. The only tab the website reads.",
+instructions,,This tab. Notes only — the website ignores it completely.,
+,,,
+HOW TO ADD A PRODUCT,,,
+1,,Put the photos in the Drive folder.,
+2,,Add one row in the catalogue tab. Work left to right.,
+3,,Jadauco menu → Check the catalogue. It marks any cell that is wrong in red.,
+4,,"Hover a red cell to read what is wrong with it. Fix, and check again.",
+5,,Jadauco menu → Publish to the website. Live in about four minutes.,
+,,,
+THE ONE COLUMN YOU NEVER TYPE IN,,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Category (auto),NO — automatic,"Shows which category the Product Code just chose, so you can see it is right. Says ""unknown code"" if the two letters are not a real category. Do not type here.",Necklaces
+If you overwrite it by mistake: copy the cell above it and paste it back down.,,,
+,,,
+EVERY PRODUCT NEEDS THESE,,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Product Code,Yes — type it,"JD, then two letters for the category, then three or more digits. Must be unique. Once a product has published, NEVER change it — it is that product's identity.",JD-NK-001
+Product Name,Yes — type it,"What a customer would call it. Becomes the page heading and the web address, so write it properly.",Kundan Bridal Choker Set
+Status,Yes — pick from list,"live = on the site. draft = hidden, still being worked on. archived = discontinued, page kept alive for its Google ranking.",live
+Images,Yes — type it,"The photo filenames from Drive, separated by commas, in the order they should appear. The first is the main photo. Must match Drive exactly, capital letters included.","JD-NK-001-1.jpg, JD-NK-001-2.jpg"
+Publish Date,Yes — type it,The date the piece went on sale. Used for New arrivals.,2026-08-13
+Description,Yes — type it,"At least 40 words. The biggest single thing deciding whether Google finds this page. Write about the piece — the stones, the occasion, how it wears.","Handcrafted kundan bridal choker with matching jhumkas, set on a brass base…"
+,,,
+PRICE AND STOCK,,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Selling Price,Yes — type it,"What the customer pays. Plain number — no rupee sign, no commas. Leave empty and the page says ""Price on enquiry"".",2499
+List Price,Yes — type it,"The crossed-out ""was"" price. Must be HIGHER than Selling Price. Leave empty for no crossed-out price. The discount percentage is worked out for you.",3999
+In Stock,Yes — tick box,"Ticked = orderable. Unticked = the page stays up but shows ""Sold out"" and hides the WhatsApp button.",TRUE
+,,,
+"SPECIFICATION — fill what applies, leave the rest empty",,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Base Metal,Yes — type it,What the piece is made of. Becomes a line in the specification table.,Brass
+Finish,Yes — type it,The plating or polish.,Antique gold with oxidised detail
+Stones,Yes — type it,Comma separated.,"Kundan, pearl"
+Set Includes,Yes — type it,What is actually in the box.,"Necklace, 1 pair earrings, maang tikka"
+Earrings Included,Yes — tick box,"Ticked adds an ""Earrings: Included"" line to the specification table.",TRUE
+Weight,Yes — type it,With the unit.,120g
+,,,
+WHERE IT APPEARS ON THE SITE,,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Featured,Yes — tick box,"Puts it in the strip down the homepage, ""On the tray this week"". Tick as many as you like — the six newest show.",TRUE
+Hero,Yes — tick box,Tick ONE piece only. It stands in the ring at the very top of the homepage. If two are ticked the publish report warns you and uses the higher row. If none are ticked the newest featured piece is used.,TRUE
+Sequence,Yes — type it,"The running order, lowest first. Number ONLY the pieces you want at the top — 1, 2, 3. Empty means ""no opinion"" and the piece falls in behind the numbered ones, newest first.",1
+Tags,Yes — type it,"Comma separated. Drives ""You may also like"" and the filter buttons.","bridal, choker, party wear"
+,,,
+THE LAST FOUR — almost always empty,,,
+Column,Do you fill it in?,"What it means, and what to type",Example
+Category override,Usually leave empty,"Forces a different category. Only needed when a piece that has ALREADY published belongs somewhere else — you cannot fix the Product Code, because a new code reads as a new product and loses the page.",bangles
+Slug override,Usually leave empty,Sets the web address by hand. Only works BEFORE a product first publishes; after that the address is frozen and this is ignored.,kundan-bridal-choker-set
+SEO Title,Usually leave empty,"Empty gives ""Product Name | Jadauco"", which is fine. Fill it only for a piece you are deliberately trying to rank on Google.",Kundan Bridal Choker Set with Earrings and Maang Tikka
+SEO Description,Usually leave empty,"Empty uses the first 158 characters of your Description, which is fine. Maximum 160 characters if you do fill it.","Handcrafted kundan choker with jhumkas and maang tikka. Brass base, 22k gold polish."
+,,,
+THE CATEGORY CODES — the two letters in the Product Code,,,
+Code,Category,,
+NK,Necklaces,,
+ER,Earrings,,
+BG,Bangles,,
+RG,Rings,,
+TK,Maang tikka,,
+PY,Payal,,
+,,,
+CHECKING BEFORE YOU PUBLISH,,,
+"Jadauco menu → Check the catalogue. It runs the same rules the publish runs, and it can",,,
+"read the Drive folder, so it catches the photo mistakes too:",,,
+  · a filename in Images that is not actually in Drive — it names the file that IS there,,,
+  · the same photo used by two different products,,,
+  · a photo sitting in Drive that no row uses,,,
+Every cell at fault turns red with the reason in a note. Hover to read it.,,,
+Jadauco menu → Clear the check marks removes the red once you are done.,,,
+A clean check means the publish will go through. That is the whole point of it.,,,
+,,,
+NEVER DO THESE,,,
+· Never change a Product Code once it has published.,,,
+· Never rename a column header — the website finds columns by their exact text.,,,
+· Never move the headers off row 1.,,,
+· Never type in Category (auto) — it is worked out for you.,,,
+"· Renaming a product changes its heading, never its web address. That is deliberate — it protects the Google ranking.",,,
+"· This sheet is readable by anyone with the link. No cost prices, no supplier names, no customer data.",,,

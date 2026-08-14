@@ -51,8 +51,8 @@ const WORDS_40 =
 
 const HEADERS =
   'Product Code,Product Name,Images,Description,Selling Price,List Price,In Stock,Status,' +
-  'Publish Date,Base Metal,Finish,Stones,Set Includes,Earrings Included,Weight,Featured,Tags,' +
-  'Category,Slug,SEO Title,SEO Description';
+  'Publish Date,Base Metal,Finish,Stones,Set Includes,Earrings Included,Weight,Featured,Hero,Sequence,' +
+  'Tags,Category override,Slug override,SEO Title,SEO Description';
 
 /** Build a CSV with one row per override, on top of a valid baseline. */
 function sheetCsv(overrides = [{}]) {
@@ -73,9 +73,11 @@ function sheetCsv(overrides = [{}]) {
     'Earrings Included': 'TRUE',
     Weight: '120g',
     Featured: 'TRUE',
+    Hero: '',
+    Sequence: '',
     Tags: 'bridal, choker',
-    Category: '',
-    Slug: '',
+    'Category override': '',
+    'Slug override': '',
     'SEO Title': '',
     'SEO Description': '',
   };
@@ -120,8 +122,8 @@ test('S-7 · unrecognised category code names the code and lists the valid ones'
 });
 
 test('S-7 · a bad Category override lists the categories that exist', () => {
-  const { issues } = check([{ Category: 'neclaces' }]);
-  assertMessage(issues, 'Category "neclaces" is not one of', '"necklaces"');
+  const { issues } = check([{ 'Category override': 'neclaces' }]);
+  assertMessage(issues, 'Category override "neclaces" is not one of', '"necklaces"');
 });
 
 test('S-7 · duplicate product code points at the first row that used it', () => {
@@ -329,14 +331,36 @@ test('§5.1.2 · a renamed product keeps its published address', () => {
   ]);
 });
 
-test('§5.1.2 · an explicit Slug column overrides the frozen one, silently', () => {
-  const { products } = check([{ Slug: 'deliberately-different' }]);
+test('§5.1.2 · Slug override decides the address of a product that has never published', () => {
+  const { products } = check([{ 'Slug override': 'deliberately-different' }]);
   const plan = planFor({
     products,
     lock: { products: {}, images: {} },
   });
   assert.equal(products[0].slug, 'deliberately-different');
   assert.deepEqual(plan.slugFrozen, []);
+});
+
+test('§5.1.2 · Slug override loses to the lock once published, and says so', () => {
+  const { products } = check([{ 'Slug override': 'a-better-name' }]);
+  const plan = planFor({
+    products,
+    lock: {
+      products: { 'JD-NK-001': { slug: 'kundan-bridal-choker-set', firstSyncedAt: 'x' } },
+      images: {},
+    },
+  });
+
+  // The freeze wins — that is what stops a rename throwing away a Google ranking.
+  assert.equal(products[0].slug, 'kundan-bridal-choker-set');
+
+  // But it must not win in silence: before this warning existed, typing in the column did
+  // nothing at all and nothing anywhere said why.
+  const ignored = plan.warnings.filter((w) => w.includes('Slug override'));
+  assert.equal(ignored.length, 1);
+  assert.match(ignored[0], /JD-NK-001/);
+  assert.match(ignored[0], /a-better-name/);
+  assert.match(ignored[0], /kundan-bridal-choker-set/);
 });
 
 // ── S-6: archived ───────────────────────────────────────────────────────────────────────────
@@ -349,6 +373,118 @@ test('S-6 · an archived product still renders, marked archived', () => {
 
   const markdown = renderProduct(products[0], { body: WORDS_40, syncedAt: '2026-08-13T00:00:00Z' });
   assert.match(markdown, /^archived: true$/m);
+});
+
+// ── Hero: the one piece at the top of the homepage ──────────────────────────────────────────
+
+test('Hero is read as a tick, separately from Featured', () => {
+  const { products, issues } = check([{ Featured: '', Hero: 'TRUE' }]);
+  assert.equal(issues.length, 0);
+  assert.equal(products[0].hero, true);
+  assert.equal(products[0].featured, false, 'Hero must not imply Featured');
+});
+
+test('an unticked Hero is false, not undefined', () => {
+  const { products } = check([{}]);
+  assert.equal(products[0].hero, false);
+});
+
+test('typing into the Hero column instead of ticking is an error naming the column', () => {
+  const { issues } = check([{ Hero: 'yes please' }]);
+  assertMessage(issues, 'Hero', 'not a tick or a blank');
+});
+
+test('two ticked Heroes warn and name the winner, but do not fail the run', () => {
+  const { issues, warnings } = check([
+    { 'Product Code': 'JD-NK-001', Hero: 'TRUE' },
+    {
+      'Product Code': 'JD-ER-002',
+      'Product Name': 'Temple Lakshmi Jhumkas',
+      Images: 'photo-b.jpg',
+      Hero: 'TRUE',
+    },
+  ]);
+  assert.equal(issues.length, 0, 'a second hero must never block a publish');
+  const hero = warnings.filter((w) => w.includes('Hero ticked'));
+  assert.equal(hero.length, 1);
+  assert.match(hero[0], /JD-NK-001/);
+  assert.match(hero[0], /JD-ER-002/);
+});
+
+test('a draft with Hero ticked does not count towards the warning', () => {
+  const { warnings } = check([
+    { 'Product Code': 'JD-NK-001', Hero: 'TRUE' },
+    {
+      'Product Code': 'JD-ER-002',
+      'Product Name': 'Temple Lakshmi Jhumkas',
+      Images: 'photo-b.jpg',
+      Hero: 'TRUE',
+      Status: 'draft',
+    },
+  ]);
+  assert.equal(warnings.filter((w) => w.includes('Hero ticked')).length, 0);
+});
+
+test('hero is written to the markdown only when it is ticked', () => {
+  const ticked = check([{ Hero: 'TRUE' }]);
+  planFor(ticked);
+  assert.match(
+    renderProduct(ticked.products[0], { body: WORDS_40, syncedAt: '2026-08-13T00:00:00Z' }),
+    /^hero: true$/m,
+  );
+
+  // Absent rather than `hero: false` — every product file predates this column, and always
+  // emitting the line would rewrite the whole catalogue on the next sync to say nothing.
+  const unticked = check([{}]);
+  planFor(unticked);
+  assert.doesNotMatch(
+    renderProduct(unticked.products[0], { body: WORDS_40, syncedAt: '2026-08-13T00:00:00Z' }),
+    /^hero:/m,
+  );
+});
+
+test('S-7 · an over-long SEO Description is caught here, not by the build', () => {
+  // content.config.ts caps this at 160. Without the check in the sync it passes validation, gets
+  // committed, and takes the deploy down instead of telling the client to shorten a cell.
+  const { issues } = check([{ 'SEO Description': 'x'.repeat(161) }]);
+  assertMessage(issues, 'SEO Description is 161 characters; the maximum is 160');
+
+  assert.equal(check([{ 'SEO Description': 'x'.repeat(160) }]).issues.length, 0, '160 is allowed');
+});
+
+// ── Sequence: the hand-set running order ────────────────────────────────────────────────────
+
+test('Sequence is read as a number', () => {
+  const { products, issues } = check([{ Sequence: '3' }]);
+  assert.equal(issues.length, 0);
+  assert.equal(products[0].sequence, 3);
+});
+
+test('a blank Sequence is undefined, not 0 — "no opinion" is not "first"', () => {
+  const { products } = check([{}]);
+  assert.equal(products[0].sequence, undefined);
+});
+
+test('S-7 · a Sequence that is not a whole number says what to type', () => {
+  assertMessage(check([{ Sequence: 'first' }]).issues, 'Sequence is "first"', 'whole number of 1 or more');
+  assertMessage(check([{ Sequence: '0' }]).issues, 'Sequence is "0"');
+  assertMessage(check([{ Sequence: '2.5' }]).issues, 'Sequence is "2.5"');
+});
+
+test('sequence is written to the markdown only when it is set', () => {
+  const numbered = check([{ Sequence: '2' }]);
+  planFor(numbered);
+  assert.match(
+    renderProduct(numbered.products[0], { body: WORDS_40, syncedAt: '2026-08-13T00:00:00Z' }),
+    /^sequence: 2$/m,
+  );
+
+  const blank = check([{}]);
+  planFor(blank);
+  assert.doesNotMatch(
+    renderProduct(blank.products[0], { body: WORDS_40, syncedAt: '2026-08-13T00:00:00Z' }),
+    /^sequence:/m,
+  );
 });
 
 // ── S-1, S-2 and S-10: what gets written ────────────────────────────────────────────────────

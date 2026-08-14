@@ -86,6 +86,28 @@ function parsePrice(raw, { row, sku, field }, issues) {
   return value;
 }
 
+/**
+ * The hand-set running order. Blank is the normal case and means "no opinion" — it is not the
+ * same as 0, which is why this returns undefined rather than a default.
+ */
+function parseSequence(raw, { row, sku }, issues) {
+  if (!raw) return undefined;
+  const value = Number(String(raw).replace(/[\s,]/g, ''));
+  if (!Number.isInteger(value) || value < 1) {
+    issues.push(
+      new RowIssue({
+        row,
+        sku,
+        field: 'Sequence',
+        message: `Sequence is "${raw}", which is not a whole number of 1 or more`,
+        hint: 'Number the pieces you want to appear first — 1, 2, 3. Leave it empty and the piece falls in behind the numbered ones, newest first.',
+      }),
+    );
+    return undefined;
+  }
+  return value;
+}
+
 function parseDate(raw, { row, sku }, issues) {
   if (!raw) {
     issues.push(
@@ -170,9 +192,9 @@ function validateRow(raw, { config, categories, driveFiles }, issues) {
   if (raw.category && !categories.names.includes(raw.category.toLowerCase())) {
     issues.push(
       new RowIssue({
-        ...at('Category'),
-        message: `Category "${raw.category}" is not one of ${list(categories.names)}`,
-        hint: 'Leave Category empty to use the one in the product code, or type one of the names listed above.',
+        ...at('Category override'),
+        message: `Category override "${raw.category}" is not one of ${list(categories.names)}`,
+        hint: 'Leave Category override empty to use the one in the product code — the "Category (auto)" column shows you which that is — or type one of the names listed above.',
       }),
     );
     category = undefined;
@@ -181,7 +203,7 @@ function validateRow(raw, { config, categories, driveFiles }, issues) {
       new RowIssue({
         ...at('Product Code'),
         message: `Product Code "${sku}" has the category code "${code}", which does not match any category`,
-        hint: `The codes that exist are ${list([...categories.byCode.keys()].sort())}. Either correct the product code, or fill the Category column with one of ${list(categories.names)}.`,
+        hint: `The codes that exist are ${list([...categories.byCode.keys()].sort())}. Either correct the product code, or fill the Category override column with one of ${list(categories.names)}.`,
       }),
     );
   }
@@ -216,9 +238,22 @@ function validateRow(raw, { config, categories, driveFiles }, issues) {
 
   const publishDate = parseDate(raw.publishDate, { row, sku }, issues);
 
-  for (const field of ['inStock', 'featured', 'earringsIncluded']) {
+  // The build schema caps this at 160 characters (content.config.ts). Without this check a long
+  // one passes the sync, gets committed, and then fails `astro build` — so the client's mistake
+  // surfaces as a broken deploy instead of a sentence telling them to shorten a cell.
+  if (raw.seoDescription && raw.seoDescription.length > 160) {
+    issues.push(
+      new RowIssue({
+        ...at('SEO Description'),
+        message: `SEO Description is ${raw.seoDescription.length} characters; the maximum is 160`,
+        hint: 'Google cuts it off around there anyway. Trim it to one sentence, or empty the cell and the website will write one from your Description.',
+      }),
+    );
+  }
+
+  for (const field of ['inStock', 'featured', 'hero', 'earringsIncluded']) {
     if (typeof raw[field] === 'string') {
-      const header = { inStock: 'In Stock', featured: 'Featured', earringsIncluded: 'Earrings Included' }[field];
+      const header = { inStock: 'In Stock', featured: 'Featured', hero: 'Hero', earringsIncluded: 'Earrings Included' }[field];
       issues.push(
         new RowIssue({
           ...at(header),
@@ -250,6 +285,11 @@ function validateRow(raw, { config, categories, driveFiles }, issues) {
     },
     inStock: raw.inStock === true,
     featured: raw.featured === true,
+    // §5.9 — Featured fills the homepage strip; Hero is the single piece that stands in the
+    // ring at the top. Separate switches, because "on the homepage" and "the homepage" are
+    // different decisions and tying them together makes one of the two impossible to express.
+    hero: raw.hero === true,
+    sequence: parseSequence(raw.sequence, { row, sku }, issues),
     tags: raw.tags ?? [],
     publishDate,
     seo: { title: raw.seoTitle || undefined, description: raw.seoDescription || undefined },
@@ -353,7 +393,7 @@ export function validate({ rows, imageRows = [], config, categories, driveFiles 
           sku: p.sku,
           field: 'Product Name',
           message: `Product Name "${p.title}" cannot be turned into a web address`,
-          hint: 'The name needs at least some letters or numbers in it. Add a word, or fill the Slug column by hand.',
+          hint: 'The name needs at least some letters or numbers in it. Add a word, or fill the Slug override column by hand.',
         }),
       );
       continue;
@@ -367,12 +407,26 @@ export function validate({ rows, imageRows = [], config, categories, driveFiles 
           sku: p.sku,
           field: 'Product Name',
           message: `"${p.title}" would use the same web address as ${first.sku} on row ${first.row} (/products/${slug}/)`,
-          hint: 'Two products cannot share an address. Change one of the names, or set a different value in the Slug column.',
+          hint: 'Two products cannot share an address. Change one of the names, or set a different value in the Slug override column.',
         }),
       );
     } else {
       seenSlug.set(slug, p);
     }
+  }
+
+  // ── one hero ──
+  // There is one slot at the top of the homepage, so a second tick cannot be honoured. A
+  // warning rather than an error, on the same reasoning as the unused-photo case: ticking a
+  // new hero before unticking the old one is the obvious way to do it, and refusing to
+  // publish the whole catalogue over a checkbox the site already resolves is worse than
+  // saying which one won. The site takes the first live, photographed one; see products.ts.
+  const heroes = products.filter((p) => p.hero && p.status === 'live');
+  if (heroes.length > 1) {
+    warnings.push(
+      `${heroes.length} products have Hero ticked (${heroes.map((p) => p.sku).join(', ')}), ` +
+        `but the homepage has room for one. ${heroes[0].sku} is being used — untick the others.`,
+    );
   }
 
   // ── one photo, one product ──
