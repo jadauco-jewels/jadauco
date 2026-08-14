@@ -2,9 +2,12 @@ name: Deploy site
 
 # PLAN.md §11.1. This replaces preview.yml, which published only doc/mockups.
 #
-# Every push that touches the site builds and deploys — including the commits the
-# catalogue sync makes, which is the last link in the chain the client sees:
-# sheet → sync → commit → deploy → live.
+# The chain the client sees is sheet → sync → commit → deploy → live, and the last
+# link cannot be a push event. GitHub deliberately does not start a workflow from an
+# event created with the default GITHUB_TOKEN, so the commit the sync makes lands on
+# main and triggers nothing — the site sat on the previous build until someone ran
+# this by hand. `workflow_call` is how the sync reaches it: a job dependency rather
+# than an event, so the suppression does not apply and no extra credential is needed.
 on:
   push:
     branches: [main]
@@ -19,6 +22,7 @@ on:
       - 'tools/**'
       - 'CONTRIBUTING-FOR-CLIENT.md'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -35,7 +39,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # The branch tip, not `github.sha`. When the sync calls this workflow, the github context
+      # is the caller's — and the caller started *before* the sync committed, so the default
+      # checkout would build the tree as it was and deploy the previous catalogue. Taking the
+      # tip is also right for a plain push: if two land at once, the newer contains the older,
+      # which is the same reasoning the concurrency block above already runs on.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:

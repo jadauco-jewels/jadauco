@@ -32,6 +32,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
+    outputs:
+      # Whether this run actually committed anything, so the deploy below can be skipped
+      # when nothing changed. A publish over an unchanged catalogue should cost nothing.
+      committed: ${{ steps.sync.outputs.changed != '0' && steps.sync.outputs.pull_request != 'true' }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -89,3 +94,21 @@ jobs:
           gh pr create --title "Sync catalogue: ${SKUS}" \
                        --body "Generated from the Google Sheet. See the run summary for the full report." \
                        --base "${GITHUB_REF_NAME}"
+
+  # The last link in sheet → sync → commit → deploy → live.
+  #
+  # This exists because the commit above cannot start the deploy on its own: GitHub does not
+  # trigger workflows from events created with the default GITHUB_TOKEN, so the push landed and
+  # nothing followed it. Calling the deploy directly is a job dependency rather than an event,
+  # which sidesteps that rule without a personal access token stored as a secret.
+  #
+  # Skipped when the sync changed nothing, and when it opened a pull request instead — an
+  # unmerged branch is not what should be going live.
+  deploy:
+    needs: sync
+    if: ${{ !inputs.dry_run && needs.sync.outputs.committed == 'true' }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
