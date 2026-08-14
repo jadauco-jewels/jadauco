@@ -139,9 +139,22 @@ is not in Drive, a Drive image that no row references, and a filename claimed by
 
 **Acceptance criteria**
 - Given `JD-NK-014` exists in `src/content/products/` but has no row in the sheet
-- When the sync runs
+- When the sync runs and `orphans` is `stop`
 - Then it fails with `JD-NK-014 is in the repo but not in the sheet. To delist it, set status to archived. To remove it permanently, delete the folder in git.`
 - And nothing is written
+
+**Amended 14 Aug 2026 — `orphans` is now a setting, and the catalogue runs on `delete`.**
+The client's position, and it is a fair one: the sheet is the source of truth, its own version
+history is the undo, and a build should be exactly what the sheet says today. What that argument
+misses is that sheet history restores *rows*, not *rankings* — a URL Google has dropped does not
+come back where it was. That cost is near zero for a catalogue three days old and nothing to do
+with the sheet by the time it has been indexed for a year, so it is `catalogue.config.json` →
+`orphans`, not a decision made once in code.
+- Given the same, and `orphans` is `delete`
+- Then the product's folder is removed, its lock entry and image entries go with it, and the
+  report names it, its dead URL and the way back — a deletion is never silent
+- And `orphans: "stop"` remains the schema default, so the safe behaviour is what a new
+  deployment gets
 
 ---
 

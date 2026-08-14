@@ -14,5 +14,6 @@
   "requireAltText": false,
   "minDescriptionWords": 40,
   "pullRequest": false,
+  "orphans": "delete",
   "skuPattern": "^JD-[A-Z]{2}-\\d{3,}$"
 }

@@ -16,6 +16,7 @@ import { validate, slugify, loadCategories } from './schema.mjs';
 import { formatIssues, summariseFailure } from './errors.mjs';
 import { reconcile, generateAlt, withoutSyncedAt } from './reconcile.mjs';
 import { renderProduct, stage } from './write.mjs';
+import { buildReport } from './report.mjs';
 import { SyncError } from './config.mjs';
 import { localImageName } from './images.mjs';
 
@@ -26,6 +27,9 @@ const CONFIG = {
   minDescriptionWords: 40,
   requireAltText: false,
   image: { maxEdge: 1600, quality: 82, format: 'jpeg' },
+  // The schema's default, not the repo's current setting — a fixture that tracked
+  // catalogue.config.json would make these tests change meaning when that file is edited.
+  orphans: 'stop',
 };
 
 const CATEGORIES = {
@@ -261,6 +265,54 @@ test('S-8 · a product in the repo with no sheet row stops the run', () => {
       return true;
     },
   );
+});
+
+test('S-8 · orphans: "delete" removes the folder instead of stopping', () => {
+  const repoProducts = new Map([
+    ['JD-NK-014', { sku: 'JD-NK-014', slug: 'gone', dir: '/x/gone', files: [], source: '' }],
+  ]);
+
+  const plan = reconcile({
+    products: [],
+    repoProducts,
+    driveFiles: DRIVE,
+    lock: { products: {}, images: {} },
+    config: { ...CONFIG, orphans: 'delete' },
+    provider: 'apiKey',
+  });
+
+  assert.deepEqual(plan.pruneDirs, [{ sku: 'JD-NK-014', slug: 'gone', dir: '/x/gone' }]);
+});
+
+test('S-8 · a deleted product is named in the report, never removed in silence', () => {
+  const report = buildReport({
+    result: {
+      changedProducts: [],
+      unchangedProducts: [],
+      added: [],
+      archived: [],
+      drafts: [],
+      downloaded: 0,
+      downloadedBytes: 0,
+      deleted: 1,
+      overrides: [],
+      slugFrozen: [],
+      warnings: [],
+      removedProducts: [{ sku: 'JD-NK-014', slug: 'gone', dir: '/x/gone' }],
+    },
+    config: CONFIG,
+    provider: 'apiKey',
+    dryRun: false,
+    startedAt: new Date('2026-08-14T10:00:00Z'),
+    finishedAt: new Date('2026-08-14T10:00:05Z'),
+  });
+
+  assert.match(report, /1 product DELETED/);
+  assert.match(report, /JD-NK-014/);
+  assert.match(report, /\/products\/gone\/ will 404/);
+  // The way back has to be in the message itself — nobody reads the docs at the moment a
+  // page they wanted disappears.
+  assert.match(report, /Version history/);
 });
 
 // ── S-11 and §5.1.2: change detection and frozen slugs ──────────────────────────────────────

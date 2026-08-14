@@ -78,11 +78,11 @@ export function reconcile({ products, repoProducts, driveFiles, lock, config, pr
 
   const sheetSkus = new Set(products.map((p) => p.sku));
 
-  // ── S-8: a product in the repo with no row in the sheet stops the run ──
-  // A vanished row is treated as a mis-click, never as an instruction to delete a page that
-  // Google has already indexed.
+  // ── S-8: a product in the repo with no row in the sheet ──
+  // Which of the two readings of a vanished row is right — "a mis-click" or "I deleted it" —
+  // depends on how much the page is worth, so `config.orphans` decides rather than this file.
   const orphans = [...repoProducts.values()].filter((r) => !sheetSkus.has(r.sku));
-  if (orphans.length) {
+  if (orphans.length && config.orphans === 'stop') {
     const lines = orphans.map(
       (o) =>
         `  · ${o.sku} is in the repo (src/content/products/${o.slug}/) but not in the sheet.`,
@@ -97,6 +97,16 @@ export function reconcile({ products, repoProducts, driveFiles, lock, config, pr
           'A row deleted by accident should be put back.',
       },
     );
+  }
+
+  // `orphans: "delete"` — the sheet is the whole truth, so the folder goes with the row. The
+  // page 404s from the next deploy, and the only way back is the sheet's version history plus
+  // git, which is the trade the setting exists to make. Every one is named in the report: a
+  // deletion nobody meant is bad enough without also being silent.
+  if (orphans.length) {
+    for (const orphan of orphans) {
+      plan.pruneDirs.push({ sku: orphan.sku, slug: orphan.slug, dir: orphan.dir });
+    }
   }
 
   for (const product of products) {

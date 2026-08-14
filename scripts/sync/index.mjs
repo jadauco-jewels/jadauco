@@ -171,6 +171,16 @@ export async function run({ dryRun = false, verbose = false } = {}) {
     };
   }
 
+  // A deleted product takes its lock entry with it. Leaving the frozen slug behind would mean
+  // that re-typing the same product code months later silently resurrects the old URL and the
+  // old first-synced date, which is the opposite of what "the sheet is the truth" should mean.
+  for (const removed of staged.removedProducts) {
+    delete lock.products[removed.sku];
+    for (const key of Object.keys(lock.images)) {
+      if (key.startsWith(`${removed.slug}/`)) delete lock.images[key];
+    }
+  }
+
   let flushed = { written: 0, deleted: 0 };
   if (!dryRun) {
     flushed = await flush(staged);
@@ -207,7 +217,12 @@ export async function run({ dryRun = false, verbose = false } = {}) {
   // rather than saying "sync" for the hundredth time.
   await emitOutputs({
     changed: String(changed),
-    skus: staged.changedProducts.map((p) => p.sku).join(', '),
+    // Removed products are named too — a commit that deletes two pages should say so in its
+    // subject line, not read as an ordinary sync.
+    skus: [
+      ...staged.changedProducts.map((p) => p.sku),
+      ...staged.removedProducts.map((r) => `−${r.sku}`),
+    ].join(', '),
     pull_request: String(config.pullRequest),
   });
 

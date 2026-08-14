@@ -157,10 +157,17 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
     }
   }
 
+  // ── remove products whose row has gone, when config.orphans says to (S-8) ──
+  // The whole folder, `copy.md` included. S-10 protects hand-written copy from being
+  // overwritten by generated text, which is a different thing from keeping the copy of a
+  // product that no longer exists — that would leave an orphan file no page ever reads.
+  const removedProducts = plan.pruneDirs ?? [];
+  for (const removed of removedProducts) deletions.push(removed.dir);
+
   // A renamed product keeps its frozen slug, so its folder never moves — but a product whose
   // slug was overridden by hand leaves its old folder behind, and that is the client's call to
   // make in git, not ours to silently delete.
-  return { files, deletions, overrides, changedProducts, unchangedProducts };
+  return { files, deletions, overrides, changedProducts, unchangedProducts, removedProducts };
 }
 
 /** Flush the staged set. Called once, after everything else has succeeded. */
@@ -169,7 +176,9 @@ export async function flush({ files, deletions }) {
   for (const dir of dirs) await mkdir(dir, { recursive: true });
 
   for (const [path, contents] of files) await writeFile(path, contents);
-  for (const path of deletions) await rm(path, { force: true });
+  // `recursive` because a deletion is either a single stale image or a whole product folder
+  // whose row has gone; `force` so a file already removed by hand is not an error.
+  for (const path of deletions) await rm(path, { force: true, recursive: true });
 
   return { written: files.size, deleted: deletions.length };
 }

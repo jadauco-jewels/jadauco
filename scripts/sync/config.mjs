@@ -62,6 +62,22 @@ const ConfigSchema = z.object({
   minDescriptionWords: z.number().int().min(0).max(500).default(40),
   pullRequest: z.boolean().default(false),
 
+  /**
+   * What to do with a product that is in the repo but no longer in the sheet — S-8.
+   *
+   * `stop` treats a vanished row as a mis-click and refuses to run, because the page it would
+   * delete may be one Google has indexed and a sheet's version history restores rows, not
+   * rankings. `delete` treats the sheet as the whole truth: the folder goes, the page goes,
+   * and the build is exactly what the sheet says today.
+   *
+   * `delete` is right for a young catalogue, where nothing is indexed and being stopped by a
+   * safety net costs more than the thing it protects. It gets more expensive with every month
+   * the site is in the index, so it is a setting rather than a decision made once in code.
+   */
+  orphans: z
+    .enum(['stop', 'delete'], { error: 'orphans must be "stop" or "delete"' })
+    .default('stop'),
+
   skuPattern: z
     .string()
     .default('^JD-[A-Z]{2}-\\d{3,}$')

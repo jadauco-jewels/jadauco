@@ -314,7 +314,11 @@ const INSTRUCTIONS = [
   BLANK,
 
   TITLE('NEVER DO THESE'),
-  NOTE('· Never change a Product Code once it has published.'),
+  NOTE('· Never change a Product Code once it has published. The code IS the product — changing it'),
+  NOTE('  does not rename anything. It deletes the old product and its web address, and creates a'),
+  NOTE('  new one. To move a piece to another category, delete its row and add a new one.'),
+  NOTE('· Deleting a row deletes the product and its page. The sheet keeps its own version history'),
+  NOTE('  (File → Version history), so putting the row back and publishing again restores it.'),
   NOTE('· Never rename a column header — the website finds columns by their exact text.'),
   NOTE('· Never move the headers off row 1.'),
   NOTE('· Never type in Category (auto) — it is worked out for you.'),

@@ -38,6 +38,7 @@ export function buildReport({
     overrides,
     slugFrozen,
     warnings,
+    removedProducts = [],
   } = result;
 
   const when = new Intl.DateTimeFormat('en-GB', {
@@ -67,6 +68,15 @@ export function buildReport({
   if (archived.length) {
     lines.push(countLine(archived.length, `${noun(archived.length, 'product')} archived`, skus(archived)));
   }
+  if (removedProducts.length) {
+    lines.push(
+      countLine(
+        removedProducts.length,
+        `${noun(removedProducts.length, 'product')} DELETED`,
+        skus(removedProducts),
+      ),
+    );
+  }
   if (downloaded) {
     lines.push(
       countLine(downloaded, `${noun(downloaded, 'image')} downloaded`, `${mb(downloadedBytes)} after processing`),
@@ -88,6 +98,19 @@ export function buildReport({
   }
 
   const notes = [];
+
+  // Loudest note there is, and first: a page that was live is now gone. `orphans: "delete"`
+  // makes this the client's own edit taking effect rather than a fault, but it is still the
+  // one outcome nobody should discover by noticing a 404 later.
+  for (const { sku, slug } of removedProducts) {
+    notes.push(
+      `${sku} — DELETED. Its row is no longer in the sheet, so src/content/products/${slug}/ ` +
+        `was removed and /products/${slug}/ will 404 from the next deploy. If that was not ` +
+        "meant: restore the row (the sheet's File → Version history has it) and re-run — the " +
+        'photos come back from Drive. Set "orphans" to "stop" in catalogue.config.json to make ' +
+        'the sync refuse this instead.',
+    );
+  }
 
   // Every product relying on generated alt text, because it is the one quality gap the client
   // can close themselves and will never notice unless told (§5.2).
