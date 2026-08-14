@@ -5,8 +5,8 @@
 sku: JD-BG-001
 title: CZ Stone Bangle Set of Four
 category: bangles
-price: 1450
-listPrice: 2300
+price: 899
+listPrice: 1199
 specs:
   baseMetal: Brass
   finish: Gold polish
@@ -25,7 +25,7 @@ publishDate: 2026-08-13
 seo:
   title: CZ Stone Bangles, Set of Four in Gold Polish
   description: Four gold polished bangles with cubic zirconia edging, sized 2.6. Brass base, anti-tarnish coat, 95g. Dispatched in 2-5 days.
-syncedAt: 2026-08-14T12:32:28Z
+syncedAt: 2026-08-14T15:27:34Z
 ---
 
 A set of four gold polished bangles with cubic zirconia stone work running along the outer edge. Sold as a set and sized 2.6, they stack neatly with plain kadas or can be worn on their own. The brass base is coated to resist tarnishing through regular wear.
