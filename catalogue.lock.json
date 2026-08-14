@@ -9,27 +9,57 @@
       "slug": "temple-lakshmi-jhumkas",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
     },
+    "JD-ER-002": {
+      "slug": "temple-green-emerald-polki-earrings",
+      "firstSyncedAt": "2026-08-14T16:49:32Z"
+    },
+    "JD-ER-003": {
+      "slug": "green-beaded-temple-earrings",
+      "firstSyncedAt": "2026-08-14T16:49:32Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
+    },
+    "JD-RG-001": {
+      "slug": "green-emerald-cz-statement-ring",
+      "firstSyncedAt": "2026-08-14T16:49:32Z"
     }
   },
   "images": {
     "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
-      "driveId": "1Tjk4akYYrfDjm_JfXWfQ4mp9BXT_83D3",
-      "driveName": "5CEC5331-B97E-494C-87DF-5B5AEDC3AF6F Copy(2).JPG",
+      "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
+      "driveName": "affdfdf.png",
       "driveMd5": null,
-      "outputSha": "ef2818ac9106ca5232cced7e3b81207c884912621cc44adf8248d7b9f50030f5",
-      "bytes": 25079,
-      "width": 543,
-      "height": 438
+      "outputSha": "c0cd77e98a1df69b3a6ca630c96b9c399eb6afcc4adacb770c1d9bd3c96810c6",
+      "bytes": 114768,
+      "width": 1394,
+      "height": 1128
+    },
+    "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
+      "driveId": "1mBC0x0-KboVNPI263fEj12lDLqNlXC_9",
+      "driveName": "JD-ER-002.png",
+      "driveMd5": null,
+      "outputSha": "8d4402e0123767fec71c96dce6b94ee4a29ad8b46a3a2f0bc041312879ffbc18",
+      "bytes": 173375,
+      "width": 1449,
+      "height": 1086
+    },
+    "green-emerald-cz-statement-ring/green-emerald-cz-statement-ring-1.jpg": {
+      "driveId": "1DWwN5x6ChUKr-utc4ROQfU4lbVV7HScl",
+      "driveName": "IMG_5799.PNG",
+      "driveMd5": null,
+      "outputSha": "754a8f4f1ef5ab02a722b6a60661e561f8377b3c36237bb80518352d71be3f66",
+      "bytes": 103016,
+      "width": 896,
+      "height": 1195
     },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
-      "driveId": "1sfW3cuD735Ve4vAM1TizThX7RnAwOOrv",
-      "driveName": "DD5AE623-EDBC-4032-9B60-ED4E34799653.png",
+      "driveId": "18jR-PF0iYL7AJ_ghGP36U2N_tpziBQAE",
+      "driveName": "e4007da6-7568-46c3-9f8e-207738d8625b.jpg",
       "driveMd5": null,
-      "outputSha": "939d320d540c64d0ced5e89776965a4e618fd1953cf6cd5c64b591bb6965cfb8",
-      "bytes": 157397,
+      "outputSha": "a9f0bb42bf4085142b28a240947e0a7d707e0291b68187eac2135e0479e2c11f",
+      "bytes": 132488,
       "width": 1086,
       "height": 1448
     },
@@ -41,6 +71,15 @@
       "bytes": 88215,
       "width": 1086,
       "height": 1448
+    },
+    "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
+      "driveId": "13lxG3J98j7FjtIW6vjrCZIFlIi5ef4jm",
+      "driveName": "IMG_5798.PNG",
+      "driveMd5": null,
+      "outputSha": "e36fb32dfc5db57bf84f18587179ab712563fcd5cc5f7ede7170c640d046644a",
+      "bytes": 129784,
+      "width": 896,
+      "height": 1195
     },
     "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
       "driveId": "1E1AvmZBPaL1oQdkKzDhRNjdTtobZaNnT",
