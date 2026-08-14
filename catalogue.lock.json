@@ -27,6 +27,15 @@
     }
   },
   "images": {
+    "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
+      "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
+      "driveName": "affdfdf.png",
+      "driveMd5": null,
+      "outputSha": "c0cd77e98a1df69b3a6ca630c96b9c399eb6afcc4adacb770c1d9bd3c96810c6",
+      "bytes": 114768,
+      "width": 1394,
+      "height": 1128
+    },
     "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
       "driveId": "1mBC0x0-KboVNPI263fEj12lDLqNlXC_9",
       "driveName": "JD-ER-002.png",
@@ -71,6 +80,15 @@
       "bytes": 129784,
       "width": 896,
       "height": 1195
+    },
+    "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
+      "driveId": "1K5Yr-O8pWo7OmgSCzzIYcz0W9TF1pl0n",
+      "driveName": "76B37786-C0C2-471E-B8FF-16CB693576CB.png",
+      "driveMd5": null,
+      "outputSha": "dd4271b8137995b19e69a8178cb22adfbcf3eea5b5f6e3cd99193a8f6f06238e",
+      "bytes": 162266,
+      "width": 1402,
+      "height": 1122
     }
   }
 }
