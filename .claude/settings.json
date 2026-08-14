@@ -77,7 +77,12 @@
       "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/12jVsctHk4A9O_Hsf8aZxS_wvrAkQGTKuA4anoth9jzg/htmlview\" -o /tmp/v.html)",
       "Bash(curl -s https://api.github.com/users/cloudalgo)",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('account type :', d.get\\('type'\\)\\); print\\('name :', d.get\\('name'\\)\\); print\\('login :', d.get\\('login'\\)\\)\")",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=430,900 --virtual-time-budget=9000 --dump-dom \"http://127.0.0.1:4402/measure.html\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(rm -f /Users/vikash/Documents/jadauco/dist/m1.html /Users/vikash/Documents/jadauco/dist/m2.html /Users/vikash/Documents/jadauco/dist/m3.html /Users/vikash/Documents/jadauco/dist/measure.html)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=430,1000 --screenshot=fixed.png --virtual-time-budget=8000 \"http://127.0.0.1:4402/products/\")",
+      "Bash(git commit -q -m 'Stop portrait photos being clipped in square frames *)"
     ],
     "additionalDirectories": [
       "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts",
