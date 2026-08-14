@@ -44,8 +44,12 @@ labels:
   allJewellery: All jewellery
   messagePreview: The message that opens
   hours: Monday to Saturday, 10am to 8pm IST.
+# Hand-picked, and hand-written hrefs — the one category list that does not go through
+# products.ts `categories()`. Hiding a category does not remove it from here, so a `hidden: true`
+# in src/content/categories/ means checking this list too.
 nav:
   - { label: Necklaces, href: /collections/necklaces/ }
+  - { label: Pendants, href: /collections/pendants/ }
   - { label: Earrings, href: /collections/earrings/ }
   - { label: Bangles, href: /collections/bangles/ }
   - { label: All jewellery, href: /products/ }

@@ -217,13 +217,18 @@ var DRIVE_FOLDER_ID = '1LXjqKtybjcGfG7vHhqdJv2ORRwi2ugIl';
 /** The tab the products live on. */
 var CATALOGUE_TAB = 'catalogue';
 
+/**
+ * Must match the non-hidden files in src/content/categories/. TK maang tikka and PY payal are
+ * hidden while they are not stocked, so the check rejects them here too — the alternative is a
+ * row that passes in the sheet and fails the publish, which is the one thing this file exists
+ * to prevent.
+ */
 var CATEGORY_CODES = {
   NK: 'Necklaces',
   ER: 'Earrings',
   BG: 'Bangles',
   RG: 'Rings',
-  TK: 'Maang tikka',
-  PY: 'Payal',
+  PD: 'Pendants',
 };
 
 var MIN_DESCRIPTION_WORDS = 40;

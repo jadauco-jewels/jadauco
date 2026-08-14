@@ -87,9 +87,15 @@ const categories = defineCollection({
         .string()
         .regex(/^[A-Z]{2}$/, 'Category code must be exactly two capital letters, e.g. NK'),
       order: z.number().int().default(99),
+      // A category we are not selling yet, or not selling any more. It keeps its file — the
+      // copy, the SEO and the code are all written and worth keeping — but it leaves the nav,
+      // the homepage, the footer and the sitemap, and its collection page is not built.
+      // The sync refuses its code too (schema.mjs `loadCategories`), so a JD-TK-001 typed into
+      // the sheet is rejected with a message rather than published into a page that 404s.
+      hidden: z.boolean().default(false),
       // Which line-art stand-in represents this category, and stands in for any
       // product still waiting on a photograph. Ids live in Icons.astro.
-      art: z.enum(['necklace', 'haar', 'jhumka', 'bangle', 'tikka', 'ring', 'payal']),
+      art: z.enum(['necklace', 'haar', 'pendant', 'jhumka', 'bangle', 'tikka', 'ring', 'payal']),
       // One line under the category name on the homepage. Not the body copy.
       blurb: z.string().min(20).max(140),
       banner: image().optional(),

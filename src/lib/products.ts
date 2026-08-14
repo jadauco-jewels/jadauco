@@ -117,9 +117,15 @@ export async function related(product: Product, limit = 3): Promise<Product[]> {
   return scored.slice(0, limit).map((s) => s.product);
 }
 
-/** Categories in their configured order. */
+/**
+ * Categories in their configured order, hidden ones excluded.
+ *
+ * The same chokepoint argument as `listed()`: nav, footer, homepage tiles, the all-jewellery
+ * filter, the 404 page and `getStaticPaths` for /collections/ all call this and nothing else,
+ * so hiding a category is one line of frontmatter rather than an audit of six templates.
+ */
 export async function categories(): Promise<Category[]> {
-  const all = await getCollection('categories');
+  const all = await getCollection('categories', ({ data }) => !data.hidden);
   return all.sort((a, b) => a.data.order - b.data.order);
 }
 

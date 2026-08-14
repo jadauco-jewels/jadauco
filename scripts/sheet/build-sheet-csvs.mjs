@@ -64,13 +64,16 @@ const col = (name) => {
   return s;
 };
 
+// Must match the non-hidden files in src/content/categories/ — those own the mapping (§5.1.1),
+// and this is the copy the spreadsheet shows the client. TK maang tikka and PY payal are
+// hidden while they are not stocked, so they are deliberately absent: typing JD-TK-001 should
+// read "⚠ unknown code" in the sheet, exactly as the sync will reject it.
 const CATEGORY_CODES = [
   ['NK', 'Necklaces'],
   ['ER', 'Earrings'],
   ['BG', 'Bangles'],
   ['RG', 'Rings'],
-  ['TK', 'Maang tikka'],
-  ['PY', 'Payal'],
+  ['PD', 'Pendants'],
 ];
 
 const UNKNOWN_CODE = '⚠ unknown code';

@@ -147,7 +147,7 @@ The formula ships in the template. To paste it into a new row by hand:
 
 ```
 =IF(A2="","",SWITCH(MID(A2,4,2),"NK","Necklaces","ER","Earrings","BG","Bangles",
-  "RG","Rings","TK","Maang tikka","PY","Payal","⚠ unknown code"))
+  "RG","Rings","PD","Pendants","⚠ unknown code"))
 ```
 
 ## 5. Flag blank required cells
@@ -183,7 +183,7 @@ Send both to Vikash — they go into `catalogue.config.json`, which is committed
 
 | Column | What goes in it |
 |---|---|
-| **Product Code** | `JD-NK-001`. The two letters in the middle decide the category — `NK` necklaces, `ER` earrings, `BG` bangles, `RG` rings, `TK` maang tikka, `PY` payal. Must be unique; no two products share a code. The `Category (auto)` column next to it tells you which one you picked. |
+| **Product Code** | `JD-NK-001`. The two letters in the middle decide the category — `NK` necklaces, `ER` earrings, `BG` bangles, `RG` rings, `PD` pendants. Must be unique; no two products share a code. The `Category (auto)` column next to it tells you which one you picked. |
 | **Product Name** | What a customer would call it. This becomes the page heading and the web address, so write it properly: *Kundan Bridal Choker Set*, not *choker 3*. |
 | **Images** | The photo filenames from the Drive folder, separated by commas, **in the order they should appear**. The first one is the main photo shown in the grid. They must match Drive exactly, including `.jpg` and capital letters. |
 | **Description** | At least 40 words. This is the single biggest thing that decides whether the page shows up on Google, so write about the piece — the stones, the occasion, how it wears — not just "beautiful necklace". |

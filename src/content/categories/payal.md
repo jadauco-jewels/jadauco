@@ -3,7 +3,9 @@ title: Payal
 code: PY
 art: payal
 blurb: Anklets with ghungroo, sold as a pair, oxidised silver finish.
-order: 6
+order: 7
+# Not stocked at the moment. The copy and the code stay; the category leaves the site.
+hidden: true
 seo:
   title: Payal & Anklets Online — Oxidised Silver Finish with Ghungroo
   description: Imitation payal and anklets in an oxidised silver finish, with ghungroo bells. Sold as a pair, adjustable chain, ships across India.

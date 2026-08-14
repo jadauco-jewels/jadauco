@@ -42,6 +42,12 @@ export function slugify(title) {
 /**
  * Read the category files and their codes. Each category owns its own code (§5.1.1), so this
  * is the only place the code → category mapping comes from.
+ *
+ * A category marked `hidden: true` is skipped entirely, which is what makes hiding one safe:
+ * the site does not build its page, so the sync must not accept its code either. Typing
+ * JD-TK-001 into the sheet then fails validation with "does not match any category" and the
+ * list of codes that do exist — a message the client can act on, rather than a published
+ * product whose category link 404s.
  */
 export async function loadCategories(dir = PATHS.categories) {
   let entries;
@@ -56,8 +62,9 @@ export async function loadCategories(dir = PATHS.categories) {
 
   for (const entry of entries.filter((e) => e.endsWith('.md'))) {
     const name = entry.replace(/\.md$/, '');
-    names.push(name);
     const source = await readFile(`${dir}/${entry}`, 'utf8');
+    if (/^hidden:\s*true\s*$/m.test(source)) continue;
+    names.push(name);
     const code = source.match(/^code:\s*["']?([A-Za-z]{2})["']?\s*$/m)?.[1];
     if (code) byCode.set(code.toUpperCase(), name);
   }

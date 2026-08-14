@@ -48,10 +48,19 @@ const ldImages = await Promise.all(
 // shot in daylight sit in the same gallery and each gets its own frame colour.
 const mats = await Promise.all(data.images.map((image) => matFor(image.src)));
 
+/**
+ * A hidden category has no page — `categories()` drives `getStaticPaths` — so nothing here may
+ * link to one. The sync refuses to publish into a hidden category, but a category can be hidden
+ * *after* its pieces have published, and those pages stay live exactly as S-6 requires. So the
+ * category link is a value that can be absent, and every use of it below is guarded.
+ */
+const categoryHref =
+  category && !category.data.hidden ? `/collections/${data.category.id}/` : null;
+
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: settings.labels.allJewellery, href: '/products/' },
-  { label: category?.data.title ?? 'Jewellery', href: `/collections/${data.category.id}/` },
+  ...(categoryHref ? [{ label: category!.data.title, href: categoryHref }] : []),
   { label: data.title },
 ];
 
@@ -212,8 +221,8 @@ const canEnquire = !data.archived && data.inStock;
               <p>{data.archived ? settings.labels.archivedBody : settings.labels.soldOutBody}</p>
               {
                 data.archived ? (
-                  <a class="jd-btn-outline jd-btn--block" href={`/collections/${data.category.id}/`}>
-                    See {category?.data.title.toLowerCase()}
+                  <a class="jd-btn-outline jd-btn--block" href={categoryHref ?? '/products/'}>
+                    {categoryHref ? `See ${category?.data.title.toLowerCase()}` : settings.labels.allJewellery}
                   </a>
                 ) : (
                   <a class="jd-btn-outline jd-btn--block" href={enquiryLink(settings, { title: data.title, sku: data.sku, url })}>
@@ -246,9 +255,11 @@ const canEnquire = !data.archived && data.inStock;
               <p class="jd-label">{settings.labels.relatedTitle}</p>
               <h2>More from {category?.data.title.toLowerCase()}</h2>
             </div>
-            <a class="more" href={`/collections/${data.category.id}/`}>
-              All {category?.data.title.toLowerCase()} →
-            </a>
+            {categoryHref && (
+              <a class="more" href={categoryHref}>
+                All {category?.data.title.toLowerCase()} →
+              </a>
+            )}
           </div>
           <div class="grid">
             {relatedProducts.map((p) => <ProductCard product={p} />)}

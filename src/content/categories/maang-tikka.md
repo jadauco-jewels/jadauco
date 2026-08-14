@@ -3,7 +3,9 @@ title: Maang tikka
 code: TK
 art: tikka
 blurb: Single and double-chain tikkas with a hair hook that holds without a pin.
-order: 5
+order: 6
+# Not stocked at the moment. The copy and the code stay; the category leaves the site.
+hidden: true
 seo:
   title: Maang Tikka Online — Kundan, Meenakari & Temple Designs
   description: Imitation maang tikkas in gold and antique finishes — single chain, double chain and matha patti styles with a hair hook that holds without pins.

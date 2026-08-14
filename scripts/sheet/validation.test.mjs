@@ -46,6 +46,28 @@ test('the Drive folder id matches catalogue.config.json', () => {
   );
 });
 
+/**
+ * Three copies of the code → category table exist: the category files (which own it), this
+ * `.gs` file, and the `Category (auto)` formula the CSV builder writes. Hiding or adding a
+ * category touches all three, and forgetting one is silent — the sheet would either green-light
+ * a code the publish rejects, or redden one it accepts. So they are checked against the files.
+ */
+test('the category codes match the categories on disk, hidden ones excluded', async () => {
+  const { loadCategories } = await import('../sync/schema.mjs');
+  const { buildCategoryFormula } = await import('./build-sheet-csvs.mjs');
+  const { byCode } = await loadCategories();
+
+  assert.deepEqual(
+    plain(Object.keys(sandbox.CATEGORY_CODES)).sort(),
+    [...byCode.keys()].sort(),
+    'Code.gs would accept or reject a different set of category codes than the sync',
+  );
+
+  const formula = buildCategoryFormula(2);
+  for (const code of byCode.keys()) assert.match(formula, new RegExp(`"${code}"`));
+  assert.doesNotMatch(formula, /"TK"|"PY"/, 'a hidden category must not appear in Category (auto)');
+});
+
 // ── fixtures ────────────────────────────────────────────────────────────────────────────────
 
 const CONFIG = { skuRegex: /^JD-[A-Z]{2}-\d{3,}$/, minDescriptionWords: 40, requireAltText: false };

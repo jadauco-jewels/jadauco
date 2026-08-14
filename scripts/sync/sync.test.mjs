@@ -673,5 +673,15 @@ test('category codes are read from the category files themselves', async () => {
   const categories = await loadCategories();
   assert.equal(categories.byCode.get('NK'), 'necklaces');
   assert.equal(categories.byCode.get('ER'), 'earrings');
+  assert.equal(categories.byCode.get('PD'), 'pendants');
   assert.ok(categories.names.includes('bangles'));
+});
+
+test('a hidden category is not a category the sync will publish into', async () => {
+  const categories = await loadCategories();
+  // The files are still there — hidden, not deleted — so this is about the sync's view of them.
+  assert.equal(categories.byCode.get('TK'), undefined);
+  assert.equal(categories.byCode.get('PY'), undefined);
+  assert.ok(!categories.names.includes('maang-tikka'));
+  assert.ok(!categories.names.includes('payal'));
 });
