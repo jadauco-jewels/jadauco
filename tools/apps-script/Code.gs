@@ -13,7 +13,7 @@
  * approve the permissions it asks for. See doc/sheet/SHEET-SETUP.md.
  */
 
-var REPO = 'cloudalgo/jadauco'; // owner/repo
+var REPO = 'jadauco-jewels/jadauco'; // owner/repo
 var EVENT_TYPE = 'sync-catalogue'; // must match repository_dispatch types in the workflow
 var DEBOUNCE_MINUTES = 10;
 
