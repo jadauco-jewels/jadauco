@@ -8,9 +8,11 @@ brand:
   logo: ./logo.svg
   logoAlt: Jadauco
 contact:
-  # PLACEHOLDERS — PLAN.md open item 2. Swap before go-live.
-  whatsapp: "+919000000000"
-  phone: "+919000000000"
+  # The WhatsApp Business line. Both fields are the same number today; they are separate
+  # because the number a customer calls and the number that receives enquiries do not have
+  # to be, and splitting them later should not mean touching any code.
+  whatsapp: "+919871877991"
+  phone: "+919871877991"
   email: jadauco.jewels@gmail.com
   city: Gurgaon
   state: Haryana

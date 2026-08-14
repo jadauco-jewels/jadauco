@@ -95,7 +95,9 @@
       "Bash(curl -s https://api.github.com/users/vikashconsult)",
       "Bash(curl -s https://api.github.com/repos/jadauco-jewels/jadauco)",
       "Bash(curl -s \"https://api.github.com/repos/jadauco-jewels/jadauco/actions/runs?per_page=12\")",
-      "Bash(git commit -q -m 'Deploy the site when the sync commits, without a stored token *)"
+      "Bash(git commit -q -m 'Deploy the site when the sync commits, without a stored token *)",
+      "Bash(curl -s \"https://api.github.com/repos/jadauco-jewels/jadauco/actions/runs?per_page=4\")",
+      "Bash(grep -oe 'https://wa\\\\.me/[0-9]*?text=[^\\\\\"]\\\\{0,90\\\\}' dist/products/temple-lakshmi-jhumkas/index.html)"
     ],
     "additionalDirectories": [
       "/Users/vikash/Documents/jadauco/tools/post-maker/assets/fonts",
