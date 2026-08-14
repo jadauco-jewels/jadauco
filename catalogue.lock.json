@@ -1,14 +1,6 @@
 {
   "version": 1,
   "products": {
-    "JD-BG-001": {
-      "slug": "cz-stone-bangle-set-of-four",
-      "firstSyncedAt": "2026-08-14T12:32:28Z"
-    },
-    "JD-ER-001": {
-      "slug": "temple-lakshmi-jhumkas",
-      "firstSyncedAt": "2026-08-13T16:26:46Z"
-    },
     "JD-ER-002": {
       "slug": "temple-green-emerald-polki-earrings",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -21,21 +13,20 @@
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
     },
+    "JD-PD-001": {
+      "slug": "cz-stone-bangle-set-of-four",
+      "firstSyncedAt": "2026-08-14T18:24:02Z"
+    },
+    "JD-PD-002": {
+      "slug": "temple-lakshmi-jhumkas",
+      "firstSyncedAt": "2026-08-14T18:24:02Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
     }
   },
   "images": {
-    "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
-      "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
-      "driveName": "affdfdf.png",
-      "driveMd5": null,
-      "outputSha": "c0cd77e98a1df69b3a6ca630c96b9c399eb6afcc4adacb770c1d9bd3c96810c6",
-      "bytes": 114768,
-      "width": 1394,
-      "height": 1128
-    },
     "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
       "driveId": "1mBC0x0-KboVNPI263fEj12lDLqNlXC_9",
       "driveName": "JD-ER-002.png",
@@ -80,15 +71,6 @@
       "bytes": 129784,
       "width": 896,
       "height": 1195
-    },
-    "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
-      "driveId": "1E1AvmZBPaL1oQdkKzDhRNjdTtobZaNnT",
-      "driveName": "76B37786-C0C2-471E-B8FF-16CB693576CB.png",
-      "driveMd5": null,
-      "outputSha": "dd4271b8137995b19e69a8178cb22adfbcf3eea5b5f6e3cd99193a8f6f06238e",
-      "bytes": 162266,
-      "width": 1402,
-      "height": 1122
     }
   }
 }
