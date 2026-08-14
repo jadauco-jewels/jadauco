@@ -19,10 +19,15 @@ images:
     alt: Temple Lakshmi Jhumkas — Antique gold with oxidised detail, Pearl and synthetic ruby
 inStock: true
 featured: true
+hero: true
+sequence: 1
 archived: false
 tags: [temple, jhumka, festive]
 publishDate: 2026-08-13
-syncedAt: 2026-08-13T18:20:44Z
+seo:
+  title: Temple Lakshmi Jhumkas in Antique Gold Finish
+  description: Temple style jhumkas with a Lakshmi motif and pearl drops. Brass, antique gold with oxidised detail, 28g the pair. Dispatched in 2-5 days.
+syncedAt: 2026-08-14T08:15:48Z
 ---
 
 Temple style gold plated jhumkas with a Lakshmi motif and small pearl drops along the rim. Light enough to wear through a full day of festivities, with secure push-back fittings. The oxidised detailing sits beautifully against silk sarees and traditional cotton weaves alike, making these an easy everyday festival piece.
