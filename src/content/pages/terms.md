@@ -16,9 +16,12 @@ and on our [About](/about/) page.
 
 ## What we sell
 
-**Imitation jewellery only.** Every piece is brass with a plated gold or oxidised finish. Nothing
-here is solid gold or silver, and no stone is precious or semi-precious — stones are glass, resin
-or imitation kundan. See our [Disclaimer](/disclaimer/) for the detail.
+**Imitation jewellery only.** Every piece is base metal — usually brass — with a plated gold or
+oxidised finish. Nothing here is solid gold or silver, and no stone is precious or semi-precious;
+stones are glass, resin, cubic zirconia or imitation kundan.
+
+We do not manufacture what we sell and we do not test it. Materials named on a listing are as
+described to us by our supplier. See our [Disclaimer](/disclaimer/) for the detail.
 
 ## How an order is made
 

@@ -21,7 +21,7 @@ polish, and they are in almost every cosmetic.
 - Keep each piece in its own pouch or a lined box compartment. Pieces rubbing against each other
   is the second biggest cause of wear after cosmetics.
 - Add a silica gel sachet to the box — the ones that come in shoe boxes work perfectly. Humidity
-  is what tarnishes brass.
+  is what tarnishes a plated base metal.
 - Never store jewellery in the bathroom, however convenient it is.
 
 ## Cleaning
@@ -50,5 +50,5 @@ finish. The care above is what makes the difference, and it makes a large one.
 
 None of this is a defect. It is what plated jewellery does.
 
-If a piece is important to you and the finish has gone, most local jewellers will re-plate brass
-for a modest fee.
+If a piece is important to you and the finish has gone, most local jewellers will re-plate a
+base-metal piece for a modest fee.

@@ -20,4 +20,5 @@ than the thin wire that comes on cheaper pieces — it sits into the parting and
 evening without a pin, and without pulling at the hair when it comes off.
 
 Chain lengths are adjustable at the hook end, so the pendant can be raised or dropped to sit
-where the parting actually falls. The measurement on each product page is the maximum length.
+where the parting actually falls. Ask us for the maximum length on a piece and we will measure
+it before you order.

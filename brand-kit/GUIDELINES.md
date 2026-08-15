@@ -26,12 +26,15 @@ with a retyped "Jadauco" set in some other font.
 Plain and specific. Name the material, the finish and the price. Say what a
 piece is made of and how to look after it.
 
-Write:      Brass base with a gold finish. Secure push-back posts.
+Write:      Base metal with a gold finish. Push-back posts.
 Don't:      Timeless luxury, crafted to perfection.
 
-Never imply the pieces are solid gold or stone-set, never use the word
-hallmark, never quote a karat figure, and never claim a piece is nickel-free —
-we do not test for it. The brand's honesty about being imitation is the reason the tagline
+We do not manufacture or test what we sell, so never state as fact anything we
+have only been told. Never imply the pieces are solid gold or stone-set, never
+use the word hallmark, never quote a karat figure, never claim a piece is
+nickel-free, and never call a finish anti-tarnish — a plated finish tarnishes,
+which is what the care guide is for. "Usually brass" is honest; "brass" is a
+claim we cannot stand behind on any individual piece. The brand's honesty about being imitation is the reason the tagline
 works.
 
 ## Photography

@@ -17,5 +17,5 @@ The range covers cocktail rings large enough to stand alone against a plain sare
 statement pieces that match the bridal sets in the necklace collection, and slim cubic zirconia
 bands that sit comfortably under everyday wear.
 
-Where a ring is fixed-size rather than adjustable, its page says so plainly in the
-specification table.
+Not every ring is adjustable. Send us the code on WhatsApp and we will tell you which it is, and
+measure the shank for you, before you order.

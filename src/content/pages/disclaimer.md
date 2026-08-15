@@ -10,11 +10,18 @@ We would rather be blunt here than have you disappointed when the parcel opens.
 
 ## It is imitation jewellery
 
-Every piece on this site is **brass**, plated in a gold or oxidised silver finish.
+Every piece on this site is **base metal with a plated finish** — most often brass, plated in a
+gold or oxidised silver colour.
 
 - It is **not solid gold**, not gold-filled, and not silver.
 - It carries **no hallmark**, because there is nothing to hallmark.
 - It has **no resale or investment value**. Buy it to wear, not to keep.
+
+**We do not manufacture these pieces and we do not test them.** We buy finished stock and
+describe it as accurately as we can, but where a listing names a base metal, that is what we
+have been told by our supplier — it is not something we have assayed. Most of what we sell is
+brass. We cannot promise it of any individual piece, so if the exact composition matters to you,
+please treat everything here as an untested base-metal alloy.
 
 ## The stones are not precious
 

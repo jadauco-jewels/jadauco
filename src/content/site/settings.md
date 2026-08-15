@@ -68,7 +68,7 @@ trust:
   # silently became "Under ₹3" until it was quoted.
   - { title: Cash on delivery, detail: "Under ₹3,000" }
 legal:
-  - "**Everything here is imitation jewellery.** Pieces are brass with a plated gold or oxidised finish — not solid gold, not silver, and not set with precious or semi-precious stones. Stones are glass, resin or imitation kundan."
+  - "**Everything here is imitation jewellery.** Pieces are base metal, usually brass, with a plated gold or oxidised finish — not solid gold, not silver, and not set with precious or semi-precious stones. Stones are glass, resin, cubic zirconia or imitation kundan. We do not manufacture or test what we sell; materials are as described to us by our supplier."
   - "Sold as seen, with no guarantee or warranty of any kind beyond the replacement for damage in transit, reported within 24 hours of delivery, set out in [Shipping & returns](/shipping-returns/). Prices exclude shipping, which is quoted separately. We do not accept returns for a change of mind. Plated finishes wear with use; how long yours lasts depends on how it is worn and stored, so we make no promise about it. Colour and size vary a little between screens and between batches. Prices and availability change without notice, and nothing on this site is an offer to sell — an order exists only once we have confirmed it in writing over WhatsApp."
   - "Product names describe a style, not an origin or a maker. Full details in our [Terms & conditions](/terms/), [Disclaimer](/disclaimer/) and [Privacy policy](/privacy/)."
 social:
@@ -77,7 +77,7 @@ seo:
   siteName: Jadauco
   defaultTitle: Jadauco — Imitation Jewellery Online
   titleTemplate: "%s | Jadauco"
-  defaultDescription: Brass jewellery in a gold or oxidised finish. Secure fittings, the price under every piece, and ordering by code on WhatsApp. Ships across India.
+  defaultDescription: Imitation jewellery in a gold or oxidised finish. Honest descriptions, the price under every piece, and ordering by code on WhatsApp. Ships across India.
   twitterHandle: ""
   googleSiteVerification: ""
   analyticsId: ""

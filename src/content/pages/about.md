@@ -13,10 +13,11 @@ worked with for years, check every piece before it is photographed, and list onl
 be happy to wear ourselves. If a batch comes back with a polish we do not like, it does not go
 on the site.
 
-**What "imitation" means here.** Our pieces are brass-based and finished with gold, antique or
-rhodium polish. They are not gold and we will never describe them as gold. What they are is
-well-made, comfortable to wear, and priced so that you can own six sets instead of one — which
-for a wedding season is usually the point.
+**What "imitation" means here.** Our pieces are base metal — usually brass — finished with a
+gold, antique or rhodium-coloured polish. They are not gold and we will never describe them as
+gold. We do not make them ourselves and we do not test them, so we describe the metal as it is
+described to us. What they are is comfortable to wear and priced so that you can own six sets
+instead of one — which for a wedding season is usually the point.
 
 **How buying works.** There is no cart. You find a piece, press the WhatsApp button, and the
 message that opens already carries the product name and its code, so we know exactly what you
