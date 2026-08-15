@@ -320,8 +320,10 @@ p { margin: 0 }
 
 /* ============================================================ trust strip */
 .trust { border-top: 1px solid var(--jd-line); border-bottom: 1px solid var(--jd-line) }
+/* auto-fit rather than a fixed four: the badges come from settings.md, so adding or
+   removing one must not leave a hole in the row. */
 .trust .wrap {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--jd-5);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--jd-5);
   padding-block: var(--jd-5);
 }
 .trust b {

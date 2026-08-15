@@ -26,11 +26,12 @@ with a retyped "Jadauco" set in some other font.
 Plain and specific. Name the material, the finish and the price. Say what a
 piece is made of and how to look after it.
 
-Write:      Brass base with a gold finish. Nickel-free posts.
+Write:      Brass base with a gold finish. Secure push-back posts.
 Don't:      Timeless luxury, crafted to perfection.
 
-Never imply the pieces are solid gold or stone-set, and never use the word
-hallmark. The brand's honesty about being imitation is the reason the tagline
+Never imply the pieces are solid gold or stone-set, never use the word
+hallmark, never quote a karat figure, and never claim a piece is nickel-free —
+we do not test for it. The brand's honesty about being imitation is the reason the tagline
 works.
 
 ## Photography

@@ -11,7 +11,7 @@
 ## Example
 
     Lakshmi temple set.
-    Brass with a gold finish, ruby-red stone at the centre. Nickel-free posts.
+    Brass with a gold finish, ruby-red stone at the centre. Secure push-back posts.
     ₹1,299 for the necklace and studs.
     Wipe it dry and keep it in the pouch — the finish lasts much longer that way.
     Link in bio.

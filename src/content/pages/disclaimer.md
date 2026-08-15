@@ -51,9 +51,10 @@ endorsed by, any jeweller, designer or house whose style a piece may resemble.
 
 ## Skin and allergies
 
-Posts and hooks are nickel-free. The rest of the piece is plated brass, and some people react to
-plated metals regardless. If you have sensitive skin, patch-test before wearing anything for a
-full day. We cannot accept responsibility for a reaction.
+Every piece is plated brass, and some people react to plated metals. We do not test our pieces
+for nickel content and we make no claim about it either way, so if you have sensitive skin or a
+known metal allergy, please patch-test before wearing anything for a full day. We cannot accept
+responsibility for a reaction.
 
 ## Not advice
 

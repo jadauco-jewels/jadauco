@@ -1,7 +1,7 @@
 ---
 title: Terms & conditions
 order: 4
-updated: 2026-08-13
+updated: 2026-08-15
 seo:
   description: The terms on which Jadauco sells imitation jewellery — how an order is formed over WhatsApp, pricing, delivery, and the limits of what we promise.
 ---
@@ -28,7 +28,7 @@ invitation to enquire, **not an offer to sell**.
 An order exists only when:
 
 1. you send us an enquiry, by WhatsApp or phone, quoting the product code; and
-2. we confirm in writing, over WhatsApp, the item, the final price including delivery, and the
+2. we confirm in writing, over WhatsApp, the item, the final price with delivery added, and the
    expected dispatch date.
 
 Until we confirm, nothing is reserved. Stock listed as available may have sold in the meantime,
@@ -40,7 +40,9 @@ Prices are in Indian rupees and include GST where it applies. The price on the s
 we honour on the day you enquire, unless it is obviously wrong — a piece listed at ₹49 that
 should read ₹4,900 is a mistake, not a bargain, and we will correct it rather than fulfil it.
 
-Delivery is quoted separately in the chat, because it depends on where you are.
+**Prices do not include delivery.** Shipping is charged on top of the listed price and quoted
+separately in the chat, because it depends on where you are and what the parcel weighs. You will
+see the total before you pay.
 
 ## Payment
 
@@ -59,10 +61,13 @@ outside our control, though we will chase it with you.
 
 ## Returns
 
-Set out in full on [Shipping & returns](/shipping-returns/). In short: damage in transit is ours
-to fix within 48 hours of delivery; a change of mind is returnable unworn within 48 hours with
-return postage at your cost; earrings are not returnable for hygiene reasons unless they arrive
-damaged or are the wrong item.
+Set out in full on [Shipping & returns](/shipping-returns/). In short: if a piece arrives damaged,
+or is not the piece you ordered, tell us within 24 hours of delivery with photographs and we will
+replace it or refund it at no cost to you. **We do not accept returns for a change of mind**, so
+please ask us anything you need to know before you order.
+
+Nothing in this section affects rights you have under Indian consumer law that cannot lawfully be
+excluded by agreement.
 
 ## What we do not promise
 

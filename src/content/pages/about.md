@@ -21,7 +21,8 @@ for a wedding season is usually the point.
 **How buying works.** There is no cart. You find a piece, press the WhatsApp button, and the
 message that opens already carries the product name and its code, so we know exactly what you
 are asking about. We reply with availability, more photographs if you want them, and the total
-including shipping. Payment is on confirmation.
+with shipping added — the listed price is for the piece, and shipping is charged on top of it.
+Payment is on confirmation.
 
 **Where we ship.** Anywhere in India. See [Shipping & Returns](/shipping-returns/) for
-timelines and what happens if something arrives damaged.
+timelines, shipping charges, and the 24-hour window for reporting a piece that arrives damaged.
