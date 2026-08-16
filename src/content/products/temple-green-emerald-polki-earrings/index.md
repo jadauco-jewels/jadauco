@@ -5,8 +5,7 @@
 sku: JD-ER-002
 title: Green Beaded Temple Earrings
 category: earrings
-price: 799
-listPrice: 999
+price: 999
 specs:
   finish: Antique gold finish with intricate detailing
   stones: [Green beads, pearl-style beads, CZ stones, synthetic ruby]
@@ -24,7 +23,7 @@ publishDate: 2026-08-13
 seo:
   title: Green Beaded Temple Earrings in Antique Gold
   description: Green beaded temple earrings with pearl-style detailing and intricate antique gold work. Perfect for festive and traditional wear. Dispatched in 2-5 days.
-syncedAt: 2026-08-16T04:21:44Z
+syncedAt: 2026-08-16T06:38:41Z
 ---
 
 Temple-style earrings featuring intricate antique gold detailing, pearl-style accents, and a cluster of rich green beads with delicate bead drops. A statement design perfect for festive celebrations, weddings, traditional occasions, ethnic outfits, and special moments that call for timeless elegance and charm.
