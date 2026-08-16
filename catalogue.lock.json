@@ -9,6 +9,22 @@
       "slug": "temple-green-emerald-polki-earrings",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
     },
+    "JD-ER-003": {
+      "slug": "ruby-cz-green-floral-earrings",
+      "firstSyncedAt": "2026-08-16T08:05:17Z"
+    },
+    "JD-ER-004": {
+      "slug": "ruby-cz-magenta-floral-earrings",
+      "firstSyncedAt": "2026-08-16T08:05:17Z"
+    },
+    "JD-ER-005": {
+      "slug": "magenta-beaded-temple-earrings",
+      "firstSyncedAt": "2026-08-16T08:05:17Z"
+    },
+    "JD-ER-006": {
+      "slug": "White-beaded-temple-earrings",
+      "firstSyncedAt": "2026-08-16T08:05:17Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -39,6 +55,15 @@
     }
   },
   "images": {
+    "White-beaded-temple-earrings/White-beaded-temple-earrings-1.jpg": {
+      "driveId": "10Pg7dRZ4Sdz9iLUWxs0JT3CdFTxYhsyq",
+      "driveName": "JD_WHITE.png",
+      "driveMd5": null,
+      "outputSha": "58bfa91f7b5186fed964fc56c55346159e5b9ea38df5815e0e0efcd80a1c223c",
+      "bytes": 225790,
+      "width": 1086,
+      "height": 1448
+    },
     "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
       "driveName": "affdfdf.png",
@@ -75,6 +100,15 @@
       "width": 1150,
       "height": 1206
     },
+    "magenta-beaded-temple-earrings/magenta-beaded-temple-earrings-1.jpg": {
+      "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
+      "driveName": "JD_ER_MAGENTA.png",
+      "driveMd5": null,
+      "outputSha": "299f65e3cd96cccd3ff9a97f0dac5deb7b8edcc19882d0e055e48ed637fae909",
+      "bytes": 289121,
+      "width": 1086,
+      "height": 1448
+    },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
       "driveName": "WhatsApp Image 2026-08-16 at 12.35.03 PM.jpeg",
@@ -102,13 +136,31 @@
       "width": 1024,
       "height": 1280
     },
-    "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
-      "driveId": "1mBC0x0-KboVNPI263fEj12lDLqNlXC_9",
-      "driveName": "JD-ER-002.png",
+    "ruby-cz-green-floral-earrings/ruby-cz-green-floral-earrings-1.jpg": {
+      "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
+      "driveName": "JD-ER-003 GREEN.png",
       "driveMd5": null,
-      "outputSha": "8d4402e0123767fec71c96dce6b94ee4a29ad8b46a3a2f0bc041312879ffbc18",
-      "bytes": 173375,
-      "width": 1449,
+      "outputSha": "743f19e27e957cf67ad224c29dbd521def433b18bd97f31af957720b3f9a2134",
+      "bytes": 152624,
+      "width": 1448,
+      "height": 1086
+    },
+    "ruby-cz-magenta-floral-earrings/ruby-cz-magenta-floral-earrings-1.jpg": {
+      "driveId": "1oIhEm_586hh-t7psyHtCuuFNbeicPRNy",
+      "driveName": "JD-ER-004 Magenta.png",
+      "driveMd5": null,
+      "outputSha": "360ac3ded4f6da9ba71893df59d8f11ca321fcf759a213986c6948a6aa689107",
+      "bytes": 164227,
+      "width": 1448,
+      "height": 1086
+    },
+    "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
+      "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
+      "driveName": "JD_ER.png",
+      "driveMd5": null,
+      "outputSha": "99fdb7ff56ac259e33e68b7e5dfc3e06495babe5507cbc6d17d4ebef88a1f682",
+      "bytes": 227666,
+      "width": 1448,
       "height": 1086
     },
     "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {

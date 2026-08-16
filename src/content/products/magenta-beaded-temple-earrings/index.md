@@ -2,27 +2,27 @@
 # GENERATED FROM THE GOOGLE SHEET — DO NOT EDIT.
 # Any change here is overwritten by the next catalogue sync.
 # To change this product, edit its row in the sheet.
-sku: JD-ER-002
-title: Green Beaded Temple Earrings
+sku: JD-ER-005
+title: Magenta Beaded Temple Earrings
 category: earrings
 price: 999
 specs:
   finish: Antique gold finish with intricate detailing
-  stones: [Green beads, pearl-style beads, CZ stones, synthetic ruby]
+  stones: [Magenta beads, pearl-style beads, CZ stones, synthetic ruby]
   setIncludes: 1 pair earrings
   earringsIncluded: true
 images:
-  - src: ./temple-green-emerald-polki-earrings-1.jpg
-    alt: Green Beaded Temple Earrings — Antique gold finish with intricate detailing, Green beads and pearl-style beads and CZ stones and synthetic ruby
+  - src: ./magenta-beaded-temple-earrings-1.jpg
+    alt: Magenta Beaded Temple Earrings — Antique gold finish with intricate detailing, Magenta beads and pearl-style beads and CZ stones and synthetic ruby
 inStock: true
 featured: false
-sequence: 6
+sequence: 12
 archived: false
 tags: [temple, earrings, green, beaded, festive, traditional]
-publishDate: 2026-08-13
+publishDate: 2026-08-16
 seo:
-  title: Green Beaded Temple Earrings in Antique Gold
-  description: Green beaded temple earrings with pearl-style detailing and intricate antique gold work. Perfect for festive and traditional wear. Dispatched in 2-5 days.
+  title: Magenta Beaded Temple Earrings in Antique Gold
+  description: Magenta beaded temple earrings with pearl-style detailing and intricate antique gold work. Perfect for festive and traditional wear. Dispatched in 2-5 days.
 syncedAt: 2026-08-16T08:05:17Z
 ---
 
