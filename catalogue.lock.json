@@ -25,6 +25,22 @@
       "slug": "White-beaded-temple-earrings",
       "firstSyncedAt": "2026-08-16T08:05:17Z"
     },
+    "JD-ER-007": {
+      "slug": "green-enamel-floral-cz-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z"
+    },
+    "JD-ER-008": {
+      "slug": "red-kundan-floral-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z"
+    },
+    "JD-ER-009": {
+      "slug": "Magenta-kundan-cz-statement-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z"
+    },
+    "JD-ER-010": {
+      "slug": "Green-kundan-cz-statement-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -55,6 +71,24 @@
     }
   },
   "images": {
+    "Green-kundan-cz-statement-earrings/Green-kundan-cz-statement-earrings-1.jpg": {
+      "driveId": "1oilxIMAnoPtpJ9NWCBnd_44hU3Y256sZ",
+      "driveName": "JD-ER-Green.png",
+      "driveMd5": null,
+      "outputSha": "0d1489b2189e402c82ba019599a4fbe45c1bb9a90a16e998067a09618bdeff66",
+      "bytes": 247801,
+      "width": 1086,
+      "height": 1448
+    },
+    "Magenta-kundan-cz-statement-earrings/Magenta-kundan-cz-statement-earrings-1.jpg": {
+      "driveId": "1xfiH7Bh_GccELdEWZpFOzabSFroSlifU",
+      "driveName": "JD-ER-009.png",
+      "driveMd5": null,
+      "outputSha": "c839897ae1c54bac31e9b273bd50d8ce01d3b13e69d63c3b86998ed2d38d1976",
+      "bytes": 246402,
+      "width": 1448,
+      "height": 1086
+    },
     "White-beaded-temple-earrings/White-beaded-temple-earrings-1.jpg": {
       "driveId": "10Pg7dRZ4Sdz9iLUWxs0JT3CdFTxYhsyq",
       "driveName": "JD_WHITE.png",
@@ -81,6 +115,15 @@
       "bytes": 103016,
       "width": 896,
       "height": 1195
+    },
+    "green-enamel-floral-cz-earrings/green-enamel-floral-cz-earrings-1.jpg": {
+      "driveId": "1wf5FG4PTcs2V3uCICzTnXOgnhbyPQaXe",
+      "driveName": "JD_ER_007.png",
+      "driveMd5": null,
+      "outputSha": "2abeef2f25253cde39ab1d06bb71cc79285c67695c8ab9b6fbbdfc76f249ea7c",
+      "bytes": 151097,
+      "width": 1448,
+      "height": 1086
     },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
       "driveId": "18jR-PF0iYL7AJ_ghGP36U2N_tpziBQAE",
@@ -136,6 +179,15 @@
       "width": 1024,
       "height": 1280
     },
+    "red-kundan-floral-earrings/red-kundan-floral-earrings-1.jpg": {
+      "driveId": "1IZpyJQcCT8FG2I2_0qhge0rC0YUDG4gh",
+      "driveName": "JD_ER_008.png",
+      "driveMd5": null,
+      "outputSha": "ac051c69bb6805f14337c66b96577c38205f2c348c5a4bec564cce69ec665113",
+      "bytes": 249138,
+      "width": 1448,
+      "height": 1086
+    },
     "ruby-cz-green-floral-earrings/ruby-cz-green-floral-earrings-1.jpg": {
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
       "driveName": "JD-ER-003 GREEN.png",
@@ -155,13 +207,13 @@
       "height": 1086
     },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
-      "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
-      "driveName": "JD_ER.png",
+      "driveId": "13lxG3J98j7FjtIW6vjrCZIFlIi5ef4jm",
+      "driveName": "IMG_5798.PNG",
       "driveMd5": null,
-      "outputSha": "99fdb7ff56ac259e33e68b7e5dfc3e06495babe5507cbc6d17d4ebef88a1f682",
-      "bytes": 227666,
-      "width": 1448,
-      "height": 1086
+      "outputSha": "e36fb32dfc5db57bf84f18587179ab712563fcd5cc5f7ede7170c640d046644a",
+      "bytes": 129784,
+      "width": 896,
+      "height": 1195
     },
     "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
       "driveId": "1K5Yr-O8pWo7OmgSCzzIYcz0W9TF1pl0n",
