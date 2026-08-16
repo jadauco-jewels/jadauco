@@ -12,7 +12,7 @@ specs:
   setIncludes: 1 pair earrings
   earringsIncluded: true
 images:
-  - src: ./Green-kundan-cz-statement-earrings-1.jpg
+  - src: ./green-kundan-cz-statement-earrings-1.jpg
     alt: Green Kundan CZ Statement Earrings — Antique gold finish with intricate detailing, Green synthetic stone and Kundan-style stones and CZ stones
 inStock: true
 featured: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Green Kundan CZ Statement Earrings in Gold Finish
   description: Green Kundan CZ statement earrings with a vibrant centre stone, sparkling accents & gold finish. Ideal for weddings & traditional wear!
-syncedAt: 2026-08-16T12:25:21Z
+syncedAt: 2026-08-16T14:20:07Z
 ---
 
 Exquisite statement floral earrings featuring a vibrant green centre stone surrounded by sparkling Kundan-style stones, clear CZ accents, and rich gold detailing. Bold and elegant, this captivating pair adds a classic traditional charm, making them perfect for grand weddings, festive occasions, and special cultural celebrations.

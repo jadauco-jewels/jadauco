@@ -6,8 +6,11 @@
       "firstSyncedAt": "2026-08-15T11:41:06Z"
     },
     "JD-ER-002": {
-      "slug": "temple-green-emerald-polki-earrings",
-      "firstSyncedAt": "2026-08-14T16:49:32Z"
+      "slug": "green-beaded-temple-earrings",
+      "firstSyncedAt": "2026-08-14T16:49:32Z",
+      "past": [
+        "temple-green-emerald-polki-earrings"
+      ]
     },
     "JD-ER-003": {
       "slug": "ruby-cz-green-floral-earrings",
@@ -22,8 +25,11 @@
       "firstSyncedAt": "2026-08-16T08:05:17Z"
     },
     "JD-ER-006": {
-      "slug": "White-beaded-temple-earrings",
-      "firstSyncedAt": "2026-08-16T08:05:17Z"
+      "slug": "white-beaded-temple-earrings",
+      "firstSyncedAt": "2026-08-16T08:05:17Z",
+      "past": [
+        "White-beaded-temple-earrings"
+      ]
     },
     "JD-ER-007": {
       "slug": "green-enamel-floral-cz-earrings",
@@ -34,12 +40,18 @@
       "firstSyncedAt": "2026-08-16T12:25:21Z"
     },
     "JD-ER-009": {
-      "slug": "Magenta-kundan-cz-statement-earrings",
-      "firstSyncedAt": "2026-08-16T12:25:21Z"
+      "slug": "magenta-kundan-cz-statement-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z",
+      "past": [
+        "Magenta-kundan-cz-statement-earrings"
+      ]
     },
     "JD-ER-010": {
-      "slug": "Green-kundan-cz-statement-earrings",
-      "firstSyncedAt": "2026-08-16T12:25:21Z"
+      "slug": "green-kundan-cz-statement-earrings",
+      "firstSyncedAt": "2026-08-16T12:25:21Z",
+      "past": [
+        "Green-kundan-cz-statement-earrings"
+      ]
     },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
@@ -54,12 +66,18 @@
       "firstSyncedAt": "2026-08-16T07:22:46Z"
     },
     "JD-PD-001": {
-      "slug": "cz-stone-bangle-set-of-four",
-      "firstSyncedAt": "2026-08-14T18:24:02Z"
+      "slug": "cz-stone-pendant-set",
+      "firstSyncedAt": "2026-08-14T18:24:02Z",
+      "past": [
+        "cz-stone-bangle-set-of-four"
+      ]
     },
     "JD-PD-002": {
-      "slug": "temple-lakshmi-jhumkas",
-      "firstSyncedAt": "2026-08-14T18:24:02Z"
+      "slug": "temple-lakshmi-pendant-set",
+      "firstSyncedAt": "2026-08-14T18:24:02Z",
+      "past": [
+        "temple-lakshmi-jhumkas"
+      ]
     },
     "JD-PD-003": {
       "slug": "pearl-red-pendant-set",
@@ -98,21 +116,30 @@
       "width": 1086,
       "height": 1448
     },
-    "cz-stone-bangle-set-of-four/cz-stone-bangle-set-of-four-1.jpg": {
+    "cz-stone-pendant-set/cz-stone-pendant-set-1.jpg": {
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
-      "driveName": "affdfdf.png",
+      "driveName": "JD-PD-001.png",
       "driveMd5": null,
-      "outputSha": "c0cd77e98a1df69b3a6ca630c96b9c399eb6afcc4adacb770c1d9bd3c96810c6",
-      "bytes": 114768,
+      "outputSha": "3c32852af122e0583eb926ca93a5ac1a53bce3020930bbbf50609c22a1e736a9",
+      "bytes": 114765,
       "width": 1394,
       "height": 1128
+    },
+    "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
+      "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
+      "driveName": "JD_ER.png",
+      "driveMd5": null,
+      "outputSha": "1da9c8dcf0dc2b0d6b651a584d294421d10b2c91837c5eb3efbb5b9537879ea5",
+      "bytes": 227685,
+      "width": 1448,
+      "height": 1086
     },
     "green-emerald-cz-statement-ring/green-emerald-cz-statement-ring-1.jpg": {
       "driveId": "1DWwN5x6ChUKr-utc4ROQfU4lbVV7HScl",
       "driveName": "IMG_5799.PNG",
       "driveMd5": null,
-      "outputSha": "754a8f4f1ef5ab02a722b6a60661e561f8377b3c36237bb80518352d71be3f66",
-      "bytes": 103016,
+      "outputSha": "bb37fafcaa0f52a9064ef5ec0a7e180f3d789f32cbe7743c96869ad1ddd08a3a",
+      "bytes": 103020,
       "width": 896,
       "height": 1195
     },
@@ -120,10 +147,19 @@
       "driveId": "1wf5FG4PTcs2V3uCICzTnXOgnhbyPQaXe",
       "driveName": "JD_ER_007.png",
       "driveMd5": null,
-      "outputSha": "2abeef2f25253cde39ab1d06bb71cc79285c67695c8ab9b6fbbdfc76f249ea7c",
+      "outputSha": "a7744f6dd41aa574d613ae05bd4d02eb3ed540b1c99a9f0bd71c31797475fbab",
       "bytes": 151097,
       "width": 1448,
       "height": 1086
+    },
+    "green-kundan-cz-statement-earrings/green-kundan-cz-statement-earrings-1.jpg": {
+      "driveId": "1oilxIMAnoPtpJ9NWCBnd_44hU3Y256sZ",
+      "driveName": "JD-ER-Green.png",
+      "driveMd5": null,
+      "outputSha": "a030ce440f29fb57009e0f4aee6e93dfac64bf1bba86932a8530d3a757f32977",
+      "bytes": 247803,
+      "width": 1086,
+      "height": 1448
     },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
       "driveId": "18jR-PF0iYL7AJ_ghGP36U2N_tpziBQAE",
@@ -147,10 +183,19 @@
       "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
       "driveName": "JD_ER_MAGENTA.png",
       "driveMd5": null,
-      "outputSha": "299f65e3cd96cccd3ff9a97f0dac5deb7b8edcc19882d0e055e48ed637fae909",
-      "bytes": 289121,
+      "outputSha": "c6bf466bab6962a5ee6f0620da554758bc407268aeb4835f9aaacb75fec8a419",
+      "bytes": 289128,
       "width": 1086,
       "height": 1448
+    },
+    "magenta-kundan-cz-statement-earrings/magenta-kundan-cz-statement-earrings-1.jpg": {
+      "driveId": "1xfiH7Bh_GccELdEWZpFOzabSFroSlifU",
+      "driveName": "JD-ER-009.png",
+      "driveMd5": null,
+      "outputSha": "c3608a6e8dfce0f7735c6cc445ae3f18ad4d0f14392f7c81f66446a755a7f817",
+      "bytes": 246403,
+      "width": 1448,
+      "height": 1086
     },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
@@ -165,8 +210,8 @@
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
       "driveName": "JD-NK-003.png",
       "driveMd5": null,
-      "outputSha": "224952c05ebc9df014126a4eef9b8a3416515f5961d17bd0b9ee9ccbdde9919a",
-      "bytes": 314318,
+      "outputSha": "c66baf3e028fd16eda13b37ba3a50ad46f81526c2b884b58988a2f52b032f7ce",
+      "bytes": 314309,
       "width": 1086,
       "height": 1448
     },
@@ -183,8 +228,8 @@
       "driveId": "1IZpyJQcCT8FG2I2_0qhge0rC0YUDG4gh",
       "driveName": "JD_ER_008.png",
       "driveMd5": null,
-      "outputSha": "ac051c69bb6805f14337c66b96577c38205f2c348c5a4bec564cce69ec665113",
-      "bytes": 249138,
+      "outputSha": "c050a072969ca04135e3c6f7e63965adb733bfe92a8cb9e106979eb726d80c23",
+      "bytes": 249170,
       "width": 1448,
       "height": 1086
     },
@@ -192,7 +237,7 @@
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
       "driveName": "JD-ER-003 GREEN.png",
       "driveMd5": null,
-      "outputSha": "743f19e27e957cf67ad224c29dbd521def433b18bd97f31af957720b3f9a2134",
+      "outputSha": "1360571ee98d6b8631351fbd5cedd5aaeb251e7ce6d455866d3e1dcbd9bf2eea",
       "bytes": 152624,
       "width": 1448,
       "height": 1086
@@ -201,21 +246,21 @@
       "driveId": "1oIhEm_586hh-t7psyHtCuuFNbeicPRNy",
       "driveName": "JD-ER-004 Magenta.png",
       "driveMd5": null,
-      "outputSha": "360ac3ded4f6da9ba71893df59d8f11ca321fcf759a213986c6948a6aa689107",
+      "outputSha": "3b85d42b17425dfbf2a588ffcac5c62deba07a8d9c45ce6ac7834b7af47377e0",
       "bytes": 164227,
       "width": 1448,
       "height": 1086
     },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
-      "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
-      "driveName": "JD_ER.png",
+      "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
+      "driveName": "JD-Temple.png",
       "driveMd5": null,
-      "outputSha": "99fdb7ff56ac259e33e68b7e5dfc3e06495babe5507cbc6d17d4ebef88a1f682",
-      "bytes": 227666,
-      "width": 1448,
-      "height": 1086
+      "outputSha": "db4b93b4ad8697001173a2de70d00f61c0bf21d400eb3fd1fdf894e10fa2487d",
+      "bytes": 213224,
+      "width": 1086,
+      "height": 1448
     },
-    "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
+    "temple-lakshmi-pendant-set/temple-lakshmi-pendant-set-1.jpg": {
       "driveId": "1K5Yr-O8pWo7OmgSCzzIYcz0W9TF1pl0n",
       "driveName": "76B37786-C0C2-471E-B8FF-16CB693576CB.png",
       "driveMd5": null,
@@ -223,6 +268,15 @@
       "bytes": 162266,
       "width": 1402,
       "height": 1122
+    },
+    "white-beaded-temple-earrings/white-beaded-temple-earrings-1.jpg": {
+      "driveId": "10Pg7dRZ4Sdz9iLUWxs0JT3CdFTxYhsyq",
+      "driveName": "JD_WHITE.png",
+      "driveMd5": null,
+      "outputSha": "b6975309258989e3b37a2f1c3d752c4a5ade9c1a3449252a0a16c7f90f928a48",
+      "bytes": 225782,
+      "width": 1086,
+      "height": 1448
     }
   }
 }

@@ -17,6 +17,9 @@ export const PATHS = {
   lock: join(REPO_ROOT, 'catalogue.lock.json'),
   products: join(REPO_ROOT, 'src/content/products'),
   categories: join(REPO_ROOT, 'src/content/categories'),
+  // Generated. Read by astro.config.mjs at build time to keep old product addresses alive
+  // after the sheet moves a product to a new one.
+  redirects: join(REPO_ROOT, 'src/redirects.json'),
 };
 
 /** Providers for reading the Drive folder — see PLAN.md §12.4.1. */

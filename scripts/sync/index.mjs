@@ -10,14 +10,15 @@
  */
 
 import process from 'node:process';
-import { loadConfig, SyncError } from './config.mjs';
+import { readFile } from 'node:fs/promises';
+import { loadConfig, SyncError, PATHS } from './config.mjs';
 import { fetchSheet } from './sheet.mjs';
 import { listFolder, downloadFile, readLock, writeLock } from './drive.mjs';
 import { validate, loadCategories } from './schema.mjs';
 import { formatIssues, summariseFailure } from './errors.mjs';
 import { processImage } from './images.mjs';
 import { reconcile, readRepoProducts } from './reconcile.mjs';
-import { stage, flush } from './write.mjs';
+import { stage, flush, buildRedirects } from './write.mjs';
 import { buildReport, buildFailureReport, publish } from './report.mjs';
 
 const DOWNLOAD_CONCURRENCY = 6;
@@ -161,14 +162,33 @@ export async function run({ dryRun = false, verbose = false } = {}) {
     syncedAt,
   });
 
-  // The lock file's memory of a slug is what freezes it (§5.1.2), so it is recorded for every
-  // published product, not only the ones that changed this run.
+  // The lock no longer decides a product's address — the sheet does. What it keeps is the
+  // history: every address this product has had, so `buildRedirects` can keep them all
+  // working. Recorded for every published product, not only the ones that changed this run.
   for (const product of products) {
     if (product.status === 'draft') continue;
+    const previous = lock.products[product.sku];
+    const past = new Set(previous?.past ?? []);
+    if (previous?.slug) past.add(previous.slug);
+    past.delete(product.slug);
+
     lock.products[product.sku] = {
       slug: product.slug,
-      firstSyncedAt: lock.products[product.sku]?.firstSyncedAt ?? syncedAt,
+      firstSyncedAt: previous?.firstSyncedAt ?? syncedAt,
+      ...(past.size ? { past: [...past].sort() } : {}),
     };
+  }
+
+  // A moved product's images are re-keyed under the new slug by `reconcile`, which leaves the
+  // old keys describing files that were just deleted. Left behind they would grow without
+  // limit and, worse, make a later move back to the old address think its photos are already
+  // on disk.
+  for (const rename of staged.renamed) {
+    for (const old of rename.from) {
+      for (const key of Object.keys(lock.images)) {
+        if (key.startsWith(`${old}/`)) delete lock.images[key];
+      }
+    }
   }
 
   // A deleted product takes its lock entry with it. Leaving the frozen slug behind would mean
@@ -180,6 +200,14 @@ export async function run({ dryRun = false, verbose = false } = {}) {
       if (key.startsWith(`${removed.slug}/`)) delete lock.images[key];
     }
   }
+
+  // ── the redirect map ──
+  // Staged alongside everything else so it lands in the same commit as the move it describes;
+  // a deploy that had the new address but not the redirect would 404 the old one. Only staged
+  // when it actually differs, to preserve S-11: an unchanged catalogue writes nothing at all.
+  const redirects = `${JSON.stringify(buildRedirects(lock, products), null, 2)}\n`;
+  const currentRedirects = await readFile(PATHS.redirects, 'utf8').catch(() => null);
+  if (redirects !== currentRedirects) staged.files.set(PATHS.redirects, redirects);
 
   let flushed = { written: 0, deleted: 0 };
   if (!dryRun) {
@@ -193,7 +221,7 @@ export async function run({ dryRun = false, verbose = false } = {}) {
     added: plan.added,
     archived: plan.archived,
     drafts: plan.drafts,
-    slugFrozen: plan.slugFrozen,
+    renamed: staged.renamed,
     downloaded,
     downloadedBytes,
     deleted: dryRun ? staged.deletions.length : flushed.deleted,

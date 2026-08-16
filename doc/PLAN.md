@@ -249,13 +249,34 @@ code that encodes the category, so asking them to state it twice only creates a 
 two to disagree. The `Category` column exists as an override for the rare piece whose code
 says one thing and whose shelf says another.
 
-#### 5.1.2 Slugs are derived once, then frozen
+#### 5.1.2 Slugs follow the sheet, and old addresses redirect
 
-The URL slug comes from `Product Name`, lowercased and hyphenated. Once a product has been
-published, its slug is recorded in `catalogue.lock.json` and **never recomputed** — renaming
-`Kundan Bridal Choker Set` to `Kundan Bridal Choker Set (Maroon)` changes the page's title but
-not its URL, so the SEO value banked against that URL survives (§11.4). Deliberately changing a
-live URL means filling the `Slug` column by hand and accepting the redirect work.
+The URL slug comes from `Slug override` if it is filled and `Product Name` otherwise, in both
+cases lowercased and hyphenated. It is recomputed on **every** sync: renaming
+`Kundan Bridal Choker Set` to `Kundan Bridal Choker Set (Maroon)` moves the page to
+`/products/kundan-bridal-choker-set-maroon/`, and `/products/kundan-bridal-choker-set/`
+redirects there.
+
+This reverses the original design, which derived the slug once and then froze it in
+`catalogue.lock.json` for the life of the product. The freeze was there to protect SEO value
+banked against an address (§11.4), and it did — but it bought that by letting the site
+permanently disagree with the sheet. A pendant stayed at `/products/cz-stone-bangle-set-of-four/`
+through every correction, and the client had no way to fix it from the sheet, which is the one
+promise this system makes. Worse, the freeze keyed the address to the **product code**, so
+renumbering codes in the sheet handed one address to two products; the sync wrote both to the
+same folder and one of them silently ceased to exist. That cost JD-ER-001 two days of being
+invisible on a live site while every run reported success.
+
+The lock still records addresses, but as history rather than authority: `products.<sku>.past`
+lists every address a product has had, and the sync renders them into `src/redirects.json`,
+which `astro.config.mjs` feeds to Astro's `redirects`. So a link already shared on WhatsApp or
+Instagram keeps working without the address ever having to lie about what the product is. A past
+address that has since become some live product's real address is dropped from the map — a page
+must always beat a redirect, or reusing a code would make a product unreachable.
+
+Two consequences worth stating plainly. Renaming a product in the sheet now moves its page, and
+every move is named in the run summary. And `Slug override` is a live control rather than a
+one-shot at creation: it works whenever it is set, which is what makes a wrong address fixable.
 
 ### 5.2 Alt text
 

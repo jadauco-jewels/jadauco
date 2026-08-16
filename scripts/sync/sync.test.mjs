@@ -15,9 +15,13 @@ import { parseTab, PRODUCT_COLUMNS } from './sheet.mjs';
 import { validate, slugify, loadCategories } from './schema.mjs';
 import { formatIssues, summariseFailure } from './errors.mjs';
 import { reconcile, generateAlt, withoutSyncedAt } from './reconcile.mjs';
-import { renderProduct, stage } from './write.mjs';
+import { renderProduct, stage, flush, buildRedirects } from './write.mjs';
 import { buildReport } from './report.mjs';
 import { SyncError } from './config.mjs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { existsSync } from 'node:fs';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { localImageName } from './images.mjs';
 
 // ── fixtures ────────────────────────────────────────────────────────────────────────────────
@@ -366,34 +370,33 @@ test('S-11 · without a checksum every image is fetched, and the run says so', (
   assert.equal(plan.imageJobs[0].needsDownload, true);
 });
 
-test('§5.1.2 · a renamed product keeps its published address', () => {
+// ── the address follows the sheet ───────────────────────────────────────────────────────────
+//
+// These replace three tests that asserted the opposite: that the first published address was
+// frozen for the life of the product. That rule kept a pendant at /cz-stone-bangle-set-of-four/
+// however many times the sheet was corrected, and when a product code was reused it put two
+// products at one address and silently dropped one of them. The address now follows the sheet;
+// the old address is kept alive by a redirect instead.
+
+test('a renamed product moves, and its old address redirects', () => {
   const { products } = check([{ 'Product Name': 'Kundan Bridal Choker Set Maroon' }]);
   const plan = planFor({
     products,
     lock: { products: { 'JD-NK-001': { slug: 'kundan-bridal-choker-set' } }, images: {} },
   });
 
-  assert.equal(products[0].slug, 'kundan-bridal-choker-set');
-  assert.deepEqual(plan.slugFrozen, [
+  assert.equal(products[0].slug, 'kundan-bridal-choker-set-maroon');
+  assert.deepEqual(plan.renames, [
     {
       sku: 'JD-NK-001',
-      slug: 'kundan-bridal-choker-set',
-      derived: 'kundan-bridal-choker-set-maroon',
+      to: 'kundan-bridal-choker-set-maroon',
+      from: ['kundan-bridal-choker-set'],
+      dir: null,
     },
   ]);
 });
 
-test('§5.1.2 · Slug override decides the address of a product that has never published', () => {
-  const { products } = check([{ 'Slug override': 'deliberately-different' }]);
-  const plan = planFor({
-    products,
-    lock: { products: {}, images: {} },
-  });
-  assert.equal(products[0].slug, 'deliberately-different');
-  assert.deepEqual(plan.slugFrozen, []);
-});
-
-test('§5.1.2 · Slug override loses to the lock once published, and says so', () => {
+test('Slug override decides the address, published or not', () => {
   const { products } = check([{ 'Slug override': 'a-better-name' }]);
   const plan = planFor({
     products,
@@ -403,16 +406,62 @@ test('§5.1.2 · Slug override loses to the lock once published, and says so', (
     },
   });
 
-  // The freeze wins — that is what stops a rename throwing away a Google ranking.
-  assert.equal(products[0].slug, 'kundan-bridal-choker-set');
+  assert.equal(products[0].slug, 'a-better-name');
+  assert.deepEqual(plan.renames[0].from, ['kundan-bridal-choker-set']);
+  // Nothing is ignored any more, so nothing has to be explained away.
+  assert.equal(plan.warnings.filter((w) => w.includes('Slug override')).length, 0);
+});
 
-  // But it must not win in silence: before this warning existed, typing in the column did
-  // nothing at all and nothing anywhere said why.
-  const ignored = plan.warnings.filter((w) => w.includes('Slug override'));
-  assert.equal(ignored.length, 1);
-  assert.match(ignored[0], /JD-NK-001/);
-  assert.match(ignored[0], /a-better-name/);
-  assert.match(ignored[0], /kundan-bridal-choker-set/);
+test('a Slug override is normalised like any other slug', () => {
+  // A cell typed by hand is where capitals and spaces get in. Left alone they became a folder
+  // name, and an address whose case a customer had to reproduce exactly.
+  const { products } = check([{ 'Slug override': 'White-Beaded Temple Earrings' }]);
+  planFor({ products, lock: { products: {}, images: {} } });
+  assert.equal(products[0].slug, 'white-beaded-temple-earrings');
+});
+
+test('a product that has moved twice redirects from both of its old addresses', () => {
+  const { products } = check([{ 'Slug override': 'third-name' }]);
+  const plan = planFor({
+    products,
+    lock: {
+      products: { 'JD-NK-001': { slug: 'second-name', past: ['first-name'] } },
+      images: {},
+    },
+  });
+
+  assert.equal(products[0].slug, 'third-name');
+  assert.deepEqual(plan.renames[0].from, ['first-name', 'second-name']);
+});
+
+test('a redirect never shadows a live page', () => {
+  // The case that lost JD-ER-001: a code is reused, so one product's new address is another
+  // product's old one. The page has to win, or the client publishes something nobody can reach.
+  const lock = {
+    products: {
+      'JD-ER-001': { slug: 'temple-earrings', past: [] },
+      'JD-ER-002': { slug: 'beaded-earrings', past: ['temple-earrings'] },
+    },
+    images: {},
+  };
+  const live = [
+    { sku: 'JD-ER-001', slug: 'temple-earrings', status: 'live' },
+    { sku: 'JD-ER-002', slug: 'beaded-earrings', status: 'live' },
+  ];
+
+  assert.deepEqual(buildRedirects(lock, live), {});
+});
+
+test('a redirect is emitted when the old address is genuinely free', () => {
+  const lock = {
+    products: { 'JD-NK-001': { slug: 'new-address', past: ['old-address'] } },
+    images: {},
+  };
+  const live = [{ sku: 'JD-NK-001', slug: 'new-address', status: 'live' }];
+
+  assert.deepEqual(buildRedirects(lock, live), {
+    '/products/old-address/': '/products/new-address/',
+  });
 });
 
 // ── S-6: archived ───────────────────────────────────────────────────────────────────────────
@@ -631,6 +680,59 @@ test('S-2 · a price change rewrites exactly one file and re-downloads nothing',
   assert.equal(staged.files.size, 1);
   assert.ok([...staged.files.keys()][0].endsWith('index.md'));
   assert.match([...staged.files.values()][0], /^price: 2199$/m);
+});
+
+// These two run `flush` against a real directory rather than inspecting the plan, because both
+// bugs they cover were in the *order* the filesystem was touched, which a plan cannot show.
+
+test('a product moving into the address another is vacating survives the flush', async () => {
+  // The regression that lost JD-ER-001 for two days. Codes were renumbered in the sheet, so one
+  // product moved out of /temple-green-emerald-polki-earrings/ in the same run as another moved
+  // in. Flushing writes before deletes threw the new page away seconds after writing it, and
+  // the run still reported success.
+  const root = await mkdtemp(join(tmpdir(), 'jadauco-swap-'));
+  const shared = join(root, 'shared-address');
+  await mkdir(shared, { recursive: true });
+  await writeFile(join(shared, 'index.md'), 'the product that is moving out');
+
+  await flush({
+    files: new Map([[join(shared, 'index.md'), 'the product that is moving in']]),
+    deletions: [shared], // vacated by its previous occupant in this same run
+  });
+
+  assert.equal(await readFile(join(shared, 'index.md'), 'utf8'), 'the product that is moving in');
+  await rm(root, { recursive: true, force: true });
+});
+
+test('a rename that only changes case survives the flush', async () => {
+  // macOS and Windows treat these as one folder under two names, so the delete of the old name
+  // lands on the file just written under the new one. Linux does not, which is exactly why this
+  // reached production: CI was green and the site lost three pages.
+  const root = await mkdtemp(join(tmpdir(), 'jadauco-case-'));
+  const oldDir = join(root, 'White-beaded-temple-earrings');
+  const newDir = join(root, 'white-beaded-temple-earrings');
+  await mkdir(oldDir, { recursive: true });
+  await writeFile(join(oldDir, 'index.md'), 'old');
+
+  await flush({
+    files: new Map([[join(newDir, 'index.md'), 'new']]),
+    deletions: [oldDir],
+  });
+
+  assert.equal(await readFile(join(newDir, 'index.md'), 'utf8'), 'new');
+  await rm(root, { recursive: true, force: true });
+});
+
+test('a vacated folder nobody is moving into is deleted', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jadauco-prune-'));
+  const abandoned = join(root, 'old-address');
+  await mkdir(abandoned, { recursive: true });
+  await writeFile(join(abandoned, 'index.md'), 'gone');
+
+  await flush({ files: new Map(), deletions: [abandoned] });
+
+  assert.equal(existsSync(abandoned), false);
+  await rm(root, { recursive: true, force: true });
 });
 
 // ── §5.2: generated alt text ────────────────────────────────────────────────────────────────

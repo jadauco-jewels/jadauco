@@ -73,7 +73,7 @@ export function reconcile({ products, repoProducts, driveFiles, lock, config, pr
     imageJobs: [],
     pruneDirs: [],
     warnings: [],
-    slugFrozen: [],
+    renames: [],
   };
 
   const sheetSkus = new Set(products.map((p) => p.sku));
@@ -116,32 +116,39 @@ export function reconcile({ products, repoProducts, driveFiles, lock, config, pr
       continue;
     }
 
-    // ── §5.1.2: the slug is frozen on first publish ──
+    // ── the address always follows the sheet ──
+    // This used to freeze on first publish, so the lock decided the URL for the rest of the
+    // product's life. That protected a page's ranking, but it meant the site could disagree
+    // with the sheet indefinitely — a pendant stuck at /cz-stone-bangle-set-of-four/ — and
+    // when a code was reused it silently put two products at one address, and one of them
+    // simply vanished. The sheet is the truth; old addresses are kept working by a redirect
+    // (see `plan.renames` and the map written to src/redirects.json) rather than by refusing
+    // to move.
     const locked = lock.products[product.sku];
-    const derived = product.slugOverride ?? slugify(product.title);
-    const slug = locked?.slug ?? derived;
-
-    if (locked?.slug && locked.slug !== derived && !product.slugOverride) {
-      plan.slugFrozen.push({ sku: product.sku, slug: locked.slug, derived });
-    }
-
-    // Typing into Slug override after a product has published does nothing — the lock wins on
-    // the line above, and that is correct: the freeze is what stops a rename quietly throwing
-    // away a page's Google ranking. What was wrong was doing it in silence. Say no out loud.
-    if (product.slugOverride && locked?.slug && locked.slug !== product.slugOverride) {
-      plan.warnings.push(
-        `${product.sku} has "Slug override" set to "${product.slugOverride}", but its address ` +
-          `was frozen as "${locked.slug}" when it was first published, so the override is ` +
-          'being ignored. Changing a published address loses its Google ranking — if you ' +
-          'genuinely need to move this page, it has to be done deliberately, with a redirect.',
-      );
-    }
+    const slug = product.derivedSlug ?? slugify(product.slugOverride ?? product.title);
 
     product.slug = slug;
     product.archived = product.status === 'archived';
     if (product.archived) plan.archived.push(product);
 
     const existing = repoProducts.get(product.sku);
+
+    // Where this product used to live. The folder on disk is the authority — the lock can be
+    // stale or hand-edited, and it is the folder that has to be cleaned up either way — but
+    // the lock is consulted too, so a slug that moved twice keeps redirecting from all of its
+    // previous addresses rather than only the most recent one.
+    const previous = [...(locked?.past ?? []), locked?.slug, existing?.slug].filter(
+      (s) => s && s !== slug,
+    );
+    if (previous.length) {
+      plan.renames.push({
+        sku: product.sku,
+        to: slug,
+        from: [...new Set(previous)],
+        // Only a folder that genuinely exists can be pruned; a stale lock entry has none.
+        dir: existing && existing.slug !== slug ? existing.dir : null,
+      });
+    }
 
     // ── the images this product should end up with ──
     product.images = product.imageFilenames.map((filename, index) => {

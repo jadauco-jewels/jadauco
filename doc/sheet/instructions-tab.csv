@@ -50,7 +50,7 @@ Tags,Yes — type it,"Comma separated. Drives ""You may also like"" and the filt
 THE LAST FOUR — almost always empty,,,
 Column,Do you fill it in?,"What it means, and what to type",Example
 Category override,Usually leave empty,"Forces a different category. Only needed when a piece that has ALREADY published belongs somewhere else — you cannot fix the Product Code, because a new code reads as a new product and loses the page.",bangles
-Slug override,Usually leave empty,Sets the web address by hand. Only works BEFORE a product first publishes; after that the address is frozen and this is ignored.,kundan-bridal-choker-set
+Slug override,Usually leave empty,"Sets the web address by hand. Leave empty and the product name is used, which is usually what you want. Works at any time; the old address redirects to the new one.",kundan-bridal-choker-set
 SEO Title,Usually leave empty,"Empty gives ""Product Name | Jadauco"", which is fine. Fill it only for a piece you are deliberately trying to rank on Google.",Kundan Bridal Choker Set with Earrings and Maang Tikka
 SEO Description,Usually leave empty,"Empty uses the first 158 characters of your Description, which is fine. Maximum 160 characters if you do fill it.","Handcrafted kundan choker with jhumkas and maang tikka. Brass base, 22k gold polish."
 ,,,

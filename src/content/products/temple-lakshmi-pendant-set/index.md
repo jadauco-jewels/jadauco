@@ -15,7 +15,7 @@ specs:
   earringsIncluded: true
   weight: 28g
 images:
-  - src: ./temple-lakshmi-jhumkas-1.jpg
+  - src: ./temple-lakshmi-pendant-set-1.jpg
     alt: Temple Lakshmi Pendant — Antique gold with oxidised detail, Pearl and synthetic ruby
 inStock: true
 featured: true
@@ -27,7 +27,7 @@ publishDate: 2026-08-13
 seo:
   title: Temple Lakshmi Pendant in Antique Gold Finish
   description: Gold Polished Pendant Set with Matching Earrings, CZ Stones, Brass Base, Anti-Tarnish, 95g. Traditional jewellery for weddings, festive occasions, ethnic wear.
-syncedAt: 2026-08-14T18:26:03Z
+syncedAt: 2026-08-16T14:20:07Z
 ---
 
 Temple style gold plated pendant set with a Lakshmi motif and intricate detailing, paired with matching earrings featuring small red stone accents. Designed for festive and traditional wear, this set complements silk sarees and traditional cotton weaves beautifully, making it an elegant statement piece for celebrations.

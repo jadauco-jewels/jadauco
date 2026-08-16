@@ -24,8 +24,10 @@ const list = (items) => items.map((i) => `"${i}"`).join(', ');
 const countWords = (text) => (text.trim() ? text.trim().split(/\s+/).length : 0);
 
 /**
- * Turn a product name into a URL slug. Only ever used for a product that has never been
- * published — once a slug is in the lock file it is frozen (§5.1.2).
+ * Turn a product name into a URL slug. Run on every product on every sync, and on the
+ * `Slug override` column too — an override is a request for a particular address, not
+ * permission to skip normalising it. Without that, a cell reading "White-Beaded Earrings"
+ * became a folder with capitals in it, and a URL whose case has to be typed exactly.
  */
 export function slugify(title) {
   return title
@@ -390,7 +392,7 @@ export function validate({ rows, imageRows = [], config, categories, driveFiles 
   const seenSlug = new Map();
   for (const p of products) {
     if (p.status === 'draft' || !p.title) continue;
-    const slug = p.slugOverride ?? slugify(p.title);
+    const slug = slugify(p.slugOverride ?? p.title);
     p.derivedSlug = slug;
 
     if (!slug) {

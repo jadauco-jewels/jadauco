@@ -124,8 +124,15 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
     // "Changed" is decided by comparing the rendered text with what is on disk, ignoring
     // syncedAt. That is what makes S-2 exact — 40 price edits touch exactly 40 files — and
     // S-11 possible, where an unchanged catalogue produces no commit at all.
+    //
+    // The slug is compared as well as the text, because a product that has moved needs its
+    // index.md written to the new folder even when nothing inside it changed. Editing only
+    // `Slug override` does exactly that: identical markdown, different address. Without this
+    // the old folder would be pruned as a rename and nothing written in its place.
     const isSame =
-      existing && withoutSyncedAt(existing.source) === withoutSyncedAt(markdown);
+      existing &&
+      existing.slug === product.slug &&
+      withoutSyncedAt(existing.source) === withoutSyncedAt(markdown);
 
     if (isSame) {
       unchangedProducts.push(product);
@@ -146,6 +153,9 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
     if (product.status === 'draft') continue;
     const existing = repoProducts.get(product.sku);
     if (!existing) continue;
+    // A moved product's whole old folder goes below; picking over its contents first would
+    // queue the same paths for deletion twice.
+    if (existing.slug !== product.slug) continue;
 
     const keep = new Set([
       'index.md',
@@ -164,21 +174,80 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
   const removedProducts = plan.pruneDirs ?? [];
   for (const removed of removedProducts) deletions.push(removed.dir);
 
-  // A renamed product keeps its frozen slug, so its folder never moves — but a product whose
-  // slug was overridden by hand leaves its old folder behind, and that is the client's call to
-  // make in git, not ours to silently delete.
-  return { files, deletions, overrides, changedProducts, unchangedProducts, removedProducts };
+  // ── a product that has moved leaves its old folder behind ──
+  // Now that the slug follows the sheet, a rename is routine rather than something the client
+  // has to clean up in git. The old address keeps working through the redirect map, which is a
+  // different mechanism from the folder — the folder has to go, or the site serves the product
+  // at both addresses and the sitemap lists them both.
+  const renamed = (plan.renames ?? []).filter((r) => r.dir);
+  for (const rename of renamed) deletions.push(rename.dir);
+
+  return {
+    files,
+    deletions,
+    overrides,
+    changedProducts,
+    unchangedProducts,
+    removedProducts,
+    renamed,
+  };
 }
 
-/** Flush the staged set. Called once, after everything else has succeeded. */
+/**
+ * Every address a product has previously had, pointing at the one it has now.
+ *
+ * Built from the lock rather than from this run's renames, so a link shared two renames ago
+ * still resolves. Two rules keep it honest:
+ *
+ *  · a past address that is now some *live* product's address is dropped. Reusing a product
+ *    code, or handing a slug from one product to another, would otherwise have the redirect
+ *    shadow a real page — and the page is what the client actually meant to publish.
+ *  · a product that has gone from the sheet takes its redirects with it, because `index.mjs`
+ *    deletes its lock entry. A deleted product 404s; it does not redirect to a stranger.
+ */
+export function buildRedirects(lock, products) {
+  const live = new Set(
+    products.filter((p) => p.status !== 'draft' && p.slug).map((p) => p.slug),
+  );
+
+  const map = {};
+  for (const entry of Object.values(lock.products)) {
+    for (const old of entry.past ?? []) {
+      if (old === entry.slug || live.has(old)) continue;
+      map[`/products/${old}/`] = `/products/${entry.slug}/`;
+    }
+  }
+
+  // Sorted, so the diff shows a genuinely new redirect rather than a reshuffle.
+  return Object.fromEntries(Object.entries(map).sort(([a], [b]) => (a < b ? -1 : 1)));
+}
+
+/**
+ * Flush the staged set. Called once, after everything else has succeeded.
+ *
+ * **Deletions happen first.** Writing first and pruning afterwards looks safer, and was what
+ * this did, but it cannot express a product moving into an address another product is moving
+ * out of — the prune arrives after the write and takes the new page with it. Guarding by
+ * comparing paths is not enough either: on a case-insensitive filesystem `White-beaded/` and
+ * `white-beaded/` are the same folder under two names, so a rename that only changes case
+ * looks like two unrelated paths and deletes the file it just wrote. Removing first makes both
+ * cases fall out for free, because by the time anything is written every folder that had to go
+ * is already gone.
+ *
+ * What this gives up is the guarantee that a crash *inside flush* leaves the tree untouched.
+ * Every other stage still holds that line — nothing reaches here until all 7 stages have
+ * succeeded and every byte is staged in memory — and the tree is a git checkout, so a
+ * half-finished flush is recovered with `git checkout .` rather than from a backup.
+ */
 export async function flush({ files, deletions }) {
+  // `recursive` because a deletion is either a single stale image or a whole product folder
+  // whose row has gone; `force` so a file already removed by hand is not an error.
+  for (const path of deletions) await rm(path, { force: true, recursive: true });
+
   const dirs = new Set([...files.keys()].map((f) => join(f, '..')));
   for (const dir of dirs) await mkdir(dir, { recursive: true });
 
   for (const [path, contents] of files) await writeFile(path, contents);
-  // `recursive` because a deletion is either a single stale image or a whole product folder
-  // whose row has gone; `force` so a file already removed by hand is not an error.
-  for (const path of deletions) await rm(path, { force: true, recursive: true });
 
   return { written: files.size, deleted: deletions.length };
 }

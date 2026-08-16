@@ -12,7 +12,7 @@ specs:
   setIncludes: 1 pair earrings
   earringsIncluded: true
 images:
-  - src: ./Magenta-kundan-cz-statement-earrings-1.jpg
+  - src: ./magenta-kundan-cz-statement-earrings-1.jpg
     alt: Magenta Kundan CZ Statement Earrings — Antique gold finish with intricate detailing, Magenta synthetic stone and Kundan-style stones and CZ stones
 inStock: true
 featured: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Magenta Kundan CZ Statement Earrings in Gold Finish
   description: Magenta Kundan CZ statement earrings with a vibrant centre stone, sparkling accents & gold finish. Ideal for weddings & traditional wear!
-syncedAt: 2026-08-16T12:25:21Z
+syncedAt: 2026-08-16T14:20:07Z
 ---
 
 Exquisite statement floral earrings featuring a vibrant magenta centre stone surrounded by sparkling Kundan-style stones, clear CZ accents, and rich gold detailing. Bold and elegant, this captivating pair adds a classic traditional charm, making them perfect for grand weddings, festive occasions, and special cultural celebrations.

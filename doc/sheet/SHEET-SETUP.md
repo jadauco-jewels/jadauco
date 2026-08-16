@@ -248,16 +248,23 @@ bangle set, you **cannot simply correct the code**: a new code reads as a brand 
 the old page, with whatever Google ranking it had earned, is gone. The override moves it without
 touching its identity. Break glass; not a routine column.
 
-### What `Slug override` can and cannot do
+### What `Slug override` does
 
-A product's web address is made from its name on the day it first publishes, and then **frozen**
-in `catalogue.lock.json`. Renaming the product afterwards changes the page heading and never the
-address — which is the entire point, because a changed address loses its Google ranking.
+A product's web address is made from its **name**, lowercased with hyphens instead of spaces:
+`Kundan Bridal Choker Set` becomes `/products/kundan-bridal-choker-set/`. `Slug override`
+replaces that with an address you choose.
 
-So `Slug override` only decides anything for a product that **has not synced yet**. Set it on a
-published product and the frozen address wins; the sync now tells you it ignored you rather than
-dropping it in silence. In practice: if you care what a piece's address will be, set it in the
-same edit that first creates the row.
+**You almost never need it.** Fill it only when you want the address to say something the name
+does not — a shorter phrase, or a word customers search for that the name does not contain.
+Leave it empty and the name is used, which is right for most products. An override is still
+tidied up before use, so capitals and spaces in the cell do not reach the address.
+
+Either way, the address follows the sheet. Rename a product and its page moves; the old address
+redirects to the new one automatically, so a link you have already sent someone on WhatsApp or
+Instagram keeps working. Every move is listed in the run summary, so you can see it happened.
+
+> Two products cannot share an address. If two names, or two overrides, would produce the same
+> one, the publish stops and names both rows.
 
 ### What the SEO columns actually change
 
@@ -333,8 +340,8 @@ No photos are downloaded, nothing is written, nothing is published. It takes a f
 it answers the question you actually have most of the time — *did I fill that row in correctly?*
 
 It reports the same errors the sync would, plus the things you cannot see by looking at the
-sheet: a photo named in a row that is not in Drive, a photo in Drive that no row uses, a product
-whose address is frozen to something its name no longer matches.
+sheet: a photo named in a row that is not in Drive, a photo in Drive that no row uses, two rows
+that would want the same web address.
 
 Use it after any bulk edit, and always after rearranging columns.
 

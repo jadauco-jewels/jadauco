@@ -36,7 +36,7 @@ export function buildReport({
     downloadedBytes,
     deleted,
     overrides,
-    slugFrozen,
+    renamed = [],
     warnings,
     removedProducts = [],
   } = result;
@@ -133,11 +133,14 @@ export function buildReport({
     notes.push(`${sku} — description is ${words} words. Aim for ${config.minDescriptionWords * 2}+ so this page can rank.`);
   }
 
-  for (const { sku, slug, derived } of slugFrozen) {
+  // A moved page is the one change a client can make without meaning to — editing a product
+  // name is enough — so every move is named, with the address it left behind.
+  for (const { sku, from, to } of renamed) {
     notes.push(
-      `${sku} — the product name changed, but the web address stays /products/${slug}/ ` +
-        `(it would now read /products/${derived}/). This is deliberate: changing a live address ` +
-        'throws away its Google ranking.',
+      `${sku} — the web address moved to /products/${to}/. ` +
+        `${from.map((s) => `/products/${s}/`).join(' and ')} ` +
+        `${from.length === 1 ? 'now redirects' : 'now redirect'} there, so links already ` +
+        'shared on WhatsApp or Instagram keep working.',
     );
   }
 
