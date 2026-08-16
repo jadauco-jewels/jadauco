@@ -13,6 +13,14 @@
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
     },
+    "JD-NK-002": {
+      "slug": "rajwadi-pearl-kundan-necklace-set",
+      "firstSyncedAt": "2026-08-16T07:22:46Z"
+    },
+    "JD-NK-003": {
+      "slug": "rajwadi-green-pearl-kundan-necklace-set",
+      "firstSyncedAt": "2026-08-16T07:22:46Z"
+    },
     "JD-PD-001": {
       "slug": "cz-stone-bangle-set-of-four",
       "firstSyncedAt": "2026-08-14T18:24:02Z"
@@ -20,6 +28,10 @@
     "JD-PD-002": {
       "slug": "temple-lakshmi-jhumkas",
       "firstSyncedAt": "2026-08-14T18:24:02Z"
+    },
+    "JD-PD-003": {
+      "slug": "pearl-red-pendant-set",
+      "firstSyncedAt": "2026-08-16T07:22:46Z"
     },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
@@ -63,14 +75,41 @@
       "width": 1150,
       "height": 1206
     },
-    "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
-      "driveId": "13lxG3J98j7FjtIW6vjrCZIFlIi5ef4jm",
-      "driveName": "IMG_5798.PNG",
+    "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
+      "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
+      "driveName": "WhatsApp Image 2026-08-16 at 12.35.03 PM.jpeg",
       "driveMd5": null,
-      "outputSha": "e36fb32dfc5db57bf84f18587179ab712563fcd5cc5f7ede7170c640d046644a",
-      "bytes": 129784,
-      "width": 896,
-      "height": 1195
+      "outputSha": "d4f19b36cf0f99c5ad2f7cdfc361bfca64319e38863c5ee20f775adaad1022be",
+      "bytes": 81201,
+      "width": 1086,
+      "height": 1448
+    },
+    "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
+      "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
+      "driveName": "JD-NK-003.png",
+      "driveMd5": null,
+      "outputSha": "224952c05ebc9df014126a4eef9b8a3416515f5961d17bd0b9ee9ccbdde9919a",
+      "bytes": 314318,
+      "width": 1086,
+      "height": 1448
+    },
+    "rajwadi-pearl-kundan-necklace-set/rajwadi-pearl-kundan-necklace-set-1.jpg": {
+      "driveId": "17JWa3A_zuMh0jG_TJuyUs7hf6db-6FOR",
+      "driveName": "WhatsApp Image 2026-08-16 at 12.04.00 PM.jpeg",
+      "driveMd5": null,
+      "outputSha": "6f9d9594276404800b7c88513ae2ebb682912e3ed19ff99af7d9a3932dc70bb8",
+      "bytes": 172432,
+      "width": 1024,
+      "height": 1280
+    },
+    "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
+      "driveId": "1mBC0x0-KboVNPI263fEj12lDLqNlXC_9",
+      "driveName": "JD-ER-002.png",
+      "driveMd5": null,
+      "outputSha": "8d4402e0123767fec71c96dce6b94ee4a29ad8b46a3a2f0bc041312879ffbc18",
+      "bytes": 173375,
+      "width": 1449,
+      "height": 1086
     },
     "temple-lakshmi-jhumkas/temple-lakshmi-jhumkas-1.jpg": {
       "driveId": "1K5Yr-O8pWo7OmgSCzzIYcz0W9TF1pl0n",
