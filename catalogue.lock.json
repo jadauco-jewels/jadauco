@@ -83,6 +83,10 @@
       "slug": "pearl-red-pendant-set",
       "firstSyncedAt": "2026-08-16T07:22:46Z"
     },
+    "JD-PD-004": {
+      "slug": "kundan-pendant-set",
+      "firstSyncedAt": "2026-08-16T16:02:40Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -120,8 +124,8 @@
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
       "driveName": "JD-PD-001.png",
       "driveMd5": null,
-      "outputSha": "3c32852af122e0583eb926ca93a5ac1a53bce3020930bbbf50609c22a1e736a9",
-      "bytes": 114765,
+      "outputSha": "c0cd77e98a1df69b3a6ca630c96b9c399eb6afcc4adacb770c1d9bd3c96810c6",
+      "bytes": 114768,
       "width": 1394,
       "height": 1128
     },
@@ -129,8 +133,8 @@
       "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
       "driveName": "JD_ER.png",
       "driveMd5": null,
-      "outputSha": "1da9c8dcf0dc2b0d6b651a584d294421d10b2c91837c5eb3efbb5b9537879ea5",
-      "bytes": 227685,
+      "outputSha": "99fdb7ff56ac259e33e68b7e5dfc3e06495babe5507cbc6d17d4ebef88a1f682",
+      "bytes": 227666,
       "width": 1448,
       "height": 1086
     },
@@ -138,8 +142,8 @@
       "driveId": "1DWwN5x6ChUKr-utc4ROQfU4lbVV7HScl",
       "driveName": "IMG_5799.PNG",
       "driveMd5": null,
-      "outputSha": "bb37fafcaa0f52a9064ef5ec0a7e180f3d789f32cbe7743c96869ad1ddd08a3a",
-      "bytes": 103020,
+      "outputSha": "754a8f4f1ef5ab02a722b6a60661e561f8377b3c36237bb80518352d71be3f66",
+      "bytes": 103016,
       "width": 896,
       "height": 1195
     },
@@ -147,7 +151,7 @@
       "driveId": "1wf5FG4PTcs2V3uCICzTnXOgnhbyPQaXe",
       "driveName": "JD_ER_007.png",
       "driveMd5": null,
-      "outputSha": "a7744f6dd41aa574d613ae05bd4d02eb3ed540b1c99a9f0bd71c31797475fbab",
+      "outputSha": "2abeef2f25253cde39ab1d06bb71cc79285c67695c8ab9b6fbbdfc76f249ea7c",
       "bytes": 151097,
       "width": 1448,
       "height": 1086
@@ -156,8 +160,8 @@
       "driveId": "1oilxIMAnoPtpJ9NWCBnd_44hU3Y256sZ",
       "driveName": "JD-ER-Green.png",
       "driveMd5": null,
-      "outputSha": "a030ce440f29fb57009e0f4aee6e93dfac64bf1bba86932a8530d3a757f32977",
-      "bytes": 247803,
+      "outputSha": "0d1489b2189e402c82ba019599a4fbe45c1bb9a90a16e998067a09618bdeff66",
+      "bytes": 247801,
       "width": 1086,
       "height": 1448
     },
@@ -179,12 +183,21 @@
       "width": 1150,
       "height": 1206
     },
+    "kundan-pendant-set/kundan-pendant-set-1.jpg": {
+      "driveId": "1AlHp4y-k2bcdNtTwRwDezSkbz6DbCqiR",
+      "driveName": "Kundan Pendant Set.jpeg",
+      "driveMd5": null,
+      "outputSha": "63dccad0a07a4e00aa44fbe341ac31f3eeab004e2661da92f63f2cc5c03cc3e8",
+      "bytes": 72377,
+      "width": 776,
+      "height": 1024
+    },
     "magenta-beaded-temple-earrings/magenta-beaded-temple-earrings-1.jpg": {
       "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
       "driveName": "JD_ER_MAGENTA.png",
       "driveMd5": null,
-      "outputSha": "c6bf466bab6962a5ee6f0620da554758bc407268aeb4835f9aaacb75fec8a419",
-      "bytes": 289128,
+      "outputSha": "299f65e3cd96cccd3ff9a97f0dac5deb7b8edcc19882d0e055e48ed637fae909",
+      "bytes": 289121,
       "width": 1086,
       "height": 1448
     },
@@ -192,8 +205,8 @@
       "driveId": "1xfiH7Bh_GccELdEWZpFOzabSFroSlifU",
       "driveName": "JD-ER-009.png",
       "driveMd5": null,
-      "outputSha": "c3608a6e8dfce0f7735c6cc445ae3f18ad4d0f14392f7c81f66446a755a7f817",
-      "bytes": 246403,
+      "outputSha": "c839897ae1c54bac31e9b273bd50d8ce01d3b13e69d63c3b86998ed2d38d1976",
+      "bytes": 246402,
       "width": 1448,
       "height": 1086
     },
@@ -210,8 +223,8 @@
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
       "driveName": "JD-NK-003.png",
       "driveMd5": null,
-      "outputSha": "c66baf3e028fd16eda13b37ba3a50ad46f81526c2b884b58988a2f52b032f7ce",
-      "bytes": 314309,
+      "outputSha": "224952c05ebc9df014126a4eef9b8a3416515f5961d17bd0b9ee9ccbdde9919a",
+      "bytes": 314318,
       "width": 1086,
       "height": 1448
     },
@@ -228,8 +241,8 @@
       "driveId": "1IZpyJQcCT8FG2I2_0qhge0rC0YUDG4gh",
       "driveName": "JD_ER_008.png",
       "driveMd5": null,
-      "outputSha": "c050a072969ca04135e3c6f7e63965adb733bfe92a8cb9e106979eb726d80c23",
-      "bytes": 249170,
+      "outputSha": "ac051c69bb6805f14337c66b96577c38205f2c348c5a4bec564cce69ec665113",
+      "bytes": 249138,
       "width": 1448,
       "height": 1086
     },
@@ -237,7 +250,7 @@
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
       "driveName": "JD-ER-003 GREEN.png",
       "driveMd5": null,
-      "outputSha": "1360571ee98d6b8631351fbd5cedd5aaeb251e7ce6d455866d3e1dcbd9bf2eea",
+      "outputSha": "743f19e27e957cf67ad224c29dbd521def433b18bd97f31af957720b3f9a2134",
       "bytes": 152624,
       "width": 1448,
       "height": 1086
@@ -246,7 +259,7 @@
       "driveId": "1oIhEm_586hh-t7psyHtCuuFNbeicPRNy",
       "driveName": "JD-ER-004 Magenta.png",
       "driveMd5": null,
-      "outputSha": "3b85d42b17425dfbf2a588ffcac5c62deba07a8d9c45ce6ac7834b7af47377e0",
+      "outputSha": "360ac3ded4f6da9ba71893df59d8f11ca321fcf759a213986c6948a6aa689107",
       "bytes": 164227,
       "width": 1448,
       "height": 1086
@@ -255,8 +268,8 @@
       "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
       "driveName": "JD-Temple.png",
       "driveMd5": null,
-      "outputSha": "db4b93b4ad8697001173a2de70d00f61c0bf21d400eb3fd1fdf894e10fa2487d",
-      "bytes": 213224,
+      "outputSha": "5efbd81be6224010a8d5b36512df10d15f07f62eb8200be853899f2384db6d46",
+      "bytes": 213227,
       "width": 1086,
       "height": 1448
     },
@@ -273,8 +286,8 @@
       "driveId": "10Pg7dRZ4Sdz9iLUWxs0JT3CdFTxYhsyq",
       "driveName": "JD_WHITE.png",
       "driveMd5": null,
-      "outputSha": "b6975309258989e3b37a2f1c3d752c4a5ade9c1a3449252a0a16c7f90f928a48",
-      "bytes": 225782,
+      "outputSha": "58bfa91f7b5186fed964fc56c55346159e5b9ea38df5815e0e0efcd80a1c223c",
+      "bytes": 225790,
       "width": 1086,
       "height": 1448
     }
