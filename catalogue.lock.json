@@ -87,6 +87,10 @@
       "slug": "kundan-pendant-set",
       "firstSyncedAt": "2026-08-16T16:02:40Z"
     },
+    "JD-PD-005": {
+      "slug": "american-diamond-pendant-set",
+      "firstSyncedAt": "2026-08-17T15:17:00Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -119,6 +123,15 @@
       "bytes": 225790,
       "width": 1086,
       "height": 1448
+    },
+    "american-diamond-pendant-set/american-diamond-pendant-set-1.jpg": {
+      "driveId": "1H1MFO-h-NVoRJVwYoZZ4mTvsZIvH3bl6",
+      "driveName": "543DC527-230B-4792-B91E-18444C389F01.png",
+      "driveMd5": null,
+      "outputSha": "09598c12f9eead820bf6231805441fda6026d9e0d9ae558c193b2725888feb64",
+      "bytes": 172180,
+      "width": 1096,
+      "height": 1436
     },
     "cz-stone-pendant-set/cz-stone-pendant-set-1.jpg": {
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
@@ -184,11 +197,11 @@
       "height": 1206
     },
     "kundan-pendant-set/kundan-pendant-set-1.jpg": {
-      "driveId": "1AlHp4y-k2bcdNtTwRwDezSkbz6DbCqiR",
-      "driveName": "Kundan Pendant Set.jpeg",
+      "driveId": "1h5kSBSHIQTg2WFgBqa70kGu_1bgB07ZQ",
+      "driveName": "cd1801b1-a083-43ba-a938-f5214b258a1c.jpg",
       "driveMd5": null,
-      "outputSha": "63dccad0a07a4e00aa44fbe341ac31f3eeab004e2661da92f63f2cc5c03cc3e8",
-      "bytes": 72377,
+      "outputSha": "1097bfbfdd35ef0410bca114854587e74d6401f710b1a038820532b6b3d8f2d1",
+      "bytes": 73004,
       "width": 776,
       "height": 1024
     },
