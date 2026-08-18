@@ -91,6 +91,14 @@
       "slug": "american-diamond-pendant-set",
       "firstSyncedAt": "2026-08-17T15:17:00Z"
     },
+    "JD-PD-006": {
+      "slug": "american-diamond-floral-elegance-set",
+      "firstSyncedAt": "2026-08-18T12:21:46Z"
+    },
+    "JD-PD-007": {
+      "slug": "green-bloom-pendant-set",
+      "firstSyncedAt": "2026-08-18T12:21:46Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -124,6 +132,15 @@
       "width": 1086,
       "height": 1448
     },
+    "american-diamond-floral-elegance-set/american-diamond-floral-elegance-set-1.jpg": {
+      "driveId": "1wePVAS7dUOvDkOSn1HuD4soU21eQgbTC",
+      "driveName": "JD_PD_006.png",
+      "driveMd5": null,
+      "outputSha": "8a73ccf4dc6e7f46df50b7e3c3cbc04a8300889acac3ebd3efd10c89394151b2",
+      "bytes": 138667,
+      "width": 1122,
+      "height": 1402
+    },
     "american-diamond-pendant-set/american-diamond-pendant-set-1.jpg": {
       "driveId": "1H1MFO-h-NVoRJVwYoZZ4mTvsZIvH3bl6",
       "driveName": "543DC527-230B-4792-B91E-18444C389F01.png",
@@ -150,6 +167,15 @@
       "bytes": 227666,
       "width": 1448,
       "height": 1086
+    },
+    "green-bloom-pendant-set/green-bloom-pendant-set-1.jpg": {
+      "driveId": "1CBtM_haon2YqWTeAsIXGoA2owfl6EUfL",
+      "driveName": "JD-PD-007.png",
+      "driveMd5": null,
+      "outputSha": "6e8d42938af0545b95d973ae35d17a919a951b718f6b276a7330444c12162a9b",
+      "bytes": 128256,
+      "width": 1086,
+      "height": 1448
     },
     "green-emerald-cz-statement-ring/green-emerald-cz-statement-ring-1.jpg": {
       "driveId": "1DWwN5x6ChUKr-utc4ROQfU4lbVV7HScl",
