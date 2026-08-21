@@ -65,6 +65,10 @@
       "slug": "rajwadi-green-pearl-kundan-necklace-set",
       "firstSyncedAt": "2026-08-16T07:22:46Z"
     },
+    "JD-NK-004": {
+      "slug": "ruby-necklace-set",
+      "firstSyncedAt": "2026-08-21T15:37:49Z"
+    },
     "JD-PD-001": {
       "slug": "cz-stone-pendant-set",
       "firstSyncedAt": "2026-08-14T18:24:02Z",
@@ -302,6 +306,15 @@
       "bytes": 164227,
       "width": 1448,
       "height": 1086
+    },
+    "ruby-necklace-set/ruby-necklace-set-1.jpg": {
+      "driveId": "12jSjFpTt4Dcq1Wnz-EBFEwkUxPo_yx8L",
+      "driveName": "JD-NK-004.jpeg",
+      "driveMd5": null,
+      "outputSha": "8cacbae17c57aa1662967b4946bd464517c718eebf311d067f2270ebce5adc39",
+      "bytes": 165708,
+      "width": 1086,
+      "height": 1448
     },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
       "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
