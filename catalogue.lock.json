@@ -106,6 +106,46 @@
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
+    },
+    "JD-RG-002": {
+      "slug": "rajwadi-pearl-bloom-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-003": {
+      "slug": "rajwadi-jewel-bloom-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-004": {
+      "slug": "rajwadi-ruby-statement-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-005": {
+      "slug": "floral-green-stone-statement-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-006": {
+      "slug": "emerald-teardrop-statement-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-007": {
+      "slug": "emerald-teardrop-royale-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-008": {
+      "slug": "pink-halo-cz-statement-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-009": {
+      "slug": "emerald-lotus-halo-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-010": {
+      "slug": "crystal-ruby-crest-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
+    },
+    "JD-RG-011": {
+      "slug": "royal-teardrop-crystal-ring",
+      "firstSyncedAt": "2026-08-22T06:33:27Z"
     }
   },
   "images": {
@@ -154,6 +194,15 @@
       "width": 1096,
       "height": 1436
     },
+    "crystal-ruby-crest-ring/crystal-ruby-crest-ring-1.jpg": {
+      "driveId": "165Akv0y9LYYxXxSNR1s1fy1zTZUrQ14X",
+      "driveName": "JD-RG-010.png",
+      "driveMd5": null,
+      "outputSha": "ca79b5a36f971d2ba6bed090611b209d70ab55b310b14a2e86988303f663098d",
+      "bytes": 169050,
+      "width": 1086,
+      "height": 1448
+    },
     "cz-stone-pendant-set/cz-stone-pendant-set-1.jpg": {
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
       "driveName": "JD-PD-001.png",
@@ -162,6 +211,42 @@
       "bytes": 114768,
       "width": 1394,
       "height": 1128
+    },
+    "emerald-lotus-halo-ring/emerald-lotus-halo-ring-1.jpg": {
+      "driveId": "1Qu8HIow0WgffgsZBHw-rvjWVc5KNG9ka",
+      "driveName": "JD-RG-009.png",
+      "driveMd5": null,
+      "outputSha": "535bdef79bea471247f044a2be9c1573acff8788025cefa9d20714ff4193ab60",
+      "bytes": 159875,
+      "width": 1086,
+      "height": 1448
+    },
+    "emerald-teardrop-royale-ring/emerald-teardrop-royale-ring-1.jpg": {
+      "driveId": "1GOLT2wBq7EsW72C4iR5GXx1NKNLUAICe",
+      "driveName": "JD-RG-007.png",
+      "driveMd5": null,
+      "outputSha": "d16b93ef6f5cb06b13547f002303c861880784ee438728e4ca61ac11588af730",
+      "bytes": 147116,
+      "width": 1122,
+      "height": 1402
+    },
+    "emerald-teardrop-statement-ring/emerald-teardrop-statement-ring-1.jpg": {
+      "driveId": "1xzWXMzW1OxSWmQpZ4SLPZISP8znMsoyd",
+      "driveName": "JD-RG-006.png",
+      "driveMd5": null,
+      "outputSha": "fc4d379e9057cd87cd4979e5aacd669cad76e1baed9bcefb77c349be8c2cddc6",
+      "bytes": 151782,
+      "width": 1086,
+      "height": 1448
+    },
+    "floral-green-stone-statement-ring/floral-green-stone-statement-ring-1.jpg": {
+      "driveId": "14M_VFmlb5XWKZonXB-dVhnySyaqJzaeR",
+      "driveName": "JD-RG-005.png",
+      "driveMd5": null,
+      "outputSha": "f09097f514ddead33e3ad35e17cb3c697baf6c305a51b77a55cac94ede6516ca",
+      "bytes": 160961,
+      "width": 1086,
+      "height": 1448
     },
     "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
       "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
@@ -262,12 +347,39 @@
       "width": 1086,
       "height": 1448
     },
+    "pink-halo-cz-statement-ring/pink-halo-cz-statement-ring-1.jpg": {
+      "driveId": "1xZeJb33UsCIVFepuWp1mUmwX4Dqz8MCf",
+      "driveName": "JD-RG-008.png",
+      "driveMd5": null,
+      "outputSha": "91f8f1ffe395edea4c2cdee239ed7b88a433ebf9d8e1c6a2d285bc5444116412",
+      "bytes": 150383,
+      "width": 1086,
+      "height": 1448
+    },
     "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
       "driveName": "JD-NK-003.png",
       "driveMd5": null,
       "outputSha": "224952c05ebc9df014126a4eef9b8a3416515f5961d17bd0b9ee9ccbdde9919a",
       "bytes": 314318,
+      "width": 1086,
+      "height": 1448
+    },
+    "rajwadi-jewel-bloom-ring/rajwadi-jewel-bloom-ring-1.jpg": {
+      "driveId": "1dgH9uK7Hjl_zUf3Eu6y6Rp6KA6W2wZGL",
+      "driveName": "JD-RG-003.png",
+      "driveMd5": null,
+      "outputSha": "f71c1180e7e0ecd30c352ea4502dd73e1dfaba176a6a31c179d44fce203d90df",
+      "bytes": 172884,
+      "width": 1122,
+      "height": 1402
+    },
+    "rajwadi-pearl-bloom-ring/rajwadi-pearl-bloom-ring-1.jpg": {
+      "driveId": "1n54jeIHVWfXqGGtBZ0g040Hq068guMCJ",
+      "driveName": "JD-RG-002.png",
+      "driveMd5": null,
+      "outputSha": "83b3d50f6ddd66b1c101c25fb97ede309e0fcc9a78c558a2dc1e0a17405074d9",
+      "bytes": 181415,
       "width": 1086,
       "height": 1448
     },
@@ -280,6 +392,15 @@
       "width": 1024,
       "height": 1280
     },
+    "rajwadi-ruby-statement-ring/rajwadi-ruby-statement-ring-1.jpg": {
+      "driveId": "1v94mrcQT0EV0xm9SS3Wd0Vl_pUh-Ccfa",
+      "driveName": "JD-RG-004.png",
+      "driveMd5": null,
+      "outputSha": "063001f91a38f64c7b853f8624b4537dbf48f6a144cb3e52386a109895281283",
+      "bytes": 173440,
+      "width": 1086,
+      "height": 1448
+    },
     "red-kundan-floral-earrings/red-kundan-floral-earrings-1.jpg": {
       "driveId": "1IZpyJQcCT8FG2I2_0qhge0rC0YUDG4gh",
       "driveName": "JD_ER_008.png",
@@ -288,6 +409,15 @@
       "bytes": 249138,
       "width": 1448,
       "height": 1086
+    },
+    "royal-teardrop-crystal-ring/royal-teardrop-crystal-ring-1.jpg": {
+      "driveId": "1ai7LiCGacDVO66LxVEFIkqta827QfRzG",
+      "driveName": "JD-RG-011.png",
+      "driveMd5": null,
+      "outputSha": "cb3e879d098da686b8a4acf4af0a4040afc06bd3a4a9926d20fe52dc3ff5f3c4",
+      "bytes": 206399,
+      "width": 1086,
+      "height": 1448
     },
     "ruby-cz-green-floral-earrings/ruby-cz-green-floral-earrings-1.jpg": {
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
