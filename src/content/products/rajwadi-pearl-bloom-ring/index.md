@@ -5,6 +5,7 @@
 sku: JD-RG-002
 title: Rajwadi Pearl Bloom Ring
 category: rings
+price: 799
 specs:
   finish: Gold finish with intricate detailing
   stones: [Cubic Zirconia (CZ), pearl-style detailing]
@@ -21,7 +22,7 @@ publishDate: 2026-08-22
 seo:
   title: Rajwadi Pearl Bloom Ring with CZ Detailing
   description: Rajwadi pearl bloom ring with gold finish, pearl-style detailing and sparkling CZ stones. Perfect for weddings, festive occasions and ethnic wear.
-syncedAt: 2026-08-22T06:33:27Z
+syncedAt: 2026-08-22T06:37:39Z
 ---
 
 Statement ring featuring a gold finish, pearl-style border, intricate detailing, and sparkling CZ stones arranged around a floral-inspired centre. Its classic design adds a regal touch to festive occasions, weddings, traditional outfits, parties, celebrations, and elegant ethnic looks for moments.

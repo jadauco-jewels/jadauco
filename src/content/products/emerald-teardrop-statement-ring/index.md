@@ -5,6 +5,7 @@
 sku: JD-RG-006
 title: Emerald Teardrop Statement Ring
 category: rings
+price: 1399
 specs:
   finish: Gold finish with intricate teardrop detailing
   stones: [Cubic Zirconia (CZ), green emerald-inspired centre stone]
@@ -21,7 +22,7 @@ publishDate: 2026-08-22
 seo:
   title: Emerald Teardrop Statement Ring with CZ Detailing
   description: Emerald-inspired ring with green stone, CZ & teardrop detailing in gold finish. Perfect for weddings, festive occasions & ethnic wear. Ships in 2–3 days.
-syncedAt: 2026-08-22T06:33:27Z
+syncedAt: 2026-08-22T06:37:39Z
 ---
 
 Statement ring featuring a bold green emerald-inspired centre stone surrounded by sparkling CZ accents and elegant teardrop detailing. The intricate gold finish creates a refined traditional look, making it perfect for weddings, festive occasions, ethnic outfits, traditional gatherings and special celebrations.

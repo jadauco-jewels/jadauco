@@ -5,6 +5,7 @@
 sku: JD-RG-005
 title: Floral Green Stone Statement Ring
 category: rings
+price: 799
 specs:
   finish: Antique gold finish with intricate floral detailing
   stones: [Cubic Zirconia (CZ), green emerald-inspired centre stone]
@@ -21,7 +22,7 @@ publishDate: 2026-08-22
 seo:
   title: Floral Green Stone Statement Ring with CZ Detailing
   description: Floral ring with green emerald-inspired stone, CZ accents and antique gold detailing. Perfect for weddings, festive occasions & ethnic wear. Ships in 2–3 days.
-syncedAt: 2026-08-22T06:33:27Z
+syncedAt: 2026-08-22T06:37:39Z
 ---
 
 Floral statement ring featuring a rich green emerald-inspired centre stone, sparkling CZ accents and intricate antique gold detailing. The elegant flower-inspired design adds a refined traditional touch, making it perfect for festive occasions, weddings, ethnic outfits, traditional gatherings and special celebrations.
