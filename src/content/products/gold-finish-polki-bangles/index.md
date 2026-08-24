@@ -13,6 +13,8 @@ specs:
 images:
   - src: ./gold-finish-polki-bangles-1.jpg
     alt: Gold Finish Polki Bangles — Gold finish with intricate detailing and green accents, Polki-style CZ stones and green stones
+  - src: ./gold-finish-polki-bangles-2.jpg
+    alt: Gold Finish Polki Bangles — Gold finish with intricate detailing and green accents, Polki-style CZ stones and green stones (view 2)
 inStock: true
 featured: false
 sequence: 33
@@ -22,7 +24,7 @@ publishDate: 2026-08-24
 seo:
   title: Gold Finish Polki Bangles
   description: Gold finish polki bangles with green detailing and CZ stones on brass. Perfect for weddings, festive occasions and ethnic looks. Ships in 2–3 days.
-syncedAt: 2026-08-24T16:47:03Z
+syncedAt: 2026-08-24T17:03:00Z
 ---
 
 Elegant gold finish bangles featuring intricate traditional detailing, sparkling polki-style clear stones and rich green accents. The regal design adds a sophisticated touch, making these bangles perfect for weddings, festive occasions, traditional outfits, family celebrations, parties and special gatherings. Designed to complement both classic and contemporary ethnic looks.
