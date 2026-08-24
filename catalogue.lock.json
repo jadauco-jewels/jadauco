@@ -1,6 +1,10 @@
 {
   "version": 1,
   "products": {
+    "JD-BG-001": {
+      "slug": "gold-finish-polki-bangles",
+      "firstSyncedAt": "2026-08-24T12:36:58Z"
+    },
     "JD-ER-001": {
       "slug": "temple-green-emerald-polki-earrings",
       "firstSyncedAt": "2026-08-15T11:41:06Z"
@@ -52,6 +56,10 @@
       "past": [
         "Green-kundan-cz-statement-earrings"
       ]
+    },
+    "JD-ER-011": {
+      "slug": "polki-teardrop-earring",
+      "firstSyncedAt": "2026-08-24T12:36:58Z"
     },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
@@ -248,6 +256,15 @@
       "width": 1086,
       "height": 1448
     },
+    "gold-finish-polki-bangles/gold-finish-polki-bangles-1.jpg": {
+      "driveId": "1eA6kqP-4UnVc4oGSmrKfNPDZ_jSU_g1e",
+      "driveName": "BG.png",
+      "driveMd5": null,
+      "outputSha": "d74a65ddae8e733431b1ad756a0355cdd914440404cdff716626c733e04aa33f",
+      "bytes": 171618,
+      "width": 880,
+      "height": 1600
+    },
     "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
       "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
       "driveName": "JD_ER.png",
@@ -355,6 +372,15 @@
       "bytes": 150383,
       "width": 1086,
       "height": 1448
+    },
+    "polki-teardrop-earring/polki-teardrop-earring-1.jpg": {
+      "driveId": "10G679VAC3cktXvCNGSGSu4BHcZhEJXmS",
+      "driveName": "ER.png",
+      "driveMd5": null,
+      "outputSha": "6c9bcb483d3549d2a28f6f7e1ac2ce85d40bb652e180e26441576b0a91507039",
+      "bytes": 183722,
+      "width": 1122,
+      "height": 1402
     },
     "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
