@@ -61,6 +61,14 @@
       "slug": "polki-teardrop-earring",
       "firstSyncedAt": "2026-08-24T12:36:58Z"
     },
+    "JD-ER-012": {
+      "slug": "ruby-floral-earrings",
+      "firstSyncedAt": "2026-08-30T06:38:20Z"
+    },
+    "JD-ER-018": {
+      "slug": "kundan-heart-shaped-earring",
+      "firstSyncedAt": "2026-08-30T06:38:20Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -337,6 +345,15 @@
       "width": 1150,
       "height": 1206
     },
+    "kundan-heart-shaped-earring/kundan-heart-shaped-earring-1.jpg": {
+      "driveId": "1O3a6F6EQ2AaDNmlZ3LTKS3TJg9qln9ju",
+      "driveName": "4.png",
+      "driveMd5": null,
+      "outputSha": "509657f77e621a309dff5dde2c10e11e7e9ea5ce5e370ec597a42c4bc4824fbd",
+      "bytes": 180450,
+      "width": 1086,
+      "height": 1448
+    },
     "kundan-pendant-set/kundan-pendant-set-1.jpg": {
       "driveId": "1h5kSBSHIQTg2WFgBqa70kGu_1bgB07ZQ",
       "driveName": "cd1801b1-a083-43ba-a938-f5214b258a1c.jpg",
@@ -471,6 +488,15 @@
       "bytes": 164227,
       "width": 1448,
       "height": 1086
+    },
+    "ruby-floral-earrings/ruby-floral-earrings-1.jpg": {
+      "driveId": "1pvSyUN3jBfTXfUESWSmUhzfx0OxwLMEm",
+      "driveName": "3.png",
+      "driveMd5": null,
+      "outputSha": "33cc6b31102d57b2f7e8a4829ab3cbd11ba5f5d7fc0330a2a8576183444431bd",
+      "bytes": 168140,
+      "width": 1089,
+      "height": 1444
     },
     "ruby-necklace-set/ruby-necklace-set-1.jpg": {
       "driveId": "12jSjFpTt4Dcq1Wnz-EBFEwkUxPo_yx8L",
