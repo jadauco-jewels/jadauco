@@ -58,12 +58,31 @@
       ]
     },
     "JD-ER-011": {
-      "slug": "polki-teardrop-earring",
-      "firstSyncedAt": "2026-08-24T12:36:58Z"
+      "slug": "kundan-emerald-red-stone-earrings",
+      "firstSyncedAt": "2026-08-24T12:36:58Z",
+      "past": [
+        "polki-teardrop-earring"
+      ]
     },
     "JD-ER-012": {
       "slug": "ruby-floral-earrings",
       "firstSyncedAt": "2026-08-30T06:38:20Z"
+    },
+    "JD-ER-013": {
+      "slug": "kundan-floral-red-stone-earrings",
+      "firstSyncedAt": "2026-09-02T16:47:17Z"
+    },
+    "JD-ER-014": {
+      "slug": "polki-moissanite-jhumki",
+      "firstSyncedAt": "2026-09-02T16:47:17Z"
+    },
+    "JD-ER-015": {
+      "slug": "polki-teardrop-earring",
+      "firstSyncedAt": "2026-09-02T16:47:17Z"
+    },
+    "JD-ER-016": {
+      "slug": "kundan-floral-drop-earrings",
+      "firstSyncedAt": "2026-09-02T16:47:17Z"
     },
     "JD-ER-018": {
       "slug": "kundan-heart-shaped-earring",
@@ -345,6 +364,33 @@
       "width": 1150,
       "height": 1206
     },
+    "kundan-emerald-red-stone-earrings/kundan-emerald-red-stone-earrings-1.jpg": {
+      "driveId": "1LkdgjX0RpVdHroQJzFjEP6SZevdWLdq3",
+      "driveName": "011.png",
+      "driveMd5": null,
+      "outputSha": "b2ee40d0ab3a25df7e63408c4444ede7511f0d61fc6db13edbb33817dd30307c",
+      "bytes": 124118,
+      "width": 1402,
+      "height": 1122
+    },
+    "kundan-floral-drop-earrings/kundan-floral-drop-earrings-1.jpg": {
+      "driveId": "1mbd89wz9iAJQPoODL3tE_YfDB1D5xe1e",
+      "driveName": "016.png",
+      "driveMd5": null,
+      "outputSha": "c0b1828359a1d34c4aaa04ccb96204aa94b9f199077bb14ddd21a17cc2f4f2de",
+      "bytes": 103574,
+      "width": 1402,
+      "height": 1122
+    },
+    "kundan-floral-red-stone-earrings/kundan-floral-red-stone-earrings-1.jpg": {
+      "driveId": "1zjV3xyZBB7moALG2i19EYwvjRZSzf8dy",
+      "driveName": "013.png",
+      "driveMd5": null,
+      "outputSha": "3bfcb1949d2a9904fd44d03d1a3c3e33931ebdd90a49a2230edcd7e1a3a04923",
+      "bytes": 113972,
+      "width": 1402,
+      "height": 1122
+    },
     "kundan-heart-shaped-earring/kundan-heart-shaped-earring-1.jpg": {
       "driveId": "1O3a6F6EQ2AaDNmlZ3LTKS3TJg9qln9ju",
       "driveName": "4.png",
@@ -399,14 +445,14 @@
       "width": 1086,
       "height": 1448
     },
-    "polki-teardrop-earring/polki-teardrop-earring-1.jpg": {
-      "driveId": "10G679VAC3cktXvCNGSGSu4BHcZhEJXmS",
-      "driveName": "ER.png",
+    "polki-moissanite-jhumki/polki-moissanite-jhumki-1.jpg": {
+      "driveId": "1hqAGr-Xv23z6nU20P69wOVX0-u6CUCmv",
+      "driveName": "014.png",
       "driveMd5": null,
-      "outputSha": "6c9bcb483d3549d2a28f6f7e1ac2ce85d40bb652e180e26441576b0a91507039",
-      "bytes": 183722,
-      "width": 1122,
-      "height": 1402
+      "outputSha": "24f2d5ebb52e0b846d4508a90861e67e613c39994923b83207e4055269e9127c",
+      "bytes": 177985,
+      "width": 1086,
+      "height": 1448
     },
     "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
