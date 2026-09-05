@@ -18,7 +18,7 @@ import { validate, loadCategories } from './schema.mjs';
 import { formatIssues, summariseFailure } from './errors.mjs';
 import { processImage } from './images.mjs';
 import { reconcile, readRepoProducts } from './reconcile.mjs';
-import { stage, flush, buildRedirects } from './write.mjs';
+import { stage, flush, buildRedirects, pruneLockImages } from './write.mjs';
 import { buildReport, buildFailureReport, publish } from './report.mjs';
 
 const DOWNLOAD_CONCURRENCY = 6;
@@ -179,27 +179,12 @@ export async function run({ dryRun = false, verbose = false } = {}) {
     };
   }
 
-  // A moved product's images are re-keyed under the new slug by `reconcile`, which leaves the
-  // old keys describing files that were just deleted. Left behind they would grow without
-  // limit and, worse, make a later move back to the old address think its photos are already
-  // on disk.
-  for (const rename of staged.renamed) {
-    for (const old of rename.from) {
-      for (const key of Object.keys(lock.images)) {
-        if (key.startsWith(`${old}/`)) delete lock.images[key];
-      }
-    }
-  }
-
   // A deleted product takes its lock entry with it. Leaving the frozen slug behind would mean
   // that re-typing the same product code months later silently resurrects the old URL and the
   // old first-synced date, which is the opposite of what "the sheet is the truth" should mean.
-  for (const removed of staged.removedProducts) {
-    delete lock.products[removed.sku];
-    for (const key of Object.keys(lock.images)) {
-      if (key.startsWith(`${removed.slug}/`)) delete lock.images[key];
-    }
-  }
+  for (const removed of staged.removedProducts) delete lock.products[removed.sku];
+
+  pruneLockImages(lock, { products, renamed: staged.renamed, removed: staged.removedProducts });
 
   // ── the redirect map ──
   // Staged alongside everything else so it lands in the same commit as the move it describes;
@@ -239,18 +224,31 @@ export async function run({ dryRun = false, verbose = false } = {}) {
     }),
   );
 
-  const changed = staged.changedProducts.length + staged.deletions.length;
+  // The workflow's commit gate reads this, so it has to answer "will the tree differ once this
+  // run has flushed?" and not the narrower "did any product's markdown change". The two came
+  // apart when an image went missing from the repo: every run re-fetched and staged it, every
+  // run reported zero products changed, and the gate skipped the commit — so the repair was
+  // made on the runner and thrown away with it, the repo stayed broken, and the build failed on
+  // the missing file for a fortnight while the sync insisted there was nothing to do.
+  const changed = staged.files.size + staged.deletions.length;
 
   // T-21 — the workflow builds its commit message from these, so the message names the SKUs
   // rather than saying "sync" for the hundredth time.
+  //
+  // Removed products are named too — a commit that deletes two pages should say so in its
+  // subject line, not read as an ordinary sync. So are products whose only change was a photo.
+  // The fallback covers the one commit that names no product at all: a redirect map that moved
+  // on its own. Empty is not an option, because `changed` is now non-zero for it and the
+  // subject would otherwise trail off after the colon.
+  const skus = [
+    ...staged.changedProducts.map((p) => p.sku),
+    ...staged.restagedProducts.map((p) => p.sku),
+    ...staged.removedProducts.map((r) => `−${r.sku}`),
+  ];
+
   await emitOutputs({
     changed: String(changed),
-    // Removed products are named too — a commit that deletes two pages should say so in its
-    // subject line, not read as an ordinary sync.
-    skus: [
-      ...staged.changedProducts.map((p) => p.sku),
-      ...staged.removedProducts.map((r) => `−${r.sku}`),
-    ].join(', '),
+    skus: skus.length ? skus.join(', ') : 'redirects',
     pull_request: String(config.pullRequest),
   });
 

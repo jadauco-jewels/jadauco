@@ -15,7 +15,7 @@ import { parseTab, PRODUCT_COLUMNS } from './sheet.mjs';
 import { validate, slugify, loadCategories } from './schema.mjs';
 import { formatIssues, summariseFailure } from './errors.mjs';
 import { reconcile, generateAlt, withoutSyncedAt } from './reconcile.mjs';
-import { renderProduct, stage, flush, buildRedirects } from './write.mjs';
+import { renderProduct, stage, flush, buildRedirects, pruneLockImages } from './write.mjs';
 import { buildReport } from './report.mjs';
 import { SyncError } from './config.mjs';
 import { join } from 'node:path';
@@ -645,6 +645,172 @@ test('S-11 · an unchanged product stages no file at all', async () => {
   assert.equal(staged.files.size, 0, 'nothing may be written when nothing changed');
   assert.equal(staged.deletions.length, 0);
   assert.equal(staged.unchangedProducts.length, 1);
+  assert.equal(staged.restagedProducts.length, 0);
+});
+
+// ── a photo that has to be written again, with the product's text untouched ──────────────────
+//
+// This pair is the regression that took the site off the air for a fortnight. A product's photo
+// went missing from the repo; every run since re-fetched it, staged it, reported "40 products
+// unchanged / nothing changed", and the workflow's commit gate — which read a count of changed
+// *products* — skipped the commit. The repair happened on the runner and died with it, so the
+// build kept failing on a file the sync kept insisting it had already written.
+
+test('a product whose photo is missing is restaged, even though its text is identical', async () => {
+  const { products } = check([{}]);
+  const plan = planFor({ products });
+  const existing = renderProduct(products[0], { body: WORDS_40, syncedAt: '2020-01-01T00:00:00Z' });
+  const localName = 'kundan-bridal-choker-set-1.jpg';
+
+  const staged = await stage({
+    plan,
+    products,
+    repoProducts: new Map([
+      [
+        'JD-NK-001',
+        {
+          sku: 'JD-NK-001',
+          slug: products[0].slug,
+          dir: '/x',
+          // The photo is not in this list — that is the whole scenario.
+          files: ['index.md'],
+          source: existing,
+          hasCopyOverride: false,
+        },
+      ],
+    ]),
+    imageBytes: new Map([[`${products[0].slug}/${localName}`, Buffer.from('jpeg')]]),
+    syncedAt: '2026-08-13T00:00:00Z',
+  });
+
+  // The markdown genuinely has not changed, so the product is still "unchanged" — but the run
+  // has a file to write, and `changed` in index.mjs counts staged files for exactly this case.
+  assert.equal(staged.changedProducts.length, 0);
+  assert.equal(staged.files.size, 1);
+  assert.deepEqual(
+    staged.restagedProducts.map((p) => p.sku),
+    ['JD-NK-001'],
+  );
+});
+
+test('a run that only rewrites a photo does not read as "nothing changed"', () => {
+  const { products } = check([{}]);
+  const report = buildReport({
+    result: {
+      files: new Map([['/x/kundan-bridal-choker-set-1.jpg', Buffer.from('jpeg')]]),
+      deletions: [],
+      changedProducts: [],
+      unchangedProducts: products,
+      restagedProducts: products,
+      added: [],
+      archived: [],
+      drafts: [],
+      downloaded: 1,
+      downloadedBytes: 1000,
+      deleted: 0,
+      overrides: [],
+      warnings: [],
+      removedProducts: [],
+    },
+    config: CONFIG,
+    provider: 'public',
+    dryRun: false,
+    startedAt: new Date('2026-09-05T10:00:00Z'),
+    finishedAt: new Date('2026-09-05T10:00:05Z'),
+  });
+
+  assert.match(report, /1 photo rewritten/);
+  assert.match(report, /JD-NK-001/);
+  assert.doesNotMatch(report, /Nothing changed/);
+  // And it must not also be counted as untouched, or the two lines contradict each other.
+  assert.match(report, /0 products unchanged/);
+});
+
+// ── the lock's image entries when addresses change hands ─────────────────────────────────────
+
+test('two products swapping addresses keep the image entries just written for them', () => {
+  const lock = {
+    products: {},
+    images: {
+      'earring-a/earring-a-1.jpg': { outputSha: 'sha-for-the-product-now-at-earring-a' },
+      'earring-b/earring-b-1.jpg': { outputSha: 'sha-for-the-product-now-at-earring-b' },
+    },
+  };
+
+  // JD-ER-011 moves a → b and JD-ER-015 moves b → a, so each one's old address is the other's
+  // new one. Both entries above were written by this run's download stage.
+  pruneLockImages(lock, {
+    products: [
+      { sku: 'JD-ER-011', status: 'live', images: [{ job: { localPath: 'earring-b/earring-b-1.jpg' } }] },
+      { sku: 'JD-ER-015', status: 'live', images: [{ job: { localPath: 'earring-a/earring-a-1.jpg' } }] },
+    ],
+    renamed: [{ from: ['earring-a'] }, { from: ['earring-b'] }],
+  });
+
+  assert.deepEqual(Object.keys(lock.images).sort(), [
+    'earring-a/earring-a-1.jpg',
+    'earring-b/earring-b-1.jpg',
+  ]);
+});
+
+test('an address nobody takes over still loses its image entries', () => {
+  const lock = {
+    products: {},
+    images: {
+      'old-name/old-name-1.jpg': { outputSha: 'x' },
+      'old-name/old-name-2.jpg': { outputSha: 'y' },
+      'untouched/untouched-1.jpg': { outputSha: 'z' },
+    },
+  };
+
+  pruneLockImages(lock, {
+    products: [
+      { sku: 'JD-NK-001', status: 'live', images: [{ job: { localPath: 'new-name/new-name-1.jpg' } }] },
+    ],
+    renamed: [{ from: ['old-name'] }],
+  });
+
+  assert.deepEqual(Object.keys(lock.images), ['untouched/untouched-1.jpg']);
+});
+
+test('a moved product keeps only the photos it still has', () => {
+  // Two photos became one in the same run that moved the product. The surviving key is claimed;
+  // the dropped one is not, and the guard must not save it just because the prefix matches.
+  const lock = {
+    products: {},
+    images: {
+      'shared/shared-1.jpg': { outputSha: 'x' },
+      'shared/shared-2.jpg': { outputSha: 'y' },
+    },
+  };
+
+  pruneLockImages(lock, {
+    products: [
+      { sku: 'JD-NK-001', status: 'live', images: [{ job: { localPath: 'shared/shared-1.jpg' } }] },
+    ],
+    renamed: [{ from: ['shared'] }],
+  });
+
+  assert.deepEqual(Object.keys(lock.images), ['shared/shared-1.jpg']);
+});
+
+test('a deleted product takes its image entries, unless a live product moved in', () => {
+  const lock = {
+    products: {},
+    images: {
+      'gone/gone-1.jpg': { outputSha: 'x' },
+      'reused/reused-1.jpg': { outputSha: 'y' },
+    },
+  };
+
+  pruneLockImages(lock, {
+    products: [
+      { sku: 'JD-NK-002', status: 'live', images: [{ job: { localPath: 'reused/reused-1.jpg' } }] },
+    ],
+    removed: [{ slug: 'gone' }, { slug: 'reused' }],
+  });
+
+  assert.deepEqual(Object.keys(lock.images), ['reused/reused-1.jpg']);
 });
 
 test('S-2 · a price change rewrites exactly one file and re-downloads nothing', async () => {

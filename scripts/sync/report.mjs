@@ -39,6 +39,7 @@ export function buildReport({
     renamed = [],
     warnings,
     removedProducts = [],
+    restagedProducts = [],
   } = result;
 
   const when = new Intl.DateTimeFormat('en-GB', {
@@ -88,11 +89,24 @@ export function buildReport({
   if (drafts.length) {
     lines.push(countLine(drafts.length, `${noun(drafts.length, 'draft')} skipped`, skus(drafts)));
   }
-  lines.push(
-    countLine(unchangedProducts.length, `${noun(unchangedProducts.length, 'product')} unchanged`),
+  // A product whose text is identical but whose photo had to be written again — usually one
+  // missing from the repo. Counted apart from "unchanged", because it is the whole reason the
+  // run produces a commit and reading it as unchanged is what hid the last one.
+  if (restagedProducts.length) {
+    lines.push(
+      countLine(
+        restagedProducts.length,
+        `${noun(restagedProducts.length, 'photo')} rewritten`,
+        skus(restagedProducts),
+      ),
+    );
+  }
+  const untouched = unchangedProducts.filter(
+    (p) => !restagedProducts.some((r) => r.sku === p.sku),
   );
+  lines.push(countLine(untouched.length, `${noun(untouched.length, 'product')} unchanged`));
 
-  if (!changedProducts.length && !deleted) {
+  if (!changedProducts.length && !restagedProducts.length && !deleted) {
     lines.push('');
     lines.push('Nothing changed. No commit was made.');
   }

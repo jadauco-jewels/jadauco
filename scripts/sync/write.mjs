@@ -110,6 +110,7 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
   const overrides = [];
   const changedProducts = [];
   const unchangedProducts = [];
+  const restagedProducts = [];
 
   for (const product of products) {
     if (product.status === 'draft') continue;
@@ -141,10 +142,19 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
       files.set(join(dir, 'index.md'), markdown);
     }
 
+    // A product can need a file written while its markdown is byte-for-byte what is already on
+    // disk: an image missing from the repo is re-fetched and staged with nothing else to show
+    // for it. Recorded separately because such a run is not "unchanged" — the tree differs
+    // afterwards, and both the report and the commit gate have to be able to see that.
+    let restagedImage = false;
     for (const image of product.images) {
       const bytes = imageBytes.get(image.job.localPath);
-      if (bytes) files.set(join(dir, image.job.localName), bytes);
+      if (bytes) {
+        files.set(join(dir, image.job.localName), bytes);
+        restagedImage = true;
+      }
     }
+    if (restagedImage && isSame) restagedProducts.push(product);
   }
 
   // ── prune images the product no longer references ──
@@ -188,9 +198,44 @@ export async function stage({ plan, products, repoProducts, imageBytes, syncedAt
     overrides,
     changedProducts,
     unchangedProducts,
+    restagedProducts,
     removedProducts,
     renamed,
   };
+}
+
+/**
+ * Drop the lock's record of images that lived at an address no product holds any more.
+ *
+ * A moved product's images are re-keyed under the new slug by `reconcile`, which leaves the old
+ * keys describing files this run has just deleted. Left behind they would grow without limit
+ * and, worse, make a later move back to the old address think its photos are already on disk.
+ *
+ * The guard is the whole point. Pruning by slug prefix alone treats "an address this product
+ * left" as "an address nobody holds", and those are not the same thing: two products can swap
+ * addresses in a single run, and then each one's *old* prefix is its neighbour's *new* one.
+ * Unguarded, this deleted the entries the download stage had just written for that neighbour —
+ * which is how both of them vanished in 4b0df33, leaving a photo absent from the repo and no
+ * record that it should have been there. An entry survives if a live product still claims that
+ * exact path.
+ *
+ * @param {{images: Record<string, object>}} lock mutated in place
+ * @param {{products: object[], renamed: {from: string[]}[], removed: {slug: string}[]}} run
+ */
+export function pruneLockImages(lock, { products, renamed = [], removed = [] }) {
+  const claimed = new Set(
+    products
+      .filter((p) => p.status !== 'draft')
+      .flatMap((p) => (p.images ?? []).map((i) => i.job.localPath)),
+  );
+
+  const abandoned = [...renamed.flatMap((r) => r.from), ...removed.map((r) => r.slug)];
+
+  for (const slug of abandoned) {
+    for (const key of Object.keys(lock.images)) {
+      if (key.startsWith(`${slug}/`) && !claimed.has(key)) delete lock.images[key];
+    }
+  }
 }
 
 /**
