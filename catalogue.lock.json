@@ -5,6 +5,26 @@
       "slug": "gold-finish-polki-bangles",
       "firstSyncedAt": "2026-08-24T12:36:58Z"
     },
+    "JD-BG-002": {
+      "slug": "gold-finish-beaded-designer-bangles",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
+    },
+    "JD-BG-003": {
+      "slug": "gold-finish-floral-heritage-bangles",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
+    },
+    "JD-BG-004": {
+      "slug": "gold-finish-pearl-floral-bangles",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
+    },
+    "JD-BG-005": {
+      "slug": "rajwadi-pearl-kundan-bangles",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
+    },
+    "JD-BG-006": {
+      "slug": "rajwadi-shahi-kundan-bangles",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
+    },
     "JD-ER-001": {
       "slug": "temple-green-emerald-polki-earrings",
       "firstSyncedAt": "2026-08-15T11:41:06Z"
@@ -86,6 +106,10 @@
     "JD-ER-016": {
       "slug": "kundan-floral-drop-earrings",
       "firstSyncedAt": "2026-09-02T16:47:17Z"
+    },
+    "JD-ER-017": {
+      "slug": "kundan-round-floral-stud-earrings",
+      "firstSyncedAt": "2026-09-06T06:43:04Z"
     },
     "JD-ER-018": {
       "slug": "kundan-heart-shaped-earring",
@@ -286,6 +310,33 @@
       "width": 1086,
       "height": 1448
     },
+    "gold-finish-beaded-designer-bangles/gold-finish-beaded-designer-bangles-1.jpg": {
+      "driveId": "1mA-IYHSrq-e-51I-GZAejY1xWHgVDem2",
+      "driveName": "BG-2.png",
+      "driveMd5": null,
+      "outputSha": "674011e0aa94bb11356ac8b2056ce1bf9bbc01f98cf277da51a34146ec7dff2f",
+      "bytes": 207381,
+      "width": 1086,
+      "height": 1448
+    },
+    "gold-finish-floral-heritage-bangles/gold-finish-floral-heritage-bangles-1.jpg": {
+      "driveId": "1U_kt0noL9FyE9yEOJnFf9DXiqeP1kkNT",
+      "driveName": "BG-3.png",
+      "driveMd5": null,
+      "outputSha": "15dd49487f4b621ad7a074aacb5e34ae2b276b77d12af029fb5fa6d3c49bd862",
+      "bytes": 196617,
+      "width": 1086,
+      "height": 1448
+    },
+    "gold-finish-pearl-floral-bangles/gold-finish-pearl-floral-bangles-1.jpg": {
+      "driveId": "1_3ofCTgbsA0KGoKfOZZl60ZtCtfh7rJJ",
+      "driveName": "BG-4.png",
+      "driveMd5": null,
+      "outputSha": "cfbedabb104d8ecb78887e3d003596894cc9c19b0f679a43115823690f3f134e",
+      "bytes": 268758,
+      "width": 1086,
+      "height": 1448
+    },
     "gold-finish-polki-bangles/gold-finish-polki-bangles-1.jpg": {
       "driveId": "1eA6kqP-4UnVc4oGSmrKfNPDZ_jSU_g1e",
       "driveName": "BG.png",
@@ -412,6 +463,15 @@
       "width": 776,
       "height": 1024
     },
+    "kundan-round-floral-stud-earrings/kundan-round-floral-stud-earrings-1.jpg": {
+      "driveId": "1d3hRmIgUq6bthFWoHc5SkIhfH_ypJ8Kh",
+      "driveName": "ER 17.png",
+      "driveMd5": null,
+      "outputSha": "c6d04c4c84895d8686f1deaf4bb91c47cf5e2233772550148fb6b0f2858f6e01",
+      "bytes": 166971,
+      "width": 1086,
+      "height": 1448
+    },
     "magenta-beaded-temple-earrings/magenta-beaded-temple-earrings-1.jpg": {
       "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
       "driveName": "JD_ER_MAGENTA.png",
@@ -493,6 +553,15 @@
       "width": 1086,
       "height": 1448
     },
+    "rajwadi-pearl-kundan-bangles/rajwadi-pearl-kundan-bangles-1.jpg": {
+      "driveId": "1_YHIv5I8B4UJiGXEcWauiMQQAb1hNkYD",
+      "driveName": "BG-5.png",
+      "driveMd5": null,
+      "outputSha": "d6d220b34f8b90e074eedee654f618a690e0e0f281e2c2a05ca5c02278a94cf0",
+      "bytes": 192336,
+      "width": 1448,
+      "height": 1086
+    },
     "rajwadi-pearl-kundan-necklace-set/rajwadi-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "17JWa3A_zuMh0jG_TJuyUs7hf6db-6FOR",
       "driveName": "WhatsApp Image 2026-08-16 at 12.04.00 PM.jpeg",
@@ -508,6 +577,15 @@
       "driveMd5": null,
       "outputSha": "063001f91a38f64c7b853f8624b4537dbf48f6a144cb3e52386a109895281283",
       "bytes": 173440,
+      "width": 1086,
+      "height": 1448
+    },
+    "rajwadi-shahi-kundan-bangles/rajwadi-shahi-kundan-bangles-1.jpg": {
+      "driveId": "1sznm6AQvOOSaji3otD5oCKfJXv7f-tqM",
+      "driveName": "BG-6.png",
+      "driveMd5": null,
+      "outputSha": "73d99276a5e9e07b3b85444d5d76f16c77f5b9ed5b6b586170867eebc8dcb2be",
+      "bytes": 191462,
       "width": 1086,
       "height": 1448
     },
