@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./ruby-cz-green-floral-earrings-1.jpg
     alt: Ruby Green CZ Floral Earrings — Gold polish with elegant detailing, Ruby-inspired stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 10
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Ruby CZ Green Floral Earrings in Gold Finish
   description: Green Ruby CZ floral earrings with a ruby centre, sparkling stones & gold detail. Perfect for weddings & festive wear. Buy today!
-syncedAt: 2026-08-16T08:05:17Z
+syncedAt: 2026-09-12T08:09:09Z
 ---
 
 Elegant floral earrings featuring a ruby-inspired centre, sparkling clear stones, and teardrop-shaped accents in a polished gold finish. The statement design adds a refined touch to festive occasions, weddings, traditional outfits, celebrations, and special events with timeless everyday charm beautifully.

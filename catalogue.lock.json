@@ -131,6 +131,22 @@
       "slug": "ruby-necklace-set",
       "firstSyncedAt": "2026-08-21T15:37:49Z"
     },
+    "JD-NK-005": {
+      "slug": "triple-layered-cz-necklace-set",
+      "firstSyncedAt": "2026-09-12T08:09:09Z"
+    },
+    "JD-NK-006": {
+      "slug": "emerald-leaf-cz-necklace-set",
+      "firstSyncedAt": "2026-09-12T08:09:09Z"
+    },
+    "JD-NK-007": {
+      "slug": "rajwadi-pearl-kundan-necklace-set-2",
+      "firstSyncedAt": "2026-09-12T08:09:09Z"
+    },
+    "JD-NK-008": {
+      "slug": "emerald-teardrop-cz-necklace-set",
+      "firstSyncedAt": "2026-09-12T08:09:09Z"
+    },
     "JD-PD-001": {
       "slug": "cz-stone-pendant-set",
       "firstSyncedAt": "2026-08-14T18:24:02Z",
@@ -274,6 +290,15 @@
       "width": 1394,
       "height": 1128
     },
+    "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
+      "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
+      "driveName": "NK_6.png",
+      "driveMd5": null,
+      "outputSha": "f21d99a71f7f4b4d18fe2369e4488bbe9b8664c7835db62e9c742c57ab23e883",
+      "bytes": 203907,
+      "width": 1145,
+      "height": 1374
+    },
     "emerald-lotus-halo-ring/emerald-lotus-halo-ring-1.jpg": {
       "driveId": "1Qu8HIow0WgffgsZBHw-rvjWVc5KNG9ka",
       "driveName": "JD-RG-009.png",
@@ -282,6 +307,15 @@
       "bytes": 159875,
       "width": 1086,
       "height": 1448
+    },
+    "emerald-teardrop-cz-necklace-set/emerald-teardrop-cz-necklace-set-1.jpg": {
+      "driveId": "1mVbdO3yw4EpBCXre2FR-CtI4kuGs_s7H",
+      "driveName": "NK_8.png",
+      "driveMd5": null,
+      "outputSha": "eafb02e5814126a2aa1506a88a078bf17be09e9708c95bb05d67174ff32ab6ed",
+      "bytes": 222411,
+      "width": 1145,
+      "height": 1374
     },
     "emerald-teardrop-royale-ring/emerald-teardrop-royale-ring-1.jpg": {
       "driveId": "1GOLT2wBq7EsW72C4iR5GXx1NKNLUAICe",
@@ -562,6 +596,15 @@
       "width": 1448,
       "height": 1086
     },
+    "rajwadi-pearl-kundan-necklace-set-2/rajwadi-pearl-kundan-necklace-set-2-1.jpg": {
+      "driveId": "17i1EgZ6pJ-i8lBpRbUDI-QROYsxiYMLl",
+      "driveName": "NK_7.png",
+      "driveMd5": null,
+      "outputSha": "42a04d1a35c73165dd71fb6c427b1da226c498d62fecab9618646c35dd55a1f3",
+      "bytes": 279640,
+      "width": 1145,
+      "height": 1374
+    },
     "rajwadi-pearl-kundan-necklace-set/rajwadi-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "17JWa3A_zuMh0jG_TJuyUs7hf6db-6FOR",
       "driveName": "WhatsApp Image 2026-08-16 at 12.04.00 PM.jpeg",
@@ -660,6 +703,15 @@
       "bytes": 162266,
       "width": 1402,
       "height": 1122
+    },
+    "triple-layered-cz-necklace-set/triple-layered-cz-necklace-set-1.jpg": {
+      "driveId": "1Ys-CH7ABhhE1kBKFMPSmIi028xjIVJkz",
+      "driveName": "NK_5.png",
+      "driveMd5": null,
+      "outputSha": "f87ea4672094674ef052dd16d82a5fcde81636260dd70910e8030b7197bfdfbb",
+      "bytes": 241189,
+      "width": 1145,
+      "height": 1374
     },
     "white-beaded-temple-earrings/white-beaded-temple-earrings-1.jpg": {
       "driveId": "10Pg7dRZ4Sdz9iLUWxs0JT3CdFTxYhsyq",

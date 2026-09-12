@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./kundan-round-floral-stud-earrings-1.jpg
     alt: Kundan Round Floral Stud Earrings — Gold finish with intricate floral detailing, Kundan-style clear stones and CZ detailing
-inStock: true
+inStock: false
 featured: false
 sequence: 41
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-09-06
 seo:
   title: Kundan Round Floral Stud Earrings with CZ Detailing
   description: Kundan floral stud earrings with clear stones, CZ detailing and gold finish on brass. Perfect for weddings, festive occasions & ethnic wear. Ships in 2–3 days.
-syncedAt: 2026-09-06T06:43:04Z
+syncedAt: 2026-09-12T08:09:09Z
 ---
 
 Elegant Kundan round floral earrings featuring sparkling clear stones arranged in an intricate symmetrical design, complemented by delicate gold-finish detailing. The compact stud silhouette creates a refined and graceful statement look, perfect for weddings, festive occasions, traditional outfits, parties, celebrations and elegant ethnic ensembles.

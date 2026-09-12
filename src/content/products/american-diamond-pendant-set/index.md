@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./american-diamond-pendant-set-1.jpg
     alt: American Diamond Pendant Set — Gold finish with intricate detailing, American Diamond (CZ) stones
-inStock: true
+inStock: false
 featured: false
 sequence: 19
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-17
 seo:
   title: American Diamond Pendant Set with Earrings
   description: American Diamond pendant set with matching earrings, brass base and CZ detailing. Perfect for weddings, festive occasions and ethnic wear. Ships in 2–3 days.
-syncedAt: 2026-08-17T15:17:00Z
+syncedAt: 2026-09-12T08:09:09Z
 ---
 
 Elegant American Diamond pendant set featuring a gold finish, intricate lattice detailing and sparkling CZ stones. Paired with matching earrings, this statement design is perfect for weddings, festive occasions, parties, traditional outfits, celebrations and special events, adding a refined touch to every ethnic look.

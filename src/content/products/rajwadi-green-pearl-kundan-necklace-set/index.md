@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./rajwadi-green-pearl-kundan-necklace-set-1.jpg
     alt: Rajsi Heritage Premium Necklace Set — Gold polish with intricate detailing, Pearl-style beads and green stones and pink stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 9
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Rajwadi Green Pearl Kundan Necklace Set with Earrings
   description: Rajwadi pearl necklace set with matching earrings, green and pink stones, kundan-style detailing and gold finish. Perfect for weddings and festive ethnic wear.!
-syncedAt: 2026-08-16T07:22:46Z
+syncedAt: 2026-09-12T08:09:09Z
 ---
 
 Rajwadi necklace set featuring layered pearl-style beads, green stones, pink accents, kundan-style detailing, and intricate gold work. Paired with matching earrings, this elegant design is perfect for weddings, festive occasions, traditional celebrations, bridal events, and special family gatherings and celebrations.

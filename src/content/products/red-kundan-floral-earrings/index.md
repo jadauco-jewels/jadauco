@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./red-kundan-floral-earrings-1.jpg
     alt: Red Kundan Floral Earrings — Gold polish with elegant detailing, Red synthetic stone and Kundan-style stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 15
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Red Kundan Floral Earrings in Gold Finish
   description: Red Kundan floral earrings with a bold centre stone, sparkling accents & gold finish. Perfect for weddings & traditional ethnic wear!
-syncedAt: 2026-08-16T12:25:21Z
+syncedAt: 2026-09-12T08:09:09Z
 ---
 
 Elegant floral statement earrings featuring a striking red centre stone surrounded by large Kundan-style stones and intricate CZ detailing. Beautifully finished in rich gold tones, this magnificent pair brings a regal, traditional charm—making them an absolute essential for grand weddings, festive celebrations, and special cultural gatherings.
