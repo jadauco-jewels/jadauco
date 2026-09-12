@@ -147,6 +147,22 @@
       "slug": "emerald-teardrop-cz-necklace-set",
       "firstSyncedAt": "2026-09-12T08:09:09Z"
     },
+    "JD-NK-009": {
+      "slug": "maharani-jadau-bloom-necklace-set",
+      "firstSyncedAt": "2026-09-12T11:23:05Z"
+    },
+    "JD-NK-010": {
+      "slug": "shree-ram-jadau-necklace-set",
+      "firstSyncedAt": "2026-09-12T11:23:05Z"
+    },
+    "JD-NK-011": {
+      "slug": "rajsi-emerald-mosaic-necklace-set",
+      "firstSyncedAt": "2026-09-12T11:23:05Z"
+    },
+    "JD-NK-012": {
+      "slug": "gulnaar-jadau-rani-necklace-set",
+      "firstSyncedAt": "2026-09-12T11:23:05Z"
+    },
     "JD-PD-001": {
       "slug": "cz-stone-pendant-set",
       "firstSyncedAt": "2026-08-14T18:24:02Z",
@@ -434,6 +450,15 @@
       "width": 1086,
       "height": 1448
     },
+    "gulnaar-jadau-rani-necklace-set/gulnaar-jadau-rani-necklace-set-1.jpg": {
+      "driveId": "1_pr8cQUzNQsXeRfJ1a70QCySNfaKkg0o",
+      "driveName": "NK_12.png",
+      "driveMd5": null,
+      "outputSha": "67e05dd4d324112c7103d7e17a7640d61985986a483e77b88f76a00f2c32b870",
+      "bytes": 198257,
+      "width": 1086,
+      "height": 1448
+    },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
       "driveId": "18jR-PF0iYL7AJ_ghGP36U2N_tpziBQAE",
       "driveName": "e4007da6-7568-46c3-9f8e-207738d8625b.jpg",
@@ -524,6 +549,15 @@
       "width": 1448,
       "height": 1086
     },
+    "maharani-jadau-bloom-necklace-set/maharani-jadau-bloom-necklace-set-1.jpg": {
+      "driveId": "1rG6d7GKf_Hc6dfcs9nSd0mghWJkPZhER",
+      "driveName": "NK_9.png",
+      "driveMd5": null,
+      "outputSha": "a04f1982dead9f8058f915228c4281e4b1f9635d6910b55b1bb51df70e03ad7e",
+      "bytes": 186851,
+      "width": 1145,
+      "height": 1374
+    },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
       "driveName": "WhatsApp Image 2026-08-16 at 12.35.03 PM.jpeg",
@@ -559,6 +593,15 @@
       "bytes": 183722,
       "width": 1122,
       "height": 1402
+    },
+    "rajsi-emerald-mosaic-necklace-set/rajsi-emerald-mosaic-necklace-set-1.jpg": {
+      "driveId": "1Zqy47yFoRAIKOA3p4tqFm2QuetSRtylR",
+      "driveName": "NK_11.png",
+      "driveMd5": null,
+      "outputSha": "d2b0831160e28e3b4e5027821e2fc9be5122f2263b78fb5760e8b8c15a8240f2",
+      "bytes": 209697,
+      "width": 1145,
+      "height": 1374
     },
     "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
@@ -685,6 +728,15 @@
       "bytes": 165708,
       "width": 1086,
       "height": 1448
+    },
+    "shree-ram-jadau-necklace-set/shree-ram-jadau-necklace-set-1.jpg": {
+      "driveId": "1Kqa9q71v_cQeRWeNCF-MqfZZt7kPA0Rz",
+      "driveName": "NK_10.png",
+      "driveMd5": null,
+      "outputSha": "7020dbc7e2de3acd1f2e39f73042f7ea6af46f26f8aacee3472381f44671def2",
+      "bytes": 193762,
+      "width": 1145,
+      "height": 1374
     },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
       "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
