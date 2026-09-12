@@ -3,7 +3,7 @@ title: Rings
 code: RG
 art: ring
 blurb: Adjustable shanks, so one size covers most hands. Cocktail and everyday.
-order: 4
+order: 5
 seo:
   title: Imitation Rings Online — Adjustable CZ, Kundan & Cocktail Rings
   description: Gold-plated imitation rings — adjustable cocktail rings, kundan statement pieces and CZ bands. Free size options, shipped across India.

@@ -72,6 +72,7 @@ const CATEGORY_CODES = [
   ['NK', 'Necklaces'],
   ['ER', 'Earrings'],
   ['BG', 'Bangles'],
+  ['BR', 'Bracelets'],
   ['RG', 'Rings'],
   ['PD', 'Pendants'],
 ];

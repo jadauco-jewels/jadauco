@@ -3,7 +3,7 @@ title: Maang tikka
 code: TK
 art: tikka
 blurb: Single and double-chain tikkas with a hair hook that holds without a pin.
-order: 6
+order: 7
 # Not stocked at the moment. The copy and the code stay; the category leaves the site.
 hidden: true
 seo:

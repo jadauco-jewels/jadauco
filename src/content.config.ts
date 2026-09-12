@@ -95,7 +95,17 @@ const categories = defineCollection({
       hidden: z.boolean().default(false),
       // Which line-art stand-in represents this category, and stands in for any
       // product still waiting on a photograph. Ids live in Icons.astro.
-      art: z.enum(['necklace', 'haar', 'pendant', 'jhumka', 'bangle', 'tikka', 'ring', 'payal']),
+      art: z.enum([
+        'necklace',
+        'haar',
+        'pendant',
+        'jhumka',
+        'bangle',
+        'bracelet',
+        'tikka',
+        'ring',
+        'payal',
+      ]),
       // One line under the category name on the homepage. Not the body copy.
       blurb: z.string().min(20).max(140),
       banner: image().optional(),

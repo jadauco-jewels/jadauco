@@ -3,7 +3,7 @@ title: Pendants
 code: PD
 art: pendant
 blurb: Single pendants on a fine chain, worn alone or layered over a longer haar.
-order: 5
+order: 6
 seo:
   title: Imitation Pendants Online — Kundan, Temple & CZ Designs with Chain
   description: Gold-plated imitation pendants with a matching chain — kundan, temple motifs and CZ solitaires. Light enough for daily wear, shipped across India.

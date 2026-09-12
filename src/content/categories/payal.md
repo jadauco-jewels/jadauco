@@ -3,7 +3,7 @@ title: Payal
 code: PY
 art: payal
 blurb: Anklets with ghungroo, sold as a pair, oxidised silver finish.
-order: 7
+order: 8
 # Not stocked at the moment. The copy and the code stay; the category leaves the site.
 hidden: true
 seo:

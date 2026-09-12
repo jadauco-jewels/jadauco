@@ -32,7 +32,7 @@ Open the **Jadauco catalogue** sheet and fill in one row. The columns that must 
 
 | Column | What to put |
 |---|---|
-| **Product Code** | `JD-NK-014`. The two letters in the middle set the category — `NK` necklaces, `ER` earrings, `BG` bangles, `RG` rings. Never reuse a code. |
+| **Product Code** | `JD-NK-014`. The two letters in the middle set the category — `NK` necklaces, `ER` earrings, `BG` bangles, `BR` bracelets, `RG` rings, `PD` pendants. Never reuse a code. |
 | **Product Name** | What a customer would call it: *Kundan Bridal Choker Set*. |
 | **Images** | The photo filenames from Drive, separated by commas, in the order you want them shown. Copy the names from Drive and paste them — do not retype them. |
 | **Description** | At least 40 words about the piece. |
