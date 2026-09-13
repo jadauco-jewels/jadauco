@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./rajsi-emerald-mosaic-necklace-set-1.jpg
     alt: Rajsi Emerald Mosaic Necklace Set — Antique gold finish with intricate traditional detailing, Green synthetic stones and red synthetic stones and clear Kundan-style stones
-inStock: true
+inStock: false
 featured: false
 sequence: 53
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-09-12
 seo:
   title: Rajsi Emerald Mosaic Necklace Set
   description: Rajsi necklace set with green & red stones, Kundan-style detailing and antique gold finish. Perfect for weddings & festive wear. Ships in 2–3 days.
-syncedAt: 2026-09-12T11:23:05Z
+syncedAt: 2026-09-13T07:20:17Z
 ---
 
 Rajsi Emerald Mosaic necklace set featuring intricate geometric motifs, layered bead detailing, rich green and red synthetic stones, and sparkling clear Kundan-style accents. The ornate antique gold finish creates a regal traditional appeal, while the matching earrings complete this statement set. Perfect for weddings, festive occasions, traditional outfits and special celebrations.

@@ -25,6 +25,30 @@
       "slug": "rajwadi-shahi-kundan-bangles",
       "firstSyncedAt": "2026-09-06T06:43:04Z"
     },
+    "JD-BR-001": {
+      "slug": "mayura-jadau-mosaic-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
+    "JD-BR-002": {
+      "slug": "celestia-triple-line-cz-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
+    "JD-BR-003": {
+      "slug": "celeste-floral-crossover-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
+    "JD-BR-004": {
+      "slug": "celestia-crystal-bloom-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
+    "JD-BR-005": {
+      "slug": "emerald-royale-heritage-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
+    "JD-BR-006": {
+      "slug": "elara-crystal-line-bracelet",
+      "firstSyncedAt": "2026-09-13T07:20:17Z"
+    },
     "JD-ER-001": {
       "slug": "temple-green-emerald-polki-earrings",
       "firstSyncedAt": "2026-08-15T11:41:06Z"
@@ -288,6 +312,33 @@
       "width": 1096,
       "height": 1436
     },
+    "celeste-floral-crossover-bracelet/celeste-floral-crossover-bracelet-1.jpg": {
+      "driveId": "1VH-WRVqHWgYkN4PlWG_Gm6XqQPy1OIC0",
+      "driveName": "BR_3.png",
+      "driveMd5": null,
+      "outputSha": "c5afb90f7f117b4bc7d3da59159e9304b22db2922a81125de9ae80e36ec9412a",
+      "bytes": 68655,
+      "width": 768,
+      "height": 1024
+    },
+    "celestia-crystal-bloom-bracelet/celestia-crystal-bloom-bracelet-1.jpg": {
+      "driveId": "1qFLhZ6PM7FGqS2_824BwMfev_yLLu91e",
+      "driveName": "BR_4.png",
+      "driveMd5": null,
+      "outputSha": "4142cd97bcbbd2e3414660caa550357f3487164dbd37d9cf4e0178fbb2db9b56",
+      "bytes": 206217,
+      "width": 1086,
+      "height": 1448
+    },
+    "celestia-triple-line-cz-bracelet/celestia-triple-line-cz-bracelet-1.jpg": {
+      "driveId": "1u8Zqcpu6VKXqS6XBGcHWK9ofPN0G3LRA",
+      "driveName": "BR_2.png",
+      "driveMd5": null,
+      "outputSha": "4544012768ab732f584f733d271d9d6aa3af84c6b495259fe520f73f93444354",
+      "bytes": 69291,
+      "width": 768,
+      "height": 1024
+    },
     "crystal-ruby-crest-ring/crystal-ruby-crest-ring-1.jpg": {
       "driveId": "165Akv0y9LYYxXxSNR1s1fy1zTZUrQ14X",
       "driveName": "JD-RG-010.png",
@@ -306,6 +357,15 @@
       "width": 1394,
       "height": 1128
     },
+    "elara-crystal-line-bracelet/elara-crystal-line-bracelet-1.jpg": {
+      "driveId": "1koheIFNlxoKKzpg4kRzQbg9bdN-7cIA0",
+      "driveName": "BR_6.png",
+      "driveMd5": null,
+      "outputSha": "cf81cb82e95d64bd1b14a60da989ae2f9160f9487ae65e7949c8c88b4827b3db",
+      "bytes": 169690,
+      "width": 1086,
+      "height": 1448
+    },
     "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
       "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
       "driveName": "NK_6.png",
@@ -321,6 +381,15 @@
       "driveMd5": null,
       "outputSha": "535bdef79bea471247f044a2be9c1573acff8788025cefa9d20714ff4193ab60",
       "bytes": 159875,
+      "width": 1086,
+      "height": 1448
+    },
+    "emerald-royale-heritage-bracelet/emerald-royale-heritage-bracelet-1.jpg": {
+      "driveId": "1l-LUQ_XSn0VrU43nigiBIXccsZC_wiPp",
+      "driveName": "BR_5.png",
+      "driveMd5": null,
+      "outputSha": "a6216af831000ad677c7570763c8ee0fdae91e88fad6548a738883e6646ab776",
+      "bytes": 162219,
       "width": 1086,
       "height": 1448
     },
@@ -557,6 +626,15 @@
       "bytes": 186851,
       "width": 1145,
       "height": 1374
+    },
+    "mayura-jadau-mosaic-bracelet/mayura-jadau-mosaic-bracelet-1.jpg": {
+      "driveId": "1_SCkH0QrwwfE7Q5pAydjIFshEuPzgXgE",
+      "driveName": "BR_1.png",
+      "driveMd5": null,
+      "outputSha": "13b2297b29fe54115baceeb9fc151b14d5d5907a470e2976e6357f44c44a9978",
+      "bytes": 178595,
+      "width": 1086,
+      "height": 1448
     },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",

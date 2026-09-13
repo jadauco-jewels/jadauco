@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./shree-ram-jadau-necklace-set-1.jpg
     alt: Shree Ram Jadau Necklace Set — Antique gold finish with intricate detailing, Kundan-style clear stones and green and red synthetic stones
-inStock: true
+inStock: false
 featured: true
 sequence: 52
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-09-12
 seo:
   title: Shree Ram Jadau Necklace Set | Jadauco
   description: Shree Ram Ji necklace set with green & red stones, Kundan-style detailing and antique gold finish. Perfect for festive & traditional wear. Ships in 2–3 days.
-syncedAt: 2026-09-12T11:27:31Z
+syncedAt: 2026-09-13T07:20:17Z
 ---
 
 Shree Ram Jadau necklace set featuring a detailed Shree Ram Ji pendant, intricate traditional motifs, sparkling Kundan-style clear stones and rich green and red synthetic stone accents. The antique gold finish creates a regal traditional appeal, while matching earrings complete the statement design. Perfect for weddings, festive occasions, traditional outfits and special celebrations.
