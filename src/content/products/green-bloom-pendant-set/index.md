@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./green-bloom-pendant-set-1.jpg
     alt: Green Bloom Pendant Set — Gold finish with intricate detailing, Cubic Zirconia (CZ) and pearl-style detailing and green centre stone
-inStock: true
+inStock: false
 featured: false
 sequence: 21
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-18
 seo:
   title: Green Bloom Pendant Set with Matching Earrings
   description: Green Bloom pendant set with green centre stone, CZ and pearl-style detailing, matching earrings and gold finish. Perfect for festive, wedding and ethnic wear.
-syncedAt: 2026-08-18T12:21:46Z
+syncedAt: 2026-09-19T16:05:19Z
 ---
 
 Elegant Green Bloom pendant set featuring a gold finish, sparkling CZ stones, pearl-style detailing and a soft green centre stone. Paired with matching earrings, this floral-inspired design adds charm to weddings, festive occasions, traditional outfits, parties and special celebrations with effortless grace and timeless appeal.

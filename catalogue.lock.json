@@ -139,6 +139,26 @@
       "slug": "kundan-heart-shaped-earring",
       "firstSyncedAt": "2026-08-30T06:38:20Z"
     },
+    "JD-ER-019": {
+      "slug": "triveni-ruby-bloom-studs",
+      "firstSyncedAt": "2026-09-19T16:05:19Z"
+    },
+    "JD-ER-020": {
+      "slug": "celestia-cage-jhumka-earrings",
+      "firstSyncedAt": "2026-09-19T16:05:19Z"
+    },
+    "JD-ER-021": {
+      "slug": "aurelia-halo-cz-stud-earrings",
+      "firstSyncedAt": "2026-09-19T16:05:19Z"
+    },
+    "JD-ER-022": {
+      "slug": "rivaara-emerald-bloom-chandelier-earrings",
+      "firstSyncedAt": "2026-09-19T16:05:19Z"
+    },
+    "JD-ER-023": {
+      "slug": "meher-emerald-jhumka-chandeliers",
+      "firstSyncedAt": "2026-09-19T16:05:19Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -312,6 +332,15 @@
       "width": 1096,
       "height": 1436
     },
+    "aurelia-halo-cz-stud-earrings/aurelia-halo-cz-stud-earrings-1.jpg": {
+      "driveId": "1EpQ9TzdVKSgCULxLO23J9rdYWtFMkpQh",
+      "driveName": "ER_21.png",
+      "driveMd5": null,
+      "outputSha": "b5b1adebf9fcf0f75a53d4f85c766ce4f9c5570168fe5e1558c4955d483b5845",
+      "bytes": 154167,
+      "width": 1145,
+      "height": 1374
+    },
     "celeste-floral-crossover-bracelet/celeste-floral-crossover-bracelet-1.jpg": {
       "driveId": "1VH-WRVqHWgYkN4PlWG_Gm6XqQPy1OIC0",
       "driveName": "BR_3.png",
@@ -320,6 +349,15 @@
       "bytes": 68655,
       "width": 768,
       "height": 1024
+    },
+    "celestia-cage-jhumka-earrings/celestia-cage-jhumka-earrings-1.jpg": {
+      "driveId": "1xv758-RMh-8Kh0WG5xsfjrsKn7rUlA4G",
+      "driveName": "ER_20.png",
+      "driveMd5": null,
+      "outputSha": "23c11695ecf87c460785c8afbe93f60f8b1d5bde267d75eca8ad2161833a0c18",
+      "bytes": 150813,
+      "width": 1086,
+      "height": 1448
     },
     "celestia-crystal-bloom-bracelet/celestia-crystal-bloom-bracelet-1.jpg": {
       "driveId": "1qFLhZ6PM7FGqS2_824BwMfev_yLLu91e",
@@ -636,6 +674,15 @@
       "width": 1086,
       "height": 1448
     },
+    "meher-emerald-jhumka-chandeliers/meher-emerald-jhumka-chandeliers-1.jpg": {
+      "driveId": "18ntXTtyxriWHG8MIJkMl7L15j2jkbP0j",
+      "driveName": "ER_23.png",
+      "driveMd5": null,
+      "outputSha": "5ba955177b56cdca040f61b189365ba2e1d4f88f5cbf06ed58f181819abc9cb2",
+      "bytes": 249820,
+      "width": 1254,
+      "height": 1254
+    },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
       "driveName": "WhatsApp Image 2026-08-16 at 12.35.03 PM.jpeg",
@@ -762,6 +809,15 @@
       "width": 1448,
       "height": 1086
     },
+    "rivaara-emerald-bloom-chandelier-earrings/rivaara-emerald-bloom-chandelier-earrings-1.jpg": {
+      "driveId": "1EuZCJItpZYOmhtaoZM5jsDN2Yc2FbHe5",
+      "driveName": "ER_22.png",
+      "driveMd5": null,
+      "outputSha": "a16cebeb14045c9f58f1fe20d8a8c75cc0325805354d0718739c39e59ad8f3f5",
+      "bytes": 184516,
+      "width": 1145,
+      "height": 1374
+    },
     "royal-teardrop-crystal-ring/royal-teardrop-crystal-ring-1.jpg": {
       "driveId": "1ai7LiCGacDVO66LxVEFIkqta827QfRzG",
       "driveName": "JD-RG-011.png",
@@ -840,6 +896,15 @@
       "driveMd5": null,
       "outputSha": "f87ea4672094674ef052dd16d82a5fcde81636260dd70910e8030b7197bfdfbb",
       "bytes": 241189,
+      "width": 1145,
+      "height": 1374
+    },
+    "triveni-ruby-bloom-studs/triveni-ruby-bloom-studs-1.jpg": {
+      "driveId": "1od4BbAHv0Wi2uFQgK8RGbZp-g70KJnOk",
+      "driveName": "ER_19.png",
+      "driveMd5": null,
+      "outputSha": "d5d938067b54a4c0dde8e43991606946e52ddc681a14765e6805f844d321779b",
+      "bytes": 130214,
       "width": 1145,
       "height": 1374
     },
