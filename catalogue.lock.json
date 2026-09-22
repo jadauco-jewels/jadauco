@@ -241,6 +241,26 @@
       "slug": "green-bloom-pendant-set",
       "firstSyncedAt": "2026-08-18T12:21:46Z"
     },
+    "JD-PD-008": {
+      "slug": "elara-lattice-cz-pendant-set",
+      "firstSyncedAt": "2026-09-22T12:15:36Z"
+    },
+    "JD-PD-009": {
+      "slug": "aurelia-crystal-circle-pendant-set",
+      "firstSyncedAt": "2026-09-22T12:15:36Z"
+    },
+    "JD-PD-010": {
+      "slug": "noor-pearl-bloom-pendant-set",
+      "firstSyncedAt": "2026-09-22T12:15:36Z"
+    },
+    "JD-PD-011": {
+      "slug": "aarohi-cz-grid-pendant-set",
+      "firstSyncedAt": "2026-09-22T12:15:36Z"
+    },
+    "JD-PD-012": {
+      "slug": "kiara-square-cz-pendant-set",
+      "firstSyncedAt": "2026-09-22T12:15:36Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -314,6 +334,15 @@
       "width": 1086,
       "height": 1448
     },
+    "aarohi-cz-grid-pendant-set/aarohi-cz-grid-pendant-set-1.jpg": {
+      "driveId": "1SDvaqzwRl3KaKRg7Z517FpF4WRrOITlA",
+      "driveName": "PD-11.png",
+      "driveMd5": null,
+      "outputSha": "4035736e9a79a84ca9964c36c5cac3c3aee6367c50a8db701d0bdc8f1af5bacd",
+      "bytes": 166815,
+      "width": 1145,
+      "height": 1374
+    },
     "american-diamond-floral-elegance-set/american-diamond-floral-elegance-set-1.jpg": {
       "driveId": "1wePVAS7dUOvDkOSn1HuD4soU21eQgbTC",
       "driveName": "JD_PD_006.png",
@@ -331,6 +360,15 @@
       "bytes": 172180,
       "width": 1096,
       "height": 1436
+    },
+    "aurelia-crystal-circle-pendant-set/aurelia-crystal-circle-pendant-set-1.jpg": {
+      "driveId": "1H69M42PqzrpJZvUZmBNcidknE4uPT5A4",
+      "driveName": "PD-9.png",
+      "driveMd5": null,
+      "outputSha": "ebde3ea46b8f8b4c7f048b8632340242b80b726b4441dd04722f8f93eb498556",
+      "bytes": 132586,
+      "width": 1145,
+      "height": 1374
     },
     "aurelia-halo-cz-stud-earrings/aurelia-halo-cz-stud-earrings-1.jpg": {
       "driveId": "1EpQ9TzdVKSgCULxLO23J9rdYWtFMkpQh",
@@ -403,6 +441,15 @@
       "bytes": 169690,
       "width": 1086,
       "height": 1448
+    },
+    "elara-lattice-cz-pendant-set/elara-lattice-cz-pendant-set-1.jpg": {
+      "driveId": "1fANTMGTFL5BHbR0HnJbaAdnpPvXpejY2",
+      "driveName": "PD-8.png",
+      "driveMd5": null,
+      "outputSha": "9e4be6cf87feae5292d1008f25fef269e231133587cd1bd64a935f40cef1b83e",
+      "bytes": 133914,
+      "width": 1145,
+      "height": 1374
     },
     "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
       "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
@@ -566,6 +613,15 @@
       "width": 1086,
       "height": 1448
     },
+    "kiara-square-cz-pendant-set/kiara-square-cz-pendant-set-1.jpg": {
+      "driveId": "1M9kU9tkYjUMswMulTMCXkQzzPtdRxhfm",
+      "driveName": "PD-12.png",
+      "driveMd5": null,
+      "outputSha": "0d138aa2ac64e11baf927e7ae2c5474785b93e094cf594d985651e54b1f395f6",
+      "bytes": 165533,
+      "width": 1145,
+      "height": 1374
+    },
     "kundan-bridal-choker-set/kundan-bridal-choker-set-1.jpg": {
       "driveId": "18jR-PF0iYL7AJ_ghGP36U2N_tpziBQAE",
       "driveName": "e4007da6-7568-46c3-9f8e-207738d8625b.jpg",
@@ -682,6 +738,15 @@
       "bytes": 249820,
       "width": 1254,
       "height": 1254
+    },
+    "noor-pearl-bloom-pendant-set/noor-pearl-bloom-pendant-set-1.jpg": {
+      "driveId": "1EGB73BnrG1RAsSpium-zM6Nep2GUoUfC",
+      "driveName": "PD-10.png",
+      "driveMd5": null,
+      "outputSha": "2dd1f094849c4a56c5be74c532a7589d4de67853fb3547e6c3fe8b738cd55723",
+      "bytes": 129353,
+      "width": 1145,
+      "height": 1374
     },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
