@@ -261,6 +261,18 @@
       "slug": "kiara-square-cz-pendant-set",
       "firstSyncedAt": "2026-09-22T12:15:36Z"
     },
+    "JD-PD-013": {
+      "slug": "emerald-bloom-pendant-set",
+      "firstSyncedAt": "2026-09-29T05:20:58Z"
+    },
+    "JD-PD-014": {
+      "slug": "elara-sunburst-cz-pendant-set",
+      "firstSyncedAt": "2026-09-29T05:20:58Z"
+    },
+    "JD-PD-015": {
+      "slug": "elara-leaf-halo-pendant-set",
+      "firstSyncedAt": "2026-09-29T05:20:58Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -448,6 +460,33 @@
       "driveMd5": null,
       "outputSha": "9e4be6cf87feae5292d1008f25fef269e231133587cd1bd64a935f40cef1b83e",
       "bytes": 133914,
+      "width": 1145,
+      "height": 1374
+    },
+    "elara-leaf-halo-pendant-set/elara-leaf-halo-pendant-set-1.jpg": {
+      "driveId": "1wsQ88c8UAk1R3i6F7Cb7HpXMfL7_6Skh",
+      "driveName": "PD-15.png",
+      "driveMd5": null,
+      "outputSha": "d51589a72662873e81e80854f66d1450be44b982ad818447a77f7437b0f70452",
+      "bytes": 109903,
+      "width": 1145,
+      "height": 1374
+    },
+    "elara-sunburst-cz-pendant-set/elara-sunburst-cz-pendant-set-1.jpg": {
+      "driveId": "1U9p15Mq4ZipDrYMDqjVx6tn-CrRlDlqX",
+      "driveName": "PD-14.png",
+      "driveMd5": null,
+      "outputSha": "f392a7e8b22ebfa52ea45dc66d3b92aa14ea1b40fbdb15d7ff6d89adfd4072bc",
+      "bytes": 106644,
+      "width": 1145,
+      "height": 1374
+    },
+    "emerald-bloom-pendant-set/emerald-bloom-pendant-set-1.jpg": {
+      "driveId": "1UKbePNe3TkIR95afXzgzfQb0rsj3JKxs",
+      "driveName": "PD-13.png",
+      "driveMd5": null,
+      "outputSha": "73299d751cf1391cf6b37d4cec0e8e7737f8a3fdf16fd20b13c7df642b5d5492",
+      "bytes": 180481,
       "width": 1145,
       "height": 1374
     },
