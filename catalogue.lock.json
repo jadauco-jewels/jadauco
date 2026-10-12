@@ -207,6 +207,46 @@
       "slug": "gulnaar-jadau-rani-necklace-set",
       "firstSyncedAt": "2026-09-12T11:23:05Z"
     },
+    "JD-NK-013": {
+      "slug": "rajwadi-ruby-pearl-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-014": {
+      "slug": "rajwadi-kundan-heritage-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-015": {
+      "slug": "gulabi-emerald-royale-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-016": {
+      "slug": "ruhani-ruby-royale-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-017": {
+      "slug": "emerald-noor-royale-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-018": {
+      "slug": "rajwada-ruby-layered-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-019": {
+      "slug": "aarika-emerald-teardrop-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-020": {
+      "slug": "emerald-cascade-cz-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-021": {
+      "slug": "rajsi-lakshmi-heritage-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-022": {
+      "slug": "aurelia-crystal-cascade-necklace-set",
+      "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
     "JD-PD-001": {
       "slug": "cz-stone-pendant-set",
       "firstSyncedAt": "2026-08-14T18:24:02Z",
@@ -346,6 +386,15 @@
       "width": 1086,
       "height": 1448
     },
+    "aarika-emerald-teardrop-necklace-set/aarika-emerald-teardrop-necklace-set-1.jpg": {
+      "driveId": "14xJwBsjiRa6vWrNUPlF7CGYM53YH6MGo",
+      "driveName": "NK-19.png",
+      "driveMd5": null,
+      "outputSha": "76cc0abba6bad9672bd58ef8910169e2675438b4a1db2ccfd794e1d193dcd602",
+      "bytes": 174913,
+      "width": 1145,
+      "height": 1374
+    },
     "aarohi-cz-grid-pendant-set/aarohi-cz-grid-pendant-set-1.jpg": {
       "driveId": "1SDvaqzwRl3KaKRg7Z517FpF4WRrOITlA",
       "driveName": "PD-11.png",
@@ -372,6 +421,15 @@
       "bytes": 172180,
       "width": 1096,
       "height": 1436
+    },
+    "aurelia-crystal-cascade-necklace-set/aurelia-crystal-cascade-necklace-set-1.jpg": {
+      "driveId": "1Hk1XBPClssR9DscDmHK9nPeejsZq-orw",
+      "driveName": "Nk-22.png",
+      "driveMd5": null,
+      "outputSha": "eabb4506d4dcd08e41d5142c4309f233d03d0f4bd280996aeaf5515f6eb62b9b",
+      "bytes": 215870,
+      "width": 1145,
+      "height": 1374
     },
     "aurelia-crystal-circle-pendant-set/aurelia-crystal-circle-pendant-set-1.jpg": {
       "driveId": "1H69M42PqzrpJZvUZmBNcidknE4uPT5A4",
@@ -490,6 +548,15 @@
       "width": 1145,
       "height": 1374
     },
+    "emerald-cascade-cz-necklace-set/emerald-cascade-cz-necklace-set-1.jpg": {
+      "driveId": "1X2ySSya9X95Ts6pWQs2EP3f4vPcIovJH",
+      "driveName": "NK-20.png",
+      "driveMd5": null,
+      "outputSha": "c008628823d377e6f389fc09ab9e1b05a87669214568969845ee58cd074afa15",
+      "bytes": 178095,
+      "width": 1145,
+      "height": 1374
+    },
     "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
       "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
       "driveName": "NK_6.png",
@@ -507,6 +574,15 @@
       "bytes": 159875,
       "width": 1086,
       "height": 1448
+    },
+    "emerald-noor-royale-necklace-set/emerald-noor-royale-necklace-set-1.jpg": {
+      "driveId": "1-scr7MTrER9jSD2C5YvQSf-rdxmfXasV",
+      "driveName": "NK-17.png",
+      "driveMd5": null,
+      "outputSha": "9796e98e9c62d960f79b2673f863bca206ab6e225e86b93b4c0f97539b3200c1",
+      "bytes": 232850,
+      "width": 1145,
+      "height": 1374
     },
     "emerald-royale-heritage-bracelet/emerald-royale-heritage-bracelet-1.jpg": {
       "driveId": "1l-LUQ_XSn0VrU43nigiBIXccsZC_wiPp",
@@ -642,6 +718,15 @@
       "bytes": 247801,
       "width": 1086,
       "height": 1448
+    },
+    "gulabi-emerald-royale-necklace-set/gulabi-emerald-royale-necklace-set-1.jpg": {
+      "driveId": "1KS2NraRfpPigHy565isCPTad7K5cS49K",
+      "driveName": "NK-15.png",
+      "driveMd5": null,
+      "outputSha": "8fbae9e33ed7ec5e29cac153b046ee68e4f4ca9a64ffed704ddc6bfcd258593c",
+      "bytes": 215716,
+      "width": 1145,
+      "height": 1374
     },
     "gulnaar-jadau-rani-necklace-set/gulnaar-jadau-rani-necklace-set-1.jpg": {
       "driveId": "1_pr8cQUzNQsXeRfJ1a70QCySNfaKkg0o",
@@ -832,6 +917,24 @@
       "width": 1145,
       "height": 1374
     },
+    "rajsi-lakshmi-heritage-necklace-set/rajsi-lakshmi-heritage-necklace-set-1.jpg": {
+      "driveId": "1xYnx-Gkdf6wHCAf_uEnsPgFqXFKNeEkl",
+      "driveName": "NK-21.png",
+      "driveMd5": null,
+      "outputSha": "9f3d25442489dcd2b8efdc6356d6aff349aa34f1b4eef858cad73a05ddc1a33e",
+      "bytes": 226318,
+      "width": 1086,
+      "height": 1448
+    },
+    "rajwada-ruby-layered-necklace-set/rajwada-ruby-layered-necklace-set-1.jpg": {
+      "driveId": "1AWcDKnpnRAngQ8AMfTISL4-vGih7C9Yl",
+      "driveName": "NK-18.png",
+      "driveMd5": null,
+      "outputSha": "ee6e018cdf31f4b667af5ffa8f37c7892097ee057a831678f18a7c2be79e09e5",
+      "bytes": 259781,
+      "width": 1145,
+      "height": 1374
+    },
     "rajwadi-green-pearl-kundan-necklace-set/rajwadi-green-pearl-kundan-necklace-set-1.jpg": {
       "driveId": "1TCn8S4ZmSKtw500hBP2aZg_VJE25OkFK",
       "driveName": "JD-NK-003.png",
@@ -849,6 +952,15 @@
       "bytes": 172884,
       "width": 1122,
       "height": 1402
+    },
+    "rajwadi-kundan-heritage-necklace-set/rajwadi-kundan-heritage-necklace-set-1.jpg": {
+      "driveId": "1PCCAp3k8tyo4ixFchVa2wTgTXA-PKP4I",
+      "driveName": "NK_14.png",
+      "driveMd5": null,
+      "outputSha": "f29403519dd8f2fb08ade6eda5b837072d7b2479d3015682c88661eb219ec0a8",
+      "bytes": 180722,
+      "width": 1145,
+      "height": 1374
     },
     "rajwadi-pearl-bloom-ring/rajwadi-pearl-bloom-ring-1.jpg": {
       "driveId": "1n54jeIHVWfXqGGtBZ0g040Hq068guMCJ",
@@ -885,6 +997,15 @@
       "bytes": 172432,
       "width": 1024,
       "height": 1280
+    },
+    "rajwadi-ruby-pearl-necklace-set/rajwadi-ruby-pearl-necklace-set-1.jpg": {
+      "driveId": "1gNF-L-ELA-VtNQsmlw3Gi0hUvxdIdAKh",
+      "driveName": "NK-13.png",
+      "driveMd5": null,
+      "outputSha": "df531914088ddaf931e3d9e1df9b93f2d67d87449ba178775d1651d09148296e",
+      "bytes": 207212,
+      "width": 1145,
+      "height": 1374
     },
     "rajwadi-ruby-statement-ring/rajwadi-ruby-statement-ring-1.jpg": {
       "driveId": "1v94mrcQT0EV0xm9SS3Wd0Vl_pUh-Ccfa",
@@ -964,6 +1085,15 @@
       "driveMd5": null,
       "outputSha": "8cacbae17c57aa1662967b4946bd464517c718eebf311d067f2270ebce5adc39",
       "bytes": 165708,
+      "width": 1086,
+      "height": 1448
+    },
+    "ruhani-ruby-royale-necklace-set/ruhani-ruby-royale-necklace-set-1.jpg": {
+      "driveId": "1NYg6yE8ATm2OeYNPo-ng1uBUqhd9eGD1",
+      "driveName": "NK-16.png",
+      "driveMd5": null,
+      "outputSha": "faac9bc8b8c9f9389360c881b990a19dd775aeda475f1ae3d084ad666c5c018d",
+      "bytes": 212150,
       "width": 1086,
       "height": 1448
     },
