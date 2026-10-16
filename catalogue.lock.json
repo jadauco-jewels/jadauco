@@ -159,6 +159,34 @@
       "slug": "meher-emerald-jhumka-chandeliers",
       "firstSyncedAt": "2026-09-19T16:05:19Z"
     },
+    "JD-ER-024": {
+      "slug": "aurelia-golden-pearl-halo-studs",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-025": {
+      "slug": "golden-pearl-royale-square-studs",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-026": {
+      "slug": "aurelia-silver-pearl-halo-studs",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-027": {
+      "slug": "turquoise-peacock-heritage-ear-cuffs",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-028": {
+      "slug": "crystal-cascade-gold-drop-earrings",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-029": {
+      "slug": "ruby-bloom-gold-chandelier-earrings",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
+    "JD-ER-030": {
+      "slug": "emerald-pearl-heritage-jhumkas",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
+    },
     "JD-NK-001": {
       "slug": "kundan-bridal-choker-set",
       "firstSyncedAt": "2026-08-13T16:26:46Z"
@@ -246,6 +274,10 @@
     "JD-NK-022": {
       "slug": "aurelia-crystal-cascade-necklace-set",
       "firstSyncedAt": "2026-10-12T16:37:40Z"
+    },
+    "JD-NK-023": {
+      "slug": "ruby-peacock-radiance-necklace-set",
+      "firstSyncedAt": "2026-10-16T16:29:57Z"
     },
     "JD-PD-001": {
       "slug": "cz-stone-pendant-set",
@@ -440,12 +472,30 @@
       "width": 1145,
       "height": 1374
     },
+    "aurelia-golden-pearl-halo-studs/aurelia-golden-pearl-halo-studs-1.jpg": {
+      "driveId": "1RLrdxIHr4tpoHdzADq3EC5lWVNInIJug",
+      "driveName": "24.png",
+      "driveMd5": null,
+      "outputSha": "d1a7c0105f95584ea0e918d23c2912d5eb0c28c19de60e78d25ea003f0278d5c",
+      "bytes": 140002,
+      "width": 1145,
+      "height": 1374
+    },
     "aurelia-halo-cz-stud-earrings/aurelia-halo-cz-stud-earrings-1.jpg": {
       "driveId": "1EpQ9TzdVKSgCULxLO23J9rdYWtFMkpQh",
       "driveName": "ER_21.png",
       "driveMd5": null,
       "outputSha": "b5b1adebf9fcf0f75a53d4f85c766ce4f9c5570168fe5e1558c4955d483b5845",
       "bytes": 154167,
+      "width": 1145,
+      "height": 1374
+    },
+    "aurelia-silver-pearl-halo-studs/aurelia-silver-pearl-halo-studs-1.jpg": {
+      "driveId": "1IRuc9GGffQtGnbAnFqPmNaL-MZ9P49fv",
+      "driveName": "26.png",
+      "driveMd5": null,
+      "outputSha": "ce4d98b833e7688ea4c71846bdf13775602dd13cc84f269829b03aae34420227",
+      "bytes": 139039,
       "width": 1145,
       "height": 1374
     },
@@ -484,6 +534,15 @@
       "bytes": 69291,
       "width": 768,
       "height": 1024
+    },
+    "crystal-cascade-gold-drop-earrings/crystal-cascade-gold-drop-earrings-1.jpg": {
+      "driveId": "191iqWkFXrcOxZUIe81a_b-vMxmMEtxW3",
+      "driveName": "28.png",
+      "driveMd5": null,
+      "outputSha": "4468894a829fdab3465ef6b39b202027810d0b467c7a15f7989dcdf58b08dcd9",
+      "bytes": 143435,
+      "width": 1145,
+      "height": 1374
     },
     "crystal-ruby-crest-ring/crystal-ruby-crest-ring-1.jpg": {
       "driveId": "165Akv0y9LYYxXxSNR1s1fy1zTZUrQ14X",
@@ -584,6 +643,15 @@
       "width": 1145,
       "height": 1374
     },
+    "emerald-pearl-heritage-jhumkas/emerald-pearl-heritage-jhumkas-1.jpg": {
+      "driveId": "1q4XzrIyiW3MxXdBjhA0hlc0KdnqBLn1X",
+      "driveName": "30.png",
+      "driveMd5": null,
+      "outputSha": "f855386d7cb90874a79ede6717b2dfe71e8a4a40c3ae94ebdb58295046dd4b78",
+      "bytes": 191262,
+      "width": 1145,
+      "height": 1374
+    },
     "emerald-royale-heritage-bracelet/emerald-royale-heritage-bracelet-1.jpg": {
       "driveId": "1l-LUQ_XSn0VrU43nigiBIXccsZC_wiPp",
       "driveName": "BR_5.png",
@@ -673,6 +741,15 @@
       "bytes": 135435,
       "width": 1086,
       "height": 1448
+    },
+    "golden-pearl-royale-square-studs/golden-pearl-royale-square-studs-1.jpg": {
+      "driveId": "1LbGbQaUWNCPV21Shkx3nO3IA9MLRsfi9",
+      "driveName": "25.png",
+      "driveMd5": null,
+      "outputSha": "8ecb02d84a884ad4770b6db953bac1cbf833a936eac4aa366ad150ff6d865063",
+      "bytes": 103896,
+      "width": 1145,
+      "height": 1374
     },
     "green-beaded-temple-earrings/green-beaded-temple-earrings-1.jpg": {
       "driveId": "1UdAHBzKNAnBCqXMZmyEaojyIo-G0e1OE",
@@ -1052,6 +1129,15 @@
       "width": 1086,
       "height": 1448
     },
+    "ruby-bloom-gold-chandelier-earrings/ruby-bloom-gold-chandelier-earrings-1.jpg": {
+      "driveId": "1kpQx5Y7thQHbA6SpDZfOKnvIuJ7dhOXM",
+      "driveName": "29.png",
+      "driveMd5": null,
+      "outputSha": "d8cdae0decbecb5b906fbe4e4894d29ef885428ab4fc84a3b35b30a7196b9bb3",
+      "bytes": 153745,
+      "width": 1145,
+      "height": 1374
+    },
     "ruby-cz-green-floral-earrings/ruby-cz-green-floral-earrings-1.jpg": {
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
       "driveName": "JD-ER-003 GREEN.png",
@@ -1087,6 +1173,15 @@
       "bytes": 165708,
       "width": 1086,
       "height": 1448
+    },
+    "ruby-peacock-radiance-necklace-set/ruby-peacock-radiance-necklace-set-1.jpg": {
+      "driveId": "1v5dLulHqTPg9nXoPxy9UGGS4xFg17qIc",
+      "driveName": "JD-NK-23.png",
+      "driveMd5": null,
+      "outputSha": "b3643b24267d240ac88cbeb7d73bbf0bb025ba361c61609758913e2a59479054",
+      "bytes": 187291,
+      "width": 1145,
+      "height": 1374
     },
     "ruhani-ruby-royale-necklace-set/ruhani-ruby-royale-necklace-set-1.jpg": {
       "driveId": "1NYg6yE8ATm2OeYNPo-ng1uBUqhd9eGD1",
@@ -1139,6 +1234,15 @@
       "driveMd5": null,
       "outputSha": "d5d938067b54a4c0dde8e43991606946e52ddc681a14765e6805f844d321779b",
       "bytes": 130214,
+      "width": 1145,
+      "height": 1374
+    },
+    "turquoise-peacock-heritage-ear-cuffs/turquoise-peacock-heritage-ear-cuffs-1.jpg": {
+      "driveId": "1Pku-U0zjCGSlhr1O_b-676xpoPxhNQQs",
+      "driveName": "27.png",
+      "driveMd5": null,
+      "outputSha": "cd3e4e88476ab74b257ca63e263b412807323d4fad4b649509e9b82439648ae5",
+      "bytes": 149407,
       "width": 1145,
       "height": 1374
     },
