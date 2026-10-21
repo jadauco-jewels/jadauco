@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./white-beaded-temple-earrings-1.jpg
     alt: White Beaded Temple Earrings — Antique gold finish with intricate detailing, White beads and pearl-style beads and CZ stones and synthetic ruby
-inStock: true
+inStock: false
 featured: false
 sequence: 13
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: White Beaded Temple Earrings in Antique Gold
   description: White beaded temple earrings with pearl-style detailing and intricate antique gold work. Perfect for festive and traditional wear. Dispatched in 2-5 days.
-syncedAt: 2026-08-16T14:20:07Z
+syncedAt: 2026-10-21T16:12:38Z
 ---
 
 Temple-style earrings featuring intricate antique gold detailing, pearl-style accents, and a cluster of rich green beads with delicate bead drops. A statement design perfect for festive celebrations, weddings, traditional occasions, ethnic outfits, and special moments that call for timeless elegance and charm.

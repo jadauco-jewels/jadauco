@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./aurelia-golden-pearl-halo-studs-1.jpg
     alt: Aurelia Golden Pearl Halo Studs — Gold finish with intricate detailing, Pearl-style centre with cubic zirconia border
-inStock: true
+inStock: false
 featured: false
 sequence: 85
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-10-16
 seo:
   title: Aurelia Golden Pearl Halo Stud Earrings | Jadauco
   description: Shop gold-finish pearl-style halo stud earrings with cubic zirconia detailing, perfect for everyday styling, festive occasions and elegant looks.
-syncedAt: 2026-10-16T16:29:57Z
+syncedAt: 2026-10-21T16:12:38Z
 ---
 
 Sophisticated square stud earrings designed with a luminous pearl-style centre, a sparkling cubic zirconia border and a rich gold finish. The compact silhouette offers a refined look without being overly bold, making these earrings suitable for daily styling, festive gatherings, office wear and celebrations. A versatile addition to any jewellery collection.

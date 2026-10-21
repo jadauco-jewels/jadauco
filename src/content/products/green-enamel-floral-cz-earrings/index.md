@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./green-enamel-floral-cz-earrings-1.jpg
     alt: Green Enamel Floral CZ Earrings — Gold finish with intricate detailing, Green enamel-style detailing and CZ stones
-inStock: true
+inStock: false
 featured: true
 sequence: 14
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-08-16
 seo:
   title: Green Enamel Floral CZ Earrings in Gold Finish
   description: Green floral earrings with green enamel detailing, sparkling CZ stones and golden finish. Perfect for festive occasions, weddings, traditional and ethnic wear!
-syncedAt: 2026-08-16T12:25:21Z
+syncedAt: 2026-10-21T16:12:38Z
 ---
 
 Elegant floral earrings featuring rich green enamel-style detailing, sparkling CZ stones, and a bright centre accent in a gold finish. Compact and versatile, this statement pair is perfect for festive occasions, weddings, traditional outfits, celebrations, and everyday ethnic wear beautifully.

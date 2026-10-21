@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./polki-moissanite-jhumki-1.jpg
     alt: Kundan Pearl Jhumka Earrings — Gold finish with intricate detailing, Polki-style stones and Moissanite-style stones and CZ stones and pearl-style accents
-inStock: true
+inStock: false
 featured: false
 sequence: 37
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-09-02
 seo:
   title: Polki Moissanite Jhumki with CZ Detailing
   description: Polki Moissanite Jhumki with CZ detailing and gold finish on brass. Perfect for weddings, festive occasions and ethnic looks. Ships in 2–3 days.
-syncedAt: 2026-09-02T16:47:17Z
+syncedAt: 2026-10-21T16:12:38Z
 ---
 
 Elegant Polki Moissanite Jhumki featuring sparkling clear stones, delicate CZ detailing and pearl-style accents in a refined gold finish. The graceful jhumki silhouette creates a sophisticated statement look, perfect for weddings, festive occasions, traditional outfits, parties, special celebrations and elegant ethnic ensembles.

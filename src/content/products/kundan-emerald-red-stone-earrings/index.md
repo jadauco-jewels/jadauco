@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./kundan-emerald-red-stone-earrings-1.jpg
     alt: Kundan Emerald Red Stone Earrings — Gold finish with intricate detailing, Kundan-style stones and green stones and red stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 40
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-09-02
 seo:
   title: Kundan Emerald Red Stone Earrings with CZ Detailing
   description: Kundan earrings with red and green stones, CZ detailing and gold finish on brass. Perfect for weddings, festive occasions and ethnic looks. Ships in 2–3 days.
-syncedAt: 2026-09-04T15:13:43Z
+syncedAt: 2026-10-21T16:12:38Z
 ---
 
 Elegant Kundan earrings featuring a rich red centre stone, vibrant green accents, sparkling clear stones and delicate gold-finish detailing. The intricate symmetrical design creates a regal statement look, perfect for weddings, festive occasions, traditional outfits, parties, special celebrations and elegant ethnic ensembles.
