@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./rajwadi-ruby-pearl-necklace-set-1.jpg
     alt: Rajwadi Ruby Pearl Necklace Set — Gold finish with intricate detailing, Ruby-inspired red centre stones and cubic zirconia (CZ) stones and pearl-style accents
-inStock: true
+inStock: false
 featured: false
 sequence: 74
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-10-11
 seo:
   title: Rajwadi Ruby Pearl Necklace Set with Matching Earrings
   description: Rajwadi Ruby Pearl Necklace Set with red centre stones, CZ accents, pearl-style drops and matching earrings. Perfect for weddings and festive wear.
-syncedAt: 2026-10-12T16:37:40Z
+syncedAt: 2026-10-21T16:31:28Z
 ---
 
 Rajwadi Ruby Pearl necklace set featuring a bold red ruby-inspired centre stone, sparkling cubic zirconia accents and elegant pearl-style drops. The intricately detailed gold-finish necklace creates a rich traditional look, while the matching earrings complete the coordinated design. Perfect for weddings, festive celebrations, traditional outfits and special occasions.
