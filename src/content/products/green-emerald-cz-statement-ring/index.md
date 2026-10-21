@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./green-emerald-cz-statement-ring-1.jpg
     alt: Green Emerald CZ Statement Ring — Antique gold finish with traditional oxidised work, Synthetic emerald and CZ stones
-inStock: true
+inStock: false
 featured: true
 sequence: 5
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-08-13
 seo:
   title: Green Emerald CZ Statement Ring in Antique Gold
   description: Green emerald CZ statement ring with antique gold detailing, perfect for festive and traditional wear. Dispatched in 2-5 days.
-syncedAt: 2026-08-14T16:49:32Z
+syncedAt: 2026-10-21T16:18:25Z
 ---
 
 Statement ring featuring a rich green emerald-inspired centre, sparkling CZ detailing, and an antique gold finish. A timeless piece designed to elevate festive, wedding, traditional, and ethnic looks with a touch of regal elegance, making every occasion feel truly special and memorable.

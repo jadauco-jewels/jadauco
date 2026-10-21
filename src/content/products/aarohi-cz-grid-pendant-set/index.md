@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./aarohi-cz-grid-pendant-set-1.jpg
     alt: Aarohi CZ Grid Pendant Set — Antique gold finish with intricate detailing, Cubic zirconia stones
-inStock: true
+inStock: false
 featured: false
 sequence: 69
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-09-22
 seo:
   title: Aarohi CZ Grid Pendant Set with Matching Earrings
   description: Aarohi CZ Grid Pendant Set with matching earrings, sparkling cubic zirconia stones and gold-finish detailing. Perfect for festive and ethnic wear.
-syncedAt: 2026-09-22T12:15:36Z
+syncedAt: 2026-10-21T16:18:25Z
 ---
 
 Aarohi CZ Grid pendant set featuring an elegant geometric design, sparkling cubic zirconia stones and intricate gold-finish detailing. The symmetrical grid pattern gives the set a modern yet graceful appeal, while the matching earrings complete the coordinated look. Perfect for weddings, festive occasions, celebrations, traditional outfits, ethnic wear and special gatherings.

@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./rajwadi-pearl-kundan-bangles-1.jpg
     alt: Rajwadi Pearl Kundan Bangles — Gold finish with intricate detailing, Kundan-style clear stones and red and green stones and pearl-style detailing
-inStock: true
+inStock: false
 featured: false
 sequence: 45
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-09-06
 seo:
   title: Rajwadi Pearl Kundan Bangles – Gold Finish Traditional Jewellery
   description: Rajwadi pearl Kundan bangles with red and green stones, intricate gold finish and traditional detailing. Perfect for weddings, festive and ethnic wear.
-syncedAt: 2026-09-06T06:43:04Z
+syncedAt: 2026-10-21T16:18:25Z
 ---
 
 Elegant Rajwadi-style bangles featuring intricate gold-finish detailing, rich red and green stone accents, pearl-style embellishments and traditional decorative motifs. The ornate craftsmanship creates a regal statement look, perfect for weddings, festive occasions, traditional outfits, parties, celebrations and elegant ethnic ensembles.

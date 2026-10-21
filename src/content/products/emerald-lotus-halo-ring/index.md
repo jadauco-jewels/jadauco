@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./emerald-lotus-halo-ring-1.jpg
     alt: Emerald Lotus Halo Ring — Gold finish with intricate floral detailing, Green stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 30
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-08-22
 seo:
   title: Emerald Lotus Halo Ring with CZ Detailing
   description: Green floral ring with CZ detailing and gold finish on brass. Perfect for weddings, festive occasions and ethnic looks. Ships in 2–3 days.
-syncedAt: 2026-08-22T06:37:39Z
+syncedAt: 2026-10-21T16:18:25Z
 ---
 
 Elegant statement ring featuring a vibrant green floral centre surrounded by sparkling CZ stones and delicate gold detailing. The symmetrical lotus-inspired design creates a refined and regal look, making it perfect for weddings, festive occasions, traditional outfits, parties and special celebrations.
