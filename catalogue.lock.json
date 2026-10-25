@@ -25,6 +25,26 @@
       "slug": "rajwadi-shahi-kundan-bangles",
       "firstSyncedAt": "2026-09-06T06:43:04Z"
     },
+    "JD-BG-007": {
+      "slug": "cz-baguette-dual-bar-gold-bangle-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-BG-008": {
+      "slug": "dual-line-cz-gold-bangle-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-BG-009": {
+      "slug": "multi-row-full-cz-statement-bangle-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-BG-010": {
+      "slug": "baguette-round-cz-slim-bangle-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-BG-011": {
+      "slug": "lakshmi-temple-antique-gold-bangle-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
     "JD-BR-001": {
       "slug": "mayura-jadau-mosaic-bracelet",
       "firstSyncedAt": "2026-09-13T07:20:17Z"
@@ -345,6 +365,22 @@
       "slug": "elara-leaf-halo-pendant-set",
       "firstSyncedAt": "2026-09-29T05:20:58Z"
     },
+    "JD-PD-018": {
+      "slug": "emerald-cz-floral-statement-pendant-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-PD-019": {
+      "slug": "heritage-elephant-green-stone-pendant-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-PD-021": {
+      "slug": "ruby-cushion-cut-cz-pendant-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
+    "JD-PD-022": {
+      "slug": "solitaire-halo-delicate-cz-pendant-set",
+      "firstSyncedAt": "2026-10-25T16:27:55Z"
+    },
     "JD-RG-001": {
       "slug": "green-emerald-cz-statement-ring",
       "firstSyncedAt": "2026-08-14T16:49:32Z"
@@ -499,6 +535,15 @@
       "width": 1145,
       "height": 1374
     },
+    "baguette-round-cz-slim-bangle-set/baguette-round-cz-slim-bangle-set-1.jpg": {
+      "driveId": "1pTQ178DMQrg0WgtSSebmagw8L3t8iVcr",
+      "driveName": "010.png",
+      "driveMd5": null,
+      "outputSha": "287f41276620c5d3ff12bb9663c4512aa8bbb5400209858ce004f824cb1d9ac8",
+      "bytes": 161730,
+      "width": 1086,
+      "height": 1448
+    },
     "celeste-floral-crossover-bracelet/celeste-floral-crossover-bracelet-1.jpg": {
       "driveId": "1VH-WRVqHWgYkN4PlWG_Gm6XqQPy1OIC0",
       "driveName": "BR_3.png",
@@ -553,6 +598,15 @@
       "width": 1086,
       "height": 1448
     },
+    "cz-baguette-dual-bar-gold-bangle-set/cz-baguette-dual-bar-gold-bangle-set-1.jpg": {
+      "driveId": "1-d8jrjsnivcfYTOS43KQLM_CSj6LNjWW",
+      "driveName": "007.png",
+      "driveMd5": null,
+      "outputSha": "10023e1b75522e785afea9b17a2c1cd4d6c3471f28ac0e49969393bca06d8642",
+      "bytes": 133178,
+      "width": 1024,
+      "height": 1536
+    },
     "cz-stone-pendant-set/cz-stone-pendant-set-1.jpg": {
       "driveId": "1Xy7j40DK6L-xxwAOqZsJfAhnmg16plQe",
       "driveName": "JD-PD-001.png",
@@ -561,6 +615,15 @@
       "bytes": 114768,
       "width": 1394,
       "height": 1128
+    },
+    "dual-line-cz-gold-bangle-set/dual-line-cz-gold-bangle-set-1.jpg": {
+      "driveId": "15gAW3jZUnr81BQRcQ6V7EFmSuj997uBZ",
+      "driveName": "008.png",
+      "driveMd5": null,
+      "outputSha": "db9b49272000915782d167361513730a2f944dd41b1cfd4df899223fc9c8a612",
+      "bytes": 149217,
+      "width": 1086,
+      "height": 1448
     },
     "elara-crystal-line-bracelet/elara-crystal-line-bracelet-1.jpg": {
       "driveId": "1koheIFNlxoKKzpg4kRzQbg9bdN-7cIA0",
@@ -615,6 +678,15 @@
       "bytes": 178095,
       "width": 1145,
       "height": 1374
+    },
+    "emerald-cz-floral-statement-pendant-set/emerald-cz-floral-statement-pendant-set-1.jpg": {
+      "driveId": "1z1OUir2OV5-UEycbAGg24Ve4uB0mKqqY",
+      "driveName": "018.png",
+      "driveMd5": null,
+      "outputSha": "86efe70cd9cafc7730cb5457eb932ef435b4d180b358164f69f1d15b828cc2e8",
+      "bytes": 196681,
+      "width": 1086,
+      "height": 1448
     },
     "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
       "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
@@ -814,6 +886,15 @@
       "width": 1086,
       "height": 1448
     },
+    "heritage-elephant-green-stone-pendant-set/heritage-elephant-green-stone-pendant-set-1.jpg": {
+      "driveId": "1szmE8LFTRQPd5MKwYBh367H9IihJl1eH",
+      "driveName": "019.png",
+      "driveMd5": null,
+      "outputSha": "4643103393e2a9e1c9d7ca3e785ec6939823dc5d9fee065512bd7d96707f46f8",
+      "bytes": 202652,
+      "width": 1086,
+      "height": 1448
+    },
     "kiara-square-cz-pendant-set/kiara-square-cz-pendant-set-1.jpg": {
       "driveId": "1M9kU9tkYjUMswMulTMCXkQzzPtdRxhfm",
       "driveName": "PD-12.png",
@@ -895,6 +976,15 @@
       "width": 1086,
       "height": 1448
     },
+    "lakshmi-temple-antique-gold-bangle-set/lakshmi-temple-antique-gold-bangle-set-1.jpg": {
+      "driveId": "17_iG3xcO0kLvNwmhW-8ihKyM1YeP2UUE",
+      "driveName": "011.png",
+      "driveMd5": null,
+      "outputSha": "c725e049fccf7cbfde6eaff62592ab7aa996d1304db775fe968d941814bf0b29",
+      "bytes": 176356,
+      "width": 1086,
+      "height": 1448
+    },
     "magenta-beaded-temple-earrings/magenta-beaded-temple-earrings-1.jpg": {
       "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
       "driveName": "JD_ER_MAGENTA.png",
@@ -939,6 +1029,15 @@
       "bytes": 249820,
       "width": 1254,
       "height": 1254
+    },
+    "multi-row-full-cz-statement-bangle-set/multi-row-full-cz-statement-bangle-set-1.jpg": {
+      "driveId": "1LeGeiQ6HTRs9iiz68wxrnE0GK6-teZ8Q",
+      "driveName": "009.png",
+      "driveMd5": null,
+      "outputSha": "d14dd90ef0645e019999e82e34518c1253e3589e66869a21b6303aeac106e9f3",
+      "bytes": 153166,
+      "width": 1086,
+      "height": 1448
     },
     "noor-pearl-bloom-pendant-set/noor-pearl-bloom-pendant-set-1.jpg": {
       "driveId": "1EGB73BnrG1RAsSpium-zM6Nep2GUoUfC",
@@ -1138,6 +1237,15 @@
       "width": 1145,
       "height": 1374
     },
+    "ruby-cushion-cut-cz-pendant-set/ruby-cushion-cut-cz-pendant-set-1.jpg": {
+      "driveId": "1YfOjMLYPXXoXuweX5jTRbO88KJ89G_Hx",
+      "driveName": "021.png",
+      "driveMd5": null,
+      "outputSha": "883772f4071b3847948039ccb957dfc4d01ffc5577e17af92ccc0b9b4f938962",
+      "bytes": 190868,
+      "width": 1086,
+      "height": 1448
+    },
     "ruby-cz-green-floral-earrings/ruby-cz-green-floral-earrings-1.jpg": {
       "driveId": "1Ob2L6wJroGvAwls5wwrM7hrNgmNoimJr",
       "driveName": "JD-ER-003 GREEN.png",
@@ -1200,6 +1308,15 @@
       "bytes": 193762,
       "width": 1145,
       "height": 1374
+    },
+    "solitaire-halo-delicate-cz-pendant-set/solitaire-halo-delicate-cz-pendant-set-1.jpg": {
+      "driveId": "1IiEjdAUhy-PWrI8TAlQnODjB4k9UqUBV",
+      "driveName": "022.png",
+      "driveMd5": null,
+      "outputSha": "e0d40ab8363a31ebe19f9dc3de782ab34a27549945d96f6aa6f3ca084d6fde5d",
+      "bytes": 203043,
+      "width": 1086,
+      "height": 1448
     },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
       "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
