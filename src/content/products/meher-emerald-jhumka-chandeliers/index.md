@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./meher-emerald-jhumka-chandeliers-1.jpg
     alt: Meher Emerald Jhumka Chandeliers — Gold finish with intricate detailing, Cubic zirconia (CZ) clear stones and green bead accents and white bead detailing
-inStock: true
+inStock: false
 featured: false
 sequence: 65
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-09-19
 seo:
   title: Meher Emerald Jhumka Chandeliers | Jadauco
   description: Statement jhumka chandeliers with CZ stones, green bead accents and gold finish. Perfect for weddings, festive occasions and ethnic wear. Ships in 2–3 days.
-syncedAt: 2026-09-19T16:05:19Z
+syncedAt: 2026-10-25T16:33:44Z
 ---
 
 Chandelier jhumka earrings featuring ornate gold-finish detailing, sparkling cubic zirconia accents, intricate dome motifs and cascading green and white bead details. Their layered silhouette adds traditional elegance and graceful movement, making them perfect for weddings, festive occasions, celebrations, traditional outfits, family gatherings and elegant ethnic looks.

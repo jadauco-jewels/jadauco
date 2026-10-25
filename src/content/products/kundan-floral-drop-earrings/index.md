@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./kundan-floral-drop-earrings-1.jpg
     alt: Kundan Floral Drop Earrings — Gold finish with intricate floral detailing, Kundan-style stones and red stones and CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 39
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-09-02
 seo:
   title: Kundan Floral Drop Earrings with CZ Detailing
   description: Kundan floral drop earrings with red stones, CZ detailing and gold finish on brass. Perfect for weddings, festive occasions and ethnic looks. Ships in 2–3 days.
-syncedAt: 2026-09-02T16:47:17Z
+syncedAt: 2026-10-25T16:33:44Z
 ---
 
 Elegant Kundan floral drop earrings featuring sparkling clear stones, rich red floral accents and delicate CZ detailing in a refined gold finish. The layered drop design creates a graceful statement look, perfect for weddings, festive occasions, traditional outfits, parties and special celebrations.
