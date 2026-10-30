@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./rajsi-lakshmi-heritage-necklace-set-1.jpg
     alt: Rajsi Lakshmi Heritage Necklace Set — Antique gold finish with intricate detailing, Green and red synthetic stones with pearl-style accents
-inStock: true
+inStock: false
 featured: false
 sequence: 82
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-10-11
 seo:
   title: Rajsi Lakshmi Heritage Necklace Set | Jadauco
   description: Traditional Lakshmi necklace set with green bead drops, red accents and matching earrings in an antique gold finish. Perfect for festive and bridal wear.
-syncedAt: 2026-10-12T16:37:40Z
+syncedAt: 2026-10-30T15:49:53Z
 ---
 
 This traditional Lakshmi necklace set features an ornate goddess motif surrounded by intricate temple-inspired detailing, green and red synthetic stone accents, and delicate pearl-style embellishments. The cascading green bead drops add graceful movement, while the matching earrings complete its rich, heritage-inspired look. Ideal for weddings, festivals, religious celebrations, and traditional occasions.

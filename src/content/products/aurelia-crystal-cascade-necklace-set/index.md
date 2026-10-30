@@ -14,7 +14,7 @@ specs:
 images:
   - src: ./aurelia-crystal-cascade-necklace-set-1.jpg
     alt: Aurelia Crystal Cascade Necklace Set — Antique gold finish with intricate detailing, Green emerald-inspired teardrop centre stones and clear cubic zirconia (CZ) stones
-inStock: true
+inStock: false
 featured: false
 sequence: 83
 archived: false
@@ -23,7 +23,7 @@ publishDate: 2026-10-11
 seo:
   title: Aarika Emerald Teardrop Necklace Set with Earrings
   description: Green emerald-inspired teardrop necklace set with clear CZ stones, gold finish and matching earrings. Ideal for festive wear. Ships in 2–3 days.
-syncedAt: 2026-10-12T16:37:40Z
+syncedAt: 2026-10-30T15:49:53Z
 ---
 
 This elegant necklace set features a graceful green emerald-inspired teardrop pendant framed with sparkling cubic zirconia stones. Clear pear-shaped stones along the necklace add a refined, balanced look, while the matching drop earrings complete the design. A lovely choice for festive gatherings, weddings, celebrations and sophisticated ethnic outfits.

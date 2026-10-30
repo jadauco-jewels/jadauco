@@ -13,7 +13,7 @@ specs:
 images:
   - src: ./baguette-round-cz-slim-bangle-set-1.jpg
     alt: Baguette & Round CZ Slim Bangle Set — Gold polish with intricate stone work, Cubic zirconia and baguette CZ stones
-inStock: true
+inStock: false
 featured: false
 sequence: 95
 archived: false
@@ -22,7 +22,7 @@ publishDate: 2026-10-25
 seo:
   title: Baguette & Round CZ Slim Bangle Set
   description: Contemporary gold polished slim bangles featuring baguette and round CZ stones. Elegant option for modern ethnic wear and parties.
-syncedAt: 2026-10-25T16:27:55Z
+syncedAt: 2026-10-30T15:49:53Z
 ---
 
 Contemporary gold-plated bangles alternating seamlessly between round cubic zirconia pave and sleek central baguette stones. Offering a perfect blend of modern fashion elegance and traditional polish, this sleek bangle pair effortlessly upgrades both formal party wear and contemporary festive traditional outfits.
