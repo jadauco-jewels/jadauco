@@ -158,6 +158,8 @@ const site = defineCollection({
         call: z.string(),
         priceOnEnquiry: z.string(),
         soldOut: z.string(),
+        // The grid toggle. `{count}` is replaced with the number of sold-out pieces.
+        showSoldOut: z.string(),
         soldOutBody: z.string(),
         askRestock: z.string(),
         inStock: z.string(),

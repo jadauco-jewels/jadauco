@@ -52,13 +52,24 @@ export async function listed(): Promise<Product[]> {
   return products.sort(byPriority);
 }
 
+/**
+ * `listed()` minus the sold-out pieces. What a visitor sees first.
+ *
+ * A sold piece is still listed — it keeps its tile, its page and its URL, and the grids render
+ * it behind a "show sold out" toggle — but it must not be what the catalogue opens on, fill the
+ * homepage strip, or stand as the hero. Counts shown to the visitor are counts of this.
+ */
+export async function available(): Promise<Product[]> {
+  return (await listed()).filter((p) => p.data.inStock);
+}
+
 export async function byCategory(categoryId: string): Promise<Product[]> {
   const products = await listed();
   return products.filter((p) => p.data.category.id === categoryId);
 }
 
 export async function featured(limit = 6): Promise<Product[]> {
-  const products = await listed();
+  const products = await available();
   const picked = products.filter((p) => p.data.featured);
   // A homepage with three tiles because nobody ticked Featured looks broken, so
   // the newest pieces fill the gap rather than leaving it.
@@ -72,7 +83,7 @@ export async function featured(limit = 6): Promise<Product[]> {
  * top of it.
  */
 export async function newArrivals(limit = 6): Promise<Product[]> {
-  return [...(await listed())].sort(newestFirst).slice(0, limit);
+  return [...(await available())].sort(newestFirst).slice(0, limit);
 }
 
 /**
@@ -90,7 +101,7 @@ export async function heroProduct(pool?: Product[]): Promise<Product | undefined
 
   return (
     candidates.find((p) => p.data.hero && photographed(p)) ??
-    (await listed()).find((p) => p.data.hero && photographed(p)) ??
+    (await available()).find((p) => p.data.hero && photographed(p)) ??
     candidates.find(photographed) ??
     candidates[0]
   );
@@ -129,9 +140,10 @@ export async function categories(): Promise<Category[]> {
   return all.sort((a, b) => a.data.order - b.data.order);
 }
 
-/** Counts per category id, for the homepage tiles. Archived excluded, per S-6. */
+/** Counts per category id, for the homepage tiles and the chips. In-stock only: a tile that
+ * promises "12 designs" and opens on 9 reads as broken. */
 export async function categoryCounts(): Promise<Map<string, number>> {
-  const products = await listed();
+  const products = await available();
   const counts = new Map<string, number>();
   for (const product of products) {
     const id = product.data.category.id;
@@ -142,7 +154,7 @@ export async function categoryCounts(): Promise<Map<string, number>> {
 
 /** The numbers in the hero. Derived, so they can never go stale. */
 export async function catalogueFacts() {
-  const products = await listed();
+  const products = await available();
   const cats = await categories();
   const prices = products
     .map((p) => p.data.price)

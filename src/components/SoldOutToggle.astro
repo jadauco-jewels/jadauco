@@ -1,0 +1,30 @@
+---
+import { getSettings } from '../lib/settings';
+
+/**
+ * The one control on a listing page: "Show sold out (n)".
+ *
+ * A checkbox and nothing else. Sold-out tiles are in the HTML on every build — their links are
+ * what keeps the detail pages crawlable and the toggle has nothing to fetch — and `global.css`
+ * hides them until this box is ticked, via `body:has(#show-sold:checked)`. No script, so the
+ * state is the browser's, the same choice as the header menu's <details>.
+ *
+ * One per page: the id is what the stylesheet keys on.
+ */
+interface Props {
+  /** How many sold-out pieces the toggle reveals. Zero renders nothing. */
+  count: number;
+}
+
+const { count } = Astro.props;
+const settings = await getSettings();
+---
+
+{
+  count > 0 && (
+    <label class="toggle">
+      <input id="show-sold" type="checkbox" />
+      <span>{settings.labels.showSoldOut.replace('{count}', String(count))}</span>
+    </label>
+  )
+}

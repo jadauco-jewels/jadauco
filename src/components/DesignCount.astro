@@ -1,0 +1,18 @@
+---
+/**
+ * "12 designs" above a grid — the available count by default, the full count once the
+ * sold-out toggle is on. Both are in the HTML; the stylesheet shows one.
+ */
+interface Props {
+  available: number;
+  total: number;
+}
+
+const { available, total } = Astro.props;
+const designs = (n: number) => `${n} ${n === 1 ? 'design' : 'designs'}`;
+---
+
+<p class="jd-label">
+  <span class="count--available">{designs(available)}</span>
+  {total !== available && <span class="count--all">{designs(total)}</span>}
+</p>

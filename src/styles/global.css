@@ -511,7 +511,30 @@ p { margin: 0 }
 .cat-intro p + p { margin-top: var(--jd-4) }
 
 /* ============================================================ filters */
-.chips { display: flex; flex-wrap: wrap; gap: var(--jd-2); margin-bottom: var(--jd-6) }
+.filters {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
+  gap: var(--jd-3) var(--jd-6); margin-bottom: var(--jd-6);
+}
+.chips { display: flex; flex-wrap: wrap; gap: var(--jd-2) }
+/* "Show sold out" — a checkbox styled as a chip. No script: the tiles are in the HTML and the
+   rules below show them once the box is ticked. */
+.toggle {
+  display: inline-flex; align-items: center; gap: var(--jd-2); cursor: pointer;
+  font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jd-muted); border: 1px solid var(--jd-line);
+  padding: 7px 13px;
+}
+.toggle:hover { border-color: var(--jd-ink); color: var(--jd-ink) }
+.toggle input { accent-color: var(--jd-brass); margin: 0 }
+.toggle:has(:checked) { border-color: var(--jd-ink); color: var(--jd-ink) }
+/* Sold-out pieces stay off the grid until asked for, and so does the "all" count. The
+   related strip and the homepage are not `.catalogue`, so they are unaffected. */
+.catalogue .tile--sold { display: none }
+.count--all { display: none }
+body:has(#show-sold:checked) .catalogue .tile--sold { display: flex }
+body:has(#show-sold:checked) .catalogue .empty { display: none }
+body:has(#show-sold:checked) .count--all { display: inline }
+body:has(#show-sold:checked) .count--available { display: none }
 .chip {
   font-family: var(--jd-font-mono); font-size: 11px; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--jd-muted); border: 1px solid var(--jd-line);

@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import SoldOutToggle from '../../components/SoldOutToggle.astro';
+import DesignCount from '../../components/DesignCount.astro';
 import BreadcrumbLd from '../../components/jsonld/BreadcrumbLd.astro';
 import ItemListLd from '../../components/jsonld/ItemListLd.astro';
 import { getSettings } from '../../lib/settings';
@@ -9,6 +11,9 @@ import { listed, categories, categoryCounts } from '../../lib/products';
 
 const settings = await getSettings();
 const [products, cats, counts] = await Promise.all([listed(), categories(), categoryCounts()]);
+
+const available = products.filter((p) => p.data.inStock);
+const soldOut = products.length - available.length;
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: settings.labels.allJewellery }];
 
@@ -25,7 +30,7 @@ const description =
     <div class="wrap">
       <div class="band-head">
         <div>
-          <p class="jd-label">{products.length} {products.length === 1 ? 'design' : 'designs'}</p>
+          <DesignCount available={available.length} total={products.length} />
           <h1>{settings.labels.allJewellery}</h1>
         </div>
       </div>
@@ -33,26 +38,31 @@ const description =
       <!-- Real crawlable links, not a JS filter: §10.1 rules out anything a
            crawler cannot follow, and these are also the internal links that
            make the category pages reachable. -->
-      <nav class="chips" aria-label="Filter by category">
-        <a class="chip" href="/products/" aria-current="true">All</a>
-        {
-          cats.map((cat) => (
-            <a class="chip" href={`/collections/${cat.id}/`}>
-              {cat.data.title} ({counts.get(cat.id) ?? 0})
-            </a>
-          ))
-        }
-      </nav>
+      <div class="filters">
+        <nav class="chips" aria-label="Filter by category">
+          <a class="chip" href="/products/" aria-current="true">All</a>
+          {
+            cats.map((cat) => (
+              <a class="chip" href={`/collections/${cat.id}/`}>
+                {cat.data.title} ({counts.get(cat.id) ?? 0})
+              </a>
+            ))
+          }
+        </nav>
+        <SoldOutToggle count={soldOut} />
+      </div>
 
-      {
-        products.length > 0 ? (
-          <div class="grid">
-            {products.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
-          </div>
-        ) : (
-          <p class="empty">{settings.labels.emptyCategory}</p>
-        )
-      }
+      <!-- Sold-out tiles are rendered and hidden, not omitted — see SoldOutToggle. -->
+      <div class="catalogue">
+        {
+          products.length > 0 && (
+            <div class="grid">
+              {products.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
+            </div>
+          )
+        }
+        {available.length === 0 && <p class="empty">{settings.labels.emptyCategory}</p>}
+      </div>
     </div>
   </section>
 

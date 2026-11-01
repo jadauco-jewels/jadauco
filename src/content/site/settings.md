@@ -29,6 +29,7 @@ labels:
   call: Call us
   priceOnEnquiry: Price on enquiry
   soldOut: Sold out
+  showSoldOut: "Show sold out ({count})"
   soldOutBody: This one has gone. Message us and we'll tell you if it's coming back.
   askRestock: Ask about restock
   inStock: In stock · dispatched in 2–5 days

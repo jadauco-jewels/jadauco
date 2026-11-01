@@ -3,6 +3,8 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import SoldOutToggle from '../../components/SoldOutToggle.astro';
+import DesignCount from '../../components/DesignCount.astro';
 import BreadcrumbLd from '../../components/jsonld/BreadcrumbLd.astro';
 import ItemListLd from '../../components/jsonld/ItemListLd.astro';
 import { getSettings } from '../../lib/settings';
@@ -19,6 +21,8 @@ const { category } = Astro.props;
 const settings = await getSettings();
 const products = await byCategory(category.id);
 const cats = await categories();
+const available = products.filter((p) => p.data.inStock);
+const soldOut = products.length - available.length;
 
 // The body copy is what makes a category page rank instead of being a thin,
 // content-less grid. PLAN.md §5.6 / §10.4.
@@ -41,9 +45,7 @@ const crumbs = [
     <div class="wrap">
       <div class="band-head">
         <div>
-          <p class="jd-label">
-            {products.length} {products.length === 1 ? 'design' : 'designs'}
-          </p>
+          <DesignCount available={available.length} total={products.length} />
           <h1>{category.data.title}</h1>
         </div>
         <a class="more" href="/products/">{settings.labels.allJewellery} →</a>
@@ -57,30 +59,35 @@ const crumbs = [
 
   <section class="band band--sand">
     <div class="wrap">
-      <nav class="chips" aria-label="Filter by category">
-        <a class="chip" href="/products/">All</a>
-        {
-          cats.map((c) => (
-            <a
-              class="chip"
-              href={`/collections/${c.id}/`}
-              aria-current={c.id === category.id ? 'true' : undefined}
-            >
-              {c.data.title}
-            </a>
-          ))
-        }
-      </nav>
+      <div class="filters">
+        <nav class="chips" aria-label="Filter by category">
+          <a class="chip" href="/products/">All</a>
+          {
+            cats.map((c) => (
+              <a
+                class="chip"
+                href={`/collections/${c.id}/`}
+                aria-current={c.id === category.id ? 'true' : undefined}
+              >
+                {c.data.title}
+              </a>
+            ))
+          }
+        </nav>
+        <SoldOutToggle count={soldOut} />
+      </div>
 
-      {
-        products.length > 0 ? (
-          <div class="grid">
-            {products.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
-          </div>
-        ) : (
-          <p class="empty">{settings.labels.emptyCategory}</p>
-        )
-      }
+      <!-- Sold-out tiles are rendered and hidden, not omitted — see SoldOutToggle. -->
+      <div class="catalogue">
+        {
+          products.length > 0 && (
+            <div class="grid">
+              {products.map((product, i) => <ProductCard product={product} eager={i < 3} />)}
+            </div>
+          )
+        }
+        {available.length === 0 && <p class="empty">{settings.labels.emptyCategory}</p>}
+      </div>
     </div>
   </section>
 
