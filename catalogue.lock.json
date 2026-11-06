@@ -381,6 +381,58 @@
       "slug": "solitaire-halo-delicate-cz-pendant-set",
       "firstSyncedAt": "2026-10-25T16:27:55Z"
     },
+    "JD-PD-027": {
+      "slug": "trilogy-pyramid-circle-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-030": {
+      "slug": "rectangular-lattice-mesh-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-034": {
+      "slug": "sapphire-rhombus-geometric-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-035": {
+      "slug": "sapphire-leaf-filigree-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-036": {
+      "slug": "antique-gold-paisley-filigree-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-037": {
+      "slug": "emerald-floral-swirl-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-038": {
+      "slug": "onyx-medallion-statement-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-039": {
+      "slug": "artisanal-openwork-floral-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-040": {
+      "slug": "starburst-lattice-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-041": {
+      "slug": "ruby-square-mosaic-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-044": {
+      "slug": "baguette-cross-lattice-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-045": {
+      "slug": "dual-oval-teardrop-cz-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
+    "JD-PD-047": {
+      "slug": "layered-arch-baguette-cz-statement-pendant-set",
+      "firstSyncedAt": "2026-11-06T15:37:30Z"
+    },
     "JD-PD-050": {
       "slug": "royal-ruby-crescent-swirl-cz-pendant-set",
       "firstSyncedAt": "2026-10-30T15:45:03Z"
@@ -543,6 +595,24 @@
       "width": 1096,
       "height": 1436
     },
+    "antique-gold-paisley-filigree-pendant-set/antique-gold-paisley-filigree-pendant-set-1.jpg": {
+      "driveId": "1XefBQHTlJTG72nE84m88PpmV2g5ZPUks",
+      "driveName": "PD 36.png",
+      "driveMd5": null,
+      "outputSha": "04b5955cb50691a2884ae45468ce984922e0fb4a11f64f36102532db26caec75",
+      "bytes": 164647,
+      "width": 1199,
+      "height": 1312
+    },
+    "artisanal-openwork-floral-cz-pendant-set/artisanal-openwork-floral-cz-pendant-set-1.jpg": {
+      "driveId": "1tOyzHUTDHa1F8XIkvVYrbVHNp311ucot",
+      "driveName": "PD 39.png",
+      "driveMd5": null,
+      "outputSha": "296a7242b84d8164677267e6fcacacff8640aa6e6b1626cf7f401b23a9005be4",
+      "bytes": 164094,
+      "width": 1199,
+      "height": 1312
+    },
     "aurelia-crystal-cascade-necklace-set/aurelia-crystal-cascade-necklace-set-1.jpg": {
       "driveId": "1Hk1XBPClssR9DscDmHK9nPeejsZq-orw",
       "driveName": "Nk-22.png",
@@ -587,6 +657,15 @@
       "bytes": 139039,
       "width": 1145,
       "height": 1374
+    },
+    "baguette-cross-lattice-cz-pendant-set/baguette-cross-lattice-cz-pendant-set-1.jpg": {
+      "driveId": "160aJPqQ3AoQv5GHyASqttIyorb4FxiRj",
+      "driveName": "PD 44.png",
+      "driveMd5": null,
+      "outputSha": "d4af40668ca27a4c465cebf9dd60a30c5d7a3e1e7cd357da532aac50b3fe5d61",
+      "bytes": 176353,
+      "width": 1199,
+      "height": 1312
     },
     "baguette-round-cz-slim-bangle-set/baguette-round-cz-slim-bangle-set-1.jpg": {
       "driveId": "1pTQ178DMQrg0WgtSSebmagw8L3t8iVcr",
@@ -678,6 +757,15 @@
       "width": 1086,
       "height": 1448
     },
+    "dual-oval-teardrop-cz-pendant-set/dual-oval-teardrop-cz-pendant-set-1.jpg": {
+      "driveId": "10mCZ_QVEzBCieZk-Ihxo1CrH67uPmBJf",
+      "driveName": "PD 45.png",
+      "driveMd5": null,
+      "outputSha": "e141e588d91d7d13b8e7881f63df8a7c77d68f0f04019144893ef5fe61c39077",
+      "bytes": 187135,
+      "width": 1199,
+      "height": 1312
+    },
     "elara-crystal-line-bracelet/elara-crystal-line-bracelet-1.jpg": {
       "driveId": "1koheIFNlxoKKzpg4kRzQbg9bdN-7cIA0",
       "driveName": "BR_6.png",
@@ -740,6 +828,15 @@
       "bytes": 196681,
       "width": 1086,
       "height": 1448
+    },
+    "emerald-floral-swirl-cz-pendant-set/emerald-floral-swirl-cz-pendant-set-1.jpg": {
+      "driveId": "1wwwL1PgNsEnkm3V8oQV5VX4BMtvyG-pm",
+      "driveName": "PD 37.png",
+      "driveMd5": null,
+      "outputSha": "c5721354cb4ca0cee944aab5bb8fa55cee13fe16643f6090f43a57d48ac2a5eb",
+      "bytes": 145096,
+      "width": 1199,
+      "height": 1312
     },
     "emerald-leaf-cz-necklace-set/emerald-leaf-cz-necklace-set-1.jpg": {
       "driveId": "1JHiZehzqN6Zt4RYDKzaXZqaS6N0qzbpl",
@@ -1056,6 +1153,15 @@
       "width": 1086,
       "height": 1448
     },
+    "layered-arch-baguette-cz-statement-pendant-set/layered-arch-baguette-cz-statement-pendant-set-1.jpg": {
+      "driveId": "1EAC5lb1nIvS5gfuoBXcX2lBEjQpCl9Kq",
+      "driveName": "PD 47.png",
+      "driveMd5": null,
+      "outputSha": "c8d2779e67af7e3bc24b303585a064e96a766ebbff1e9b4e8b7804eff841c2b4",
+      "bytes": 204668,
+      "width": 1199,
+      "height": 1312
+    },
     "magenta-beaded-temple-earrings/magenta-beaded-temple-earrings-1.jpg": {
       "driveId": "1l_zn6Wr9mpXnurmEMnqQPrAL6rbEKnEq",
       "driveName": "JD_ER_MAGENTA.png",
@@ -1154,6 +1260,15 @@
       "bytes": 129353,
       "width": 1145,
       "height": 1374
+    },
+    "onyx-medallion-statement-cz-pendant-set/onyx-medallion-statement-cz-pendant-set-1.jpg": {
+      "driveId": "1n-cTjDlL7XdmAuRIcAEpX-1wr0R8D8DA",
+      "driveName": "PD 38.png",
+      "driveMd5": null,
+      "outputSha": "ae1960defe8727baeac8ea0173b1ba0c7a359b67c87af3210c3316fd494ef41a",
+      "bytes": 160502,
+      "width": 1199,
+      "height": 1312
     },
     "pearl-red-pendant-set/pearl-red-pendant-set-1.jpg": {
       "driveId": "168IKmOHXUXJXUwWhkmo6eOZqJMBRSyAc",
@@ -1317,6 +1432,15 @@
       "width": 1086,
       "height": 1448
     },
+    "rectangular-lattice-mesh-cz-pendant-set/rectangular-lattice-mesh-cz-pendant-set-1.jpg": {
+      "driveId": "1604pwiaZGE85ogcCrHM3ELkYKgcg-h0I",
+      "driveName": "PD 30.png",
+      "driveMd5": null,
+      "outputSha": "9d4ac16f5d05dbaee15d8d71bc856f823caf1a611439fc65af512e2b0343cb10",
+      "bytes": 138173,
+      "width": 1199,
+      "height": 1312
+    },
     "red-kundan-floral-earrings/red-kundan-floral-earrings-1.jpg": {
       "driveId": "1IZpyJQcCT8FG2I2_0qhge0rC0YUDG4gh",
       "driveName": "JD_ER_008.png",
@@ -1425,6 +1549,15 @@
       "width": 1145,
       "height": 1374
     },
+    "ruby-square-mosaic-cz-pendant-set/ruby-square-mosaic-cz-pendant-set-1.jpg": {
+      "driveId": "1eizZ0MNsxFAVlnls3Xl543JbuitDZDk7",
+      "driveName": "PD 41.png",
+      "driveMd5": null,
+      "outputSha": "e3593e7b2cde28066d9d0344282c7c179599aa107179b874756ae5f58e2d3a4a",
+      "bytes": 151637,
+      "width": 1199,
+      "height": 1312
+    },
     "ruhani-ruby-royale-necklace-set/ruhani-ruby-royale-necklace-set-1.jpg": {
       "driveId": "1NYg6yE8ATm2OeYNPo-ng1uBUqhd9eGD1",
       "driveName": "NK-16.png",
@@ -1433,6 +1566,24 @@
       "bytes": 212150,
       "width": 1086,
       "height": 1448
+    },
+    "sapphire-leaf-filigree-cz-pendant-set/sapphire-leaf-filigree-cz-pendant-set-1.jpg": {
+      "driveId": "1DPEJeVN0Yn0J3MxOHaHlRuhDwCeu7sZU",
+      "driveName": "PD 35.png",
+      "driveMd5": null,
+      "outputSha": "ed6d567883ddbf20a14b6aa774f227629f251558ed5523911a1c4f929d428038",
+      "bytes": 147506,
+      "width": 1199,
+      "height": 1312
+    },
+    "sapphire-rhombus-geometric-cz-pendant-set/sapphire-rhombus-geometric-cz-pendant-set-1.jpg": {
+      "driveId": "1vqQgTbIvr1Q1KNnj9e6hR1bdCGw4e9o9",
+      "driveName": "PD 34.png",
+      "driveMd5": null,
+      "outputSha": "cef3372ced27a36153929a352e3c31b955bd168c9d87f7cf360249930188b734",
+      "bytes": 139306,
+      "width": 1199,
+      "height": 1312
     },
     "sapphire-royal-crescent-halo-pendant-set/sapphire-royal-crescent-halo-pendant-set-1.jpg": {
       "driveId": "1PKfbpxxY6YzxPFZafX7Tbqz123soN9iW",
@@ -1461,6 +1612,15 @@
       "width": 1086,
       "height": 1448
     },
+    "starburst-lattice-cz-pendant-set/starburst-lattice-cz-pendant-set-1.jpg": {
+      "driveId": "1o9wAJQ-bnja2TSFYnjzGIc2nItfus4xM",
+      "driveName": "PD 40.png",
+      "driveMd5": null,
+      "outputSha": "80aecada983cabe51ed5429a0a99cc6616297212331c257da76e9a363edb3b93",
+      "bytes": 129047,
+      "width": 1254,
+      "height": 1254
+    },
     "temple-green-emerald-polki-earrings/temple-green-emerald-polki-earrings-1.jpg": {
       "driveId": "12tkrZR219wPdQczgN3MsbSn8AGdVaj0U",
       "driveName": "JD-Temple.png",
@@ -1478,6 +1638,15 @@
       "bytes": 162266,
       "width": 1402,
       "height": 1122
+    },
+    "trilogy-pyramid-circle-cz-pendant-set/trilogy-pyramid-circle-cz-pendant-set-1.jpg": {
+      "driveId": "1WGROLJ5Ke9eVP_YhkhCsy1SyYDIZTb9W",
+      "driveName": "PD 27.png",
+      "driveMd5": null,
+      "outputSha": "0f3a2fd272109131a31ba5bd7c6f74432dc0696d982b6e555a2da4602cfe1fc4",
+      "bytes": 154575,
+      "width": 1199,
+      "height": 1312
     },
     "triple-layered-cz-necklace-set/triple-layered-cz-necklace-set-1.jpg": {
       "driveId": "1Ys-CH7ABhhE1kBKFMPSmIi028xjIVJkz",
